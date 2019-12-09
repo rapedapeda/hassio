@@ -1,0 +1,9 @@
+platform: trend
+sensors:
+  shower:
+    # On if +3.6%/minute - 0.06 times 60 seconds
+    entity_id: sensor.humidity_5
+    sample_duration: 600
+    min_gradient: 0.06
+    device_class: moving
+    #max_samples: 3

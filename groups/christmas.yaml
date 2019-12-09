@@ -1,0 +1,5 @@
+christmas:
+  name: Christmas
+  entities:
+    - light.christmas_star
+    - switch.kerstboom

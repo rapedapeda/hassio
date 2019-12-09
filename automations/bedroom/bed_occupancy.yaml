@@ -1,0 +1,18 @@
+- id: bed_occupancy
+  alias: Bedroom bed occupied
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.vibration_sensor_stats_count
+    above: 5
+  condition:
+  - condition: state
+    entity_id: group.presence
+    state: 'home'
+  - condition: state
+    entity_id: input_boolean.bed_occupancy
+    state: 'off'
+  action:
+  - data:
+      entity_id: input_boolean.bed_occupancy
+    service: input_boolean.turn_on

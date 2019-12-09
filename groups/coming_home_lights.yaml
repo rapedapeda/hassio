@@ -1,0 +1,4 @@
+coming_home_lights:
+  name: Coming home lights
+  entities:
+    - light.lotek

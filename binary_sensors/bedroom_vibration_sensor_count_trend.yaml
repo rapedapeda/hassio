@@ -1,0 +1,8 @@
+platform: trend
+sensors:
+  bedroom_vibration_count_trend:
+    # On if +3.6%/minute - 0.06 times 60 seconds
+    entity_id: sensor.vibration_sensor_stats_count
+    sample_duration: 60
+    min_gradient: 0.25
+    device_class: motion

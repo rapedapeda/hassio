@@ -1,0 +1,5 @@
+- name: lights_full
+  entities:
+    group.all_lights:
+      state: on
+      brightness: 255

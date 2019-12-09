@@ -1,0 +1,24 @@
+- id: coming_home_lights_christmas
+  alias: Christmas - coming home lights
+  trigger:
+    - platform: state
+      entity_id: group.presence
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-0:30:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.christmas_star
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.kerstboom

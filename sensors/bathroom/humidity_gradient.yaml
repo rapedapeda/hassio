@@ -1,0 +1,6 @@
+platform: template
+sensors: 
+  bathroom_humidity_shower_gradient:
+    friendly_name: Bathroom humidity shower gradient
+    value_template: "{{ state_attr('binary_sensor.shower','gradient') }}"
+    unit_of_measurement: '%/min'

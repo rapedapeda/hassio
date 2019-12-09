@@ -1,0 +1,16 @@
+- id: alarm_arm_home
+  alias: Alarm arm home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.presence
+    to: 'home'
+  condition: 
+  - condition: sun
+    after: sunset
+    after_offset: "-00:45:00"
+  - condition: sun
+    before: sunrise
+    before_offset: "+00:30:00"
+  action:
+  - service: alarm_control_panel.alarm_arm_home

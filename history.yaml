@@ -1,0 +1,8 @@
+include:
+  domains:
+    - input_boolean
+    - lights
+    - person
+    - script
+    - switch
+    - sun

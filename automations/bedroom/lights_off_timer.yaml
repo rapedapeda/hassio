@@ -1,0 +1,16 @@
+- id: lights_off_timer
+  alias: Bedroom lights off timer
+  trigger:
+  - entity_id: binary_sensor.presence_slaapkamer
+    platform: state
+    to: 'off'
+    for: "00:01:30"
+  condition:
+  - condition: state
+    entity_id: input_boolean.bed_occupancy
+    state:  'off'
+  action:
+    service: light.turn_off
+    data:
+      entity_id:
+        - group.bedroom

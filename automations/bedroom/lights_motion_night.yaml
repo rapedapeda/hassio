@@ -1,0 +1,22 @@
+- id: bedroom_lights_motion_night
+  alias: Bedroom light when motion at night
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.presence_slaapkamer
+    platform: state
+    to: 'on'
+  condition:
+  - condition: sun
+    after: sunset
+    after_offset: "-0:30:00"
+  - condition: state
+    entity_id: input_boolean.bed_occupancy
+    state: 'on'
+  action:
+  - data_template:
+      entity_id: light.lita
+      profile: night
+    service: light.turn_on
+  - service: timer.start
+    data:
+      entity_id: timer.bedroom_lights

@@ -1,0 +1,9 @@
+- id: 'alarm_manual_off'
+  alias: Alarm manual off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.presence_status 
+    to: 'on'
+  action:
+  - service: alarm_control_panel.alarm_disarm

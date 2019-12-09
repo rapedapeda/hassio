@@ -1,0 +1,15 @@
+- name: bedroom_normal
+  entities:
+    light.lita:
+      state: on
+      brightness: 255
+- name: bedroom_full
+  entities:
+    light.lita:
+      state: on
+      brightness: 255
+- name: bedroom_low
+  entities:
+    light.lita:
+      state: on
+      brightness: 75

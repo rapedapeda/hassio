@@ -1,0 +1,12 @@
+- id: system_restart_presence
+  alias: System restart presence
+  hide_entity: true
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "location/monitor/scan/restart"
+        payload: '' 

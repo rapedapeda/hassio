@@ -1,0 +1,17 @@
+- id: bedroom_lights_motion_low_light
+  alias: Bedroom lights low light
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.presence_slaapkamer
+    platform: state
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.lightlevel_slaapkamer
+    below: 100
+  - condition: state
+    entity_id: input_boolean.bed_occupancy
+    state: 'off'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.bedroom_normal

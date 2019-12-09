@@ -1,0 +1,87 @@
+
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+   base_url: home.muizeluuk.nl:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+homeassistant:
+  customize: !include customize.yaml
+  unit_system: metric
+
+alarm_control_panel:
+  - platform: manual
+
+#emulated_hue:
+#  listen_port: 80
+
+logger:
+  default: warning
+
+media_player:
+  - platform: panasonic_viera
+    host: 192.168.200.146
+    mac: 04:20:9a:30:e2:b2
+
+notify:
+  platform: html5
+  gcm_api_key: 'AAAA4-iBrNo:APA91bEXrE4JcRr8PDRx3s8mLIi0RqkUfJF34Od3FMopuO8uARTHDd0HIAtPXibLg1fG2MkBWrqPbZnJv6zT3_0cuZLA_Hk5aNjTGZbmbFlmB05s8f-4VE9t3SeB9ZwkJy-RZEtswP4W'
+  gcm_sender_id: '978858388698'
+
+
+################################################################################
+################################################################################
+
+#media_player:
+  # Use the Python ADB implementation without authentication
+#  - platform: androidtv
+#    name: Living Room ATV
+#    host: 192.168.200.149
+
+# Homekit integration
+homekit:
+  auto_start: false
+  safe_mode: false
+  filter:
+    exclude_domains:
+      - automation
+      - device_tracker
+      - alarm_control_panel
+      - sensor
+      - binary_sensor
+    exclude_entities:
+      - binary_sensor.updater
+    include_entities:
+      - sensor.temperature_4
+#      include_domains:
+#        - alarm_control_panel
+#        - light
+#      exclude_entities:
+#        - light.
+
+######################################################################
+# Includes
+
+#alert: !include_dir_merge_named alerts/
+automation: !include_dir_merge_list automations/
+binary_sensor: !include_dir_list binary_sensors/
+group: !include_dir_merge_named groups/
+history: !include history.yaml
+input_boolean: !include_dir_merge_named input_boolean/
+input_number: !include_dir_merge_named input_number/
+#input_select: !include_dir_merge_named input_select/
+logbook: !include logbook.yaml
+#notify: !include_dir_list notify/
+scene: !include_dir_merge_list scenes/
+script: !include_dir_merge_named scripts/
+timer: !include_dir_merge_named timers/
+sensor: !include_dir_list sensors/
+zone: !include_dir_list zones/
+
+

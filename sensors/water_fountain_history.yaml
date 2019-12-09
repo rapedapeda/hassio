@@ -1,0 +1,7 @@
+platform: history_stats
+name: Water fountain activations
+entity_id: switch.water_fountain
+state: 'on'
+type: count
+start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+end: '{{ now() }}'

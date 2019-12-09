@@ -1,0 +1,18 @@
+- id: door_trigger_presence
+  alias: Door presence trigger
+  trigger:
+    platform: state
+    entity_id: binary_sensor.voordeur
+    # Optional
+    from: "off"
+    # Optional
+    to: "on"
+  condition:
+    - condition: state
+      entity_id: group.presence
+      state: 'not_home'
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "location/monitor/scan/arrive"
+        payload: '' 

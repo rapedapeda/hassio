@@ -1,0 +1,7 @@
+batteries:
+  name: Baterries
+  entities: 
+    - sensor.voordeur_battery_level
+    - sensor.vibration_7_battery_level
+    - sensor.temperatuur_slaapkamer_battery_level
+    - sensor.lightlevel_battery_level_slaapkamer

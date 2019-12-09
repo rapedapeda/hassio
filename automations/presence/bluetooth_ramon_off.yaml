@@ -1,0 +1,13 @@
+- id: occupancy_off_ramon
+  alias: Occupancy Off Ramon
+  hide_entity: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ramon_home
+      below: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: ramon
+        location_name: not_home
+        source_type: bluetooth

@@ -1,0 +1,17 @@
+- id: lights_sunset_christmas
+  alias: Christmas - lights at sunset
+  trigger:
+  - entity_id: sensor.daylight
+    platform: state
+    to: sunset_start
+  condition:
+  - condition: state
+    entity_id: group.presence
+    state: 'home'
+  action:
+  - data_template:
+      entity_id: light.christmas_star
+    service: light.turn_on
+  - data_template:
+      entity_id: switch.kerstboom
+    service: switch.turn_on

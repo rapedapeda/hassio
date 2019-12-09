@@ -1,0 +1,12 @@
+- name: living_room_normal
+  entities:
+    light.lotek:
+      state: on
+      brightness: 150
+      transition: 15
+- name: living_room_dimmed
+  entities:
+    light.lotek:
+      state: on
+      brightness: 75
+      transition: 15

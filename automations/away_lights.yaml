@@ -1,0 +1,14 @@
+- id: away_lights
+  alias: Away lights off 
+  trigger:
+    - platform: state
+      entity_id: input_boolean.presence_status
+      to: 'off'
+  action:
+  - data_template:
+      entity_id: group.all_lights
+    service: light.turn_off
+  - service: switch.turn_off
+    data_template:
+      entity_id: switch.kerstboom
+      

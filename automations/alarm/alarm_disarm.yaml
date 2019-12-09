@@ -1,0 +1,19 @@
+- id: alarm_disarm
+  alias: Alarm disarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.presence
+    to: 'home'
+  condition: 
+  - condition: sun
+    before: sunset
+    before_offset: "-00:45:00"
+  - condition: sun
+    after: sunrise
+    after_offset: "+00:30:00"
+  action:
+  - service: alarm_control_panel.alarm_disarm
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.presence_status

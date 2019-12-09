@@ -1,0 +1,8 @@
+include:
+  domains:
+    - automation
+    - input_boolean
+    - person
+    - script
+    - switch
+    - sun

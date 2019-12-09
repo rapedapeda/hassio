@@ -1,0 +1,4 @@
+platform: buienradar
+monitored_conditions:
+  - temperature
+  - feeltemperature
