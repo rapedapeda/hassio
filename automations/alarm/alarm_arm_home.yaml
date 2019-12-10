@@ -5,6 +5,9 @@
   - platform: state
     entity_id: group.presence
     to: 'home'
+  - platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    to: 'disarmed'
   condition: 
   - condition: sun
     after: sunset

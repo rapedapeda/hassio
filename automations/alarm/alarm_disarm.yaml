@@ -5,6 +5,9 @@
   - platform: state
     entity_id: group.presence
     to: 'home'
+  - platform: state
+    entity_id: input_boolean.bed_occupancy
+    to: 'off'
   condition: 
   - condition: sun
     before: sunset
