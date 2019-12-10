@@ -1,0 +1,200 @@
+{
+    "data": {
+        "binary_sensor": {},
+        "deleted_ids": [],
+        "sensor": {
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_battery_level": {
+                "added": true,
+                "attributes": {
+                    "Battery State": "Not Charging"
+                },
+                "device_class": "battery",
+                "icon": "mdi:battery",
+                "name": "Battery Level",
+                "state": 99,
+                "type": "sensor",
+                "unique_id": "battery_level",
+                "unit_of_measurement": "%",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_battery_state": {
+                "added": true,
+                "attributes": {
+                    "Battery Level": 99
+                },
+                "device_class": "battery",
+                "icon": "mdi:battery",
+                "name": "Battery State",
+                "state": "Not Charging",
+                "type": "sensor",
+                "unique_id": "battery_state",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_connectivity_bssid": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi-off",
+                "name": "BSSID",
+                "state": "Not Connected",
+                "type": "sensor",
+                "unique_id": "connectivity_bssid",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_connectivity_connection_type": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi",
+                "name": "Connection Type",
+                "state": "Wi-Fi",
+                "type": "sensor",
+                "unique_id": "connectivity_connection_type",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_connectivity_sim_1": {
+                "added": true,
+                "attributes": {
+                    "Allows VoIP": true,
+                    "Carrier ID": "0000000100000001",
+                    "Carrier Name": "vf nl",
+                    "Current Radio Technology": "Long-Term Evolution (LTE)",
+                    "ISO Country Code": "nl",
+                    "Mobile Country Code": "204",
+                    "Mobile Network Code": "04"
+                },
+                "icon": "mdi:sim",
+                "name": "SIM 1",
+                "state": "vf nl",
+                "type": "sensor",
+                "unique_id": "connectivity_sim_1",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_connectivity_ssid": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi-off",
+                "name": "SSID",
+                "state": "Not Connected",
+                "type": "sensor",
+                "unique_id": "connectivity_ssid",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_geocoded_location": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:map",
+                "name": "Geocoded Location",
+                "state": "Unknown",
+                "type": "sensor",
+                "unique_id": "geocoded_location",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054_last_update_trigger": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:cellphone-wireless",
+                "name": "Last Update Trigger",
+                "state": "Background Fetch",
+                "type": "sensor",
+                "unique_id": "last_update_trigger",
+                "webhook_id": "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_battery_level": {
+                "added": true,
+                "attributes": {
+                    "Battery State": "Not Charging"
+                },
+                "device_class": "battery",
+                "icon": "mdi:battery-60",
+                "name": "Battery Level",
+                "state": 67,
+                "type": "sensor",
+                "unique_id": "battery_level",
+                "unit_of_measurement": "%",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_battery_state": {
+                "added": true,
+                "attributes": {
+                    "Battery Level": 67
+                },
+                "device_class": "battery",
+                "icon": "mdi:battery-60",
+                "name": "Battery State",
+                "state": "Not Charging",
+                "type": "sensor",
+                "unique_id": "battery_state",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_connectivity_bssid": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi-off",
+                "name": "BSSID",
+                "state": "Not Connected",
+                "type": "sensor",
+                "unique_id": "connectivity_bssid",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_connectivity_connection_type": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi",
+                "name": "Connection Type",
+                "state": "Wi-Fi",
+                "type": "sensor",
+                "unique_id": "connectivity_connection_type",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_connectivity_sim_1": {
+                "added": true,
+                "attributes": {
+                    "Allows VoIP": true,
+                    "Carrier ID": "0000000100000001",
+                    "Carrier Name": "vf nl",
+                    "Current Radio Technology": "Enhanced Data rates for GSM Evolution (EDGE)",
+                    "ISO Country Code": "nl",
+                    "Mobile Country Code": "204",
+                    "Mobile Network Code": "04"
+                },
+                "icon": "mdi:sim",
+                "name": "SIM 1",
+                "state": "vf nl",
+                "type": "sensor",
+                "unique_id": "connectivity_sim_1",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_connectivity_ssid": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:wifi-off",
+                "name": "SSID",
+                "state": "Not Connected",
+                "type": "sensor",
+                "unique_id": "connectivity_ssid",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_geocoded_location": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:map",
+                "name": "Geocoded Location",
+                "state": "Unknown",
+                "type": "sensor",
+                "unique_id": "geocoded_location",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            },
+            "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46_last_update_trigger": {
+                "added": true,
+                "attributes": {},
+                "icon": "mdi:cellphone-wireless",
+                "name": "Last Update Trigger",
+                "state": "Background Fetch",
+                "type": "sensor",
+                "unique_id": "last_update_trigger",
+                "webhook_id": "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+            }
+        }
+    },
+    "key": "mobile_app",
+    "version": 1
+}

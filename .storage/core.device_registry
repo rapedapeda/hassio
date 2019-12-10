@@ -1,0 +1,610 @@
+{
+    "data": {
+        "devices": [
+            {
+                "area_id": null,
+                "config_entries": [
+                    "4456922e5e744bd4bd245012d5de1008"
+                ],
+                "connections": [],
+                "id": "75de1d572355487ab0c7ada4c3257446",
+                "identifiers": [
+                    [
+                        "ios",
+                        "831C84DF-C450-4859-9BEA-D2112E48312C"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone SE",
+                "name": "Ramon",
+                "name_by_user": "iPhone Ramon",
+                "sw_version": "13.2.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "b8:27:eb:d5:3f:cc"
+                    ]
+                ],
+                "id": "eef3659e29aa46fe86ca81df935a371e",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00212EFFFF04E055"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ",
+                "name": "ConBee",
+                "name_by_user": null,
+                "sw_version": "2.5.70",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:21:2e:ff:ff:04:e0:55"
+                    ]
+                ],
+                "id": "5809cea360574c49acf1ce8d5b90ce83",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:21:2e:ff:ff:04:e0:55"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "PHDL00",
+                "name": "Daylight",
+                "name_by_user": null,
+                "sw_version": "1.0",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "627f33a6572248a8beb541c11616a13f"
+                ],
+                "connections": [],
+                "id": "c6b30640bb3d4b12bdc078d658c21a0e",
+                "identifiers": [
+                    [
+                        "webhook_id",
+                        "c489fa77e06b424917f34c63f7fce35e10a3ed3afe72e25698675600c24d129b"
+                    ],
+                    [
+                        "device_id",
+                        "426fbedd7b5d4581b0f7e30e19554c22"
+                    ]
+                ],
+                "manufacturer": "Apple, Inc",
+                "model": "iPhone SE",
+                "name": "Ramon",
+                "name_by_user": null,
+                "sw_version": "13.1.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "627f33a6572248a8beb541c11616a13f"
+                ],
+                "connections": [],
+                "id": "bb7b1f0ec50d442fb1e5058add46b078",
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "426fbedd7b5d4581b0f7e30e19554c22"
+                    ]
+                ],
+                "manufacturer": "Apple, Inc",
+                "model": "iPhone SE",
+                "name": null,
+                "name_by_user": null,
+                "sw_version": "13.1.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "75dd1658a2524b53b4799a30a2414993"
+                ],
+                "connections": [],
+                "id": "143199516d514f76aafa430f47f9ff49",
+                "identifiers": [
+                    [
+                        "cast",
+                        "48b87165e7fa83798c503c506339df79"
+                    ]
+                ],
+                "manufacturer": "NVIDIA",
+                "model": "SHIELD Android TV",
+                "name": "Living Room TV",
+                "name_by_user": null,
+                "sw_version": null,
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "4456922e5e744bd4bd245012d5de1008"
+                ],
+                "connections": [],
+                "id": "1995adfc79ed4b3b9c82643382fdd2e2",
+                "identifiers": [
+                    [
+                        "ios",
+                        "3E4B69F0-68F5-407F-847F-4DE12DCDDBA5"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone X",
+                "name": "iPhone van F.S.O.",
+                "name_by_user": "iPhone Flore",
+                "sw_version": "13.1.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": "ba8aa91fbf89483589d031e75c240726",
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:0d:6f:ff:fe:fa:f0:1a"
+                    ]
+                ],
+                "id": "dccea10a38ea43c2822fdde3f6832a17",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:0d:6f:ff:fe:fa:f0:1a"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI control outlet",
+                "name": "Drinkbak van Wolf",
+                "name_by_user": null,
+                "sw_version": "2.0.019",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [],
+                "id": "96f636f31b1d47899214890980f782ed",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00212EFFFF04E055-/groups/1"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ group",
+                "name": "Living Room",
+                "name_by_user": null,
+                "sw_version": null,
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": "ba8aa91fbf89483589d031e75c240726",
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "08:6b:d7:ff:fe:30:3b:34"
+                    ]
+                ],
+                "id": "bd8a305895964a069969a4ccab7a1402",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "08:6b:d7:ff:fe:30:3b:34"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E14 W op/ch 400lm",
+                "name": "Kerstster",
+                "name_by_user": null,
+                "sw_version": "1.2.214",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": "672ede880d674141ab09fe7c88ac3649",
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:04:41:98:d1"
+                    ]
+                ],
+                "id": "ffe8f05c91c04d85b3867cb9c7bb362d",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:04:41:98:d1"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWB010",
+                "name": "Lita",
+                "name_by_user": null,
+                "sw_version": "1.29.0_r21169",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": "ba8aa91fbf89483589d031e75c240726",
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:04:41:8a:5b"
+                    ]
+                ],
+                "id": "78878f57b3534f44b11d14b346e6daad",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:04:41:8a:5b"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWB010",
+                "name": "Lotek",
+                "name_by_user": null,
+                "sw_version": "1.29.0_r21169",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [],
+                "id": "d8867e7b9b2d456d880ccaf9ea28c76d",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00212EFFFF04E055-/groups/2"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ group",
+                "name": "Bedroom",
+                "name_by_user": null,
+                "sw_version": null,
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:04:4e:ce:7b"
+                    ]
+                ],
+                "id": "0adde414eb82455dad8110d27528447a",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:04:4e:ce:7b"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.sensor_motion.aq2",
+                "name": "Beweging slaapkamer",
+                "name_by_user": null,
+                "sw_version": "20170627",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:03:58:b9:88"
+                    ]
+                ],
+                "id": "ad1da8aed16e488cbd51794884929e7e",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:03:58:b9:88"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.sensor_ht",
+                "name": "Temperatuur slaapkamer",
+                "name_by_user": null,
+                "sw_version": "20160516",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:0b:3c:ff:fe:f2:a9:13"
+                    ]
+                ],
+                "id": "754d390338344709addb71f3ac5030bc",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:0b:3c:ff:fe:f2:a9:13"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI control outlet",
+                "name": "Kerstboom",
+                "name_by_user": null,
+                "sw_version": "2.0.019",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "2608c9e8c82a46a2891f710385a30b97"
+                ],
+                "connections": [],
+                "id": "24a7d2c125c5405db94b214569c159ce",
+                "identifiers": [
+                    [
+                        "device_id",
+                        "f0b547dadb604436909ab99b79936639"
+                    ],
+                    [
+                        "webhook_id",
+                        "d227c39fd44ccef0470897821c7dbf85711d74ab815d245fa7bcdefef4fbca46"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone SE",
+                "name": "Ramon",
+                "name_by_user": null,
+                "sw_version": "13.2.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "2608c9e8c82a46a2891f710385a30b97"
+                ],
+                "connections": [],
+                "id": "c755dd72490846e2867126e612287ba1",
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "f0b547dadb604436909ab99b79936639"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone SE",
+                "name": null,
+                "name_by_user": null,
+                "sw_version": "13.2.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:04:10:13:42"
+                    ]
+                ],
+                "id": "cf3a9e41851642d791fe66dfedaa97ef",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:04:10:13:42"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWB010",
+                "name": "Plafondlamp in de badkamer",
+                "name_by_user": null,
+                "sw_version": "1.29.0_r21169",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "8c52911ff7824f07a577af11246299fa"
+                ],
+                "connections": [],
+                "id": "8adc3f98315e4e07934e4e44cc1c2a27",
+                "identifiers": [
+                    [
+                        "device_id",
+                        "e6b7e14fdb5748508dc3cb8255aa46d2"
+                    ],
+                    [
+                        "webhook_id",
+                        "3795375e932175d4f924722a09bd5111cf648c7520fb1509988ceef453045054"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone X",
+                "name": "iPhone van F.S.O.",
+                "name_by_user": null,
+                "sw_version": "13.2.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "8c52911ff7824f07a577af11246299fa"
+                ],
+                "connections": [],
+                "id": "cef41170a2f84553a5fe5bee996964ed",
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "e6b7e14fdb5748508dc3cb8255aa46d2"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone X",
+                "name": null,
+                "name_by_user": null,
+                "sw_version": "13.1.3",
+                "via_device_id": null
+            },
+            {
+                "area_id": "27a4421373c44425a495e2da8b14f2e0",
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:03:ce:16:9d"
+                    ]
+                ],
+                "id": "b02f1519e3a24c43bbc676f1e51c33ca",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:03:ce:16:9d"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.sensor_magnet",
+                "name": "Voordeur",
+                "name_by_user": "Voordeur",
+                "sw_version": null,
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:03:13:ae:2f"
+                    ]
+                ],
+                "id": "0d30fe03e454492c8dd901f08b5a1116",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:03:13:ae:2f"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.vibration.aq1",
+                "name": "Vibratiesensor bed",
+                "name_by_user": null,
+                "sw_version": "20180130",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [],
+                "id": "7179581b2db540daa324232d7ff1e622",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00212EFFFF04E055-/groups/5"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ group",
+                "name": "Bathroom",
+                "name_by_user": null,
+                "sw_version": null,
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:02:a9:88"
+                    ]
+                ],
+                "id": "2f0d5f6f0ef547ebb08d4031226f37c7",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:02:a9:88"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWA001",
+                "name": "Droog",
+                "name_by_user": null,
+                "sw_version": "1.53.3_r27175",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            },
+            {
+                "area_id": null,
+                "config_entries": [
+                    "5c2b5b3b978c4de18f73e55eef12b980"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:02:ac:76"
+                    ]
+                ],
+                "id": "5269efe49900494f8eda1863141052bf",
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:02:ac:76"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWA001",
+                "name": "Plafondlamp in de hal",
+                "name_by_user": null,
+                "sw_version": "1.53.3_r27175",
+                "via_device_id": "eef3659e29aa46fe86ca81df935a371e"
+            }
+        ]
+    },
+    "key": "core.device_registry",
+    "version": 1
+}

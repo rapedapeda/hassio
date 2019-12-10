@@ -1,0 +1,32 @@
+{
+    "data": {
+        "areas": [
+            {
+                "id": "ba8aa91fbf89483589d031e75c240726",
+                "name": "Woonkamer"
+            },
+            {
+                "id": "1a3763f23298438e81b75d4f0a378df4",
+                "name": "Keuken"
+            },
+            {
+                "id": "672ede880d674141ab09fe7c88ac3649",
+                "name": "Slaapkamer"
+            },
+            {
+                "id": "0b483fe6f3bb4b5f82647799cf3bb9b8",
+                "name": "Badkamer"
+            },
+            {
+                "id": "27a4421373c44425a495e2da8b14f2e0",
+                "name": "Hal"
+            },
+            {
+                "id": "c0bd5a122b664284b990ebc0398d6558",
+                "name": "Buiten"
+            }
+        ]
+    },
+    "key": "core.area_registry",
+    "version": 1
+}
