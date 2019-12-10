@@ -11,3 +11,6 @@
     state: home
   action:
   - service: alarm_control_panel.alarm_disarm
+  - service: script.turn_on
+    data:
+      entity_id: script.notification_alarm_disarmed
