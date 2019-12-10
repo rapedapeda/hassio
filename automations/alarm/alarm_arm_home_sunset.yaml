@@ -1,5 +1,5 @@
-- id: alarm_arm_home
-  alias: Alarm arm home
+- id: alarm_arm_home_sunset
+  alias: Alarm arm home sunset
   description: ''
   trigger:
   - platform: sun

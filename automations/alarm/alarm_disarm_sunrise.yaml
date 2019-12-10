@@ -1,5 +1,5 @@
-- id: alarm_disarm
-  alias: Alarm disarm
+- id: alarm_disarm_sunrise
+  alias: Alarm disarm sunrise
   description: ''
   trigger:
   - platform: sun
