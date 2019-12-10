@@ -1,0 +1,10 @@
+notification_coming_home:
+  alias: Notification on disarm
+  sequence:
+  - service: notify.mobile_app_ramon
+    data:
+      title: "Alarmsysteem uitgeschakeld"
+      message: "Het alarmsysteem is uitgeschakeld"
+      data:
+        push:
+          badge: 25
