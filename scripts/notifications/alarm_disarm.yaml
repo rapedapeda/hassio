@@ -5,6 +5,3 @@ notification_alarm_disarmed:
     data:
       title: "Alarm"
       message: "Het alarm is uitgeschakeld"
-      data:
-        push:
-          badge: 1
