@@ -30,9 +30,11 @@ media_player:
     mac: 04:20:9a:30:e2:b2
 
 notify:
-  platform: html5
-  gcm_api_key: 'AAAA4-iBrNo:APA91bEXrE4JcRr8PDRx3s8mLIi0RqkUfJF34Od3FMopuO8uARTHDd0HIAtPXibLg1fG2MkBWrqPbZnJv6zT3_0cuZLA_Hk5aNjTGZbmbFlmB05s8f-4VE9t3SeB9ZwkJy-RZEtswP4W'
-  gcm_sender_id: '978858388698'
+  - platform: group
+    name: all
+    services:
+      - service: mobile_app_ramon
+      - service: mobile_app_iphone_van_f_s_o
 
 
 ################################################################################

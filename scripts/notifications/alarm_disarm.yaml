@@ -1,0 +1,10 @@
+notification_alarm_disarmed:
+  alias: Notification alarm disarmed
+  sequence:
+  - service: notify.all
+    data:
+      title: "Alarm"
+      message: "Het alarm is uitgeschakeld"
+      data:
+        push:
+          badge: 1

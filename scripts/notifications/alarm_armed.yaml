@@ -1,0 +1,10 @@
+notification_alarm_armed:
+  alias: Notification alarm armed
+  sequence:
+  - service: notify.all
+    data:
+      title: "Alarm"
+      message: "Het alarmsysteem is ingeschakeld"
+      data:
+        push:
+          badge: 1
