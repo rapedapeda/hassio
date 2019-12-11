@@ -1,0 +1,7 @@
+motion_detected:
+  alias: Notification when motion is detected
+  sequence:
+  - service: notify.all
+    data:
+      title: "Alarm"
+      message: "Er is beweging gedetecteerd in huis"

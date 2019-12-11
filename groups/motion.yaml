@@ -1,0 +1,4 @@
+motion:
+  name: Motion
+  entities:
+    - binary_sensor.presence_slaapkamer

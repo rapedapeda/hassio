@@ -1,0 +1,15 @@
+- id: motion_detected_away
+  alias: Motion detected while away
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.motion
+    to: 'on'
+  condition: 
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state:  'armed_away'
+  action:
+  - service: script.turn_on
+    data_template:
+      entity_id: script.motion_detected
