@@ -18,8 +18,8 @@ homeassistant:
 alarm_control_panel:
   - platform: manual
 
-#emulated_hue:
-#  listen_port: 80
+emulated_hue:
+  listen_port: 80
 
 logger:
   default: warning
