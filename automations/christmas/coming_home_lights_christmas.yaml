@@ -9,10 +9,7 @@
         hours: 0
         minutes: 0
         seconds: 1
-  condition:
-    - condition: sun
-      after: sunset
-      after_offset: "-0:30:00"
+  condition: []
   action:
     - service: light.turn_on
       data:
