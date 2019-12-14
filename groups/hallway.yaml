@@ -1,0 +1,4 @@
+hallway:
+  name: Hal
+  entities:
+    - light.hallway

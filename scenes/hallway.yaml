@@ -1,15 +1,15 @@
 - name: hallway_normal
   entities:
-    light.bathroom:
+    light.hallway:
       state: on
       brightness: 125
 - name: hallway_full
   entities:
-    light.bathroom:
+    light.hallway:
       state: on
       brightness: 255
 - name: hallway_low
   entities:
-    light.bathroom:
+    light.hallway:
       state: on
       brightness: 50
