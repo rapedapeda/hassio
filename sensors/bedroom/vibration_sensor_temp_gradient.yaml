@@ -1,0 +1,6 @@
+platform: template
+sensors: 
+  vibration_sensor_temp_gradient:
+    friendly_name: Vibration sensor temperature gradient
+    value_template: "{{ state_attr('sensor.vibration_sensor_bed_temperature','gradient') }}"
+    unit_of_measurement: "°C/min"
