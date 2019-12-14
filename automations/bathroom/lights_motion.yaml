@@ -1,5 +1,5 @@
 - id: lights_motion_bathroom
-  alias: Light motion bathroom
+  alias: Lights motion bathroom
   description: ''
   trigger:
   - entity_id: binary_sensor.badkamer

@@ -14,4 +14,4 @@
     data:
       entity_id:
         - group.bathroom
-      transition": "10"
+      transition: "15"
