@@ -1,5 +1,5 @@
 - id: bedroom_lights_motion_night
-  alias: Bedroom light when motion at night
+  alias: Lights motion bedroom at night
   description: ''
   trigger:
   - entity_id: binary_sensor.presence_slaapkamer

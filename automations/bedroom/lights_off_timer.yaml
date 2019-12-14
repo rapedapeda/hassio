@@ -1,5 +1,5 @@
-- id: lights_off_timer
-  alias: Bedroom lights off timer
+- id: lights_off_timer_bedroom
+  alias: Lights off timer bedroom
   trigger:
   - entity_id: binary_sensor.presence_slaapkamer
     platform: state
