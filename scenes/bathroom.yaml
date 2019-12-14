@@ -1,15 +1,15 @@
 - name: bathroom_normal
   entities:
-    light.lita:
+    light.bathroom:
       state: on
       brightness: 125
 - name: bathroom_full
   entities:
-    light.lita:
+    light.bathroom:
       state: on
       brightness: 255
 - name: bathroom_low
   entities:
-    light.lita:
+    light.bathroom:
       state: on
       brightness: 75
