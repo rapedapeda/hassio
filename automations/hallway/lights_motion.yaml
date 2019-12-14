@@ -1,0 +1,11 @@
+- id: lights_motion_hallway
+  alias: Lights motion hallway
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.hal
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.hallway_low
