@@ -1,0 +1,11 @@
+- id: lights_motion_bathroom
+  alias: Light motion bathroom
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.badkamer
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.bathroom_normal

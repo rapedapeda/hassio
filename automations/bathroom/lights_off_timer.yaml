@@ -1,0 +1,16 @@
+- id: lights_off_timer_bathroom
+  alias: Lights off timer bathroom
+  trigger:
+  - entity_id: binary_sensor.badkamer
+    platform: state
+    to: 'off'
+    for: "00:00:30"
+  condition:
+  - condition: state
+    entity_id: binary_sensor.shower
+    state:  'off'
+  action:
+    service: light.turn_off
+    data:
+      entity_id:
+        - group.bathroom
