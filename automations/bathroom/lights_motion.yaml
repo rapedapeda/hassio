@@ -5,7 +5,10 @@
   - entity_id: binary_sensor.badkamer
     platform: state
     to: 'on'
-  condition: []
+  condition: 
+  - condition: state
+    entity_id: input_boolean.wolf_in_bed
+    state:  'off'
   action:
   - service: scene.turn_on
     entity_id: scene.bathroom_normal

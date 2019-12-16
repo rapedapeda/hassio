@@ -9,6 +9,9 @@
   - condition: state
     entity_id: binary_sensor.shower
     state:  'off'
+  - condition: state
+    entity_id: input_boolean.wolf_in_bed
+    state:  'off'
   action:
     service: homeassistant.turn_off
     data:
