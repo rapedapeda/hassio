@@ -5,6 +5,9 @@
   - platform: numeric_state
     entity_id: sensor.vibration_sensor_stats_count
     above: 5
+  - platform: numeric_state
+    entity_id: sensor.vibration_sensor_bed_temperature
+    below: 5
   condition:
   - condition: state
     entity_id: group.presence
