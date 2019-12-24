@@ -14,4 +14,3 @@
     data:
       entity_id:
         - light.hallway
-      transition: "15"
