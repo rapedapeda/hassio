@@ -4,7 +4,7 @@
   - entity_id: binary_sensor.badkamer
     platform: state
     to: 'off'
-    for: "00:00:30"
+    for: "00:05:00"
   condition:
   - condition: state
     entity_id: binary_sensor.shower
