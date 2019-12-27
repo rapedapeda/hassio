@@ -1,0 +1,13 @@
+- id: occupancy_off_sissel
+  alias: 'Occupancy Off Sissel'
+  hide_entity: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sissel_home
+      below: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: sissel
+        location_name: not_home
+        source_type: bluetooth
