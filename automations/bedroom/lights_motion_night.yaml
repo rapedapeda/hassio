@@ -1,8 +1,8 @@
-- id: bedroom_lights_motion_night
-  alias: Lights motion bedroom at night
+- id: bedroom_lights_bed_occupied
+  alias: Bedroom lights bed occupied
   description: ''
   trigger:
-  - entity_id: binary_sensor.presence_slaapkamer
+  - entity_id: light.lita
     platform: state
     to: 'on'
   condition:
@@ -13,10 +13,5 @@
     entity_id: input_boolean.bed_occupancy
     state: 'on'
   action:
-  - data_template:
-      entity_id: light.lita
-      profile: night
-    service: light.turn_on
-  - service: timer.start
-    data:
-      entity_id: timer.bedroom_lights
+  - service: scene.turn_on
+    entity_id: scene.bedroom_low

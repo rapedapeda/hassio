@@ -1,11 +1,17 @@
 - name: bedroom_normal
   entities:
-    light.lita:
+    light.droog:
       state: on
-      brightness: 255
+      brightness: 180
+    light.lita:
+      state: off
+      brightness: 0
 - name: bedroom_full
   entities:
     light.lita:
+      state: on
+      brightness: 255
+    light.droog:
       state: on
       brightness: 255
 - name: bedroom_low
@@ -13,3 +19,6 @@
     light.lita:
       state: on
       brightness: 75
+    light.droog:
+      state: off
+      brightness: 0
