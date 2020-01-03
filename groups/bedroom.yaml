@@ -2,3 +2,4 @@ bedroom:
   name: Bedroom
   entities:
     - light.lita
+    - light.droog
