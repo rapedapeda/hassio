@@ -2,16 +2,13 @@
   alias: Bedroom lights bed occupied
   description: ''
   trigger:
-  - entity_id: light.lita
+  - entity_id: input_boolean.bed_occupancy
     platform: state
     to: 'on'
   condition:
   - condition: sun
     after: sunset
     after_offset: "-0:30:00"
-  - condition: state
-    entity_id: input_boolean.bed_occupancy
-    state: 'on'
   action:
   - service: scene.turn_on
     entity_id: scene.bedroom_low

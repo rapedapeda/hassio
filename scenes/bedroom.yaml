@@ -6,6 +6,7 @@
     light.lita:
       state: off
       brightness: 0
+      transition: 15
 - name: bedroom_full
   entities:
     light.lita:
@@ -22,3 +23,4 @@
     light.droog:
       state: off
       brightness: 0
+      transition: 15
