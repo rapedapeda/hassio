@@ -5,3 +5,6 @@ motion_detected:
     data:
       title: "Alarm"
       message: "Er is beweging gedetecteerd in huis"
+      data:
+        push:
+          thread-id: "alarm"

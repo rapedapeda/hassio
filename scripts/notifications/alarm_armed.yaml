@@ -5,3 +5,6 @@ notification_alarm_armed:
     data:
       title: "Alarm"
       message: "Het alarmsysteem is ingeschakeld"
+      data:
+        push:
+          thread-id: "alarm"

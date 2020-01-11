@@ -5,3 +5,6 @@ notification_alarm_disarmed:
     data:
       title: "Alarm"
       message: "Het alarm is uitgeschakeld"
+      data:
+        push:
+          thread-id: "alarm"
