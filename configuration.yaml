@@ -33,7 +33,7 @@ notify:
   - platform: group
     name: all
     services:
-      - service: mobile_app_ramon
+      - service: mobile_app_iphone
       - service: mobile_app_iphone_van_f_s_o
 
 
