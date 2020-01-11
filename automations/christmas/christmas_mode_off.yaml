@@ -1,0 +1,13 @@
+- id: christmas_mode_off
+  alias: Christmas mode off
+  hide_entity: true
+  trigger:
+    - platform: state
+      entity_id: input_boolean.christmas_mode
+      to: 'off'
+  condition: []
+  action:
+    - service: automation.turn_off
+      data:
+        entity_id:
+          - automation.christmas_coming_home_lights
