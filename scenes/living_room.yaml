@@ -3,10 +3,22 @@
     light.lotek:
       state: on
       brightness: 150
-      transition: 15
+      transition: 5
+- name: living_room_normal_sunset
+  entities:
+    light.lotek:
+      state: on
+      brightness: 150
+      transition: 900
 - name: living_room_dimmed
   entities:
     light.lotek:
       state: on
       brightness: 75
-      transition: 15
+      transition: 5
+- name: living_room_full
+  entities:
+    light.lotek:
+      state: on
+      brightness: 255
+      transition: 5

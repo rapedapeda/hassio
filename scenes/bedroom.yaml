@@ -2,7 +2,8 @@
   entities:
     light.droog:
       state: on
-      brightness: 180
+      brightness: 150
+      effect: stop
     light.lita:
       state: off
       brightness: 0
@@ -12,6 +13,7 @@
     light.lita:
       state: on
       brightness: 255
+      effect: stop
     light.droog:
       state: on
       brightness: 255
@@ -20,6 +22,7 @@
     light.lita:
       state: on
       brightness: 75
+      effect: stop
     light.droog:
       state: off
       brightness: 0

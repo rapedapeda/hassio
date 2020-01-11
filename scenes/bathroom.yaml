@@ -13,3 +13,8 @@
     light.bathroom:
       state: on
       brightness: 75
+- name: bathroom_night
+  entities:
+    light.bathroom:
+      state: off
+      brightness: 0

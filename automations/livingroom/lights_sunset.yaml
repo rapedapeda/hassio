@@ -3,14 +3,13 @@
   trigger:
   - entity_id: sensor.daylight
     platform: state
-    to: sunset_start
+    to: golden_hour_2
+    for: "00:30:00"
   condition:
   - condition: state
     entity_id: group.presence
     state: 'home'
   action:
   - data_template:
-      entity_id: light.lotek
-      profile: normal
-      transition: 180
-    service: light.turn_on
+      entity_id: scene.living_room_normal_sunset
+    service: scene.turn_on
