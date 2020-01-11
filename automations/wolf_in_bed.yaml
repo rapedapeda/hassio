@@ -3,7 +3,7 @@
   trigger:
   - entity_id: input_boolean.wolf_in_bed
     platform: state
-    to: "on"
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.wolf_presence
