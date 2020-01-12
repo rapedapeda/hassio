@@ -10,8 +10,7 @@
     state: 'on'
   action:
   - data_template:
-      - entity_id: scene.hallway_night
-    service: scene.turn_on
-  - data_template:
-      - entity_id: scene.bathroom_night
+      entity_id: 
+        - scene.hallway_night
+        - scene.bathroom_night
     service: scene.turn_on
