@@ -13,3 +13,6 @@
   - data_template:
       entity_id: scene.living_room_normal_sunset
     service: scene.turn_on
+  - data_template:
+      entity_id: switch.aanrecht
+    service: switch.turn_on
