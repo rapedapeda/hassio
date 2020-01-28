@@ -2,3 +2,4 @@ living_room:
   name: Living room
   entities:
     - light.lotek
+    - switch.aanrecht
