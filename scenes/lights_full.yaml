@@ -3,3 +3,5 @@
     group.all_lights:
       state: on
       brightness: 255
+    switch.aanrecht:
+      state: on
