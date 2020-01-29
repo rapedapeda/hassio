@@ -18,7 +18,7 @@ zeroconf:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
-   base_url: home.muizeluuk.nl:8123
+   base_url: muizeluuk.duckdns.org:8123
 
 # Text to speech
 tts:
@@ -49,6 +49,7 @@ notify:
     name: all
     services:
       - service: mobile_app_iphone
+      - service: mobile_app_hasskit_iphone_8999
       - service: mobile_app_iphone_van_f_s_o
 
 
