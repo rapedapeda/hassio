@@ -6,8 +6,6 @@
 # automation:
 config:
 frontend:
-history:
-logbook:
 mobile_app:
 person:
 ssdp:
