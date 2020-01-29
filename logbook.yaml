@@ -2,4 +2,4 @@ include:
   entities:
     - automation.motion_detected_while_away
     - input_boolean.presence_status
-    - sun
+    - sun.sun
