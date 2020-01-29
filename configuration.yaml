@@ -25,9 +25,11 @@ logger:
   default: warning
 
 media_player:
-  - platform: panasonic_viera
-    host: 192.168.200.146
-    mac: 04:20:9a:30:e2:b2
+  - platform: androidtv
+    host: 192.168.1.34
+    name: "NVidia Shield"
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
 
 notify:
   - platform: group
