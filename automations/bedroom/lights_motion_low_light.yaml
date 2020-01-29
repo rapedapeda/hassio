@@ -2,7 +2,7 @@
   alias: Lights motion bedroom low light 
   description: ''
   trigger:
-  - entity_id: binary_sensor.presence_slaapkamer
+  - entity_id: binary_sensor.slaapkamer
     platform: state
     to: 'on'
   condition:
