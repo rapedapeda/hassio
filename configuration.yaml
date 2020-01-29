@@ -40,6 +40,16 @@ media_player:
     name: "NVidia Shield"
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
+    apps:
+      com.google.android.tvlauncher: "Home"
+      com.amazon.amazonvideo.livingroom: "Amazon"
+      com.netflix.ninja: "Netflix"
+      nl.nlziet: "NLZiet"
+      com.plexapp.android: "Plex"
+      com.appgeneration.itunerfree: "Radio"
+      com.spotify.tv.android: "Spotify"
+      com.aspiro.tidal: "Tidal"
+      com.google.android.youtube.tv: "Youtube"
 
 notify:
   - platform: group
