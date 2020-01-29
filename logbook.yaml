@@ -1,8 +1,5 @@
 include:
-  domains:
-    - automation
-    - input_boolean
-    - person
-    - script
-    - switch
+  entities:
+    - automation.motion_detected_while_away
+    - input_boolean.presence_status
     - sun
