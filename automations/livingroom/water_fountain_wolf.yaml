@@ -1,7 +1,7 @@
 - id: water_fountain_wolf
   alias: Water fountain Wolf
   trigger:
-  - entity_id: switch.water_fountain
+  - entity_id: switch.drinkbak_van_wolf
     platform: state
     to: 'on'
     for: "00:06:00"
@@ -10,4 +10,4 @@
     service: switch.turn_off
     data:
       entity_id:
-        - switch.water_fountain
+        - switch.drinkbak_van_wolf
