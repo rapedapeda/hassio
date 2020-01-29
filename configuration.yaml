@@ -40,6 +40,7 @@ media_player:
     name: "NVidia Shield"
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
+    get_sources: false
     apps:
       com.google.android.tvlauncher: "Home"
       com.amazon.amazonvideo.livingroom: "Amazon"
