@@ -7,7 +7,7 @@
     to: 'on'
   condition:
   - condition: numeric_state
-    entity_id: sensor.lightlevel_slaapkamer
+    entity_id: sensor.slaapkamer
     below: 100
   - condition: state
     entity_id: input_boolean.bed_occupancy
