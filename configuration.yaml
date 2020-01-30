@@ -37,7 +37,7 @@ logger:
 media_player:
   - platform: androidtv
     host: 192.168.200.149
-    name: "NVidia Shield"
+    name: "TV"
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
     get_sources: false
@@ -56,40 +56,25 @@ notify:
   - platform: group
     name: all
     services:
-      - service: mobile_app_iphone
-      - service: mobile_app_hasskit_iphone_8999
-      - service: mobile_app_iphone_van_f_s_o
+      - service: mobile_app_hasskit_iphone_0130 #Ramon
+      - service: mobile_app_hasskit_iphone_8999 
 
-
-################################################################################
-################################################################################
-
-#media_player:
-  # Use the Python ADB implementation without authentication
-#  - platform: androidtv
-#    name: Living Room ATV
-#    host: 192.168.200.149
 
 # Homekit integration
-homekit:
-  auto_start: false
-  safe_mode: false
-  filter:
-    exclude_domains:
-      - automation
-      - device_tracker
-      - alarm_control_panel
-      - sensor
-      - binary_sensor
-    exclude_entities:
-      - binary_sensor.updater
-    include_entities:
-      - sensor.temperature_4
-#      include_domains:
-#        - alarm_control_panel
-#        - light
-#      exclude_entities:
-#        - light.
+#homekit:
+#  auto_start: false
+#  safe_mode: false
+#  filter:
+#    exclude_domains:
+#      - automation
+#      - device_tracker
+#      - alarm_control_panel
+#      - sensor
+#      - binary_sensor
+#    exclude_entities:
+#      - binary_sensor.updater
+#    include_entities:
+#      - sensor.temperature_4
 
 ######################################################################
 # Includes
