@@ -11,3 +11,4 @@
     state:  'home'
   action:
   - service: alarm_control_panel.alarm_arm_night
+    entity_id: alarm_control_panel.ha_alarm

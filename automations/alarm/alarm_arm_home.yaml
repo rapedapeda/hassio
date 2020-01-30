@@ -17,3 +17,4 @@
     before_offset: "+00:30:00"
   action:
   - service: alarm_control_panel.alarm_arm_home
+    entity_id: alarm_control_panel.ha_alarm

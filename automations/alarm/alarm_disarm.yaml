@@ -17,6 +17,7 @@
     after_offset: "+00:30:00"
   action:
   - service: alarm_control_panel.alarm_disarm
+    entity_id: alarm_control_panel.ha_alarm
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.presence_status
