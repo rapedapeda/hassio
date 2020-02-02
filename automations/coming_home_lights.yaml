@@ -14,7 +14,5 @@
       after: sunset
       after_offset: "-0:30:00"
   action:
-    - service: light.turn_on
-      data:
-        entity_id:
-          - light.lotek
+    - service: homeassistant.turn_on
+      entity_id: group.coming_home_lights
