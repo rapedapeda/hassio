@@ -15,7 +15,7 @@
       - service: light.turn_off
         data_template:
           entity_id: light.hallway
-      - delay: 00:05:00
+      - delay: 00:03:00
       - service: scene.turn_on
         data_template:
           entity_id: scene.hallway_night
