@@ -1,0 +1,21 @@
+- id: night_piss
+  alias: Night piss
+  trigger:
+  - entity_id: binary_sensor.bed
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.bed_occupancy
+    state:  'on'
+  - condition: state
+    entity_id: input_boolean.wolf_in_bed
+    state:  'on'
+  action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.hallway
+      - delay: 00:05:00
+      - service: scene.turn_on
+        data_template:
+          entity_id: scene.hallway_night
