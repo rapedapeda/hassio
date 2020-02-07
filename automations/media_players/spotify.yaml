@@ -8,6 +8,4 @@
       entity_id: media_player.nvidia_shield
       data_template:
         volume_level: '{% if is_state("input_boolean.bed_occupancy", "off")%} 0.4
-                       {%else%} 0.2 {%endif%}'
-
-
+                       {%else%} 0.15 {%endif%}'
