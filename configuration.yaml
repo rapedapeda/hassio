@@ -51,6 +51,9 @@ media_player:
       com.spotify.tv.android: "Spotify"
       com.aspiro.tidal: "Tidal"
       com.google.android.youtube.tv: "Youtube"
+      com.nvidia.tegrazone3: "Geforce NOW"
+      org.dolphinemu.dolphinemu: "Dolphin"
+      com.retroarch: "RetroArch"
 
 notify:
   - platform: group
