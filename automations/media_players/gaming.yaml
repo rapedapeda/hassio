@@ -1,5 +1,5 @@
-- id: media_player_tv_video
-  alias: MP TV Video playback
+- id: media_player_tv_gaming
+  alias: MP TV Gaming playback
   trigger:
   - platform: template
     value_template: "{{ is_state_attr('media_player.nvidia_shield', 'source', 'RetroArch') }}"
