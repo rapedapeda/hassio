@@ -1,0 +1,12 @@
+vacuum_living_room:
+  initial: 0
+  step: 1
+vacuum_bedroom:
+  initial: 0
+  step: 1
+vacuum_hallway:
+  initial: 0
+  step: 1
+vacuum_bathroom:
+  initial: 0
+  step: 1
