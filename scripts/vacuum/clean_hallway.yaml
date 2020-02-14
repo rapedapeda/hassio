@@ -1,0 +1,18 @@
+vacuum_hallway:
+  alias: Vacuum hallway
+  sequence:
+    - condition: template
+      value_template: >
+        "{{ states('counter.vacuum_hallway') = 0 }}"
+    - service: vacuum.send_command
+      data:
+        entity_id: 'vacuum.rockrobo'
+        command: 'zoned_cleanup'
+        params:
+          'zone_ids': ['Hal']
+    - delay: 00:00:30
+    - condition: template
+      value_template: >
+       "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area > 1}}"
+    - service: counter.increment
+      entity_id: counter.vacuum_hallway
