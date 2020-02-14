@@ -2,5 +2,5 @@ platform: template
 sensors:
   vacuum_side_brush:
     friendly_name: "Vacuum side brush"
-    unit_of_measurement: 'hours'
+    unit_of_measurement: 'uur'
     value_template: "{{ state_attr('vacuum.rockrobo', 'sideBrush') }}"
