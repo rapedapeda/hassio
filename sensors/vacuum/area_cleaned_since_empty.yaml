@@ -1,0 +1,5 @@
+platform: template
+sensors:
+  vacuum_area_since_clean:
+    friendly_name: "Vacuum area since last clean"
+    unit_of_measurement: 'm2'
