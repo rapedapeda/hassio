@@ -3,9 +3,9 @@ vacuum_hallway:
   sequence:
   - condition: or
     conditions: 
-      - condition: template
-        value_template: >
-          "{{ states('counter.vacuum_hallway')|float < 1 }}"
+      - condition: numeric_state
+        entity_id: counter.vacuum_hallway
+        below: 1
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.rockrobo'
