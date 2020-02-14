@@ -13,3 +13,6 @@ vacuum_bathroom:
 vacuum_complete:
   initial: 0
   step: 1
+vacuum_total_area_since_emptying:
+  initial: 0
+  step: 1

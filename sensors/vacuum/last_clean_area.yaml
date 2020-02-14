@@ -3,4 +3,4 @@ sensors:
   vacuum_last_clean_area:
     friendly_name: "Vacuum area of last clean"
     unit_of_measurement: 'm2'
-    value_template: "{{ states.vacuum.rockrobo.attributes.last_run_stats.area|float }}"
+    value_template: "{{ states.vacuum.rockrobo.attributes.last_run_stats.area|int }}"
