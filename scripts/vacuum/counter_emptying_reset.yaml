@@ -1,0 +1,5 @@
+counter_emptying_reset:
+  alias: Vacuum reset counter empty bin
+  sequence:
+  - service: counter.reset
+    entity_id: counter.vacuum_total_area_since_emptying
