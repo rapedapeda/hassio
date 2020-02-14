@@ -1,0 +1,18 @@
+- id: vacuum_reset_counters
+  alias: Vacuum reset daily counters
+  trigger:
+  - platform: time
+    at: "00:00:01"
+  condition:
+  - condition: state
+    entity_id: 'input_boolean.vacation_mode'
+    state: 'off'
+  action:
+    service: counter.reset
+    data:
+      entity_id:
+        - counter.vacuum_living_room
+        - counter.vacuum_bedroom
+        - counter.vacuum_hallway
+        - counter.vacuum_bathroom
+        - counter.vacuum_complete
