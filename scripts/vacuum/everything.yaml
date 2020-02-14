@@ -1,0 +1,11 @@
+vacuum_everything:
+  alias: Vacuum everything
+  sequence:
+    - service: script.turn_on
+      entity_id: script.vacuum_living_room
+    - service: script.turn_on
+      entity_id: script.vacuum_bedroom
+    - service: script.turn_on
+      entity_id: script.vacuum_hallway
+    - service: script.turn_on
+      entity_id: script.vacuum_bathroom
