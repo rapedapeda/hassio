@@ -5,7 +5,7 @@ vacuum_hallway:
     conditions: 
       - condition: template
         value_template: >
-          "{{ states('counter.vacuum_hallway') < 1 }}"
+          "{{ states('counter.vacuum_hallway')|float < 1 }}"
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.rockrobo'
@@ -17,6 +17,6 @@ vacuum_hallway:
     conditions: 
       - condition: template
         value_template: >
-          "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area > 1}}"
+          "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area|float > 1}}"
   - service: counter.increment
     entity_id: counter.vacuum_hallway
