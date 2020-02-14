@@ -9,7 +9,7 @@ vacuum_living_room:
         entity_id: 'vacuum.rockrobo'
         command: 'zoned_cleanup'
         params:
-          'zone_ids': ['Kamer']
+          'zone_ids': ["Kamer","Keuken"]
     - delay: 00:00:30
     - condition: template
       value_template: >
