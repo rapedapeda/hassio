@@ -15,8 +15,9 @@ vacuum_bathroom:
   - delay: 00:00:30
   - condition: or
     conditions: 
-      - condition: template
-        value_template: >
-          "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area|float > 1}}"
+      - condition: numeric_state
+        entity_id: vacuum.rockrobo
+        above: 0
+        value_template: "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area }}"
   - service: counter.increment
     entity_id: counter.vacuum_bathroom
