@@ -1,0 +1,20 @@
+- id: vacuum_go_to_bin_when_home
+  alias: Vacuum go to bin when full and home
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.vacuum_bin_amount_full
+      above: 95
+  condition:
+    - condition: state
+      entity_id: input_boolean.presence_status
+      state: 'on'
+    - condition: state
+      entity_id: vacuum.rockrobo
+      state: 'docked'
+  action:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.rockrobo'
+      command: 'go_to'
+      params:
+        'spot_id': 'Prullenbak'

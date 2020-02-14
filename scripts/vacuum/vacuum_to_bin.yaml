@@ -7,3 +7,5 @@ vacuum_to_bin:
       command: 'go_to'
       params:
         'spot_id': 'Prullenbak'
+  - service: script.turn_on
+    entity_id: script.counter_emptying_reset
