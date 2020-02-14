@@ -3,5 +3,5 @@ counter_emptying_increase:
   sequence:
   - service: counter.configure
     data_template:
-      step: "{{ states.vacuum.rockrobo.attributes.last_run_stats.area|int }}"
+      step: "{{ (states.vacuum.rockrobo.attributes.last_run_stats.area|round(0))|int }}"
       entity_id: counter.vacuum_total_area_since_emptying
