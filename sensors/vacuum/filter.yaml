@@ -1,0 +1,6 @@
+platform: template
+sensors:
+  vacuum_filter:
+    friendly_name: "Vacuum filter"
+    unit_of_measurement: 'hours'
+    value_template: "{{ state_attr('vacuum.rockrobo', 'filter') }}"
