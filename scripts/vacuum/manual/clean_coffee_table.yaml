@@ -1,0 +1,13 @@
+vacuum_coffee_table_manual:
+  alias: Vacuum coffee table manual
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.rockrobo'
+      command: 'zoned_cleanup'
+      params:
+        'zone_ids': ["Koffietafel"]
+  - delay: 00:01:00
+  - wait_template: "{{ is_state('vacuum.rockrobo', 'docked') }}"
+  - service: script.turn_on
+    entity_id: script.counter_emptying_increase
