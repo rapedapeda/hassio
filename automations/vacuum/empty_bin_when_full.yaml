@@ -1,5 +1,5 @@
 - id: vacuum_go_to_bin_when_home
-  alias: Vacuum go to bin when full and home
+  alias: Vacuum go to bin when full
   trigger:
     - platform: state
       entity_id: script.vacuum_everything
