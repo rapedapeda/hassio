@@ -22,3 +22,5 @@ vacuum_hallway:
         value_template: "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area }}"
   - service: counter.increment
     entity_id: counter.vacuum_hallway
+  - service: script.turn_on
+    entity_id: script.counter_emptying_increase
