@@ -11,6 +11,9 @@
   - condition: state
     entity_id: input_boolean.bed_occupancy
     state: 'off'
+  - condition: state
+    entity_id: vacuum.rockrobo
+    state: 'cleaning'
   action:
   - service: vacuum.return_to_base
     entity_id: vacuum.rockrobo
