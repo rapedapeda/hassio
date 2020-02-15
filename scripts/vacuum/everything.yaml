@@ -4,10 +4,12 @@ vacuum_everything:
   - service: script.turn_on
     entity_id: script.vacuum_living_room
   - wait_template: "{{ is_state('script.vacuum_living_room', 'off') }}"
-  - delay: 00:01:00
+  - delay: 00:02:00
   - service: script.turn_on
     entity_id: script.vacuum_bedroom
   - wait_template: "{{ is_state('script.vacuum_bedroom', 'off') }}"
-  - delay: 00:01:00
+  - delay: 00:02:00
   - service: script.turn_on
     entity_id: script.vacuum_hallway
+  - wait_template: "{{ is_state('script.vacuum_hallway', 'off') }}"
+  - delay: 00:02:00
