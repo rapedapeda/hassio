@@ -1,19 +1,17 @@
 - id: vacuum_go_to_bin_when_home
   alias: Vacuum go to bin when full and home
   trigger:
-    - platform: numeric_state
+    - platform: state
+      entity_id: script.vacuum_everything
+      to: 'off' 
+      for: 00:10:00
+  condition:
+    - condition: numeric_state
       entity_id: sensor.vacuum_bin_amount_full
       above: 95
-  condition:
-    - condition: state
-      entity_id: input_boolean.presence_status
-      state: 'on'
     - condition: state
       entity_id: vacuum.rockrobo
       state: 'docked'
-    - condition: state
-      entity_id: script.vacuum_everything
-      state: 'off'
   action:
   - service: vacuum.send_command
     data:
