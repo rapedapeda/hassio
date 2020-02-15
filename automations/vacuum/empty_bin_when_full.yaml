@@ -11,6 +11,9 @@
     - condition: state
       entity_id: vacuum.rockrobo
       state: 'docked'
+    - condition: state
+      entity_id: script.vacuum_everything
+      state: 'off'
   action:
   - service: vacuum.send_command
     data:
