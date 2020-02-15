@@ -12,7 +12,7 @@ vacuum_living_room:
       command: 'zoned_cleanup'
       params:
         'zone_ids': ["Kamer","Keuken"]
-  - delay: 00:00:30
+  - wait_template: "{{ is_state('vacuum.rockrobo', 'returning') }}"
   - condition: or
     conditions: 
       - condition: numeric_state

@@ -7,5 +7,6 @@ vacuum_to_bin:
       command: 'go_to'
       params:
         'spot_id': 'Prullenbak'
+  - wait_template: "{{ is_state('vacuum.rockrobo', 'returning') }}"
   - service: script.turn_on
     entity_id: script.counter_emptying_reset
