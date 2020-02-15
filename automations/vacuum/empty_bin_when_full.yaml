@@ -19,3 +19,5 @@
       command: 'go_to'
       params:
         'spot_id': 'Prullenbak'
+  - service: script.turn_on
+    entity_id: counter.counter_emptying_reset
