@@ -9,6 +9,14 @@ vacuum_bathroom:
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.rockrobo'
+      command: 'go_to'
+      params:
+        'spot_id': 'Deur hal'
+  - delay: 00:01:00
+  - wait_template: "{{ is_state('vacuum.rockrobo', 'idle') }}"
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.rockrobo'
       command: 'zoned_cleanup'
       params:
         'zone_ids': ['Badkamer']
