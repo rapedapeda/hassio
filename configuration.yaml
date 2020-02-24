@@ -64,12 +64,7 @@ notify:
     name: all
     services:
       - service: mobile_app_hasskit_iphone_0130 #Ramon
-      - service: mobile_app_hasskit_iphone_8999 
- 
-panel_iframe:
-  router:
-    title: 'Valetudo'
-    url: 'http://192.168.200.127'
+      - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore
 
 # Homekit integration
 #homekit:
