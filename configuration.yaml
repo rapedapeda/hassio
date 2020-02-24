@@ -65,13 +65,11 @@ notify:
     services:
       - service: mobile_app_hasskit_iphone_0130 #Ramon
       - service: mobile_app_hasskit_iphone_8999 
-
-panel_custom:
-  - name: valetudo
-    sidebar_title: Valetudo
-    sidebar_icon: mdi:robot-vacuum
-    url_path: http://192.168.200.127
-    require_admin: true
+ 
+panel_iframe:
+  router:
+    title: 'Valetudo'
+    url: 'http://192.168.200.127'
 
 # Homekit integration
 #homekit:
