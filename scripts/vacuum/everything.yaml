@@ -13,7 +13,3 @@ vacuum_everything:
     entity_id: script.vacuum_hallway
   - delay: 00:01:00
   - wait_template: "{{ is_state('script.vacuum_hallway', 'off') }}"
-  - service: script.turn_on
-    entity_id: script.vacuum_bathroom
-  - delay: 00:01:00
-  - wait_template: "{{ is_state('script.vacuum_bathroom', 'off') }}"
