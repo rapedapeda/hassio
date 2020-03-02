@@ -9,14 +9,12 @@
     data_template:
       volume_level: > 
         '
-        {% if is_state("input_boolean.bed_occupancy", "off") %}
-          {% if is_state_attr('media_player.nvidia_shield', 'source', 'Geforce NOW') or is_state_attr('media_player.nvidia_shield', 'source', 'RetroArch') or is_state_attr('media_player.nvidia_shield', 'source', 'Dolphin') %}
-            0.4
-          {% elif is_state_attr('media_player.nvidia_shield', 'source', 'NlZiet') or is_state_attr('media_player.nvidia_shield', 'source', 'Netflix') or is_state_attr('media_player.nvidia_shield', 'source', 'Amazon') %}
-            0.65
-          {% elif is_state_attr('media_player.nvidia_shield', 'source', 'Radio') or is_state_attr('media_player.nvidia_shield', 'source', 'Spotify') or is_state_attr('media_player.nvidia_shield', 'source', 'Tidal') or is_state_attr('media_player.nvidia_shield', 'source', 'Youtube') %}
-            0.35
-          {% endif %}
+        {% if is_state("input_boolean.bed_occupancy", "off") and (is_state_attr('media_player.nvidia_shield', 'source', 'Geforce NOW') or is_state_attr('media_player.nvidia_shield', 'source', 'RetroArch') or is_state_attr('media_player.nvidia_shield', 'source', 'Dolphin')) %}
+          0.4
+        {% elif is_state("input_boolean.bed_occupancy", "off") and (is_state_attr('media_player.nvidia_shield', 'source', 'NlZiet') or is_state_attr('media_player.nvidia_shield', 'source', 'Netflix') or is_state_attr('media_player.nvidia_shield', 'source', 'Amazon')) %}
+          0.65
+        {% elif is_state("input_boolean.bed_occupancy", "off") and (is_state_attr('media_player.nvidia_shield', 'source', 'Radio') or is_state_attr('media_player.nvidia_shield', 'source', 'Spotify') or is_state_attr('media_player.nvidia_shield', 'source', 'Tidal') or is_state_attr('media_player.nvidia_shield', 'source', 'Youtube')) %}
+          0.35
         {% else %}
           0.15
         {% endif %}
