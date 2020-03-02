@@ -1,5 +1,0 @@
-binary_sensor.voordeur:
-  icon: mdi:door-closed
-binary_sensor.shower:
-  friendly_name: Douche
-  icon: mdi:shower-head
