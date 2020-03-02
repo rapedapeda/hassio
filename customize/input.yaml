@@ -1,0 +1,3 @@
+input_number.fountain_time:
+  icon: mdi:camera-timer
+  unit_of_measurement: min

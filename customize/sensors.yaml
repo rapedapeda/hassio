@@ -1,0 +1,25 @@
+sensor.iphonevanf_s_o_distance:
+  friendly_name: Distance
+  unit_of_measurement: km
+sensor.iphonevanf_s_o_travel_time:
+  friendly_name: Travel time
+sensor.br_wind_speed:
+  friendly_name: Wind speed
+sensor.br_humidity:
+  friendly_name: Humidity
+sensor.br_temperature:
+  friendly_name: Temperature
+sensor.br_pressure:
+  friendly_name: Pressure
+sensor.br_symbol:
+  friendly_name: Symbol
+sensor.vibration_7_battery_level:
+  friendly_name: Vibratiesensor bed
+sensor.vibration_sensor_bed_tiltangle:
+  unit_of_measurement: degrees
+sensor.vibration_sensor_bed_tiltangle_count_2hours:
+  unit_of_measurement: times
+sensor.vibration_sensor_stats_count:
+  unit_of_measurement: times
+sensor.vibration_sensor_stats_count_trend_gradient:
+  unit_of_measurement: countchange

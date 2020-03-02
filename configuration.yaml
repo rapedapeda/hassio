@@ -22,7 +22,7 @@ tts:
   - platform: google_translate
 
 homeassistant:
-  customize: !include customize.yaml
+  customize: !include_dir_merge_named customize/
   unit_system: metric
 
 alarm_control_panel:
