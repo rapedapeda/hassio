@@ -1,0 +1,21 @@
+- id: lights_evening
+  alias: Lights evening
+  trigger:
+  - platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    below: 4
+  - platform: state
+    entity_id: group.presence
+    from: 'not_home'
+    to: 'home'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  condition:
+  - condition: template
+    value_template: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
+  action:
+  - service: homeassistant.turn_on
+    entity_id: group.coming_home_lights
