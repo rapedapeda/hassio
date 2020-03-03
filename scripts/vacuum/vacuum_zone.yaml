@@ -4,7 +4,7 @@ vacuum_zone:
   - condition: template
     value_template: '{{ vac_cond }}'
   - service: vacuum.send_command
-    data:
+    data_template:
       entity_id: 'vacuum.rockrobo'
       command: 'go_to'
       params:
