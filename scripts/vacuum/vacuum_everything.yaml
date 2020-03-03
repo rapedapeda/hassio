@@ -5,8 +5,8 @@ vacuum_everything:
   - service: script.vacuum_zone
     data_template:
       vac_cond: "{{ states('counter.vacuum_living_room') | float == 0 }}"
-      vac_zone: 'Woonkamer'
-      vac_loc: 'Woonkamer'
+      vac_zone: 'Kamer'
+      vac_loc: 'Kamer'
   - delay: 00:01:00
   - wait_template: "{{ is_state('script.vacuum_zone', 'off') }}"
   # Maak de slaapkamer schoon
