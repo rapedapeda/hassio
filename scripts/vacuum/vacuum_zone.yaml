@@ -21,8 +21,8 @@ vacuum_zone:
   - delay: 00:01:00
   - wait_template: "{{ is_state('vacuum.rockrobo', 'docked') }}"
   - service: input_select.select_option
-    entity_id: input_select.vacuum_manual
     data_template:
+      entity_id: input_select.vacuum_manual
       option: None
   - condition: and
     conditions: 
@@ -31,11 +31,11 @@ vacuum_zone:
         above: 0
         value_template: "{{ state_attr('vacuum.rockrobo', 'last_run_stats').area }}"
       - condition: template
-        value_template: "{{ vac_zone in ('Woonkamer', 'Slaapkamer', 'Badkamer', 'Hal') }}"
+        value_template: "{{ vac_zone in ('Kamer', 'Slaapkamer', 'Badkamer', 'Hal') }}"
   - service: counter.increment
     data_template:
       entity_id: >-
-        {% if vac_zone == 'Woonkamer' %}
+        {% if vac_zone == 'Kamer' %}
           counter.vacuum_living_room
         {% elif vac_zone == 'Keuken' %}
           counter.vacuum_bedroom
