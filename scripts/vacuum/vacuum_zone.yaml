@@ -36,9 +36,9 @@ vacuum_zone:
       entity_id: >-
         {% if vac_zone == 'Kamer' %}
           counter.vacuum_living_room
-        {% elif vac_zone == 'Keuken' %}
-          counter.vacuum_bedroom
         {% elif vac_zone == 'Slaapkamer' %}
+          counter.vacuum_bedroom
+        {% elif vac_zone == 'Hal' %}
           counter.vacuum_hallway
         {% elif vac_zone == 'Badkamer' %}
           counter.vacuum_bathroom
