@@ -1,0 +1,18 @@
+- id: vacuum_clean_manual
+  alias: Vacuum clean manual
+  trigger:
+    platform: state
+    entity_id: input_select.vacuum_manual
+  condition: 
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: script.vacuum_zone
+        state: 'off'
+      - condition: template
+        value_template: "{{ not is_state('input_select.vacuum_manual', 'None') }}"
+  action:
+  - service: script.vacuum_zone
+    data_template:
+      vac_cond: true
+      vac_zone: "{{ states('input_select.vacuum_manual') }}"

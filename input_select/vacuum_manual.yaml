@@ -1,0 +1,13 @@
+vacuum_manual:
+  name: Vacuum manual
+  icon: mdi:broom
+  options:
+    - None
+    - Badkamer
+    - Hal
+    - Kamer
+    - Keuken
+    - Koffietafel
+    - Salontafel
+    - Slaapkamer
+  initial: None
