@@ -5,4 +5,3 @@ vacuum_locations:
     - Badkamer
     - Hal
     - Slaapkamer
-  initial: None
