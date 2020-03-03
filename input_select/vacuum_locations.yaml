@@ -1,0 +1,8 @@
+vacuum_locations:
+  name: Vacuum locations
+  icon: mdi:broom
+  options:
+    - Badkamer
+    - Hal
+    - Slaapkamer
+  initial: None
