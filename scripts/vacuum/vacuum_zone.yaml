@@ -11,8 +11,7 @@ vacuum_zone:
         'spot_id': >
          '{% if vac_zone in state_attr('input_select.vacuum_locations', 'options') %}{{ vac_zone }}{% endif %}'
   - delay: 00:01:00
-  - wait_template: >
-      {% (vac_zone in state_attr('input_select.vacuum_locations', 'options')) or is_state('vacuum.rockrobo', 'idle') %}
+  - wait_template: "{{ (vac_zone in state_attr('input_select.vacuum_locations', 'options')) or is_state('vacuum.rockrobo', 'idle') }}""
   - service: vacuum.send_command
     data_template:
       entity_id: 'vacuum.rockrobo'
