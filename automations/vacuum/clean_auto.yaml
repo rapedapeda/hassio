@@ -1,5 +1,5 @@
-- id: vacuum_clean_when_away
-  alias: Vacuum clean when away
+- id: vacuum_clean_auto
+  alias: Vacuum clean auto
   trigger:
     - platform: state
       entity_id: input_boolean.presence_status
