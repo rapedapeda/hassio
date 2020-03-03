@@ -9,10 +9,10 @@ vacuum_zone:
       command: 'go_to'
       params:
         'spot_id': >
-         '{% if vac_loc in state_attr('input_select.vacuum_locations', 'options') %}{{ vac_loc }}{% endif %}'
+         '{% if vac_zone in state_attr('input_select.vacuum_locations', 'options') %}{{ vac_zone }}{% endif %}'
   - delay: 00:01:00
   - wait_template: "{{ is_state('vacuum.rockrobo', 'idle') }}"
-    timeout: "{% if vac_loc not in state_attr('input_select.vacuum_locations', 'options') %}00:00:01{% else %}00:05:00{% endif %}"
+    timeout: "{% if vac_zone not in state_attr('input_select.vacuum_locations', 'options') %}00:00:01{% else %}00:05:00{% endif %}"
   - service: vacuum.send_command
     data_template:
       entity_id: 'vacuum.rockrobo'
