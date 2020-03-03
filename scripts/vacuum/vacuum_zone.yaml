@@ -20,6 +20,10 @@ vacuum_zone:
         'zone_ids': ['{{ vac_zone }}']
   - delay: 00:01:00
   - wait_template: "{{ is_state('vacuum.rockrobo', 'docked') }}"
+  - service: input_select.select_option
+    entity_id: input_select.vacuum_manual
+    data_template:
+      option: None
   - condition: and
     conditions: 
       - condition: numeric_state
