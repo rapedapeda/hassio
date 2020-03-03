@@ -1,16 +1,10 @@
-- id: vacuum_stop_when_arriving
+- id: vacuum_stop_cleaning
   alias: Vacuum stop cleaning when arriving
   trigger:
     - platform: state
       entity_id: input_boolean.presence_status
       to: 'on'
   condition:
-  - condition: time
-    before: '21:00:00'
-    after: '07:00:00'
-  - condition: state
-    entity_id: input_boolean.bed_occupancy
-    state: 'off'
   - condition: state
     entity_id: vacuum.rockrobo
     state: 'cleaning'

@@ -1,4 +1,4 @@
-- id: vacuum_go_to_bin_when_home
+- id: vacuum_go_to_bin
   alias: Vacuum go to bin when full
   trigger:
     - platform: state
