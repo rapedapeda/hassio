@@ -16,3 +16,4 @@
     data_template:
       vac_cond: true
       vac_zone: "{{ states('input_select.vacuum_manual') }}"
+      vac_loc: "{{ states('input_select.vacuum_manual') }}"
