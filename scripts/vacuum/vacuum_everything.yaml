@@ -6,7 +6,6 @@ vacuum_everything:
     data_template:
       vac_cond: "{{ states('counter.vacuum_living_room') | float == 0 }}"
       vac_zone: 'Kamer'
-      vac_loc: 'Kamer'
   - delay: 00:01:00
   - wait_template: "{{ is_state('script.vacuum_zone', 'off') }}"
   # Maak de slaapkamer schoon
@@ -14,7 +13,6 @@ vacuum_everything:
     data_template:
       vac_cond: "{{ states('counter.vacuum_bedroom') | float == 0 }}"
       vac_zone: 'Slaapkamer'
-      vac_loc: 'Slaapkamer'
   - delay: 00:01:00
   - wait_template: "{{ is_state('script.vacuum_zone', 'off') }}"
   # Maak de gang schoon
@@ -22,6 +20,5 @@ vacuum_everything:
     data_template:
       vac_cond: "{{ states('counter.vacuum_hallway') | float == 0 }}"
       vac_zone: 'Hal'
-      vac_loc: 'Hal'
   - delay: 00:01:00
   - wait_template: "{{ is_state('script.vacuum_zone', 'off') }}"
