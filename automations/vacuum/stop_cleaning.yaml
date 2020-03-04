@@ -11,3 +11,11 @@
   action:
   - service: vacuum.return_to_base
     entity_id: vacuum.rockrobo
+  - service: script.turn_off
+    entity_id: script.vacuum_everything
+  - service: script.turn_off
+    entity_id: script.vacuum_zone
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.vacuum_manual
+      option: None
