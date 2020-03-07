@@ -1,6 +1,0 @@
-vacuum_sensors:
-  name: Vacuum consumables
-  entities:
-    - sensor.vacuum_filter
-    - sensor.vacuum_main_brush
-    - sensor.vacuum_side_brush

@@ -1,0 +1,84 @@
+- id: notification_clean_filter
+  alias: Notify clean vacuum filter
+  trigger:
+    - platform: state
+      entity_id: script.vacuum_zone
+      to: 'off' 
+      for: 00:10:00
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.vacuum_filter
+      below: 1
+  action:
+  - service: notify.all
+    data:
+      title: "Stofzuiger"
+      message: "Mijn filter moet worden schoongemaakt"
+      data:
+        push:
+          thread-id: "vacuum"
+- id: notification_replace_main_brush
+  alias: Notify vacuum replace main brush
+  trigger:
+    - platform: state
+      entity_id: script.vacuum_zone
+      to: 'off' 
+      for: 00:10:00
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.vacuum_main_brush
+      below: 1
+  action:
+  - service: notify.all
+    data:
+      title: "Stofzuiger"
+      message: "Mijn borstel moet worden vervangen"
+      data:
+        push:
+          thread-id: "vacuum"
+- id: notification_replace_side_brush
+  alias: Notify vacuum replace side brush
+  trigger:
+    - platform: state
+      entity_id: script.vacuum_zone
+      to: 'off' 
+      for: 00:10:00
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.vacuum_side_brush
+      below: 1
+  action:
+  - service: notify.all
+    data:
+      title: "Stofzuiger"
+      message: "Mijn zijborstel moet worden vervangen"
+      data:
+        push:
+          thread-id: "vacuum"
+- id: notification_clean_sensors
+  alias: Notify clean vacuum sensors
+  trigger:
+    - platform: state
+      entity_id: script.vacuum_zone
+      to: 'off' 
+      for: 00:10:00
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.vacuum_sensor
+      below: 5
+  action:
+  - service: notify.all
+    data:
+      title: "Stofzuiger"
+      message: "Mijn sensors moeten worden schoongemaakt"
+      data:
+        push:
+          thread-id: "vacuum"
