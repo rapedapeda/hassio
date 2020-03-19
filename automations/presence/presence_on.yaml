@@ -1,6 +1,5 @@
 - id: presence_on
   alias: Presence on
-  hide_entity: true
   trigger:
     - platform: state
       entity_id: group.presence

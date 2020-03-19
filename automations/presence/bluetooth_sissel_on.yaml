@@ -1,6 +1,5 @@
 - id: occupancy_on_sissel
   alias: Occupancy On Sissel
-  hide_entity: true
   trigger:
     - platform: numeric_state
       entity_id: sensor.sissel_home

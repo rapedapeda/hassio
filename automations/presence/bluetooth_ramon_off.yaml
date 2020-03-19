@@ -1,6 +1,5 @@
 - id: occupancy_off_ramon
   alias: Occupancy Off Ramon
-  hide_entity: true
   trigger:
     - platform: numeric_state
       entity_id: sensor.ramon_home

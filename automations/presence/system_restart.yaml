@@ -1,6 +1,5 @@
 - id: system_restart_presence
   alias: System restart presence
-  hide_entity: true
   description: ''
   trigger:
   - platform: homeassistant

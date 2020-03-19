@@ -1,6 +1,5 @@
 - id: occupancy_on_flore
   alias: Occupancy On Flore
-  hide_entity: true
   trigger:
     - platform: numeric_state
       entity_id: sensor.flore_home
