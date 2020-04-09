@@ -4,6 +4,7 @@ vacuum_manual:
   options:
     - None
     - Badkamer
+    - Eettafel
     - Hal
     - Kamer
     - Keuken
