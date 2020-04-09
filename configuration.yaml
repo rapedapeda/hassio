@@ -6,6 +6,7 @@
 # automation:
 config:
 frontend:
+  themes: !include_dir_merge_named themes
 mobile_app:
 person:
 ssdp:
@@ -74,6 +75,12 @@ notify:
     services:
       - service: mobile_app_hasskit_iphone_0130 #Ramon
       - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore
+
+weather:
+  - platform: darksky_m
+    api_key: !secret 38rfhb372e
+    units: si
+    mode: daily
 
 # Homekit integration
 #homekit:
