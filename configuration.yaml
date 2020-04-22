@@ -91,7 +91,6 @@ notify:
       - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore
 
 recorder:
-  purge_keep_days: 
   purge_interval: 0
   db_url: !secret recorder
 
