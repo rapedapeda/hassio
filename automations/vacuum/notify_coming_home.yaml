@@ -1,0 +1,25 @@
+- alias: Vacuum notify if active 
+  trigger:
+  - platform: state
+    entity_id: input_boolean.presence_status
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: vacuum.rockrobo
+    state: 'cleaning'
+  action:
+    service_template: >-
+      {% if is_state("person.flore", "home") and
+            is_state("person.ramon", "home") %}
+      notify.all
+      {% elif is_state("person.flore", "not_home") %}
+      notify.mobile_app_hasskit_iphone_0130
+      {% else %}
+      notify.notify.mobile_app_hasskit_iphone_van_f_s_o_3382
+      {% endif %}
+    data:
+      title: "Stofzuigen"
+      message: "Wil je het stofzuigen stoppen?"
+      data:
+        push:
+          category: "vacuum_stop" # Needs to match the top level identifier you used in the ios configuration

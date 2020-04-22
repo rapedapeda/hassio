@@ -41,6 +41,20 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
+ios:
+  push:
+    categories:
+      - name: Stofzuiger
+        identifier: 'vacuum_stop'
+        actions:
+          - identifier: 'STOP_CLEANING'
+            title: 'Stoppen'
+            activationMode: 'background'
+            authenticationRequired: false
+            destructive: false
+            behavior: 'default'
+
+
 logger:
   default: warning
 
