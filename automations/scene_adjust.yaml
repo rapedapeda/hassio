@@ -10,6 +10,7 @@
     platform: state
   - entity_id: input_select.room_bathroom
     platform: state
+  condition: []
   action:
   - service: script.scene_adjust
     data_template: 

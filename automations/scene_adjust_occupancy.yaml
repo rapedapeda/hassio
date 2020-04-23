@@ -9,10 +9,7 @@
       entity_id: input_boolean.presence_status
       state:  on
   action:
-  - service: script.scene_adjust
-    data_template: 
-      scene: "{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_normaal"
-  - service: input_select.select_option
-    data_template: 
-      entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
-      option: Normaal
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
+        option: Normaal

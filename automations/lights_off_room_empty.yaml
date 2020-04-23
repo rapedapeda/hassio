@@ -10,6 +10,7 @@
   - entity_id: binary_sensor.aanwezigheid_hal
     platform: state
     to: off
+  condition: []
   action:
   - service: input_select.select_option
     data_template: 
