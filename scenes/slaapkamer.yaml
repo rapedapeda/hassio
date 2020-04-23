@@ -26,7 +26,7 @@
       brightness: 75
       transition: 10
     light.droog:
-      state: off
+      state: on
       brightness: 8
       transition: 10
 - name: slaapkamer_nacht
