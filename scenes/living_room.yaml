@@ -1,4 +1,4 @@
-- name: living_room_normal
+- name: woonkamer_normaal
   entities:
     light.lotek:
       state: on
@@ -6,15 +6,7 @@
       transition: 5
     switch.aanrecht:
       state: on
-- name: living_room_normal_sunset
-  entities:
-    light.lotek:
-      state: on
-      brightness: 150
-      transition: 900
-    switch.aanrecht:
-      state: on
-- name: living_room_dimmed
+- name: woonkamer_gedimd
   entities:
     light.lotek:
       state: on
@@ -22,11 +14,21 @@
       transition: 5
     switch.aanrecht:
       state: off
-- name: living_room_full
+- name: woonkamer_vol
   entities:
     light.lotek:
       state: on
       brightness: 255
       transition: 5
+    switch.aanrecht:
+      state: on
+
+# Kan weg denk ik
+- name: woonkamer_normal_sunset
+  entities:
+    light.lotek:
+      state: on
+      brightness: 150
+      transition: 900
     switch.aanrecht:
       state: on
