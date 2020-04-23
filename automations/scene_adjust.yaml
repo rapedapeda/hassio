@@ -7,5 +7,4 @@
   action:
   - service: script.scene_adjust
     data_template: 
-      room: "{{ state_attr('trigger.entity_id', 'friendly_name')|lower }}"
-      scene: "{{ states('trigger.entity_id')|lower }}"
+      scene: "{{ state_attr('trigger.entity_id', 'friendly_name')|lower }}_{{ states('trigger.entity_id')|lower }}"
