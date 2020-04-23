@@ -1,18 +1,22 @@
-- name: bathroom_normal
+- name: bathroom_uit
   entities:
     light.bathroom:
-      state: on
-      brightness: 125
-- name: bathroom_full
-  entities:
-    light.bathroom:
-      state: on
-      brightness: 255
-- name: bathroom_low
+      state: off
+- name: bathroom_gedimd
   entities:
     light.bathroom:
       state: on
       brightness: 75
+- name: bathroom_normaal
+  entities:
+    light.bathroom:
+      state: on
+      brightness: 125
+- name: bathroom_vol
+  entities:
+    light.bathroom:
+      state: on
+      brightness: 255
 - name: bathroom_night
   entities:
     light.bathroom:

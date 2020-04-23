@@ -1,0 +1,6 @@
+scene_adjust:
+  alias: Scene adjust
+  sequence:
+  - service: scene.turn_on
+    data_template:
+      entity_id: scene.{{ room }}_{{ scene }}

@@ -1,0 +1,11 @@
+
+- id: scene_adjustment_manual
+  alias: Scene adjustment manual
+  trigger:
+  - entity_id: input_select.room_living_room
+    platform: state
+  action:
+  - service: script.scene_adjust
+    data_template: 
+      room: "{{ state_attr('trigger.entity_id', 'friendly_name')|lower }}"
+      scene: "{{ states('trigger.entity_id')|lower }}"

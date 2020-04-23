@@ -6,9 +6,25 @@ room_living_room:
     - Gedimd
     - Normaal
     - Vol
-room_slaapkamer:
+room_bedroom:
   name: Slaapkamer
   icon: mdi:bed-king
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+room_hallway:
+  name: Hal
+  icon: mdi:door-closed
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+room_bathroom:
+  name: Badkamer
+  icon: mdi:shower
   options:
     - Uit
     - Gedimd
