@@ -1,0 +1,17 @@
+- id: room_empty
+  alias: Room empty lights off
+  trigger:
+  - entity_id: binary_sensor.aanwezigheid_slaapkamer
+    platform: state
+    to: off
+  - entity_id: binary_sensor.aanwezigheid_badkamer
+    platform: state
+    to: off
+  - entity_id: binary_sensor.aanwezigheid_hal
+    platform: state
+    to: off
+  action:
+  - service: input_select.select_option
+    data_template: 
+      entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
+      option: Uit

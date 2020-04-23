@@ -1,4 +1,4 @@
-
+# Triggers scene when the input_select is changed (manually or automatic)
 - id: scene_adjustment
   alias: Scene adjustment
   trigger:
