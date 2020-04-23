@@ -1,3 +1,10 @@
+- name: woonkamer_uit
+  entities:
+    light.lotek:
+      state: off
+      transition: 5
+    switch.aanrecht:
+      state: off
 - name: woonkamer_normaal
   entities:
     light.lotek:
