@@ -3,13 +3,13 @@
   trigger:
   - entity_id: binary_sensor.aanwezigheid_slaapkamer
     platform: state
-    to: off
+    to: 'off'
   - entity_id: binary_sensor.aanwezigheid_badkamer
     platform: state
-    to: off
+    to: 'off'
   - entity_id: binary_sensor.aanwezigheid_hal
     platform: state
-    to: off
+    to: 'off'
   condition: []
   action:
   - service: input_select.select_option
