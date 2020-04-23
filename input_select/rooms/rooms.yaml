@@ -1,0 +1,16 @@
+room_living_room:
+  name: Woonkamer
+  icon: mdi:sofa
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+room_slaapkamer:
+  name: Slaapkamer
+  icon: mdi:bed-king
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
