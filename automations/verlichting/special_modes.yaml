@@ -1,0 +1,12 @@
+- id: scene_slaapkamer_in_bed
+  alias: Scene modus slaapkamer in bed
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bed_occupancy
+      to: 'on'
+  condition: []
+  action:
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.kamer_scenes_slaapkamer
+        option: Gedimd
