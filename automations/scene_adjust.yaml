@@ -2,13 +2,13 @@
 - id: scene_adjustment
   alias: Scene adjustment
   trigger:
-  - entity_id: input_select.room_living_room
+  - entity_id: input_select.kamer_scenes_woonkamer
     platform: state
-  - entity_id: input_select.room_bedroom
+  - entity_id: input_select.kamer_scenes_slaapkamer
     platform: state
-  - entity_id: input_select.room_hallway
+  - entity_id: input_select.kamer_scenes_hal
     platform: state
-  - entity_id: input_select.room_bathroom
+  - entity_id: input_select.kamer_scenes_badkamer
     platform: state
   condition: []
   action:
