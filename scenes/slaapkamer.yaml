@@ -1,29 +1,31 @@
-- name: bedroom_normal
+- name: slaapkamer_uit
+  entities:
+    light.droog:
+      state: off
+    light.lita:
+      state: off
+- name: slaapkamer_normaal
   entities:
     light.droog:
       state: on
       brightness: 150
-      effect: stop
     light.lita:
       state: off
-      brightness: 0
-      transition: 15
-- name: bedroom_full
+- name: slaapkamer_vol
   entities:
     light.lita:
       state: on
       brightness: 255
-      effect: stop
     light.droog:
       state: on
       brightness: 255
-- name: bedroom_low
+- name: slaapkamer_gedimd
   entities:
     light.lita:
       state: on
       brightness: 75
-      effect: stop
+      transition: 10
     light.droog:
       state: off
       brightness: 0
-      transition: 15
+      transition: 10

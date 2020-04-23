@@ -1,8 +1,14 @@
 
-- id: scene_adjustment_manual
-  alias: Scene adjustment manual
+- id: scene_adjustment
+  alias: Scene adjustment
   trigger:
   - entity_id: input_select.room_living_room
+    platform: state
+  - entity_id: input_select.room_bedroom
+    platform: state
+  - entity_id: input_select.room_hallway
+    platform: state
+  - entity_id: input_select.room_bathroom
     platform: state
   action:
   - service: script.scene_adjust

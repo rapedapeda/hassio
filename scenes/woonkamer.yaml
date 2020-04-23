@@ -29,13 +29,3 @@
       transition: 5
     switch.aanrecht:
       state: on
-
-# Kan weg denk ik
-- name: woonkamer_normal_sunset
-  entities:
-    light.lotek:
-      state: on
-      brightness: 150
-      transition: 900
-    switch.aanrecht:
-      state: on
