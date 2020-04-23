@@ -12,6 +12,7 @@ kamer_scenes_slaapkamer:
   options:
     - Uit
     - Gedimd
+    - Nacht
     - Normaal
     - Vol
 kamer_scenes_hal:

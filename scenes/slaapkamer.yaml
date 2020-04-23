@@ -27,5 +27,15 @@
       transition: 10
     light.droog:
       state: off
+      brightness: 8
+      transition: 10
+- name: slaapkamer_nacht
+  entities:
+    light.lita:
+      state: on
+      brightness: 75
+      transition: 10
+    light.droog:
+      state: off
       brightness: 0
       transition: 10
