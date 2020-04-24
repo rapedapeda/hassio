@@ -47,7 +47,7 @@
     aanwezigheid_hal_override:
       friendly_name: "Hal override"
       delay_off:
-        minutes: 1
+        minutes: 0
       value_template: >-
           {{ 
             is_state('input_boolean.wolf_in_bed', 'on')
