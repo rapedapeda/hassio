@@ -1,12 +1,15 @@
-- id: scene_slaapkamer_in_bed
-  alias: Scene modus slaapkamer in bed
+- id: scene_special_modes
+  alias: Scene speciale modi
   trigger:
-    - platform: state
-      entity_id: input_boolean.bed_occupancy
-      to: 'on'
-  condition: []
+    platform: event
+    event_type: state_changed
+  condition:
+      condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('input_boolean.scene_special_') 
+        }}
   action:
-    - service: input_select.select_option
-      data_template: 
-        entity_id: input_select.kamer_scenes_slaapkamer
-        option: Gedimd
+    service: python_script.scenes_special_mode
+    data_template:
+      entity_id: "{{ trigger.entity_id }}"
