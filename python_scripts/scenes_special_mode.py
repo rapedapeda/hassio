@@ -5,13 +5,12 @@
 #
 
 entity_id = data.get('entity_id')
-kamers = hass.states.get('entity_id').attributes['kamers']
-print(kamers)
-scenes = hass.states.get('entity_id').attributes['scenes']
-print(scenes)
-aantal = len(hass.states.get('entity_id').attributes['kamers'])
-print(aantal)
-
+kamers = data.get('kamers')
+scenes = data.get('scenes')
+aantal = len(kamers)
+logger.warning("kamers  {}".format(kamers))
+logger.warning("Scenes  {}".format(scenes))
+logger.warning("Aantal  {}".format(aantal))
 
 for i in range(aantal):
     entity = f'kamer_scenes_{kamers[i]}'
