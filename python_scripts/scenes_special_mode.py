@@ -5,11 +5,11 @@
 #
 
 entity_id = data.get('entity_id')
-kamers = hass.states.get(entity_id).attributes['kamers']
+kamers = hass.states.get('entity_id').attributes['kamers']
 print(kamers)
-scenes = hass.states.get(entity_id).attributes['scenes']
+scenes = hass.states.get('entity_id').attributes['scenes']
 print(scenes)
-aantal = len(hass.states.get(entity_id).attributes['kamers'])
+aantal = len(hass.states.get('entity_id').attributes['kamers'])
 print(aantal)
 
 
