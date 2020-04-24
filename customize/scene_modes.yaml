@@ -1,4 +1,4 @@
-input_boolean.wolf_in_bed:
+input_boolean.scene_special_wolf_in_bed:
   override: true
   kamers: ['hal,badkamer']
   scenes: ['gedimd,uit']
