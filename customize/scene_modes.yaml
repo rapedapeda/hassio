@@ -1,0 +1,3 @@
+input_boolean.wolf_in_bed:
+  override: test
+  scenes: 'scene.kamer_scene'

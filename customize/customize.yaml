@@ -1,10 +1,5 @@
 script.1572177460163:
   icon: mdi:water
-sensor.iphonevanf_s_o_distance:
-  friendly_name: Distance
-  unit_of_measurement: km
-sensor.iphonevanf_s_o_travel_time:
-  friendly_name: Travel time
 sensor.br_wind_speed:
   friendly_name: Wind speed
 sensor.br_humidity:
