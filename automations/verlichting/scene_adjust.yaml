@@ -12,6 +12,11 @@
     platform: state
   condition: []
   action:
-  - service: script.scene_adjust
-    data_template: 
-      scene: "{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}"
+  - service: scene.turn_on
+    data_template:
+      entity_id: scene.{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}
+#  - service: script.scene_adjust
+#    data_template: 
+#      scene: "{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}"
+
+# If this works, the script with the same name can go.

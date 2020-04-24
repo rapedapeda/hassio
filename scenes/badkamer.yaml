@@ -2,6 +2,7 @@
   entities:
     light.bathroom:
       state: off
+      brightness: 0
 - name: badkamer_normaal
   entities:
     light.bathroom:
