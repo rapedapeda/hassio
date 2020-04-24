@@ -23,7 +23,7 @@ tts:
   - platform: google_translate
 
 homeassistant:
-  customize: !include_dir_merge_list customize/
+  customize: !include_dir_merge_named customize/
   unit_system: metric
 
 alarm_control_panel:
@@ -131,9 +131,9 @@ input_select: !include_dir_merge_named input_select/
 logbook: !include logbook.yaml
 #notify: !include_dir_list notify/
 scene: !include_dir_merge_list scenes/
+sensor: !include_dir_list sensors/
 script: !include_dir_merge_named scripts/
 timer: !include_dir_merge_named timers/
-sensor: !include_dir_list sensors/
 zone: !include_dir_list zones/
 
 
