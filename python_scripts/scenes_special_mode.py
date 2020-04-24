@@ -15,5 +15,5 @@ logger.warning("Aantal  {}".format(aantal))
 for i in range(aantal):
     entity = f'kamer_scenes_{kamers[i]}'
     option = scenes[i]
-    service_data = {"entity_id": entity_id, "option": option}
+    service_data = {"entity_id": entity, "option": option}
     hass.services.call("input_select", "select_option", service_data, False)
