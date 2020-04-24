@@ -5,8 +5,8 @@
 #
 
 entity_id = data.get('entity_id')
-kamers = data.get('kamers')
-scenes = data.get('scenes')
+kamers = data.get('kamers').split(',')
+scenes = data.get('scenes').split(',')
 aantal = len(kamers)
 logger.warning("kamers  {}".format(kamers))
 logger.warning("Scenes  {}".format(scenes))
