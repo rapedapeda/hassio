@@ -89,7 +89,6 @@ notify:
     services:
       - service: mobile_app_hasskit_iphone_0130 #Ramon
       - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore
-
 recorder:
   purge_interval: 0
   db_url: !secret recorder
@@ -130,6 +129,7 @@ input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
 logbook: !include logbook.yaml
 #notify: !include_dir_list notify/
+python_script:
 scene: !include_dir_merge_list scenes/
 sensor: !include_dir_list sensors/
 script: !include_dir_merge_named scripts/
