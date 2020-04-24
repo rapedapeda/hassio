@@ -50,7 +50,7 @@
         minutes: 0
       value_template: >-
           {{ 
-            is_state('input_boolean.wolf_in_bed', 'on')
+            is_state('input_boolean.scene_special_wolf_in_bed', 'on')
           }}
 - platform: template
   sensors:
@@ -58,7 +58,7 @@
       friendly_name: "Badkamer override"
       value_template: >-
           {{ 
-            is_state('input_boolean.wolf_in_bed', 'on')
+            is_state('input_boolean.scene_special_wolf_in_bed', 'on')
           }}
 - platform: template
   sensors:
