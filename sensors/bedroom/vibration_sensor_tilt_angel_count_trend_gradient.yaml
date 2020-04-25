@@ -1,6 +1,0 @@
-platform: template
-sensors: 
-  vibration_sensor_stats_count_trend_gradient:
-    friendly_name: Vibration sensor stats count trend gradient
-    value_template: "{{ state_attr('binary_sensor.bedroom_vibration_count_trend','gradient') }}"
-    unit_of_measurement: 'counts/min'

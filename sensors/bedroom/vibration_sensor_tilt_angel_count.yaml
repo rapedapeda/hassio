@@ -1,6 +1,0 @@
-platform: template
-sensors: 
-  vibration_sensor_stats_count:
-    friendly_name: Vibration sensor stats count
-    value_template: "{{ state_attr('sensor.vibration_sensor_statistics','count') }}"
-    unit_of_measurement: 'changes'
