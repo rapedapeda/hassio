@@ -1,5 +1,5 @@
 vacuum_to_bin:
-  alias: "Move Vacuum to bin emptying location"
+  alias: "Stofzuiger leegmaken"
   sequence:
   - service: vacuum.send_command
     data:

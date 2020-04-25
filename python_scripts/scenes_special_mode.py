@@ -3,14 +3,12 @@
 # Loopt over de attributen (kamers,scenes)
 # Itereert en zet alle kamers op de goede scene
 #
-
-entity_id = data.get('entity_id')
 kamers = data.get('kamers').split(',')
 scenes = data.get('scenes').split(',')
 aantal = len(kamers)
-logger.warning("kamers  {}".format(kamers))
-logger.warning("Scenes  {}".format(scenes))
-logger.warning("Aantal  {}".format(aantal))
+#logger.warning("kamers  {}".format(kamers))
+#logger.warning("Scenes  {}".format(scenes))
+#logger.warning("Aantal  {}".format(aantal))
 
 for i in range(aantal):
     entity = f'input_select.kamer_scenes_{kamers[i]}'

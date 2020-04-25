@@ -6,4 +6,4 @@ presence:
   entities:
     - person.ramon
     - person.flore
-    - person.sissel
+#    - person.sissel
