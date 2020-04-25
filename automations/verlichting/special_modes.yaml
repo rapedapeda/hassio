@@ -15,5 +15,7 @@
     service: python_script.scenes_special_mode
     data_template:
       entity_id: "{{ trigger.entity_id }}"
-      kamers: "{{ state_attr('input_boolean.scene_special_wolf_in_bed','kamers') }}"
-      scenes: "{{ state_attr('input_boolean.scene_special_wolf_in_bed','scenes') }}"
+      kamers: "{{ state_attr('trigger.entity_id','kamers') }}"
+      scenes: "{{ state_attr('trigger.entity_id','scenes') }}"
+
+#even checken 

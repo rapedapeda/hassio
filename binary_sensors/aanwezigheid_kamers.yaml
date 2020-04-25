@@ -68,6 +68,6 @@
           {{  
             states('sensor.slaapkamer')|float > 100 or 
             (
-              is_state('input_boolean.bed_occupancy', 'on')
+              is_state('input_boolean.scene_special_in_bed', 'on')
             )
           }}
