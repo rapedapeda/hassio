@@ -1,5 +1,6 @@
 vacuum_everything:
-  alias: Vacuum everything
+  alias: Alles schoonmaken
+  icon: "mdi:broom"
   sequence:
   # Maak de woonkamer schoon
   - service: script.vacuum_zone

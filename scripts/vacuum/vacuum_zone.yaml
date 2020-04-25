@@ -1,5 +1,6 @@
 vacuum_zone:
   alias: Vacuum zone
+  icon: "mdi:broom"
   sequence:
   - condition: template
     value_template: '{{ vac_cond }}'
