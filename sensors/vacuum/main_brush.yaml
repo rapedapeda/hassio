@@ -1,6 +1,7 @@
 platform: template
 sensors:
   vacuum_main_brush:
-    friendly_name: "Vacuum main brush"
+    friendly_name: "Borstel"
     unit_of_measurement: 'uur'
     value_template: "{{ state_attr('vacuum.rockrobo', 'mainBrush') }}"
+    icon_template: mdi:broom

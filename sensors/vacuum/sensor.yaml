@@ -1,6 +1,7 @@
 platform: template
 sensors:
   vacuum_sensor:
-    friendly_name: "Vacuum sensor"
+    friendly_name: "Sensoren"
     unit_of_measurement: 'uur'
     value_template: "{{ state_attr('vacuum.rockrobo', 'sensor') }}"
+    icon_template: mdi:radar
