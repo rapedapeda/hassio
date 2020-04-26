@@ -17,7 +17,7 @@
       #entity_id: "{{ trigger.entity_id }}"
       #kamers: "{{ trigger.from_state.attributes.kamers }}"
       #scenes: "{{ trigger.from_state.attributes.scenes }}"
-      kamers: "{{ state_attr(trigger.entity_id,'kamers') }}"
-      scenes: "{{ state_attr(trigger.entity_id,'scenes') }}"
+      kamers: "{{ state_attr(trigger.event.data.entity_id,'kamers') }}"
+      scenes: "{{ state_attr(trigger.event.data.entity_id,'scenes') }}"
 
 #even checken 
