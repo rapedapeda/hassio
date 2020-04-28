@@ -6,16 +6,17 @@
     value_template: "{{ state_attr('sun.sun', 'elevation') }}"
     below: 4
   - platform: state
-    entity_id: group.presence
-    from: 'not_home'
-    to: 'home'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 1
+    entity_id: input_boolean.presence_status
+    to: 'on'
   condition:
   - condition: template
     value_template: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
+  - condition: state
+    entity_id: input_boolean.presence_status
+    state: 'on'
   action:
-  - service: homeassistant.turn_on
-    entity_id: group.coming_home_lights
+    service: python_script.scenes_special_mode
+    data_template:
+      kamers: "woonkamer"
+      scenes: "normaal"
+
