@@ -18,5 +18,5 @@
     service: python_script.scenes_special_mode
     data_template:
       kamers: "woonkamer"
-      scenes: "normaal"
+      scenes: "Normaal"
 
