@@ -1,5 +1,5 @@
 counter_emptying_increase:
-  alias: Vacuum increase counter empty bin
+  alias: Stofzuiger update opvangbak na schoonmaak
   sequence:
   - service: counter.configure
     data_template:
