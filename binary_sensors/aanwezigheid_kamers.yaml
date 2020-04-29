@@ -8,7 +8,7 @@
         minutes: 1
       value_template: >-
           {{
-            is_state('binary_sensor.aanwezigheid_hal_override', 'off') and
+            is_state('binary_sensor.aanwezigheid_hal_override', 'on') or
             (
               is_state('binary_sensor.hal', 'on')
             )
@@ -22,7 +22,7 @@
         minutes: 3
       value_template: >-
           {{ 
-            is_state('binary_sensor.aanwezigheid_badkamer_override', 'off') and
+            is_state('binary_sensor.aanwezigheid_badkamer_override', 'on') or
             (
               is_state('binary_sensor.badkamer', 'on')
             )
@@ -36,7 +36,7 @@
         minutes: 1
       value_template: >-
           {{
-            is_state('binary_sensor.aanwezigheid_slaapkamer_override', 'off') and
+            is_state('binary_sensor.aanwezigheid_slaapkamer_override', 'on') or
             (
               is_state('binary_sensor.slaapkamer', 'on')
             )
