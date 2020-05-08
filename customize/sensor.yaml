@@ -4,15 +4,27 @@ binary_sensor.shower:
 binary_sensor.voordeur:
   icon: mdi:door-closed
 
-sensor.br_wind_speed:
-  friendly_name: Wind speed
-sensor.br_humidity:
-  friendly_name: Humidity
-sensor.br_temperature:
-  friendly_name: Temperature
-sensor.br_pressure:
-  friendly_name: Pressure
-sensor.br_symbol:
-  friendly_name: Symbol
 sensor.vibration_7_battery_level:
   friendly_name: Vibratiesensor bed
+
+#Buienradarsensoren voor Delft
+sensor.delft_temperature:
+  friendly_name: Temperatuur
+sensor.delft_humidity:
+  friendly_name: Luchtvochtigheid
+sensor.delft_feel_temperature:
+  friendly_name: Gevoelstemperatuur
+sensor.delft_condition:
+  friendly_name: Conditie
+sensor.delft_detailed_condition:
+  friendly_name: Conditie uitgebreid
+sensor.delft_wind_force:
+  friendly_name: Windkracht
+sensor.delft_wind_gust:
+  friendly_name: Windstoten
+sensor.delft_windazimuth:
+  friendly_name: Windrichting
+sensor.delft_irradiance:
+  friendly_name: Zonintensiteit
+sensor.delft_precipitation:
+  friendly_name: Regen

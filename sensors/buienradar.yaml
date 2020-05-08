@@ -10,5 +10,7 @@ monitored_conditions:
   - temperature
   - windforce
   - windgust
+  - windazimuth
   - irradiance
   - precipitation
+  - humidity
