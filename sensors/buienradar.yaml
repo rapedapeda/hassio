@@ -1,4 +1,14 @@
 platform: buienradar
+name: "delft"
+latitude: 52.0116
+longitude: 4.3571
 monitored_conditions:
   - temperature
   - feeltemperature
+  - condition
+  - conditiondetailed
+  - temperature
+  - windforce
+  - windgust
+  - irradiance
+  - precipitation
