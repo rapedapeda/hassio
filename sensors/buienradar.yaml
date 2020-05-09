@@ -14,3 +14,6 @@ monitored_conditions:
   - irradiance
   - precipitation
   - humidity
+  - temperature_1d
+  - rainchance_1d
+  - windforce_1d

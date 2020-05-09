@@ -28,3 +28,9 @@ sensor.delft_irradiance:
   friendly_name: Zonintensiteit
 sensor.delft_precipitation:
   friendly_name: Regen
+sensor.delft_temperature_1d:
+  friendly_name: Temperatuur 1D
+sensor.delft_rainchance_1d:
+  friendly_name: Regenkans 1D
+sensor.delft_windforce_1d:
+  friendly_name: Windkracht 1D
