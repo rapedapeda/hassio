@@ -2,8 +2,8 @@
   alias: Vacuum clean auto
   trigger:
     platform: state
-    entity_id: input_boolean.presence_status
-    to: 'off'
+    entity_id: group.presence
+    to: 'not_home'
     for: 00:01:00
   condition:
   - condition: time
