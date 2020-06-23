@@ -1,7 +1,7 @@
 - id: vacuum_clean_auto
   alias: Vacuum clean auto
   trigger:
-  - platform: state
+    platform: state
     entity_id: input_boolean.presence_status
     to: 'off'
     for: 00:01:00
