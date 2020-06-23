@@ -1,10 +1,13 @@
 - id: vacuum_clean_auto
   alias: Vacuum clean auto
   trigger:
-    platform: state
+  - platform: state
     entity_id: group.presence
     to: 'not_home'
-    for: 00:01:00
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
   condition:
   - condition: time
     before: '21:00:00'
