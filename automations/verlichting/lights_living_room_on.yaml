@@ -1,16 +1,20 @@
-- id: lights_evening
-  alias: Lights evening
+- id: lights_living_room_on
+  alias: Lampen woonkamer aan
   trigger:
+  #- platform: numeric_state
+  #  entity_id: sun.sun
+  #  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+  #  below: 4
   - platform: numeric_state
-    entity_id: sun.sun
-    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
-    below: 4
+    entity_id: sensor.lichtsensor
+    below: 140
   - platform: state
     entity_id: input_boolean.presence_status
     to: 'on'
   condition:
-  - condition: template
-    value_template: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
+  - condition: numeric_state
+    entity_id: sensor.lichtsensor
+    below: 140
   - condition: state
     entity_id: input_boolean.presence_status
     state: 'on'
