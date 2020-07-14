@@ -8,9 +8,7 @@
   - platform: numeric_state
     entity_id: sensor.lichtsensor
     above: 400
-  - platform: state
-    entity_id: input_boolean.presence_status
-    to: 'on'
+    for: 00:05:00
   condition:
   - condition: numeric_state
     entity_id: sensor.lichtsensor
