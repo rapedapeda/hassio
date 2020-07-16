@@ -1,7 +1,0 @@
-platform: filter
-name: "Bathroom moving average"
-entity_id: sensor.humidity_5
-filters:
-  - filter: time_simple_moving_average
-    window_size: 00:01
-    precision: 2
