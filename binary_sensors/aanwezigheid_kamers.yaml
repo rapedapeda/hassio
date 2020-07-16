@@ -24,7 +24,8 @@
           {{ 
             is_state('binary_sensor.aanwezigheid_badkamer_override', 'on') or
             (
-              is_state('binary_sensor.badkamer', 'on')
+              is_state('binary_sensor.badkamer', 'on') or
+              is_state('binary_sensor.badkamer_radar', 'on')
             )
           }}
 - platform: template
