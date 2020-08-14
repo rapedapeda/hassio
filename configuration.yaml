@@ -86,20 +86,16 @@ notify:
   - platform: group
     name: all
     services:
-      - service: mobile_app_hasskit_iphone_0130 #Ramon
-      - service: mobile_app_hdb_iphone_6682 # Ramon nieuw
-      - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore oud
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore nieuw
+      - service: mobile_app_hdb_iphone_6682 # Ramon
+      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
   - platform: group
     name: flore
     services:
-      - service: mobile_app_hasskit_iphone_van_f_s_o_3382 # Flore
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore nieuw
+      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
   - platform: group
     name: ramon
     services:
-      - service: mobile_app_hasskit_iphone_0130 #Ramon (oud)
-      - service: mobile_app_hdb_iphone_6682 # Ramon nieuw
+      - service: mobile_app_hdb_iphone_6682 # Ramon
 
 recorder:
   purge_keep_days: 7
