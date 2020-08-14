@@ -18,5 +18,5 @@ aantal = len(recipients)
 
 for i in range(aantal):
     recipient = recipients[i]
-    service_data = {"title:": title, "message": message}
+    service_data = {"title": title, "message": message}
     hass.services.call("notify", recipient, service_data)
