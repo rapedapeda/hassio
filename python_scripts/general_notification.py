@@ -20,3 +20,4 @@ for i in range(aantal):
     recipient = recipients[i]
     service_data = {"title": title, "message": message}
     hass.services.call("notify", recipient, service_data)
+    logger.warning("Verstuurd aan:  {}".format(recipient))
