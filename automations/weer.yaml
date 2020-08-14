@@ -1,0 +1,26 @@
+- id: weer_notificatie
+  alias: Weernotificatie
+  trigger:
+  - platform: time
+    # Military time format. This trigger will fire at 3:32 PM
+    at: "07:00:00"
+  condition:
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+  action:
+  - service: python_script.general_notification
+    data_template:
+      recipients: >
+        {%- for person in states.person -%}
+          {%- if person.state == 'home' -%}
+            {{ state_attr(person.entity_id, 'friendly_name')|lower}}{%- if not loop.last %},{%- endif %}
+          {%- endif -%}
+        {%- endfor -%}
+      title: "Weerbericht"
+      message: "Vandaag wordt het maximaal {{ states('sensor.delft_feel_temperature') }} graden {% if states('sensor.delft_wind_force_1d') | float < 4 %}met weinig wind.{% else %}en een krachtige wind.{% endif %} {% if states('sensor.delft_rainchance_1d') | float > 20 %}De kans op regen is {{ states('sensor.delft_rainchance_1d') }}%.
+      {% else %}Het gaat waarschijnlijk niet regenen.{% endif %}"
+      threadid: "weer"
+
+
+          
