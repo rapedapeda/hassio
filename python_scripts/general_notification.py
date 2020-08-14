@@ -11,8 +11,12 @@ message = data.get('message')
 threadid = data.get('threadid')
 
 aantal = len(recipients)
-logger.warning("Recipients:  {}".format(recipients))
-logger.warning("Title:  {}".format(title))
-logger.warning("Message:  {}".format(message))
-logger.warning("Thread-id:  {}".format(threadid))
+#logger.warning("Recipients:  {}".format(recipients))
+#logger.warning("Title:  {}".format(title))
+#logger.warning("Message:  {}".format(message))
+#logger.warning("Thread-id:  {}".format(threadid))
 
+for i in range(aantal):
+    recipient = recipients[i]
+    service_data = {"title:": title, "message": message}
+    hass.services.call("notify", recipient, service_data)
