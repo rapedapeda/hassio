@@ -1,5 +1,5 @@
 vacuum_zone:
-  alias: Vacuum zone
+  alias: Stofzuig ruimte
   icon: "mdi:broom"
   sequence:
   - condition: template

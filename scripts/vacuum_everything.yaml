@@ -1,5 +1,5 @@
 vacuum_everything:
-  alias: Alles schoonmaken
+  alias: Stofzuig alles
   icon: "mdi:broom"
   sequence:
   # Maak de woonkamer schoon
