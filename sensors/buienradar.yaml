@@ -7,7 +7,6 @@ monitored_conditions:
   - feeltemperature
   - condition
   - conditiondetailed
-  - temperature
   - windforce
   - windgust
   - windazimuth
