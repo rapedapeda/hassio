@@ -2,7 +2,7 @@
   alias: MP Shield Volume
   trigger:
   - platform: state
-    entity_id: media_player.nvidia_shield
+    entity_id: media_player.nvidia_shield_2
   condition:
     condition: template
     value_template: >
@@ -12,7 +12,7 @@
   action:
   - service: media_player.volume_set
     data_template:
-      entity_id: media_player.nvidia_shield
+      entity_id: media_player.nvidia_shield_2
       volume_level: >
         {% if is_state("input_boolean.bed_occupancy", "off") and (is_state_attr('media_player.nvidia_shield', 'source', 'Geforce NOW') or is_state_attr('media_player.nvidia_shield', 'source', 'RetroArch') or is_state_attr('media_player.nvidia_shield', 'source', 'Dolphin')) %}
           0.4
