@@ -1,0 +1,20 @@
+- id: presence
+  alias: Aanwezigheid
+  trigger:
+    - platform: state
+      entity_id: group.presence
+      to:  not_home
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: group.presence
+      to:  home
+  action:
+  - service_template: >
+      {% if states('group.presence') == 'home' %}
+        input_boolean.turn_on
+      {% else}
+        input_boolean.turn_off
+      {% endif %}
+    data_template:
+      entity_id: input_boolean.presence_status
