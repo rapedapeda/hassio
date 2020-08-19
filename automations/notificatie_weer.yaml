@@ -1,4 +1,4 @@
-- id: weer_notificatie
+- id: notificatie_weer
   alias: Weernotificatie
   trigger:
   - platform: time
