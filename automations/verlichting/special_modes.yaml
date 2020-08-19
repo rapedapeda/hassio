@@ -1,5 +1,6 @@
 - id: scene_special_modes
   alias: Scene speciale modi
+  mode: parallel
   trigger:
     platform: event
     event_type: state_changed
