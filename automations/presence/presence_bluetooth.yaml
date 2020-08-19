@@ -1,0 +1,25 @@
+- id: occupancy_off_flore
+  alias: 'Occupancy Off Flore'
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+  - condition: template
+    value_template: >
+      {{
+        trigger.event.data.entity_id.startswith('sensor.home_') 
+      }}
+  action:
+    - service: device_tracker.see
+      data_template:
+        dev_id: >
+          {% set persoon = trigger.to_state.entity_id %}
+          {{ persoon.split('_')[1] }}
+        location_name: >
+          {% if states(trigger.to_state.entity_id) | float > 10 %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+        source_type: bluetooth
