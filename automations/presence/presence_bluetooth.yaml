@@ -14,10 +14,10 @@
     - service: device_tracker.see
       data_template:
         dev_id: >
-          {% set persoon = trigger.entity_id %}
-          {{ persoon.split('_')[1] }}
+          #{% set persoon = trigger.entity_id %}
+          {{ trigger.event.data.entity_id.split('_')[1] }}
         location_name: >
-          {% if trigger.to_state.state > 10 %}
+          {% if trigger.event.data.new_state.state > 10 %}
             home
           {% else %}
             not_home
