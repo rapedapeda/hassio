@@ -1,11 +1,10 @@
-- id: door_trigger_presence
-  alias: Door presence trigger
+- id: presence_trigger_special
+  alias: Aanwezigheidstrigger voor bijzondere situaties
   trigger:
     platform: state
-    entity_id: binary_sensor.voordeur
-    # Optional
-    from: "off"
-    # Optional
+    entity_id: 
+      - binary_sensor.voordeur
+      - group.motion
     to: "on"
   condition:
     - condition: state
