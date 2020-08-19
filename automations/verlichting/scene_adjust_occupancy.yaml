@@ -10,7 +10,7 @@
       state:  'on'
     - condition: template
       value_template: > 
-        {{ states( trigger.to_state.entity_id + '_override') == 'on' }}
+        {{ states( trigger.entity_id + '_override') == 'on' }}
   action:
     - service: input_select.select_option
       data_template: 
