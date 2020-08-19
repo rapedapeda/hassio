@@ -8,7 +8,7 @@
   - condition: template
     value_template: >
       {{
-        trigger.event.data.entity_id.startswith('sensor.home_') 
+        trigger.event.data.entity_id.startswith('sensor.presence_') 
       }}
   action:
     - service: device_tracker.see
