@@ -1,5 +1,5 @@
-- id: occupancy_off_flore
-  alias: 'Occupancy Off Flore'
+- id: occupancy_bluetooth
+  alias: 'Occupancy bluetooth'
   mode: parallel
   trigger:
     platform: event
