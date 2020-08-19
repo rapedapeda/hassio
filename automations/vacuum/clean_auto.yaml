@@ -1,17 +1,10 @@
 - id: vacuum_clean_auto
-  alias: Vacuum clean auto
+  alias: Stofzuigen (automatisch)
   trigger:
   - platform: state
-    entity_id: group.presence
-    to: 'not_home'
-    for:
-      hours: 0
-      minutes: 1
-      seconds: 0
+    entity_id: input_boolean.presence_status
+    to: 'off'
   condition:
-  - condition: time
-    before: '21:00:00'
-    after: '07:00:00'
   - condition: state
     entity_id: input_boolean.bed_occupancy
     state: 'off'
