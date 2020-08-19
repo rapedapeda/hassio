@@ -8,10 +8,7 @@
         minutes: 1
       value_template: >-
           {{
-            is_state('binary_sensor.aanwezigheid_hal_override', 'on') or
-            (
               is_state('binary_sensor.hal', 'on')
-            )
           }}
 - platform: template
   sensors:
@@ -22,11 +19,8 @@
         minutes: 3
       value_template: >-
           {{ 
-            is_state('binary_sensor.aanwezigheid_badkamer_override', 'on') or
-            (
               is_state('binary_sensor.badkamer', 'on') or
               is_state('binary_sensor.badkamer_radar', 'on')
-            )
           }}
 - platform: template
   sensors:
@@ -37,10 +31,7 @@
         minutes: 1
       value_template: >-
           {{
-            is_state('binary_sensor.aanwezigheid_slaapkamer_override', 'on') or
-            (
               is_state('binary_sensor.slaapkamer', 'on')
-            )
           }}
 # Binary_sensors to override sensors above. In special circumstances
 - platform: template
