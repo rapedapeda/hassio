@@ -10,7 +10,13 @@
   - entity_id: binary_sensor.aanwezigheid_hal
     platform: state
     to: 'off'
-  condition: []
+  condition: 
+  - condition: state
+    entity_id: 
+      - binary_sensor.aanwezigheid_badkamer_override
+      - binary_sensor.aanwezigheid_slaapkamer_override
+      - binary_sensor.aanwezigheid_hal_override
+    state: 'off'
   action:
   - service: input_select.select_option
     data_template: 
