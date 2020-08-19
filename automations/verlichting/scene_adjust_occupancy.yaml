@@ -9,10 +9,8 @@
       entity_id: input_boolean.presence_status
       state:  'on'
     - condition: template
-      value_template: >
-        {% set room = {{ trigger.to_state.entity_id }} %}
-        {% set override = room ~ _override %}
-        {{ states('override') = 'off' }}
+      value_template: > 
+        {{ states( trigger.to_state.entity_id + '_override') == 'on' }}
   action:
     - service: input_select.select_option
       data_template: 
