@@ -17,7 +17,7 @@
           {% set persoon = trigger.to_state.entity_id %}
           {{ persoon.split('_')[1] }}
         location_name: >
-          {% if states(trigger.to_state.entity_id) | float > 10 %}
+          {% if states('trigger.to_state.entity_id') | float > 10 %}
             home
           {% else %}
             not_home
