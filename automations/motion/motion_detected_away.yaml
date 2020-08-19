@@ -10,6 +10,9 @@
     entity_id: alarm_control_panel.ha_alarm
     state:  'armed_away'
   action:
-  - service: script.turn_on
+  - service: python_script.general_notification
     data_template:
-      entity_id: script.motion_detected
+      recipients: ramon,flore
+      title: "Alarm"
+      message: "Er is beweging gedetecteerd in huis"
+      threadid: "alarm"
