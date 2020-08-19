@@ -9,7 +9,10 @@
       entity_id: input_boolean.presence_status
       state:  'on'
     - condition: template
-      value_template: "{{ states('binary_sensor.aanwezigheid_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_override') = 'off' }}"
+      value_template: >
+        {% set room = {{ trigger.to_state.entity_id }} %}
+        {% set override = room ~ _override %}
+        {{ states('override') = 'off' }}
   action:
     - service: input_select.select_option
       data_template: 
