@@ -7,8 +7,8 @@
     - condition: template
       value_template: >
           {% macro battery_level() %}
-          {%- set threshold = 40 -%}
-          {% set domains = ['light', 'switch', 'sensor', 'zwave', 'lock'] %}
+          {%- set threshold = 80 -%}
+          {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if ((item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
           {% if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) -%}
@@ -25,9 +25,10 @@
         title: Batterijstatus
         notification_id: low-battery-alert
         message: >
+          De volgende batterijen moeten worden vervangen:
           {% macro battery_level() %}
-          {%- set threshold = 40 -%}
-          {% set domains = ['light', 'switch', 'sensor', 'zwave', 'lock'] %}
+          {%- set threshold = 80 -%}
+          {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if ((item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
           {% if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) -%}
@@ -42,9 +43,10 @@
       data_template:
         title: "Batterijstatus"
         message: >
+          De volgende batterijen moeten worden vervangen:
           {% macro battery_level() %}
           {%- set threshold = 80 -%}
-          {% set domains = ['light', 'switch', 'sensor', 'zwave', 'lock'] %}
+          {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if ((item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) or ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
           {% if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) -%}
