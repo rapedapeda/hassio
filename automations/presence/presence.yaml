@@ -13,7 +13,7 @@
   - service_template: >
       {% if states('group.presence') == 'home' %}
         input_boolean.turn_on
-      {% else}
+      {% else %}
         input_boolean.turn_off
       {% endif %}
     data_template:
