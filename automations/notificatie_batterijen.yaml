@@ -17,15 +17,15 @@
         title: Batterijstatus
         notification_id: low-battery-alert
         message: >
-          Vervang de batterij van de volgende apparaten: 
+          "Vervang de batterij van de volgende apparaten: 
           {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int == 100 -%}
           {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}
-          {%- endfor %}
+          {%- endfor %}"
     - service: notify.ramon
       data_template:
         title: "Batterijstatus"
         message: >
-          Vervang de batterij van de volgende apparaten: 
+          "Vervang de batterij van de volgende apparaten: 
           {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int == 100 -%}
           {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}
-          {%- endfor %}
+          {%- endfor %}"
