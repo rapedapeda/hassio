@@ -1,5 +1,5 @@
-- id: occupancy_bluetooth
-  alias: 'Occupancy bluetooth'
+- id: presence_bluetooth
+  alias: 'Aanwezigheid bluetooth'
   mode: parallel
   trigger:
     platform: event
