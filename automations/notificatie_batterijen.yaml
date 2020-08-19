@@ -2,24 +2,28 @@
   alias: Batterijnotificatie
   trigger:
     - platform: time
-      at: '18:00:00'
+      at: '06:30:00'
+    - platform: time
+      at: '19:00:00'
   condition:
     - condition: template
       value_template: >
         {% set ns = namespace(needed='false') %}
-        {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int < 100 -%}
+        {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int < 25 -%}
         {% set ns.needed = 'true' %}
         {%- endfor %}
         {{ ns.needed }}
   action:
     - service: persistent_notification.create
       data_template:
-        title: Batterijstatus
+        title: Batterijen vervangen
         notification_id: low-battery-alert
         message: >
-          "Vervang de batterij van de volgende apparaten: {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int == 100 -%} {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}{%- endfor %}"
-    - service: notify.ramon
+          {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int < 25 -%} {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}{%- endfor %}
+    - service: python_script.general_notification
       data_template:
-        title: "Batterijstatus"
+        recipients: ramon,flore
+        title: Batterijen vervangen
+        thread_id: low-battery-alert
         message: >
-          "Vervang de batterij van de volgende apparaten: {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int == 100 -%} {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}{%- endfor %}"
+          {%- for entity_id in states.group.batteries.attributes.entity_id if states(entity_id)|int < 25 -%} {{ state_attr(entity_id, 'friendly_name') }} ({{ states(entity_id) }}%){% if loop.last %}.{%- elif not loop.last %}, {% endif -%}{%- endfor %}
