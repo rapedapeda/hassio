@@ -17,13 +17,13 @@
   - condition: template
     value_template: >
       {{
-        trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
+        trigger.entity_id.startswith('binary_sensor.aanwezigheid_') 
       }}
     # Volgende excludes alles waarin override voorkomt
   - condition: template
     value_template: >
       {{
-        not trigger.event.data.entity_id.endswith('override') 
+        not trigger.entity_id.endswith('override') 
       }}
     # Volgende checkt of de override sensor voor de ruimte op uit staat
   #- condition: template
