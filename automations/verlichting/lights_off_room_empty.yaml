@@ -1,6 +1,9 @@
 - id: room_empty
   alias: Room empty lights off
+  mode: parallel
   trigger:
+  - platform: event
+    event_type: state_changed
   - entity_id: binary_sensor.aanwezigheid_slaapkamer
     platform: state
     to: 'off'
@@ -11,12 +14,21 @@
     platform: state
     to: 'off'
   condition: 
-  - condition: state
-    entity_id: 
-      - binary_sensor.aanwezigheid_badkamer_override
-      - binary_sensor.aanwezigheid_slaapkamer_override
-      - binary_sensor.aanwezigheid_hal_override
-    state: 'off'
+  - condition: template
+    value_template: >
+      {{
+        trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
+      }}
+    # Volgende excludes alles waarin override voorkomt
+  - condition: template
+    value_template: >
+      {{
+        not trigger.event.data.entity_id.endsswith('override') 
+      }}
+    # Volgende checkt of de override sensor voor de ruimte op uit staat
+  - condition: template
+    value_template: >
+      {{ states(trigger.event.data.entity_id + "_override") == 'off' }}
   action:
   - service: input_select.select_option
     data_template: 
