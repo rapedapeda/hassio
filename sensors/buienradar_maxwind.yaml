@@ -5,6 +5,6 @@ sensors:
     entity_id: []
     value_template: >-
       {% if now().hour == 23 and now().minute == 59 -%}
-        {{ states('sensor.delft_temperature_1d') }}
+        {{ states('sensor.delft_wind_force_1d') }}
       {%- endif %}
-    unit_of_measurement: "°C"
+    unit_of_measurement: "Bft"

@@ -7,4 +7,4 @@ sensors:
       {% if now().hour == 23 and now().minute == 59 -%}
         {{ states('sensor.delft_rainchance_1d') }}
       {%- endif %}
-    unit_of_measurement: "°C"
+    unit_of_measurement: "%"
