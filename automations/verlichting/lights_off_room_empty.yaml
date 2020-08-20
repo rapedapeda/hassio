@@ -23,7 +23,7 @@
   - condition: template
     value_template: >
       {{
-        not trigger.event.data.entity_id.endsswith('override') 
+        not trigger.event.data.entity_id.endswith('override') 
       }}
     # Volgende checkt of de override sensor voor de ruimte op uit staat
   - condition: template
