@@ -28,7 +28,7 @@
     # Volgende checkt of de override sensor voor de ruimte op uit staat
   - condition: template
     value_template: >
-      {{ states(trigger.event.data.entity_id + "_override") == 'off' }}
+      {{ states(trigger.entity_id + "_override") == 'off' }}
   action:
   - service: input_select.select_option
     data_template: 
