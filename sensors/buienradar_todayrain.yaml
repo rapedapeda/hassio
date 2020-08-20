@@ -1,0 +1,10 @@
+platform: template
+sensors:
+  delft_today_rain:
+    friendly_name: "Regenkans vandaag"
+    entity_id: []
+    value_template: >-
+      {% if now().hour == 23 and now().minute == 59 -%}
+        {{ states('sensor.delft_rainchance_1d') }}
+      {%- endif %}
+    unit_of_measurement: "°C"
