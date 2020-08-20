@@ -20,7 +20,7 @@
     entity_id: input_boolean.presence_status
     state: 'on'
   - condition: state
-    entity_id: input_boolean.bed_occupancy
+    entity_id: input_boolean.scene_special_in_bed
     state: 'off'
   action:
     service: python_script.scenes_special_mode
