@@ -5,11 +5,10 @@
     - platform: state
       entity_id: input_boolean.presence_status
       to: 'off'
-      for: 00:01:00
   action:
   - service: python_script.scenes_special_mode
     data_template:
-      kamers: "[badkamer,hal,slaapkamer,woonkamer]"
-      scenes: "[Uit,Uit,Uit,Uit]"
+      kamers: "badkamer,hal,slaapkamer,woonkamer"
+      scenes: "Uit,Uit,Uit,Uit"
   - service: media_player.turn_off
     entity_id: media_player.nvidia_shield
