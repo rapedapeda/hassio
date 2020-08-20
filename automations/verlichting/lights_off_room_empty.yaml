@@ -26,10 +26,10 @@
         not trigger.event.data.entity_id.endswith('override') 
       }}
     # Volgende checkt of de override sensor voor de ruimte op uit staat
-  - condition: template
-    value_template: >
-      {% set override = trigger.entity_id + "_override" %}
-      {{ states(override) == 'off' }}
+  #- condition: template
+  #  value_template: >
+  #    {% set override = trigger.entity_id + "_override" %}
+  #    {{ states(override) == 'off' }}
   action:
   - service: input_select.select_option
     data_template: 
