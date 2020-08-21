@@ -101,12 +101,6 @@ recorder:
   purge_keep_days: 7
   db_url: !secret recorder
 
-weather:
-  - platform: darksky_m
-    api_key: !secret 38rfhb372e
-    units: si
-    mode: daily
-
 # Homekit integration
 #homekit:
 #  auto_start: false
