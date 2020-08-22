@@ -1,8 +1,8 @@
 platform: template
 sensors:
-  delft_temperature_max:
+  delft_today_max:
     friendly_name: "Maximum temperatuur"
     entity_id: []
     value_template: >-
-        {{ states('sensor.delft_temperature_1d') }}
+      {{ states('input_number.delft_today_max') }}
     unit_of_measurement: "°C"

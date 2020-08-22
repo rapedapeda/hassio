@@ -4,7 +4,5 @@ sensors:
     friendly_name: "Regenkans vandaag"
     entity_id: []
     value_template: >-
-      {% if now().hour == 23 and now().minute == 59 -%}
-        {{ states('sensor.delft_rainchance_1d') }}
-      {%- endif %}
+      {{ states('input_number.delft_today_rain') }}
     unit_of_measurement: "%"

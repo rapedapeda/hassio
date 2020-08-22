@@ -1,0 +1,6 @@
+delft_today_max:
+  name: Temperatuur
+delft_today_rain:
+  name: Regen
+delft_today_wind:
+  name: Wind
