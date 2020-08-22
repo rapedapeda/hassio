@@ -1,8 +1,6 @@
 platform: template
 sensors:
-  delft_today_rain:
+  delft_today_max:
     friendly_name: "Regenkans vandaag"
-    entity_id: []
-    value_template: >-
-      {{ states('input_number.delft_today_rain') }}
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
+    value_template: "{{ states('input_number.delft_today_rain') }}"
