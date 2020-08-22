@@ -4,7 +4,5 @@ sensors:
     friendly_name: "Maximum temperatuur"
     entity_id: []
     value_template: >-
-      {% if now().hour == 23 and now().minute == 59 -%}
         {{ states('sensor.delft_temperature_1d') }}
-      {%- endif %}
     unit_of_measurement: "°C"
