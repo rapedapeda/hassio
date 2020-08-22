@@ -1,6 +1,6 @@
 platform: template
 sensors:
-  delft_today_max:
+  delft_today_wind:
     friendly_name: "Windkracht vandaag"
     unit_of_measurement: 'Bft'
     value_template: "{{ states('input_number.delft_today_wind') }}"
