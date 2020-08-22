@@ -1,7 +1,0 @@
-sonos_volume:
-  name: volume
-  icon: mdi:volume-medium
-  initial: 9
-  min: 0
-  max: 100
-  step: 1
