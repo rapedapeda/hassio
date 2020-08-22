@@ -4,7 +4,7 @@ sensors:
     friendly_name: "Maximum wind vandaag"
     entity_id: []
     value_template: >-
-      {% if now().hour == 20 and now().minute == 37 %}
+      {% if now().hour == 18 and now().minute == 45 %}
         {{ states('sensor.delft_wind_force_1d') }}
       {% endif %}
     unit_of_measurement: "Bft"
