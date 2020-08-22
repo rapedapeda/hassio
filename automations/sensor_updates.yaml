@@ -1,0 +1,13 @@
+# Updates manually sensors
+- id: sensor.update
+  alias: Sensor manual update
+  trigger:
+    platform: time
+    # Military time format. This trigger will fire at 3:32 PM
+    at: "20:03:00"
+  action:
+    - service: homeassistant.update_entity
+      entity_id: 
+        - sensor.delft_temperature_max
+        - sensor.delft_today_rain
+        - sensor.delft_today_wind
