@@ -18,21 +18,16 @@
           alarm_control_panel.alarm_arm_away
         
         {% elif states('input_boolean.presence_status') == 'on' 
-        and 
-          (as_timestamp(states.sun.sun.attributes.next_setting) - as_timestamp(now())) | int < 2700 
-        and
-          (as_timestamp(now()) - as_timestamp(states.sun.sun.attributes.next_rising)) | int > 1800
+          and 
+          (
+            (as_timestamp(states.sun.sun.attributes.next_rising) - as_timestamp(states.sun.sun.attributes.next_setting)) | int < 0 
+            or
+            (as_timestamp(states.sun.sun.attributes.next_setting) - as_timestamp(now())) | int < 2700
+          )
         %}
-          alarm_control_panel.alarm_disarm
-        
-        {% elif states('input_boolean.presence_status') == 'on' 
-        and 
-          (as_timestamp(states.sun.sun.attributes.next_setting) - as_timestamp(now())) | int > 2700 
-        and
-          (as_timestamp(now()) - as_timestamp(states.sun.sun.attributes.next_rising)) | int < 1800
-        %}
-        alarm_control_panel.alarm_arm_home          
-        
+          alarm_control_panel.alarm_home
+        {% else %}
+          alarm_control_panel.alarm_disarm        
         {% endif %}
       entity_id: alarm_control_panel.ha_alarm
 
