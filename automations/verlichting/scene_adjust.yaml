@@ -16,7 +16,7 @@
   - service: scene.turn_on
     data_template:
       entity_id: scene.{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}
-      transition: 2 seconds
+      transition: 2
 #  - service: script.scene_adjust
 #    data_template: 
 #      scene: "{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}"
