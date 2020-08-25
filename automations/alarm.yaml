@@ -25,7 +25,7 @@
             (as_timestamp(states.sun.sun.attributes.next_setting) - as_timestamp(now())) | int < 2700
           )
         %}
-          alarm_control_panel.alarm_home
+          alarm_control_panel.alarm_arm_home
         {% else %}
           alarm_control_panel.alarm_disarm        
         {% endif %}
