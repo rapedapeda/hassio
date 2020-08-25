@@ -32,14 +32,14 @@ alarm_control_panel:
 emulated_hue:
   listen_port: 80
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret password982h2
-  max_retries: 3
-  default_measurement: state
+#influxdb:
+#  host: a0d7b954-influxdb
+#  port: 8086
+#  database: homeassistant
+#  username: homeassistant
+#  password: !secret password982h2
+#  max_retries: 3
+#  default_measurement: state
 
 ios:
   push:
