@@ -1,13 +1,14 @@
-- id: vacuum_clean_auto
+- id: stofzuigen
   alias: Stofzuigen (automatisch)
+  description: Automatisch stofzuigen als het huis is verlaten
   trigger:
-  - platform: state
-    entity_id: input_boolean.presence_status
-    to: 'off'
+    - platform: state
+      entity_id: input_boolean.presence_status
+      to: 'off'
   condition:
-  - condition: state
-    entity_id: input_boolean.bed_occupancy
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.scene_special_in_bed
+      state: 'off'
   action:
-  - service: script.turn_on
-    entity_id: script.vacuum_everything
+    - service: script.turn_on
+      entity_id: script.vacuum_everything
