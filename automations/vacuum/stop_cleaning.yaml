@@ -1,5 +1,6 @@
-- id: vacuum_stop_cleaning
-  alias: Vacuum stop cleaning when arriving
+- id: stofzuigen_stoppen
+  alias: Stofzuigen stoppen
+  description: Zorgt ervoor dat de stofzuiger stopt in bepaalde situaties
   trigger:
     platform: event
     event_type: ios.notification_action_fired

@@ -3,4 +3,5 @@ person.flore:
 person.ramon:
   icon: mdi:face
 
-
+vacuum.rockrobo:
+  friendly_name: Stofzuiger
