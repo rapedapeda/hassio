@@ -1,18 +1,15 @@
 delft_today_max:
   name: Temperatuur
-  initial: 30
   min: -20
   max: 60
   step: 1
 delft_today_rain:
   name: Regen
-  initial: 0
   min: 0
   max: 100
   step: 1
 delft_today_wind:
   name: Wind
-  initial: 0
   min: 0
   max: 15
   step: 1
