@@ -5,5 +5,4 @@ person.ramon:
 
 vacuum.rockrobo:
   friendly_name: Stofzuiger
-  templates:
-    bin:
+  bin:
