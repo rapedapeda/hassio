@@ -6,4 +6,4 @@ person.ramon:
 vacuum.rockrobo:
   friendly_name: Stofzuiger
   templates:
-    bin: {{ states('sensor.vacuum_bin_amount_full') }}
+    bin: '{{ states('sensor.vacuum_bin_amount_full') }}'
