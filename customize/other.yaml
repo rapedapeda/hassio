@@ -5,3 +5,4 @@ person.ramon:
 
 vacuum.rockrobo:
   friendly_name: Stofzuiger
+  bin: {{ states('sensor.vacuum_bin_amount_full') }}
