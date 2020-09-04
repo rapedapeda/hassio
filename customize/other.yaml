@@ -5,10 +5,5 @@ person.ramon:
 
 vacuum.rockrobo:
   friendly_name: Stofzuiger
-  bin:
-  templates:
-    bin: >  
-      if (sensor.bin_amount_full >= 75)
-        return 'vol';
-      else
-        return 'leeg';
+  bin: 
+  extra_data_template: ${Math.round(sensor.vacuum_bin_amount_full.state || 0)}%
