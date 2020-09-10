@@ -2,6 +2,8 @@ vacuum_locations:
   name: Stofzuiger locaties
   icon: mdi:broom
   options:
+    - None
     - Badkamer
     - Hal
     - Slaapkamer
+  initial: None
