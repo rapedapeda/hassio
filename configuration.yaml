@@ -30,8 +30,8 @@ alarm_control_panel:
   - platform: manual
     name: Huis
 
-emulated_hue:
-  listen_port: 80
+#emulated_hue:
+#  listen_port: 80
 
 #influxdb:
 #  host: a0d7b954-influxdb
