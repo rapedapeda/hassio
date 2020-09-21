@@ -34,3 +34,11 @@ sensor.delft_rainchance_1d:
   friendly_name: Regenkans 1D
 sensor.delft_windforce_1d:
   friendly_name: Windkracht 1D
+
+# Systemmonitor
+sensor.cpu_temperature:
+  friendly_name: CPU temperatuur
+sensor.disk_use_percent:
+  friendly_name: Opslag
+sensor.memory_use_percent:
+  friendly_name: Geheugen
