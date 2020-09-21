@@ -6,5 +6,5 @@
   action:
     - service: hassio.snapshot_full
       data:
-        name: "{{ now().strftime('%Y-%m-%d') }}-partial"
+        name: "{{ now().strftime('%Y-%m-%d') }}-full"
         password: !secret snapshot
