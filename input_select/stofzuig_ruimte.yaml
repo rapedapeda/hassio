@@ -2,7 +2,7 @@ vacuum_manual:
   name: Stofzuig ruimte
   icon: mdi:home-map-marker
   options:
-    - None
+    - Geen
     - Badkamer
     - Eettafel
     - Hal
@@ -11,4 +11,4 @@ vacuum_manual:
     - Koffietafel
     - Salontafel
     - Slaapkamer
-  initial: None
+  initial: Geen

@@ -10,7 +10,7 @@
         entity_id: script.vacuum_zone
         state: 'off'
       - condition: template
-        value_template: "{{ not is_state('input_select.vacuum_manual', 'None') }}"
+        value_template: "{{ not is_state('input_select.vacuum_manual', 'Geen') }}"
   action:
   - service: script.vacuum_zone
     data_template:
