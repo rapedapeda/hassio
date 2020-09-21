@@ -1,8 +1,12 @@
-- id: snapshot_dagelijks
-  alias: Snapshot (dagelijks)
+- id: snapshot_wekelijks
+  alias: Snapshot (wekelijks)
   trigger:
     platform: time
     at: '02:00:00'
+  condition:  
+    condition: time
+    weekday:
+      - sun
   action:
     - service: hassio.snapshot_full
       data:
