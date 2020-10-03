@@ -2,7 +2,6 @@ platform: template
 sensors:
   slaapkamer_bedbezetting:
     friendly_name: "Bed status"
-    unit_of_measurement: '%'
     value_template: >-
       {% set personen_thuis = namespace(count=0) %}
       {% for state in states
@@ -13,7 +12,6 @@ sensors:
         {%- endif %}
       {%- endfor %}      
       {% set personen_in_bed = namespace(count=0) %}
-      {{ states('sensor.gewicht') }}
       {% if states('sensor.gewicht') <= '85' %}
         {% set personen_in_bed.count = 0 %}
       {% elif states('sensor.gewicht') <= '120' %}
