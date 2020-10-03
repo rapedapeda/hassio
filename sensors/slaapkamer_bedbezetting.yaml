@@ -14,13 +14,10 @@ sensors:
       {% set personen_in_bed = namespace(count=0) %}
       {% if states('sensor.gewicht') | float < 75 %}
         {% set personen_in_bed.count = '0' %}
-        0 in bed
-      {% elif states('sensor.gewicht') | float >= 110 %}
+      {% elif states('sensor.gewicht') | float > 110 %}
         {% set personen_in_bed.count = '2' %}
-        2 in bed
       {% else %}
         {% set personen_in_bed.count = '1' %}
-        1 in bed
       {% endif %}
       {% if personen_thuis.count - personen_in_bed.count == personen_thuis.count %}
         leeg
