@@ -20,9 +20,9 @@ sensors:
         {% set personen_in_bed.count = '1' %}
       {% endif %}
       {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
-        leeg
+        "leeg"
       {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
-        deels bezet
+        "deels bezet"
       {% elif personen_thuis.count|int - personen_in_bed.count|int == 0 %}
-        bezet
+        "bezet"
       {% endif %}
