@@ -16,7 +16,7 @@ sensors:
         {% set personen_in_bed.count = 0 %}
       {% elif states('sensor.gewicht') <= '110' %}
         {% set personen_in_bed.count = 1 %}
-      {% else %}
+      {% elif states ('sensor.gewicht') > '100' %}
         {% set personen_in_bed.count = 2 %}
       {% endif %}
       {% if personen_thuis.count - personen_in_bed.count == personen_thuis.count %}
