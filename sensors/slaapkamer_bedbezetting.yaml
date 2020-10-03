@@ -22,7 +22,7 @@ sensors:
       {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
         "leeg"
       {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
-        "deels bezet"
+        "gedeeltelijk"
       {% elif personen_thuis.count|int - personen_in_bed.count|int == 0 %}
         "bezet"
       {% endif %}
