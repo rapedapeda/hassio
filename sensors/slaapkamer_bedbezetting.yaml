@@ -1,0 +1,30 @@
+platform: template
+sensors:
+  slaapkamer_bedbezetting:
+    friendly_name: "Bed status"
+    unit_of_measurement: '%'
+    value_template: >-
+      {% set personen_thuis = namespace(count=0) %}
+      {% for state in states
+          if ( 'person' in state.entity_id 
+              and state.state == 'home' ) -%}
+        {% if loop.last -%}
+          {% set personen_thuis.count = loop.index %}
+        {%- endif %}
+      {%- endfor %}      
+      {% set personen_in_bed = namespace(count=0) %}
+      {{ states('sensor.gewicht') }}
+      {% if states('sensor.gewicht') <= '85' %}
+        {% set personen_in_bed.count = 0 %}
+      {% elif states('sensor.gewicht') <= '120' %}
+        {% set personen_in_bed.count = 1 %}
+      {% else %}
+        {% set personen_in_bed.count = 2 %}
+      {% endif %}
+      {% if personen_thuis.count - personen_in_bed.count == personen_thuis.count %}
+        leeg
+      {% elif personen_thuis.count - personen_in_bed.count == 1 %}
+        deels bezet
+      {% elif personen_thuis.count - personen_in_bed.count == 0 %}
+        bezet
+      {% endif %}
