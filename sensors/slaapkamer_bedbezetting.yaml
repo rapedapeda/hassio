@@ -1,7 +1,7 @@
 platform: template
 sensors:
   slaapkamer_bedbezetting:
-    friendly_name: "Bed status"
+    friendly_name: "Bed"
     value_template: >-
       {% set personen_thuis = namespace(count=0) %}
       {% for state in states
