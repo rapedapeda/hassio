@@ -1,0 +1,33 @@
+kamer_scenes_modus_woonkamer:
+  name: Modus
+  icon: mdi:sofa
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+kamer_scenes_modus_slaapkamer:
+  name: Modus
+  icon: mdi:bed-king
+  options:
+    - Uit
+    - Gedimd
+    - Nacht
+    - Normaal
+    - Vol
+kamer_scenes_modus_hal:
+  name: Modus
+  icon: mdi:door-closed
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+kamer_scenes_modus_badkamer:
+  name: Modus
+  icon: mdi:shower
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
