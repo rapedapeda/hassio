@@ -5,7 +5,7 @@
       friendly_name: "Hal"
       device_class: occupancy
       delay_off:
-        minutes: "{{ states('input_number.kamers_aanwezigheid_hal') }}"
+        minutes: 1
       value_template: >-
           {{
               is_state('binary_sensor.hal', 'on')
