@@ -1,0 +1,24 @@
+kamers_aanwezigheid_woonkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 5
+kamers_aanwezigheid_slaapkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 1
+kamers_aanwezigheid_hal:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 1
+kamers_aanwezigheid_badkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 3
