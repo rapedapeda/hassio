@@ -23,6 +23,6 @@ sensors:
         leeg
       {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
         gedeeltelijk
-      {% elif personen_thuis.count|int - personen_in_bed.count|int == 0 %}
+      {% elif personen_thuis.count|int - personen_in_bed.count|int <= 0 %}
         bezet
       {% endif %}
