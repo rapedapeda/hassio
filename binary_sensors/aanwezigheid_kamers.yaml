@@ -2,7 +2,7 @@
 - platform: template
   sensors:
     aanwezigheid_hal:
-      friendly_name: "Aanwezigheid"
+      friendly_name: "Hal"
       device_class: occupancy
       delay_off:
         minutes: 1
@@ -13,7 +13,7 @@
 - platform: template
   sensors:
     aanwezigheid_badkamer:
-      friendly_name: "Aanwezigheid"
+      friendly_name: "Badkamer"
       device_class: occupancy
       delay_off:
         minutes: 3
@@ -25,7 +25,7 @@
 - platform: template
   sensors:
     aanwezigheid_slaapkamer:
-      friendly_name: "Aanwezigheid"
+      friendly_name: "Slaapkamer"
       device_class: occupancy
       delay_off:
         minutes: 1
@@ -36,7 +36,7 @@
 - platform: template
   sensors:
     aanwezigheid_woonkamer:
-      friendly_name: "Aanwezigheid"
+      friendly_name: "Woonkamer"
       device_class: occupancy
       delay_off:
         minutes: 5
