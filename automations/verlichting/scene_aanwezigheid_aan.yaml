@@ -21,7 +21,4 @@
       data_template: 
         entity_id: input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[2] }}
         option: >-
-          {% set begin = 'input_select.kamer_scenes_modus_' %}
-          {% set einde = trigger.event.data.entity_id.split('_')[2] %}
-          {% set alles = begin + einde %}
-          {{ states(alles) }}
+          {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[2]) }}
