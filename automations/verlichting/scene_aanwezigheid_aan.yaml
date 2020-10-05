@@ -19,7 +19,7 @@
   action:
     - service: input_select.select_option
       data_template: 
-        entity_id: input_select.kamer_scenes_hal
+        entity_id: input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[2] }}
         option: >-
           {% set begin = 'input_select.kamer_scenes_modus_' %}
           {% set einde = trigger.event.data.entity_id.split('_')[2] %}
