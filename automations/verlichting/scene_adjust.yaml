@@ -1,6 +1,6 @@
 # Triggers scene when the input_select is changed (manually or automatic)
 - id: scene_adjustment
-  alias: Scene adjustment
+  alias: Scene aanpassing
   mode: parallel
   trigger:
   - entity_id: input_select.kamer_scenes_woonkamer
