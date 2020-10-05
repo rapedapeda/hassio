@@ -19,5 +19,9 @@
   action:
     - service: input_select.select_option
       data_template: 
-        entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
-        option: Normaal
+        entity_id: input_select.kamer_scenes_hal
+        option: >
+          {% set begin = 'input_select.kamer_scenes_modus_' %}
+          {% set einde = trigger.event.data.entity_id.split('_')[1] %}
+          {% set alles = begin + einde %}
+          {{ states('totaal') }}
