@@ -15,7 +15,7 @@
       value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
     # - condition: template
     #   value_template: >-
-    #     {{ states( trigger.entity_id.split("_")[1] + '_aanwezigheid_detectie') == 'on' }}
+    #     {{ states( trigger.entity_id.split("_")[2] + '_aanwezigheid_detectie') == 'on' }}
   action:
     - service: input_select.select_option
       data_template: 
@@ -24,4 +24,4 @@
           {% set begin = 'input_select.kamer_scenes_modus_' %}
           {% set einde = trigger.event.data.entity_id.split('_')[2] %}
           {% set alles = begin + einde %}
-          "{{ states('alles') }}"
+          {{ states.alles }}
