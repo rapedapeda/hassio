@@ -11,8 +11,8 @@
         {{
           trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
         }}
-    # - condition: template
-    #   value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
     # - condition: template
     #   value_template: >-
     #     {{ states( trigger.entity_id.split("_")[1] + '_aanwezigheid_detectie') == 'on' }}
@@ -20,4 +20,8 @@
     - service: input_select.select_option
       data_template: 
         entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
-        option: "{{ states( 'input_select.kamer_scenes_modus_' + trigger.entity_id.split('_')[1]) }}"
+        option: >
+          {% set begin = 'input_select.kamer_scenes_modus_' %}
+          {% set einde = trigger.entity_id.split('_')[1] %}
+          {% set alles = begin + einde %}
+          {{ states('totaal') }}
