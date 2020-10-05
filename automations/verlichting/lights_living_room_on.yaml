@@ -6,7 +6,7 @@
   #  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
   #  below: 4
   - platform: numeric_state
-    entity_id: sensor.lichtsterkte
+    entity_id: sensor.woonkamer_lichtsterkte
     below: 200
     for: 00:05:00
   - platform: state
@@ -14,7 +14,7 @@
     to: 'on'
   condition:
   - condition: numeric_state
-    entity_id: sensor.lichtsensor
+    entity_id: sensor.woonkamer_lichtsterkte
     below: 200
   - condition: state
     entity_id: input_boolean.presence_status
