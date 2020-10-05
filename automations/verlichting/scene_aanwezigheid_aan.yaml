@@ -15,7 +15,7 @@
       value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
     - condition: template
       value_template: >
-        {{ states( trigger.event.data.entity_id.split('_')[2] + '__aanwezigheid_detectie') == "on" }}
+        {{ states( trigger.event.data.entity_id.split('_')[2] + '_aanwezigheid_detectie') == "on" }}
   action:
     - service: input_select.select_option
       data_template: 
