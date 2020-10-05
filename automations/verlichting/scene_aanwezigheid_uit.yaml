@@ -1,0 +1,23 @@
+- id: scene_aanwezigheid_uit
+  alias: Scene aanwezigheid uit
+  description: Automatisering die scene 'Uit' selecteerd als aanwezigheid naar 'Uit' gaat
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
+        }}
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
+    - condition: template
+      value_template: >-
+        {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
+  action:
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[2] }}
+        option: Uit
