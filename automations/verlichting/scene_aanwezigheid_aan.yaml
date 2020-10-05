@@ -1,0 +1,23 @@
+- id: scene_aanwezigheid_aan
+  alias: Scene aaanwezigheid aan
+  description: Automatisering die een scene activeert wanneer aanwezigheid wordt gedetecteerd en de detectie aan staat
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
+        }}
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
+    - condition: template
+      value_template: >
+        {{ states( trigger.event.data.entity_id.split('_')[2] + '__aanwezigheid_detectie') == "on" }}
+  action:
+    - service: input_select.select_option
+      data_template: 
+        entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
+        option: "{{ states( 'input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[2]) }}"
