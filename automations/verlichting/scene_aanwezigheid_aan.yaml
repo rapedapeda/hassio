@@ -24,4 +24,4 @@
           {% set begin = 'input_select.kamer_scenes_modus_' %}
           {% set einde = trigger.event.data.entity_id.split('_')[2] %}
           {% set alles = begin + einde %}
-          {{ states('alles') }}
+          {{ alles }}
