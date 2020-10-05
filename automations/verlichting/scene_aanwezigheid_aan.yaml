@@ -18,7 +18,7 @@
         {% set begin = trigger.event.data.entity_id.split('_')[2] %}
         {% set einde = '_aanwezigheid_detectie' %}
         {% set alles = begin + einde %}
-        {{ is_state(alles, 'on') }}
+        {{ is_state('binary_sensor.' + alles, 'on') }}
   action:
     - service: input_select.select_option
       data_template: 
