@@ -20,4 +20,4 @@
     - service: input_select.select_option
       data_template: 
         entity_id: input_select.kamer_scenes_{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}
-        option: "{{ states( 'input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[2]) }}"
+        option: "{{ states( 'input_select.kamer_scenes_modus_' + trigger.entity_id.split('_')[1]) }}"
