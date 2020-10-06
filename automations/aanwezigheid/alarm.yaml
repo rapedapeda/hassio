@@ -12,7 +12,7 @@
       offset: "+00:30:00"
   condition: []
   action:
-    - service_template: >
+    - service: >
         
         {% if states('input_boolean.presence_status') == 'off' %}
           alarm_control_panel.alarm_arm_away

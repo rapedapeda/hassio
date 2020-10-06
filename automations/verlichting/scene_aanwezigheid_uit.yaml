@@ -14,8 +14,6 @@
           {{ states('input_number.kamers_aanwezigheid_' + trigger.event.data.entity_id.split('_')[2])|int }}
   condition:
     - condition: template
-      value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
-    - condition: template
       value_template: >-
         {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
   action:

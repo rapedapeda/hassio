@@ -1,5 +1,5 @@
-# Triggers scene when the input_select is changed (manually or automatic)
-- id: scene_adjustment
+# Deze triggert de scene die wordt geselecteerd (automatisch of manueel) in de input_select.kamer_scenes_*
+- id: scene_aanpassing
   alias: Scene aanpassing
   mode: parallel
   trigger:
@@ -17,8 +17,3 @@
     data_template:
       entity_id: scene.{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}
       transition: 0.8
-#  - service: script.scene_adjust
-#    data_template: 
-#      scene: "{{ state_attr(trigger.entity_id, 'friendly_name')|lower }}_{{ states(trigger.entity_id)|lower }}"
-
-# If this works, the script with the same name can go.

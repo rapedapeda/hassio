@@ -1,3 +1,4 @@
+# Deze triggert bijvoorbeeld als een deur open gaat om te checken of er iemand thuis (is gekomen)
 - id: presence_trigger_special
   alias: Aanwezigheidstrigger voor bijzondere situaties
   trigger:

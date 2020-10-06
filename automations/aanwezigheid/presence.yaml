@@ -10,7 +10,7 @@
       entity_id: group.presence
       to:  home
   action:
-  - service_template: >
+  - service: >
       {% if states('group.presence') == 'home' %}
         input_boolean.turn_on
       {% else %}
