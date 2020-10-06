@@ -15,9 +15,9 @@
   condition:
     - condition: template
       value_template: >-
-        {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
+        {{ is_state('binary_sensor.' + trigger.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
   action:
     - service: input_select.select_option
       data_template: 
-        entity_id: input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[2] }}
+        entity_id: input_select.kamer_scenes_{{ trigger.entity_id.split('_')[2] }}
         option: Uit
