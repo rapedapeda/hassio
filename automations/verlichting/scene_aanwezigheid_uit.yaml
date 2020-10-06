@@ -11,7 +11,7 @@
         - binary_sensor.aanwezigheid_badkamer
       to: 'off'
       for: >
-          {{ states('input_number.kamers_aanwezigheid_' + trigger.entity_id.split('_')[2])|int }}
+          {{ states('input_number.kamers_aanwezigheid_' + trigger.entity_id.split('_')[2])|int|multiply(60)|timestamp_custom('%H:%M', false) }}
   condition:
     - condition: template
       value_template: >-
