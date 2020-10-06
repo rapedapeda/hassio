@@ -5,7 +5,11 @@
     woonkamer_uitschakeltimer:
       friendly_name: "Uitschakeltimer"
       value_template: >
+        {% if states('sensor.woonkamer_lichtsterkte')|float < 400 %}
+        Off
+        {% else %}
         On
+        {% endif %}
 - platform: template
   sensors:
     hal_uitschakeltimer:
@@ -21,11 +25,7 @@
     badkamer_uitschakeltimer:
       friendly_name: "Uitschakeltimer"
       value_template: >-
-        {% if is_state('input_boolean.scene_special_wolf_in_bed', 'on') %}
-        Off
-        {% else %}
         On
-        {% endif %}
 - platform: template
   sensors:
     slaapkamer_uitschakeltimer:
