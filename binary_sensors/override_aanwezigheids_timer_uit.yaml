@@ -6,7 +6,7 @@
       friendly_name: "Uitschakeltimer"
       value_template: >
         {% if states('sensor.woonkamer_lichtsterkte')|float < 400 %}
-        Off
+        On 
         {% else %}
         On
         {% endif %}
