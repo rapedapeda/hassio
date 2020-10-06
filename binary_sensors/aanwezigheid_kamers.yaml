@@ -2,7 +2,7 @@
 - platform: template
   sensors:
     aanwezigheid_hal:
-      friendly_name: "Hal"
+      friendly_name: "Aanwezigheid"
       device_class: occupancy
       value_template: >-
           {{
@@ -11,7 +11,7 @@
 - platform: template
   sensors:
     aanwezigheid_badkamer:
-      friendly_name: "Badkamer"
+      friendly_name: "Aanwezigheid"
       device_class: occupancy
       value_template: >-
           {{ 
@@ -21,7 +21,7 @@
 - platform: template
   sensors:
     aanwezigheid_slaapkamer:
-      friendly_name: "Slaapkamer"
+      friendly_name: "Aanwezigheid"
       device_class: occupancy
       value_template: >-
           {{
@@ -30,7 +30,7 @@
 - platform: template
   sensors:
     aanwezigheid_woonkamer:
-      friendly_name: "Woonkamer"
+      friendly_name: "Aanwezigheid"
       device_class: occupancy
       value_template: >-
           {{
