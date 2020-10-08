@@ -1,28 +1,33 @@
 ###   ESP Woonkamer (zonde zithoek)
 ##### PIR
 esp_woonkamer_pir_vertragingaan:
-  name: Vertraging uit
+  name: Vertraging aan
+  description: PIR
   min: 0
   max: 15
   step: 0.5
 esp_woonkamer_pir_vertraginguit:
   name: Vertraging uit
+  description: PIR
   min: 0
   max: 15
   step: 0.5
 ##### Lichtsensor
 esp_woonkamer_lichtsterkte_treshold:
   name: Drempelwaarde
+  description: Lichtsensor
   min: 0
   max: 1000
   step: 25
 esp_woonkamer_lichtsterkte_vertragingaan:
   name: Vertraging aan
+  description: Lichtsensor
   min: 0
   max: 15
   step: 0.5
 esp_woonkamer_lichtsterkte_vertraginguit:
   name: Vertraging uit
+  description: Lichtsensor
   min: 0
   max: 15
   step: 0.5
