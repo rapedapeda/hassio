@@ -1,5 +1,6 @@
 ###   ESP Woonkamer (zonde zithoek)
 ##### PIR
+####### Don't forget to create sensors and convert to ms
 esp_woonkamer_pir_vertragingaan:
   name: Vertraging aan
   min: 0

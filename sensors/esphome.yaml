@@ -1,0 +1,27 @@
+platform: template
+sensors:
+###############
+##### Woonkamer
+###############
+  # PIR
+  esp_woonkamer_pir_vertragingaan:
+    friendly_name: Vertraging aan
+    value_template: "{{ states('input_number.esp_woonkamer_pir_vertragingaan')|int * 1000 }}"
+    unit_of_measurement: 'ms'
+  esp_woonkamer_pir_vertraginguit:
+    friendly_name: Vertraging uit
+    value_template: "{{ states('input_number.esp_woonkamer_pir_vertraginguit')|int * 1000 }}"
+    unit_of_measurement: 'ms'
+  # Lichtsensor
+  esp_woonkamer_lichtsensor_treshold:
+    friendly_name: Drempelwaarde
+    value_template: "{{ states('input_number.esp_woonkamer_lichtsensor_treshold')|int }}"
+    unit_of_measurement: 'lx'
+  esp_woonkamer_lichtsensor_vertragingaan:
+    friendly_name: Vertraging aan
+    value_template: "{{ states('input_number.esp_woonkamer_lichtsensor_vertragingaan')|int * 1000 }}"
+    unit_of_measurement: 'ms'
+  esp_woonkamer_lichtsensor_vertraginguit:
+    friendly_name: Vertraging uit
+    value_template: "{{ states('input_number.esp_woonkamer_lichtsensor_vertraginguit')|int * 1000 }}"
+    unit_of_measurement: 'ms'
