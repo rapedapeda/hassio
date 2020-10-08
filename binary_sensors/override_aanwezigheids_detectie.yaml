@@ -5,7 +5,7 @@
     woonkamer_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
       value_template: >-
-          {% if states('sensor.woonkamer_lichtsterkte')|float > 400 %}
+          {% if is_state('binary_sensor.woonkamer_lichtstatus','on') %}
           Off
           {% else %}
           On
