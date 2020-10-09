@@ -1,6 +1,11 @@
 ###   ESP Woonkamer (zonde zithoek)
 ##### Lichtsensor
-esp_woonkamer_lichtsensor_treshold:
+esp_woonkamer_lichtsensor_threshold:
+  name: Drempelwaarde
+  min: 0
+  max: 1000
+  step: 25
+esp_slaapkamer_lichtsensor_threshold:
   name: Drempelwaarde
   min: 0
   max: 1000

@@ -29,4 +29,4 @@
       delay_off:
         minutes: 3
       value_template: >-
-        {{ states('sensor.esp_woonkamer_lichtsensor')|float > states('input_number.esp_woonkamer_lichtsensor_treshold')|float }}
+        {{ states('sensor.esp_woonkamer_lichtsensor')|float > states('input_number.esp_woonkamer_lichtsensor_threshold')|float }}

@@ -1,0 +1,32 @@
+######## Aanwezigheidssensoren voor kamers
+#### ESP regelt sensoren, hier kunnen evt zones worden gecombineerd, of xiaomi sensoren worden toegevoegd
+
+######## Aanwezigheidssensor
+#### Hoofdsensor, waarop de het licht schakelt
+- platform: template
+  sensors:
+    aanwezigheid_slaapkamer:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      value_template: >-
+          {{
+              is_state('binary_sensor.slaapkamer', 'on') or
+              not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
+          }}
+
+
+
+
+
+# Lichtstatus
+- platform: template
+  sensors:
+    slaapkamer_lichtstatus:
+      friendly_name: "Lichtstatus"
+      device_class: light
+      delay_on:
+        seconds: 15 
+      delay_off:
+        minutes: 3
+      value_template: >-
+        {{ states('sensor.slaapkamer')|float > states('input_number.esp_slaapkamer_lichtsensor_threshold')|float }}

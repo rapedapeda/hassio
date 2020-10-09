@@ -19,13 +19,3 @@
               is_state('binary_sensor.badkamer', 'on') or
               is_state('binary_sensor.badkamer_radar', 'on')
           }}
-- platform: template
-  sensors:
-    aanwezigheid_slaapkamer:
-      friendly_name: "Aanwezigheid"
-      device_class: occupancy
-      value_template: >-
-          {{
-              is_state('binary_sensor.slaapkamer', 'on') or
-              not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
-          }}
