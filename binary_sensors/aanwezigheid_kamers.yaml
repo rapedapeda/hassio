@@ -27,7 +27,7 @@
       value_template: >-
           {{
               is_state('binary_sensor.slaapkamer', 'on'), or
-              is_not_state('sensor.slaapkamer_bedbezetting', 'leeg')
+              not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
           }}
 - platform: template
   sensors:
