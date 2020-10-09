@@ -1,5 +1,6 @@
 ######## ESP-sensoren
 #### Custom sensoren om rauwe ESP-sensoren te tweaken
+#### geef ze allemaal toevoeging _ha
 
 # Woonkamer
 - platform: template
@@ -23,4 +24,4 @@
       delay_off:
         minutes: 10
       value_template: >-
-        {{ states('sensor.woonkamer_pir') }}
+        {{ states('binary_sensor.woonkamer_pir') }}
