@@ -8,7 +8,7 @@
     aanwezigheid_woonkamer:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
-      delay_off: 10 minutes
+      delay_off: 00:10
       value_template: >-
           {{
               is_state('binary_sensor.esp_woonkamer_pir', 'on')
