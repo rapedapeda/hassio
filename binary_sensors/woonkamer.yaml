@@ -25,8 +25,8 @@
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
-        seconds: 15 
+        minutes: 3 
       delay_off:
-        minutes: 3
+        seconds: 15
       value_template: >-
         {{ states('sensor.esp_woonkamer_lichtsensor')|float > states('input_number.esp_woonkamer_lichtsensor_threshold')|float }}
