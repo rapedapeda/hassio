@@ -1,0 +1,7 @@
+aanwezigheid_kamers:
+  name: Aanwezigheid kamers
+  entities:
+    - binary_sensor.aanwezigheid_woonkamer
+    - binary_sensor.aanwezigheid_slaapkamer
+    - binary_sensor.aanwezigheid_hal
+    - binary_sensor.aanwezigheid_badkamer

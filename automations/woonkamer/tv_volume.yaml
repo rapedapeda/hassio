@@ -1,5 +1,5 @@
-- id: media_player_shield_volume
-  alias: MP Shield Volume
+- id: woonkamer_tv_volume
+  alias: Woonkamer tv volume
   trigger:
   - platform: state
     entity_id: media_player.tv

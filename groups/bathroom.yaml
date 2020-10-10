@@ -1,4 +1,0 @@
-bathroom:
-  name: Badkamer
-  entities:
-    - light.bathroom

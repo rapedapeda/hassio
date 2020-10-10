@@ -1,3 +1,16 @@
+- id: drinkbak_automatisch
+  alias: Drinkbak Wolf automatisch aan
+  trigger:
+  - entity_id: binary_sensor.drinkbak
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+    service: switch.turn_on
+    data:
+      entity_id:
+        - switch.drinkbak_van_wolf
+
 - id: water_fountain_wolf
   alias: Water fountain Wolf
   trigger:
