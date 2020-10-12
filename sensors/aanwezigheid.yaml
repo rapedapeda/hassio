@@ -40,16 +40,16 @@
 # Begane grond (Raspberry Pi 3B+)
 - platform: mqtt
   name: 'Aanwezigheid Flore BG'
-  state_topic: 'aanwezigheid/beganegrond/floreiphone'
+  state_topic: 'aanwezigheid/beganegrond/flore'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
 - platform: mqtt
   name: 'Aanwezigheid Ramon BG'
-  state_topic: 'aanwezigheid/beganegrond/ramoniphone'
+  state_topic: 'aanwezigheid/beganegrond/ramon'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
 - platform: mqtt
   name: 'Aanwezigheid Sissel BG'
-  state_topic: 'aanwezigheid/beganegrond/sisseliphone'
+  state_topic: 'aanwezigheid/beganegrond/sissel'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
