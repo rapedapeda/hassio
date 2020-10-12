@@ -1,14 +1,17 @@
 # Uiteindelijke sensor
 - platform: min_max
   name: 'Aanwezigheid Flore'
+  type: max
   entity_ids:
     - sensor.aanwezigheid_flore_bg
 - platform: min_max
   name: 'Aanwezigheid Ramon'
+  type: max
   entity_ids:
     - sensor.aanwezigheid_ramon_bg
 - platform: min_max
   name: 'Aanwezigheid Sissel'
+  type: max
   entity_ids:
     - sensor.aanwezigheid_sissel_bg
 
