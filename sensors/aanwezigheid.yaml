@@ -23,17 +23,17 @@
 #Slaapkamer (RPi Zero)
 - platform: mqtt
   name: 'Aanwezigheid Flore 1G'
-  state_topic: 'location/aanwezigheid/slaakamer/iphone_flore'
+  state_topic: 'location/monitor/bedroom/iphone_flore'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
 - platform: mqtt
   name: 'Aanwezigheid Ramon 1G'
-  state_topic: 'location/aanwezigheid/slaakamer/iphone_ramon'
+  state_topic: 'location/monitor/bedroom/iphone_ramon'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
 - platform: mqtt
   name: 'Aanwezigheid Sissel 1G'
-  state_topic: 'location/aanwezigheid/slaakamer/iphone_sissel'
+  state_topic: 'location/monitor/bedroom/iphone_sissel'
   value_template: '{{ value_json.confidence }}'
   unit_of_measurement: '%'
 
