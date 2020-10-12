@@ -1,0 +1,49 @@
+# Uiteindelijke sensor
+- platform: min_max
+  name: 'Aanwezigheid Flore'
+  entity_ids:
+    - sensor.aanwezigheid_flore_bg
+- platform: min_max
+  name: 'Aanwezigheid Ramon'
+  entity_ids:
+    - sensor.aanwezigheid_ramon_bg
+- platform: min_max
+  name: 'Aanwezigheid Sissel'
+  entity_ids:
+    - sensor.aanwezigheid_sissel_bg
+
+###### Sensoren per verdieping
+
+# Slaapkamer (RPi Zero)
+# - platform: mqtt
+#   name: 'Aanwezigheid Flore 1G'
+#   state_topic: 'location/aanwezigheid/slaakamer/iphone_flore'
+#   value_template: '{{ value_json.confidence }}'
+#   unit_of_measurement: '%'
+# - platform: mqtt
+#   name: 'Aanwezigheid Ramon 1G'
+#   state_topic: 'location/aanwezigheid/slaakamer/iphone_ramon'
+#   value_template: '{{ value_json.confidence }}'
+#   unit_of_measurement: '%'
+# - platform: mqtt
+#   name: 'Aanwezigheid Sissel 1G'
+#   state_topic: 'location/aanwezigheid/slaakamer/iphone_sissel'
+#   value_template: '{{ value_json.confidence }}'
+#   unit_of_measurement: '%'
+
+# Begane grond (Raspberry Pi 3B+)
+- platform: mqtt
+  name: 'Aanwezigheid Flore BG'
+  state_topic: 'location/aanwezigheid/beganegrond/flore_iphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+- platform: mqtt
+  name: 'Aanwezigheid Ramon BG'
+  state_topic: 'location/aanwezigheid/beganegrond/ramon_iphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+- platform: mqtt
+  name: 'Aanwezigheid Sissel BG'
+  state_topic: 'location/aanwezigheid/beganegrond/sissel_iphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
