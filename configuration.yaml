@@ -61,9 +61,9 @@ ios:
 logger:
   default: warning
 
-mqtt:
-  discovery: true
-  discovery_prefix: homeassistant
+#mqtt:
+#  discovery: true
+#  discovery_prefix: homeassistant
 
 media_player:
   - platform: androidtv
