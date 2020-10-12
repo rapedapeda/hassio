@@ -1,18 +1,37 @@
-platform: buienradar
-name: "delft"
-latitude: 52.0116
-longitude: 4.3571
-monitored_conditions:
-  - temperature
-  - feeltemperature
-  - condition
-  - conditiondetailed
-  - windforce
-  - windgust
-  - windazimuth
-  - irradiance
-  - precipitation
-  - humidity
-  - temperature_1d
-  - rainchance_1d
-  - windforce_1d
+- platform: buienradar
+  name: "delft"
+  latitude: 52.0116
+  longitude: 4.3571
+  monitored_conditions:
+    - temperature
+    - feeltemperature
+    - condition
+    - conditiondetailed
+    - windforce
+    - windgust
+    - windazimuth
+    - irradiance
+    - precipitation
+    - humidity
+    - temperature_1d
+    - rainchance_1d
+    - windforce_1d
+
+- platform: template
+  sensors:
+    delft_today_max:
+      friendly_name: "Maximum temperatuur"
+      unit_of_measurement: '°C'
+      value_template: "{{ states('input_number.delft_today_max') }}"
+- platform: template
+  sensors:
+    delft_today_rain:
+      friendly_name: "Regenkans vandaag"
+      unit_of_measurement: '%'
+      value_template: "{{ states('input_number.delft_today_rain') }}"
+- platform: template
+  sensors:
+    delft_today_wind:
+      friendly_name: "Windkracht vandaag"
+      unit_of_measurement: 'Bft'
+      value_template: "{{ states('input_number.delft_today_wind') }}"
