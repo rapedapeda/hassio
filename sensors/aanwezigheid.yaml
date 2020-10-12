@@ -20,7 +20,7 @@
 
 ###### Sensoren per verdieping
 
-Slaapkamer (RPi Zero)
+#Slaapkamer (RPi Zero)
 - platform: mqtt
   name: 'Aanwezigheid Flore 1G'
   state_topic: 'location/aanwezigheid/slaakamer/iphone_flore'
