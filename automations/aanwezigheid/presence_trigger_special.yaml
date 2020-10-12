@@ -14,5 +14,5 @@
   action:
     - service: mqtt.publish
       data_template:
-        topic: "location/monitor/scan/arrive"
+        topic: "location/aanwezigheid/scan/arrive"
         payload: '' 
