@@ -12,9 +12,9 @@
           {%- endif %}
         {%- endfor %}      
         {% set personen_in_bed = namespace(count=0) %}
-        {% if states('sensor.gewicht') | float < 75 %}
+        {% if states('sensor.gewicht') | float < 60 %}
           {% set personen_in_bed.count = '0' %}
-        {% elif states('sensor.gewicht') | float > 110 %}
+        {% elif states('sensor.gewicht') | float > 75 %}
           {% set personen_in_bed.count = '2' %}
         {% else %}
           {% set personen_in_bed.count = '1' %}
