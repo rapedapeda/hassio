@@ -25,7 +25,7 @@
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
-        seconds: 15 
+        minutes: 3 
       delay_off:
         minutes: 3
       value_template: >-
