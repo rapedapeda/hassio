@@ -61,6 +61,13 @@ ios:
 logger:
   default: warning
 
+matrix:
+  homeserver: https://matrix.org
+  username: "@takkie-ha:matrix.org"
+  password: !secret matrix
+  rooms:
+    - "!FTBIquMRaTAalNEQSq:matrix.org"
+
 #mqtt:
 #  discovery: true
 #  discovery_prefix: homeassistant
