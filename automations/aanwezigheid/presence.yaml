@@ -2,16 +2,16 @@
   alias: Aanwezigheid
   trigger:
     - platform: state
-      entity_id: group.presence
+      entity_id: group.aanwezigheid_personen
       to:  not_home
       for:
         minutes: 3
     - platform: state
-      entity_id: group.presence
+      entity_id: group.aanwezigheid_personen
       to:  home
   action:
   - service: >
-      {% if states('group.presence') == 'home' %}
+      {% if states('group.aanwezigheid_personen') == 'home' %}
         input_boolean.turn_on
       {% else %}
         input_boolean.turn_off
