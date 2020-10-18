@@ -31,7 +31,7 @@
           value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
         - condition: template
           value_template: >-
-            {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[1].split('.')[1] + '_aanwezigheid_detectie', 'on') }}            
+            {{ is_state('binary_sensor.aanwezigheid_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}            
   action:
     - service: input_select.select_option
       data_template: 
