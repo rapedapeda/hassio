@@ -107,7 +107,7 @@ notify:
     name: ramon
     services:
       - service: mobile_app_hdb_iphone_1902 # Ramon
-  - name: matrix_notify
+  - name: matrix
     platform: matrix
     default_room: "!FTBIquMRaTAalNEQSq:matrix.org"
 #recorder:
