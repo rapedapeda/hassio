@@ -29,7 +29,7 @@
         {% else %}
           alarm_control_panel.alarm_disarm        
         {% endif %}
-      entity_id: alarm_control_panel.ha_alarm
+      entity_id: alarm_control_panel.huis
 
 # Eerste if is als er niemand is. Dan altijd armed_away
 # Tweede is als er iemand is en het overdag is. Dan altijd disarm
