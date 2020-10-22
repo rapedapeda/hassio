@@ -12,12 +12,12 @@
           {%- endif %}
         {%- endfor %}      
         {% set personen_in_bed = namespace(count=0) %}
-        {% if states('sensor.gewicht') | float < 65 %}
-          {% set personen_in_bed.count = '0' %}
-        {% elif states('sensor.gewicht') | float > 85 %}
+        {% if states('sensor.gewicht') | float > 90 %}
           {% set personen_in_bed.count = '2' %}
-        {% else %}
+        {% elif states('sensor.gewicht') | float > 70 %}
           {% set personen_in_bed.count = '1' %}
+        {% else %}
+          {% set personen_in_bed.count = '0' %}
         {% endif %}
         {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
           leeg
