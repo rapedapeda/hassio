@@ -11,14 +11,19 @@
             {% set personen_thuis.count = loop.index %}
           {%- endif %}
         {%- endfor %}      
+
+
         {% set personen_in_bed = namespace(count=0) %}
-        {% if states('sensor.gewicht') | float > 90 %}
-          {% set personen_in_bed.count = '2' %}
-        {% elif states('sensor.gewicht') | float > 70 %}
-          {% set personen_in_bed.count = '1' %}
-        {% else %}
+        {% set gewicht = states('sensor.gewicht') | float %}
+        {% if gewicht < 70 %}
           {% set personen_in_bed.count = '0' %}
+        {% elif 70 <= gewicht < 90 %}
+          {% set personen_in_bed.count = '1' %}
+        {% elif gewicht >= 90 %}
+          {% set personen_in_bed.count = '2' %}
         {% endif %}
+
+
         {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
           leeg
         {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
