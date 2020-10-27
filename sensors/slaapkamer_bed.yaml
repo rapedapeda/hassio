@@ -5,7 +5,7 @@
       value_template: >-
         {% set personen_thuis = namespace(count=0) %}
         {% for state in states
-            if ( 'person' in state.entity_id 
+            if ( 'person.' in state.entity_id 
                 and state.state == 'home' ) -%}
           {% if loop.last -%}
             {% set personen_thuis.count = loop.index %}
@@ -15,9 +15,9 @@
 
         {% set personen_in_bed = namespace(count=0) %}
         {% set gewicht = states('sensor.gewicht') | float %}
-        {% if gewicht < 70 %}
+        {% if gewicht < 65 %}
           {% set personen_in_bed.count = '0' %}
-        {% elif 70 <= gewicht < 90 %}
+        {% elif 65 <= gewicht < 90 %}
           {% set personen_in_bed.count = '1' %}
         {% elif gewicht >= 90 %}
           {% set personen_in_bed.count = '2' %}
@@ -37,7 +37,7 @@
       value_template: >-
         {% set personen_thuis = namespace(count=0) %}
         {% for state in states
-            if ( 'person' in state.entity_id 
+            if ( 'person.' in state.entity_id 
                 and state.state == 'home' ) -%}
           {% if loop.last -%}
             {% set personen_thuis.count = loop.index %}
@@ -51,9 +51,9 @@
       value_template: >-
         {% set personen_in_bed = namespace(count=0) %}
         {% set gewicht = states('sensor.gewicht') | float %}
-        {% if gewicht < 70 %}
+        {% if gewicht < 65 %}
           {% set personen_in_bed.count = '0' %}
-        {% elif 70 <= gewicht < 90 %}
+        {% elif 65 <= gewicht < 90 %}
           {% set personen_in_bed.count = '1' %}
         {% elif gewicht >= 90 %}
           {% set personen_in_bed.count = '2' %}
