@@ -1,0 +1,38 @@
+- id: notificatie_stofzuiger
+  alias: Stofzuiger notificatie
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.vacuum_battery
+    below: 70
+  - platform: numeric_state
+    entity_id: sensor.vacuum_main_brush
+    below: 1
+  - platform: numeric_state
+    entity_id: sensor.vacuum_side_brush
+    below: 1
+  - platform: numeric_state
+    entity_id: sensor.vacuum_sensor
+    below: 5
+  - platform: numeric_state
+    entity_id: sensor.vacuum_filter
+    below: 1
+  condition: []
+  action:
+  - service: python_script.general_notification
+    data_template:
+      recipients: >
+        {%- for person in states.person -%}
+          {%- if person.state == 'home' -%}
+            {{ state_attr(person.entity_id, 'friendly_name')|lower}}{%- if not loop.last %},{%- endif %}
+          {%- endif -%}
+        {%- endfor -%}
+      title: "Stofzuiger"
+      message: >-
+        {% if trigger.event.data.entity_id.contains('battery') %}
+          "Help! Ik ben ongewoon lang bezig met stofzuigen."
+        {% elif trigger.event.data.entity_id.contains('brush') %}
+          "Mijn borstels moeten worden vervangen."
+        {% else %}
+          "Mijn {{ trigger.from_state.attributes.friendly_name|lower }} moet worden schoongemaakt."
+        {% endif %}
+      threadid: "stofzuiger"
