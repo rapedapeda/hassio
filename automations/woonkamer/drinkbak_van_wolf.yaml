@@ -11,7 +11,7 @@
     for: "00:06:00"
   condition: []
   action:
-    service: >-
+  - service: >-
       {% if is_state('switch.drinkbak_van_wolf','off') %}
         switch.turn_on
       {% else %}
