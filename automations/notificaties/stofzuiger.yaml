@@ -16,15 +16,12 @@
   - platform: numeric_state
     entity_id: sensor.vacuum_filter
     below: 1
-  condition: []
   action:
   - service: python_script.general_notification
     data_template:
       recipients: >
         {%- for person in states.person -%}
-          {%- if person.state == 'home' -%}
             {{ state_attr(person.entity_id, 'friendly_name')|lower}}{%- if not loop.last %},{%- endif %}
-          {%- endif -%}
         {%- endfor -%}
       title: "Stofzuiger"
       message: >-
