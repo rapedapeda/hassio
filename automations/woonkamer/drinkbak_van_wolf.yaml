@@ -10,10 +10,10 @@
     to: 'on'
     for: "00:06:00"
   action:
-  - service: >
+  - service: >-
       {% if is_state('switch.drinkbak_van_wolf','off') %}
-      'switch.turn_on'
+      switch.turn_on
       {% else %}
-      'switch.turn_off'
+      switch.turn_off
       {% endif %}
     entity_id: switch.drinkbak_van_wolf
