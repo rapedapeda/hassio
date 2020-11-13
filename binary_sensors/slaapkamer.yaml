@@ -14,10 +14,6 @@
               not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
           }}
 
-
-
-
-
 # Lichtstatus
 - platform: template
   sensors:
@@ -25,8 +21,8 @@
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
-        minutes: 3 
+        minutes: 5
       delay_off:
-        minutes: 3
+        minutes: 5
       value_template: >-
         {{ states('sensor.slaapkamer')|float > states('input_number.esp_slaapkamer_lichtsensor_threshold')|float }}

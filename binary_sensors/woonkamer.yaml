@@ -8,15 +8,11 @@
     aanwezigheid_woonkamer:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
-      delay_off: 00:10
+      delay_off: 00:15
       value_template: >-
           {{
               is_state('binary_sensor.esp_woonkamer_pir', 'on')
           }}
-
-
-
-
 
 # Lichtstatus
 - platform: template
@@ -25,8 +21,8 @@
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
-        minutes: 3 
+        minutes: 5 
       delay_off:
-        minutes: 3
+        minutes: 5
       value_template: >-
         {{ states('sensor.esp_woonkamer_lichtsensor')|float > states('input_number.esp_woonkamer_lichtsensor_threshold')|float }}
