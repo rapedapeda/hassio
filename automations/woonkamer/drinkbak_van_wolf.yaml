@@ -5,15 +5,36 @@
   - entity_id: binary_sensor.drinkbak
     platform: state
     to: 'on'
-  - entity_id: switch.drinkbak_van_wolf
+  - entity_id: input_boolean.wolf_drinkbak
     platform: state
     to: 'on'
     for: "00:06:00"
   action:
-  - service: >-
-      {% if is_state('switch.drinkbak_van_wolf','off') %}
-      switch.turn_on
+  - service: scene.apply
+    entity_id: >-
+      {% if is_state('input_boolean.drinkbak_van_wolf','off') %}
+      scene.tuya_drinkbak_aan
       {% else %}
-      switch.turn_off
+      scene.tuya_drinkbak_uit
       {% endif %}
-    entity_id: switch.drinkbak_van_wolf
+
+#### Before Tuya integration
+# - id: drinkbak_automatisch
+#   alias: Drinkbak Wolf automatisch aan
+#   mode: parallel
+#   trigger:
+#   - entity_id: binary_sensor.drinkbak
+#     platform: state
+#     to: 'on'
+#   - entity_id: switch.drinkbak_van_wolf
+#     platform: state
+#     to: 'on'
+#     for: "00:06:00"
+#   action:
+#   - service: >-
+#       {% if is_state('switch.drinkbak_van_wolf','off') %}
+#       switch.turn_on
+#       {% else %}
+#       switch.turn_off
+#       {% endif %}
+#     entity_id: switch.drinkbak_van_wolf
