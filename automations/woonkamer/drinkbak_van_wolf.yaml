@@ -12,7 +12,7 @@
     for: "00:05:00"
   action:
   - service: >-
-      {% if is_state('binary_sensor.drinkbak','off') %}
+      {% if is_state('binary_sensor.drinkbak','on') %}
       input_boolean.turn_on
       {% else %}
       input_boolean.turn_off
