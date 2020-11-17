@@ -10,7 +10,7 @@
     to: 'on'
     for: "00:06:00"
   action:
-  - service: scene.apply
+  - service: scene.turn_on
     entity_id: >-
       {% if is_state('input_boolean.drinkbak_van_wolf','off') %}
       scene.tuya_drinkbak_aan
