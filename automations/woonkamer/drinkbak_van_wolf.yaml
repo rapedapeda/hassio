@@ -11,7 +11,12 @@
     for: "00:06:00"
   action:
   - service: scene.turn_on
-    entity_id: scene.tuya_drinkbak_aan
+    entity_id: >
+      {% if is_state('input_boolean.wolf_drinkbak','off') %}
+      "scene.tuya_drinkbak_aan"
+      {% else %}
+      "scene.tuya_drinkbak_uit"
+      {% endif %}
 
 #### Before Tuya integration
 # - id: drinkbak_automatisch
