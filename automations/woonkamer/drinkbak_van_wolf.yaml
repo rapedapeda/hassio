@@ -12,7 +12,7 @@
   action:
   - service: scene.turn_on
     entity_id: >-
-      {% if is_state('input_boolean.drinkbak_van_wolf','off') %}
+      {% if is_state('input_boolean.wolf_drinkbak','off') %}
       scene.tuya_drinkbak_aan
       {% else %}
       scene.tuya_drinkbak_uit
