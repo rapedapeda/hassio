@@ -13,5 +13,8 @@
   action:
   - service: timer.start
     data:
-      entity_id: timer.woonkamer
-      duration: 00:04:30
+      entity_id: >-
+        timer.{{ trigger.entity_id.split('_')[2] }}
+      duration: >-
+        {% set kamer = 'input_number.kamers_aanwezigheid_' + trigger.entity_id.split('_')[2] %}
+        {{ (states(kamer)|int * 60) | timestamp_custom("%H:%M:%S", false) }}
