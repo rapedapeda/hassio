@@ -1,6 +1,6 @@
 - id: speciale_modes_timer_aanpassing
   alias: Speciale modus timer aanpassing
-  description: Timer-aanpasser. Werkt vooralsnog alleen voor in bed
+  description: Timer-aanpasser. Werkt vooralsnog alleen voor in bed. 
   mode: parallel
   trigger:
   - entity_id: sensor.slaapkamer_bedbezetting
@@ -22,3 +22,18 @@
           {{ state_attr('input_number.kamers_aanwezigheid_woonkamer','initial') }}
         {% endif %}
 # zitten een paar hiaten aan. Later naar kijkne.
+
+- id: speciale_modes_in_bed_lampen_uit
+  alias: Speciale modus in bed lampen uit
+  description: Zorgt ervoor dat als iedereen 30 min in bed licht, de lampen in de slaapkamer uitgaan
+  mode: parallel
+  trigger:
+  - entity_id: sensor.slaapkamer_bedbezetting
+    platform: state
+    to: 'bezet'
+    for: 00:03:00
+  action:
+    service: timer.start
+    data:
+      entity_id: timer.slaapkamer
+      duration: 00:30:00
