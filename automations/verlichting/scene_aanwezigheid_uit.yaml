@@ -7,23 +7,7 @@
     - platform: event
       event_type: timer.finished
       event_data:
-        entity_id: 
-          - timer.woonkamer
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: 
-          - timer.slaapkamer
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: 
-          - timer.hal
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: 
-          - timer.badkamer
+        entity_id: timer.woonkamer
       # Deze triggert als daglicht weer voldoende aanwezig is
     - platform: state
       entity_id:
