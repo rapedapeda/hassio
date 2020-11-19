@@ -3,7 +3,7 @@
   alias: Timer aanwezigheid
   mode: parallel
   trigger:
-    # Deze triggert als er niemand meer in de ruimte is
+    # Deze triggert als er niemand meer in de kamer is
   - platform: state
     entity_id:
       - binary_sensor.aanwezigheid_woonkamer
