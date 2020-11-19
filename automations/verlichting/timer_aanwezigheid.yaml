@@ -15,4 +15,5 @@
     data:
       entity_id: >-
         timer.{{ trigger.entity_id.split('_')[2] }}
-      duration: 00:00:04
+      duration: >-
+        {{ (states('input_number.kamers_aanwezigheid_badkamer')|int *60) | timestamp_custom("%H:%M:%S", false) }}
