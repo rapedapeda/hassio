@@ -9,7 +9,7 @@
     for: 00:03:00
   - platform: state
     entity_id: input_boolean.scene_special_in_bed
-    to: off
+    to: 'off'
   condition: []
   action:
   - service: input_number.set_value
