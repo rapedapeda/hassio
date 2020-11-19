@@ -19,14 +19,14 @@
         - binary_sensor.woonkamer_lichtstatus
         - binary_sensor.slaapkamer_lichtstatus
       to: 'on'
-  condition:
-    - condition: template
-      value_template: >-
-        {% if 'lichtstatus' in trigger.entity_id %}
-          {{ is_state('binary_sensor.' + trigger.entity_id.split('_')[1].split('.')[1] + '_uitschakeltimer', 'on') }}
-        {% else %}
-          {{ is_state('binary_sensor.' + trigger.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
-        {% endif %}
+  condition: []
+    # - condition: template
+    #   value_template: >-
+    #     {% if 'lichtstatus' in trigger.entity_id %}
+    #       {{ is_state('binary_sensor.' + trigger.entity_id.split('_')[1].split('.')[1] + '_uitschakeltimer', 'on') }}
+    #     {% else %}
+    #       {{ is_state('binary_sensor.' + trigger.entity_id.split('_')[2] + '_uitschakeltimer', 'on') }}
+    #     {% endif %}
   action:
     - service: input_select.select_option
       data: 
