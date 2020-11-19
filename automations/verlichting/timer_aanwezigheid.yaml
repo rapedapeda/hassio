@@ -1,6 +1,6 @@
 # Deze triggert als aanwezigheid in kamer op uit gaat de timer voor de verlichting
-- id: scene_aanpassing
-  alias: Scene aanpassing
+- id: timer_aanwezigheid
+  alias: Timer aanwezigheid
   mode: parallel
   trigger:
     # Deze triggert als er niemand meer in de ruimte is
