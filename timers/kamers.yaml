@@ -1,8 +1,12 @@
 woonkamer:
+  name: Timer
   duration: '00:15:00'
 slaapkamer:
+  name: Timer
   duration: '00:01:00'
 hal:
+  name: Timer
   duration: '00:00:30'
 badkamer:
+  name: Timer
   duration: '00:03:00'
