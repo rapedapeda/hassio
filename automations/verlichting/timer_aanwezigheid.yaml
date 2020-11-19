@@ -10,7 +10,7 @@
       - binary_sensor.aanwezigheid_slaapkamer
       - binary_sensor.aanwezigheid_hal
       - binary_sensor.aanwezigheid_badkamer
-    to: off
+    to: 'off'
   action:
   - service: timer.start
     data:
