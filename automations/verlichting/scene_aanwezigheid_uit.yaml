@@ -33,7 +33,7 @@
           {% if 'lichtstatus' in trigger.entity_id %}
             input_select.kamer_scenes_{{ trigger.entity_id.split('_')[1].split('.')[1] }}
           {% else %}
-            input_select.kamer_scenes_{{ trigger.entity_id.split('_')[1] }}
+            input_select.kamer_scenes_{{ trigger.entity_id.split('.')[1] }}
           {% endif %}   
         option: Uit
 
