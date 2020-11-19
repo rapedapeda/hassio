@@ -150,7 +150,7 @@ python_script:
 scene: !include_dir_merge_list scenes/
 sensor: !include_dir_merge_list sensors/
 script: !include_dir_merge_named scripts/
-timer: !include_dir_merge_list timers/
+timer: !include_dir_merge_named timers/
 zone: !include_dir_list zones/
 
 
