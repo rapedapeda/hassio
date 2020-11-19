@@ -51,7 +51,7 @@
       data:
         entity_id: >-
           {% if 'lichtstatus' in trigger.event.data.entity_id %}
-          timer.{{ trigger.entity_id.split('_')[1].split('.')[1] }}
+          timer.{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
           {% else %}
-          timer.{{ trigger.entity_id.split('_')[2] }}
+          timer.{{ trigger.event.data.entity_id.split('_')[2] }}
           {% endif %}
