@@ -1,3 +1,17 @@
+- id: drinkbak_tuya_fix
+  alias: Drinkbak tuya fix
+  mode: parallel
+  trigger: 
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - condition: state
+      entity_id: input_boolean.wolf_drinkbak
+      state:  'off'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.wolf_drinkbak    
+
 - id: drinkbak_automatisch
   alias: Drinkbak Wolf automatisch
   description: Als Wolf zelf triggert gaat de input_boolean aan
