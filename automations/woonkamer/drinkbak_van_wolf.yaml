@@ -9,8 +9,9 @@
       entity_id: input_boolean.wolf_drinkbak
       state:  'off'
   action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.wolf_drinkbak    
+  - service: scene.turn_on
+    data:
+      entity_id: scene.tuya_drinkbak_uit
 
 - id: drinkbak_automatisch
   alias: Drinkbak Wolf automatisch
