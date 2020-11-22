@@ -32,7 +32,7 @@
     - service: scene.apply
       data:
         entity_id: >-
-          {% if is_state(trigger.entity_id,'on') %}
+          {% if is_state('input_boolean.presence_status','on') %}
             scene.kerst_aan
           {% else %}
             scene.kerst_uit
