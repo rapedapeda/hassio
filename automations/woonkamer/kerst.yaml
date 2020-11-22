@@ -29,9 +29,9 @@
       entity_id: input_boolean.kerst
       state:  'on'
   action:
-    - service: scene.apply
+    - service: scene.turn_on
       data:
-        entity_id: >-
+        entity_id: >
           {% if is_state('input_boolean.presence_status','on') %}
             scene.kerst_aan
           {% else %}
