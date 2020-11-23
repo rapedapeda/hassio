@@ -18,12 +18,14 @@
       data:
         entity_id: input_boolean.kerst
 
-# Aan en uitzetten van de verlichting op basis van aanwezigheid
+# Aan en uitzetten van de verlichting op basis van aanwezigheid en bedstatus
 - id: kerst_woonkamer
   alias: Kerst woonkamer
   trigger:
     - platform: state
       entity_id: input_boolean.presence_status
+    - platform: state
+      entity_id: input_boolean.scene_special_in_bed
   condition:
     - condition: state
       entity_id: input_boolean.kerst
@@ -32,7 +34,7 @@
     - service: scene.turn_on
       data:
         entity_id: >
-          {% if is_state('input_boolean.presence_status','on') %}
+          {% if is_state('input_boolean.presence_status','on') or is_state('input_boolean.scene_special_in_bed','on')  %}
             scene.kerst_aan
           {% else %}
             scene.kerst_uit
