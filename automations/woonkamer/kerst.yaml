@@ -35,6 +35,7 @@
       data:
         entity_id: >
           {% if is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_in_bed','off')  %}
+            scene.kerst_aan
           {% elif is_state('input_boolean.presence_status','on') and is_state('input_boolean.     scene_special_in_bed','on')  %}
             scene.kerst_uit
           {% else %}
