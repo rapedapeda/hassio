@@ -34,7 +34,7 @@
     - service: scene.turn_on
       data:
         entity_id: >
-          {% if is_state('input_boolean.presence_status','on') or is_state('input_boolean.scene_special_in_bed','on')  %}
+          {% if is_state('input_boolean.presence_status','on') or is_state('input_boolean.scene_special_in_bed','off')  %}
             scene.kerst_aan
           {% else %}
             scene.kerst_uit
