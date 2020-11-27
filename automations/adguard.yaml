@@ -1,0 +1,24 @@
+- id: adguard_tuya_blokkeer
+  alias: Adguard blokkeer Tuya
+  mode: parallel
+  trigger:
+  - entity_id: input_boolean.adguard_tuya
+    platform: state
+    to: 'on'
+  action:
+  - service: adguard.add_url  
+    data:
+      name: Tuya (Ramon)
+      url: "http://localhost:8123/local/adguard_tuya.txt"
+
+- id: adguard_tuya_deblokkeer
+  alias: Adguard deblokkeer Tuya
+  mode: parallel
+  trigger:
+  - entity_id: input_boolean.adguard_tuya
+    platform: state
+    to: 'off'
+  action:
+  - service: adguard.remove_url
+    data:
+      url: "http://localhost:8123/local/adguard_tuya.txt"
