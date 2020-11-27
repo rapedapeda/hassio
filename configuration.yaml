@@ -68,7 +68,7 @@ matrix:
   username: "@takkie-ha:matrix.org"
   password: !secret matrix
   rooms:
-    - "!FTBIquMRaTAalNEQSq:matrix.org"
+    - !secret matrix-room
 
 #mqtt:
 #  discovery: true
