@@ -3,7 +3,7 @@
   mode: parallel
   trigger: 
     - platform: time_pattern
-      minutes: "/5"
+      minutes: "/1"
   condition:
     - condition: state
       entity_id: input_boolean.wolf_drinkbak
@@ -42,15 +42,6 @@
   - entity_id: input_boolean.wolf_drinkbak
     platform: state
   action:
-  - service: >-
-      {% if is_state('input_boolean.wolf_drinkbak','on') %}
-      input_boolean.turn_off
-      {% else %}
-      input_boolean.turn_on
-      {% endif %}  
-    data:
-      entity_id: input_boolean.adguard_tuya
-  - delay: 00:00:05
   - service: scene.turn_on
     data:
       entity_id: >-
