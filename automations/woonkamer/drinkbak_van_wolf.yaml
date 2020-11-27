@@ -34,25 +34,46 @@
       {% endif %}
     entity_id: input_boolean.wolf_drinkbak
 
-- id: drinkbak
-  alias: Drinkbak Wolf
-  description: Als de input_boolean verandert van staat wordt de juiste scene geselecteerd
+- id: drinkbak_aan
+  alias: Drinkbak Wolf (aan)
+  description: Als de input_boolean naar aan gaat
   mode: parallel
   trigger:
   - entity_id: input_boolean.wolf_drinkbak
     platform: state
+    to: on
   action:
+  - service: adguard.remove_url
+    data:
+      url: "http://localhost:8123/local/adguard_tuya.txt"
   - service: scene.turn_on
     data:
-      entity_id: >-
-        {% if is_state('input_boolean.wolf_drinkbak','on') %}
-        scene.tuya_drinkbak_aan
-        {% else %}
-        scene.tuya_drinkbak_uit
-        {% endif %}
-
-
-
+      entity_id: scene.tuya_drinkbak_aan
+  # Gecombineerde actie
+  # - service: scene.turn_on
+  #   data:
+  #     entity_id: >-
+  #       {% if is_state('input_boolean.wolf_drinkbak','on') %}
+  #       scene.tuya_drinkbak_aan
+  #       {% else %}
+  #       scene.tuya_drinkbak_uit
+  #       {% endif %}
+- id: drinkbak_uit
+  alias: Drinkbak Wolf (uit)
+  description: Als de input_boolean naar uit gaat
+  mode: parallel
+  trigger:
+  - entity_id: input_boolean.wolf_drinkbak
+    platform: state
+    to: off
+  action:
+  - service: adguard.add_url
+    data:
+      name: Tuya (Ramon)
+      url: "http://localhost:8123/local/adguard_tuya.txt"
+  - service: scene.turn_on
+    data:
+      entity_id: scene.tuya_drinkbak_aan
 
 # ### Before Tuya integration
 # - id: drinkbak_automatisch
