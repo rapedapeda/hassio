@@ -50,7 +50,7 @@
       {% endif %}  
     data:
       entity_id: input_boolean.adguard_tuya
-  - delay: 00:00:01
+  - delay: 00:00:05
   - service: scene.turn_on
     data:
       entity_id: >-
