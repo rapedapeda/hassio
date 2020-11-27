@@ -71,9 +71,9 @@
     data:
       name: Tuya (Ramon)
       url: "http://localhost:8123/local/adguard_tuya.txt"
-  - service: scene.turn_off
+  - service: scene.turn_on
     data:
-      entity_id: scene.tuya_drinkbak_aan
+      entity_id: scene.tuya_drinkbak_uit
 
 # ### Before Tuya integration
 # - id: drinkbak_automatisch
