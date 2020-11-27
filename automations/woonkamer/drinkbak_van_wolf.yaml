@@ -41,7 +41,7 @@
   trigger:
   - entity_id: input_boolean.wolf_drinkbak
     platform: state
-    to: on
+    to: 'on'
   action:
   - service: adguard.remove_url
     data:
@@ -65,7 +65,7 @@
   trigger:
   - entity_id: input_boolean.wolf_drinkbak
     platform: state
-    to: off
+    to: 'off'
   action:
   - service: adguard.add_url
     data:
