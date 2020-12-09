@@ -85,8 +85,8 @@ notify:
 
 recorder:
   purge_keep_days: 7
+
 ######################################################################
-# Includes
 
 #alert: !include_dir_merge_named alerts/
 automation: !include_dir_merge_list automations/
