@@ -1,5 +1,6 @@
 - id: woonkamer_tv_volume
   alias: Woonkamer tv volume
+  mode: parallel
   trigger:
   - platform: state
     entity_id: media_player.tv
