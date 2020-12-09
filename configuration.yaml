@@ -34,34 +34,8 @@ alarm_control_panel:
 
 browser_mod:
 
-#emulated_hue:
-#  listen_port: 80
-
-#influxdb:
-#  host: a0d7b954-influxdb
-#  port: 8086
-#  database: homeassistant
-#  username: homeassistant
-#  password: !secret password982h2
-#  max_retries: 3
-#  default_measurement: state
-
-ios:
-  push:
-    categories:
-      - name: Stofzuiger
-        identifier: 'vacuum_stop'
-        actions:
-          - identifier: 'STOP_CLEANING'
-            title: 'Stoppen'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
-
-
 logger:
-  default: warning
+  default: critical
 
 matrix:
   homeserver: https://matrix.org
@@ -69,10 +43,6 @@ matrix:
   password: !secret matrix
   rooms:
     - !secret matrix-room
-
-#mqtt:
-#  discovery: true
-#  discovery_prefix: homeassistant
 
 media_player:
   - platform: androidtv
@@ -112,26 +82,9 @@ notify:
   - name: matrix
     platform: matrix
     default_room: !secret matrix-room
-#recorder:
-#  purge_keep_days: 7
-#  db_url: !secret recorder
 
-# Homekit integration
-#homekit:
-#  auto_start: false
-#  safe_mode: false
-#  filter:
-#    exclude_domains:
-#      - automation
-#      - device_tracker
-#      - alarm_control_panel
-#      - sensor
-#      - binary_sensor
-#    exclude_entities:
-#      - binary_sensor.updater
-#    include_entities:
-#      - sensor.temperature_4
-
+recorder:
+  purge_keep_days: 7
 ######################################################################
 # Includes
 
@@ -140,7 +93,7 @@ automation: !include_dir_merge_list automations/
 binary_sensor: !include_dir_merge_list binary_sensors/
 counter: !include_dir_merge_named counters/
 group: !include_dir_merge_named groups/
-history: !include history.yaml
+#history: !include history.yaml
 input_boolean: !include_dir_merge_named input_boolean/
 input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/

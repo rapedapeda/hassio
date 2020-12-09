@@ -1,11 +1,4 @@
 include:
   entities:
     - alarm_control_panel.ha_alarm
-    - binary_sensor.shower
-    - input_boolean.bed_occupancy
     - input_boolean.presence_status
-    - sensor.daylight
-    - sensor.disk_use_percent
-    - sensor.memory_use_percent
-    - sensor.processor_use
-    - sensor.cpu_temperature
