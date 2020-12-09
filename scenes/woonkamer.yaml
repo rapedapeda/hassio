@@ -2,7 +2,6 @@
   entities:
     light.lotek:
       state: off
-      transition: 5
     switch.aanrecht:
       state: off
 - name: woonkamer_normaal
@@ -10,7 +9,6 @@
     light.lotek:
       state: on
       brightness: 100
-      transition: 5
     switch.aanrecht:
       state: on
 - name: woonkamer_gedimd
@@ -18,7 +16,6 @@
     light.lotek:
       state: on
       brightness: 75
-      transition: 5
     switch.aanrecht:
       state: off
 - name: woonkamer_vol
@@ -26,6 +23,5 @@
     light.lotek:
       state: on
       brightness: 255
-      transition: 5
     switch.aanrecht:
       state: on
