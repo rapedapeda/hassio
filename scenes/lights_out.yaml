@@ -1,4 +1,0 @@
-- name: lights_out
-  entities:
-    group.all_lights:
-      state: off
