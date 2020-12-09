@@ -84,7 +84,16 @@ notify:
     default_room: !secret matrix-room
 
 recorder:
-  purge_keep_days: 7
+  purge_keep_days: 30
+  include:
+    domains:
+      - alarm_control_panel
+      - person
+      - input_boolean
+      - input_select
+      - sensor
+      - binary_sensor
+      - vacuum
 
 ######################################################################
 
@@ -93,7 +102,7 @@ automation: !include_dir_merge_list automations/
 binary_sensor: !include_dir_merge_list binary_sensors/
 counter: !include_dir_merge_named counters/
 group: !include_dir_merge_named groups/
-#history: !include history.yaml
+history: !include history.yaml
 input_boolean: !include_dir_merge_named input_boolean/
 input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
