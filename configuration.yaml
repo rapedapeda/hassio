@@ -35,7 +35,7 @@ alarm_control_panel:
 browser_mod:
 
 logger:
-  default: critical
+  default: debug
 
 matrix:
   homeserver: https://matrix.org
