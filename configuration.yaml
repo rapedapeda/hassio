@@ -4,6 +4,8 @@
 #default_config:
 
 config:
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
 frontend:
   themes: 
     default:
@@ -16,9 +18,7 @@ system_health:
 updater:
 websocket_api:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-   base_url: muizeluuk.duckdns.org:8123
+
 
 # Text to speech
 tts:
