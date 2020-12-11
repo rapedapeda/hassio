@@ -1,7 +1,17 @@
-aanwezigheid_kamers:
-  name: Aanwezigheid kamers
+beweging_woonkamer:
+  name: Beweging woonkamer
   entities:
-    - binary_sensor.aanwezigheid_woonkamer
-    - binary_sensor.aanwezigheid_slaapkamer
-    - binary_sensor.aanwezigheid_hal
-    - binary_sensor.aanwezigheid_badkamer
+    - binary_sensor.esp_woonkamer_pir
+    - binary_sensor.beweging_keuken
+beweging_slaapkamer:
+  name: Beweging slaapkamer
+  entities:
+    - binary_sensor.beweging_slaapkamer
+beweging_hal:
+  name: Beweging hal
+  entities:
+    - binary_sensor.beweging_hal
+beweging_badkamer:
+  name: Beweging badkamer
+  entities:
+    - binary_sensor.beweging_badkamer
