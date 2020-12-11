@@ -6,10 +6,10 @@
     # Deze triggert als er niemand meer in de kamer is
   - platform: state
     entity_id:
-      - binary_sensor.aanwezigheid_woonkamer
-      - binary_sensor.aanwezigheid_slaapkamer
-      - binary_sensor.aanwezigheid_hal
-      - binary_sensor.aanwezigheid_badkamer
+      - group.beweging_woonkamer
+      - group.beweging_slaapkamer
+      - group.beweging_hal
+      - group.beweging_badkamer
     to: 'off'
   action:
   - service: timer.start

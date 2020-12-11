@@ -14,13 +14,13 @@
         - condition: template
           value_template: >
             {{
-              trigger.event.data.entity_id.startswith('binary_sensor.aanwezigheid_') 
+              trigger.event.data.entity_id.startswith('group.beweging_') 
             }}
         - condition: template
           value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
         - condition: template
           value_template: >-
-            {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[2] + '_aanwezigheid_detectie', 'on') }}
+            {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[1] + '_aanwezigheid_detectie', 'on') }}
       # Triggert als Daylight naar off gaat (terwijl aanwezigheid van de kamer evt al op 'aan' staat)
       - condition: and
         conditions:
@@ -31,7 +31,7 @@
           value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
         - condition: template
           value_template: >-
-            {{ is_state('binary_sensor.aanwezigheid_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}            
+            {{ is_state('group.beweging_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}            
   action:
     - service: input_select.select_option
       data_template: 
@@ -39,13 +39,13 @@
           {% if 'lichtstatus' in trigger.event.data.entity_id %}
             input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
           {% else %}
-            input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[2] }}
+            input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[1] }}
           {% endif%}
         option: >-
           {% if 'lichtstatus' in trigger.event.data.entity_id %}
             {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[1].split('.')[1]) }}
           {% else %}
-            {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[2]) }}
+            {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[1]) }}
           {% endif %}
     - service: timer.cancel
       data:
@@ -53,5 +53,5 @@
           {% if 'lichtstatus' in trigger.event.data.entity_id %}
           timer.{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
           {% else %}
-          timer.{{ trigger.event.data.entity_id.split('_')[2] }}
+          timer.{{ trigger.event.data.entity_id.split('_')[1] }}
           {% endif %}
