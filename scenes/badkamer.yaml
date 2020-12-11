@@ -1,20 +1,20 @@
 - name: badkamer_uit
   entities:
-    light.plafondlamp_in_de_badkamer:
+    light.badkamer_plafond:
       state: off
       brightness: 0
 - name: badkamer_normaal
   entities:
-    light.plafondlamp_in_de_badkamer:
+    light.badkamer_plafond:
       state: on
       brightness: 125
 - name: badkamer_gedimd
   entities:
-    light.plafondlamp_in_de_badkamer:
+    light.badkamer_plafond:
       state: on
       brightness: 75
 - name: badkamer_vol
   entities:
-    light.plafondlamp_in_de_badkamer:
+    light.badkamer_plafond:
       state: on
       brightness: 255

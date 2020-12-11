@@ -1,19 +1,19 @@
 - name: hal_uit
   entities:
-    light.plafondlamp_in_de_hal:
+    light.hal_plafond:
       state: off
 - name: hal_normaal
   entities:
-    light.plafondlamp_in_de_hal:
+    light.hal_plafond:
       state: on
       brightness: 125
 - name: hal_vol
   entities:
-    light.plafondlamp_in_de_hal:
+    light.hal_plafond:
       state: on
       brightness: 255
 - name: hal_gedimd
   entities:
-    light.plafondlamp_in_de_hal:
+    light.hal_plafond:
       state: on
       brightness: 10

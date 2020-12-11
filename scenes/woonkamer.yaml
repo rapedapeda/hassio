@@ -1,27 +1,27 @@
 - name: woonkamer_uit
   entities:
-    light.lotek:
+    light.woonkamer_lotek:
       state: off
-    switch.aanrecht:
+    switch.keuken_aanrecht:
       state: off
 - name: woonkamer_normaal
   entities:
-    light.lotek:
+    light.woonkamer_lotek:
       state: on
       brightness: 100
-    switch.aanrecht:
+    switch.keuken_aanrecht:
       state: on
 - name: woonkamer_gedimd
   entities:
-    light.lotek:
+    light.woonkamer_lotek:
       state: on
       brightness: 75
-    switch.aanrecht:
+    switch.keuken_aanrecht:
       state: off
 - name: woonkamer_vol
   entities:
-    light.lotek:
+    light.woonkamer_lotek:
       state: on
       brightness: 255
-    switch.aanrecht:
+    switch.keuken_aanrecht:
       state: on
