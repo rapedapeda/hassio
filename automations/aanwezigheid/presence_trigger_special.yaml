@@ -4,7 +4,7 @@
   trigger:
     platform: state
     entity_id: 
-      - binary_sensor.voordeur
+      - binary_sensor.hal_voordeur
       - group.motion
     to: "on"
   condition:
