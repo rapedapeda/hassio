@@ -1,6 +1,6 @@
-drinkbak_filter:
+utility_drinkbak_filter:
   source: sensor.drinkbak_filter
   cycle: yearly
-drinkbak_pomp:
+utility_drinkbak_pomp:
   source: sensor.drinkbak_filter
   cycle: yearly
