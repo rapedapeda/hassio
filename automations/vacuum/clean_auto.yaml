@@ -7,7 +7,7 @@
       to: 'off'
   condition:
     - condition: state
-      entity_id: input_boolean.scene_special_in_bed
+      entity_id: input_boolean.scene_special_slaapkamer_bed_bezet
       state: 'off'
   action:
     - service: script.turn_on
