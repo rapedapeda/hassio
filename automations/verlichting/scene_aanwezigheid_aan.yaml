@@ -47,11 +47,11 @@
           {% else %}
             {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[1]) }}
           {% endif %}
-    - service: timer.cancel
-      data:
-        entity_id: >-
-          {% if 'lichtstatus' in trigger.event.data.entity_id %}
-          timer.{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
-          {% else %}
-          timer.{{ trigger.event.data.entity_id.split('_')[1] }}
-          {% endif %}
+    # - service: timer.cancel
+    #   data:
+    #     entity_id: >-
+    #       {% if 'lichtstatus' in trigger.event.data.entity_id %}
+    #       timer.{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
+    #       {% else %}
+    #       timer.{{ trigger.event.data.entity_id.split('_')[1] }}
+    #       {% endif %}

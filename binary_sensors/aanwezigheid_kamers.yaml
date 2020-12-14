@@ -16,8 +16,9 @@
     aanwezigheid_badkamer:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_badkamer') }) }}
       value_template: >-
           {{ 
-              is_state('group.beweging_badkamer', 'on') or
-              is_state('timer.badkamer', 'active')
+              is_state('group.beweging_badkamer', 'on')
           }}

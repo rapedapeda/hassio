@@ -8,11 +8,11 @@
     aanwezigheid_woonkamer:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
-      #delay_off: 00:15
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_woonkamer') }) }}
       value_template: >-
           {{
-              is_state('group.beweging_woonkamer', 'on') or
-              is_state('timer.woonkamer', 'active')
+              is_state('group.beweging_woonkamer', 'on')
           }}
 
 # Lichtstatus
