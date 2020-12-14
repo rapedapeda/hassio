@@ -12,7 +12,7 @@ frontend:
       header-height: 44px
 mobile_app:
 person:
-ssdp:
+#ssdp: used for discovery
 sun:
 system_health:
 updater:
@@ -73,16 +73,16 @@ notify:
   - platform: group
     name: all
     services:
-      - service: mobile_app_hdb_iphone_1902 # Ramon
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
+      - service: mobile_app_iphone_ramon # Ramon
+      - service: mobile_app_iphone_van_f_s_o # Flore
   - platform: group
     name: flore
     services:
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
+      - service: mobile_app_iphone_van_f_s_o # Flore
   - platform: group
     name: ramon
     services:
-      - service: mobile_app_hdb_iphone_1902 # Ramon
+      - service: mobile_app_iphone_ramon # Ramon
   - name: matrix
     platform: matrix
     default_room: !secret matrix-room
