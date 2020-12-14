@@ -5,10 +5,10 @@
     aanwezigheid_hal:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
+      delay_off: {{ state_attr('timer.hal','duration') }}
       value_template: >-
           {{
-              is_state('group.beweging_hal', 'on') or
-              is_state('timer.hal', 'active')
+              is_state('group.beweging_hal', 'on')
           }}
 - platform: template
   sensors:
