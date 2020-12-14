@@ -1,6 +1,6 @@
 input_boolean.scene_special_nacht:
-  kamers: 'slaapkamer,woonkamer,hal,badkamer'
-  scenes: 'Nacht,Gedimd,Uit,Gedimd'
+  kamers: 'woonkamer,hal,badkamer'
+  scenes: 'Gedimd,Uit,Gedimd'
 
 input_boolean.scene_special_slaapkamer_bed_bezet:
   override: true
