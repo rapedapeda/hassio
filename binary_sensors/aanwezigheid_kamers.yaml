@@ -7,7 +7,7 @@
       device_class: occupancy
       delay_off: 
         minutes: >-
-          {{ (states('input_number.kamers_aanwezigheid_hal')|int) }}
+          {{ (states('input_number.kamers_aanwezigheid_hal')|float) }}
       value_template: >-
           {{
               is_state('group.beweging_hal', 'on')
