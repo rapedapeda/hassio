@@ -1,5 +1,4 @@
 ######## Aanwezigheidssensoren voor kamers
-#### ESP regelt sensoren, hier kunnen evt zones worden gecombineerd, of xiaomi sensoren worden toegevoegd
 - platform: template
   sensors:
     aanwezigheid_hal:
