@@ -1,8 +1,8 @@
-input_boolean.scene_special_wolf_in_bed:
-  override: true
-  kamers: null
-  scenes: null
-input_boolean.scene_special_in_bed:
-  override: true
+input_boolean.scene_special_nacht:
   kamers: 'slaapkamer,woonkamer,hal,badkamer'
-  scenes: 'Gedimd,Gedimd,Gedimd,Uit'
+  scenes: 'Nacht,Gedimd,Uit,Gedimd'
+
+input_boolean.scene_special_slaapkamer_bed_bezet:
+  override: true
+  kamers: 'slaapkamer'
+  scenes: 'Gedimd'

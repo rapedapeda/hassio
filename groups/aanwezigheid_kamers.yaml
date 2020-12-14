@@ -7,7 +7,7 @@ beweging_slaapkamer:
   name: Beweging slaapkamer
   entities:
     - binary_sensor.beweging_slaapkamer
-    - input_boolean.scene_special_in_bed
+    - binary_sensor.slaapkamer_bed
 beweging_hal:
   name: Beweging hal
   entities:

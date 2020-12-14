@@ -28,3 +28,19 @@
         minutes: 5
       value_template: >-
         {{ states('sensor.beweging_slaapkamer_licht')|float > states('input_number.esp_slaapkamer_lichtsensor_threshold')|float }}
+
+# Bed status (leeg of niet-leeg)        
+- platform: template
+  sensors:
+    slaapkamer_bed:
+      friendly_name: "Bed"
+      device_class: occupancy
+      delay_on:
+        minutes: 3
+      delay_off:
+        minutes: 3
+      value_template: >-
+        {{ 
+          not is_state('sensor.slaapkamer_bedbezetting', 'leeg') and
+          not is_state('sensor.slaapkamer_bedbezetting', 'unavailable')
+        }} 

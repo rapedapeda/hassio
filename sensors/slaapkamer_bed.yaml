@@ -2,6 +2,7 @@
   sensors:
     slaapkamer_bedbezetting:
       friendly_name: "Bed"
+      icon_template: mdi:bed-king
       value_template: >-
         {% set personen_thuis = namespace(count=0) %}
         {% for state in states
@@ -11,8 +12,6 @@
             {% set personen_thuis.count = loop.index %}
           {%- endif %}
         {%- endfor %}      
-
-
         {% set personen_in_bed = namespace(count=0) %}
         {% set gewicht = states('sensor.gewicht') | float %}
         {% if gewicht < 65 %}
@@ -22,7 +21,6 @@
         {% elif gewicht >= 90 %}
           {% set personen_in_bed.count = '2' %}
         {% endif %}
-
         {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
           leeg
         {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
@@ -30,32 +28,3 @@
         {% elif personen_thuis.count|int - personen_in_bed.count|int <= 0 %}
           bezet
         {% endif %}
-- platform: template
-  sensors:
-    personen_aanwezig:
-      friendly_name: Personen in huis
-      value_template: >-
-        {% set personen_thuis = namespace(count=0) %}
-        {% for state in states
-            if ( 'person.' in state.entity_id 
-                and state.state == 'home' ) -%}
-          {% if loop.last -%}
-            {% set personen_thuis.count = loop.index %}
-          {%- endif %}
-        {%- endfor %}
-        {{ personen_thuis.count|int }}   
-- platform: template
-  sensors:
-    personen_in_bed:
-      friendly_name: Personen in bed
-      value_template: >-
-        {% set personen_in_bed = namespace(count=0) %}
-        {% set gewicht = states('sensor.gewicht') | float %}
-        {% if gewicht < 65 %}
-          {% set personen_in_bed.count = '0' %}
-        {% elif 65 <= gewicht < 90 %}
-          {% set personen_in_bed.count = '1' %}
-        {% elif gewicht >= 90 %}
-          {% set personen_in_bed.count = '2' %}
-        {% endif %}
-        {{ personen_in_bed.count|int }} 

@@ -4,7 +4,6 @@ ha-menu:
   name: HA-menu
   entities:
     - switch.drinkbak_van_wolf
-    - input_boolean.scene_special_in_bed
     - input_select.vacuum_manual
     - input_select.kamer_scenes_woonkamer
     - input_select.kamer_scenes_slaapkamer
