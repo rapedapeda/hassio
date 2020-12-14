@@ -5,9 +5,8 @@
     aanwezigheid_hal:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
-      delay_off: 
-        minutes: >-
-          {{ (states('input_number.kamers_aanwezigheid_hal')|float) }}
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_hal') }) }}
       value_template: >-
           {{
               is_state('group.beweging_hal', 'on')
