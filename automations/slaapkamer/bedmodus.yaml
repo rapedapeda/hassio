@@ -8,7 +8,7 @@
   condition: []
   action:
     service: >
-      {% if is_state('trigger.entity_id','bezet') %}
+      {% if is_state('sensor.slaapkamer_bedbezetting','bezet') %}
       input_boolean.turn_on
       {% else %}
       input_boolean.turn_off
@@ -24,7 +24,7 @@
   condition: []
   action:
     service: >
-      {% if is_state('trigger.entity_id','off') %}
+      {% if is_state('binary_sensor.slaapkamer_bed','off') %}
       input_boolean.turn_off
       {% else %}
       input_boolean.turn_on
