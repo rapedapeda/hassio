@@ -38,8 +38,8 @@ browser_mod:
 logger:
   default: info
   logs:
-    pydeconz: debug
-    homeassistant.components.deconz: debug
+    # pydeconz: debug
+    # homeassistant.components.deconz: debug
     custom_components.localtuya: debug
 
 matrix:
