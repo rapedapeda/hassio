@@ -1,3 +1,4 @@
+# Deze moet nog worden omgeschreven zodat hij voor alle timers werkt
 - id: verlichting_timer_afgelopen
   alias: Verlichting lampen uit na afloop van timer
   mode: parallel
