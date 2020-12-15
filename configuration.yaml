@@ -95,10 +95,8 @@ recorder:
       - alarm_control_panel
       - person
       - input_boolean
-      - input_select
       - sensor
       - binary_sensor
-      - vacuum
 
 ######################################################################
 

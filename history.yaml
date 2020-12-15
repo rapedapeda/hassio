@@ -1,0 +1,9 @@
+include:
+  entities:
+    - sensor.buiten_temperatuur
+    - binary_sensor.drinkbak
+    - switch.drinkbak
+    - binary_sensor.beweging_keuken
+    - person.flore
+    - person.ramon
+    
