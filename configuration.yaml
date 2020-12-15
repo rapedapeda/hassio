@@ -40,6 +40,7 @@ logger:
   logs:
     pydeconz: debug
     homeassistant.components.deconz: debug
+    custom_components.localtuya: debug
 
 matrix:
   homeserver: https://matrix.org
