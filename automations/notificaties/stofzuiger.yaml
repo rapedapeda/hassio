@@ -25,9 +25,9 @@
         {%- endfor -%}
       title: "Stofzuiger"
       message: >-
-        {% if trigger.event.data.entity_id.contains('battery') %}
+        {% if trigger.entity_id.contains('battery') %}
           "Help! Ik ben ongewoon lang bezig met stofzuigen."
-        {% elif trigger.event.data.entity_id.contains('brush') %}
+        {% elif trigger.entity_id.contains('brush') %}
           "Mijn borstels moeten worden vervangen."
         {% else %}
           "Mijn {{ trigger.from_state.attributes.friendly_name|lower }} moet worden schoongemaakt."
