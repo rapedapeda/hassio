@@ -7,7 +7,7 @@
     entity_id: sensor.slaapkamer_bedbezetting
   action:
     service: >-
-      {% if trigger.to_state == 'bezet' %}
+      {% if trigger.to_state.state == 'bezet' %}
       timer.start
       {% else %}
       timer.cancel

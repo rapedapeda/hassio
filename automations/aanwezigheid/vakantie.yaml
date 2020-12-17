@@ -14,8 +14,8 @@
   action:
     entity_id: input_boolean.vakantie
     service: >
-      {% if trigger.event.data.new_state.state == 'on' %}
+      {% if trigger.to_state.state == 'on' %}
         input_boolean.turn_on
-      {% elif trigger.event.data.new_state.state == 'off' %}
+      {% elif trigger.to_state.state == 'off' %}
         input_boolean.turn_off
       {% endif %}
