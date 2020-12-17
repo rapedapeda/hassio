@@ -29,7 +29,7 @@
 - name: slaapkamer_nacht
   entities:
     light.slaapkamer_lita:
-      state: 'on
+      state: 'on'
       brightness: 75
     light.slaapkamer_droog:
       state: 'off'
