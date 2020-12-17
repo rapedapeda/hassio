@@ -5,9 +5,13 @@
   trigger:
   - platform: state
     entity_id: sensor.slaapkamer_bedbezetting
-    to:  'bezet'
   action:
-    service: timer.start
+    service: >-
+      {% if trigger.to_state == 'bezet' %}
+      timer.start
+      {% else %}
+      timer.cancel
+      {% endif %}
     data:
       entity_id: timer.slaapkamer
       duration: 00:30:00
