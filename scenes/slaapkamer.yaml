@@ -1,37 +1,36 @@
 - name: slaapkamer_uit
   entities:
     light.slaapkamer_droog:
-      state: off
+      state: 'off'
     light.slaapkamer_lita:
-      state: off
+      state: 'off'
 - name: slaapkamer_normaal
   entities:
     light.slaapkamer_droog:
-      state: on
+      state: 'on'
       brightness: 150
     light.slaapkamer_lita:
-      state: off
+      state: 'off'
 - name: slaapkamer_vol
   entities:
     light.slaapkamer_lita:
-      state: on
+      state: 'on'
       brightness: 255
     light.slaapkamer_droog:
-      state: on
+      state: 'on'
       brightness: 255
 - name: slaapkamer_gedimd
   entities:
     light.slaapkamer_lita:
-      state: on
-      brightness: 75
+      state: 'on'
+      brightness: 153
     light.slaapkamer_droog:
-      state: on
-      brightness: 8
+      state: 'off'
 - name: slaapkamer_nacht
   entities:
     light.slaapkamer_lita:
-      state: on
+      state: 'on
       brightness: 75
     light.slaapkamer_droog:
-      state: off
+      state: 'off'
       brightness: 0
