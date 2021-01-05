@@ -8,7 +8,7 @@
   entities:
     light.woonkamer_lotek:
       state: on
-      brightness: 100
+      brightness: 150
     switch.keuken_aanrecht:
       state: on
 - name: woonkamer_gedimd
