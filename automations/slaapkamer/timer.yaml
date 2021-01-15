@@ -1,0 +1,14 @@
+# Deze moet nog worden omgeschreven zodat hij voor alle timers werkt
+- id: verlichting_timer_afgelopen
+  alias: Verlichting lampen uit na afloop van timer
+  mode: parallel
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.slaapkamer
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.kamer_scenes_slaapkamer
+      option: Uit
