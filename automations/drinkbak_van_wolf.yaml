@@ -76,17 +76,17 @@
       {% endif %}
     entity_id: switch.drinkbak
 
-- id: drinkbak_fix
-  alias: Drinkbak Wolf fix
-  mode: parallel
-  trigger:
-  - entity_id: switch.drinkbak
-    platform: state
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: binary_sensor.drinkbak
-      state:  'off'
-  action:
-    service: switch.turn_off
-    entity_id: switch.drinkbak
+# - id: drinkbak_fix
+#   alias: Drinkbak Wolf fix
+#   mode: parallel
+#   trigger:
+#   - entity_id: switch.drinkbak
+#     platform: state
+#     to: 'on'
+#   condition:
+#     - condition: state
+#       entity_id: binary_sensor.drinkbak
+#       state:  'off'
+#   action:
+#     service: switch.turn_off
+#     entity_id: switch.drinkbak
