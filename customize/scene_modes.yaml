@@ -1,7 +1,14 @@
+# Globaal
 input_boolean.scene_special_nacht:
   kamers: 'woonkamer,hal,badkamer'
   scenes: 'Gedimd,Uit,Gedimd'
 
+# Woonkamer
+input_boolean.scene_special_woonkamer_bioscoop:
+  kamers: 'woonkamer'
+  scenes: 'Gedimd'
+
+# Slaapkamer
 input_boolean.scene_special_slaapkamer_bed_bezet:
   override: true
   kamers: 'slaapkamer'
