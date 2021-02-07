@@ -1,15 +1,30 @@
+##### Todo
+# Prioriteit uitwerken
+
+
+###### Uitleg
+
+### Velden
+# Prioriteit: absolute gewicht voor de scene. Als er meerdere scenes tegelijkertijd actief zijn wordt een hoger prioriteit geprioriteerd
+# Kamers: lijst van ruimtes die moeten worden aangepast
+# Scenes: vul hier de modus in voor de kamer die moet worden ingesteld
+
+
+
 # Globaal
 input_boolean.scene_special_nacht:
+  prioriteit: 1
   kamers: 'woonkamer,hal,badkamer'
   scenes: 'Gedimd,Uit,Gedimd'
 
 # Woonkamer
 input_boolean.scene_special_woonkamer_bioscoop:
+  prioriteit: 1
   kamers: 'woonkamer'
   scenes: 'Gedimd'
 
 # Slaapkamer
 input_boolean.scene_special_slaapkamer_bed_bezet:
-  override: true
+  prioriteit: 2
   kamers: 'slaapkamer'
   scenes: 'Gedimd'

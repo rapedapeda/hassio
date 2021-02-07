@@ -1,0 +1,20 @@
+speciale_modus_prioriteit_woonkamer:
+  name: Prioriteit
+  min: 0
+  max: 5
+  step: 1
+speciale_modus_prioriteit_slaapkamer:
+  name: Prioriteit
+  min: 0
+  max: 5
+  step: 1
+speciale_modus_prioriteit_halkamer:
+  name: Prioriteit
+  min: 0
+  max: 5
+  step: 1
+speciale_modus_prioriteit_badkamer:
+  name: Prioriteit
+  min: 0
+  max: 5
+  step: 1
