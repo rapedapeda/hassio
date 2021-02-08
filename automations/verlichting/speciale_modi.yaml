@@ -1,0 +1,89 @@
+- id: speciale_modi_aan
+  alias: Speciale modus ingeschakeld
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+  - condition: template
+    value_template: >
+      {{
+        trigger.event.data.entity_id.startswith('input_boolean.scene_special_') 
+      }}
+  - condition: template
+    value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
+  action:
+  - condition: template
+    # Hier testen we of de prioriteit van de kamer een lagere waarde heeft dan de prioriteit van de speciale modus. Zo niet, dan mag de scene niet veranderd worden.
+    value_template: >
+      {% set kamer = trigger.from_state.attributes["kamer"] %}
+      {{
+        trigger.from_state.attributes["prioriteit"]|int > states('input_number.speciale_modus_prioriteit_' + kamer)|int 
+      }}
+    # Hier stellen we de nieuwe prioriteit in
+  - service: input_number.set_value
+    entity_id: >
+      {{ 'input_number.speciale_modus_prioriteit_' + kamer }}
+    data:
+      value: >
+        {{ trigger.from_state.attributes["prioriteit"]|int }}
+    # Hier triggeren we de scene voor de juiste kamer
+  - service: python_script.scenes_special_mode
+    data_template:
+      kamer: "{{ state_attr(trigger.event.data.entity_id,'kamer') }}"
+      scene: "{{ state_attr(trigger.event.data.entity_id,'scene') }}"
+
+
+- id: speciale_modi_uit
+  alias: Speciale modus uitgeschakeld
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('input_boolean.scene_special_') 
+        }}
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
+  action:
+    # Hier stellen we de nieuwe prioriteit in op 0 als er geen special mode meer actief is, anders de prio van de special mode die de hoogste prioriteit heeft
+  - service: input_number.set_value
+    entity_id: >
+      {% set kamer = trigger.from_state.attributes["kamer"] %}
+      {{ 'input_number.speciale_modus_prioriteit_' + kamer }}
+    data:
+      value: >
+        {% set groep = 'group.speciale_modus_' + trigger.from_state.attributes["kamer"] %}
+        {% if is_state(groep,'off') %}
+          0
+        {% else %}
+          {% set ns = namespace(max_prio=states('input_number.speciale_modus_prioriteit_' + kamer)|int, max_prio_entity='null')  %}
+          {% for item in states.groep.attributes.entity_id %}
+            {% if is_state(item, 'on') and state_attr(item, 'prioriteit') > ns.max_prio %}
+              {% set ns.max_prio = state_attr(item, 'prioriteit') %}
+              {% set ns.max_prio_entity = item %}
+          {% endif %}
+        {% endfor %}
+        {{ ns.max_prio }}
+        {% endif %}
+  - service: python_script.scenes_special_mode
+    # Hier starten we t python script die ofwel de scene weer op normaal zet, of wel 
+    data_template:
+      kamer: "{{ state_attr(trigger.event.data.entity_id,'kamer') }}"
+      scene: >
+        {% set groep = 'group.speciale_modus_' + trigger.from_state.attributes["kamer"] %}
+        {% if is_state(groep,'off') %}
+          "Normaal"
+        {% else %}
+          {% set ns = namespace(max_prio=states('input_number.speciale_modus_prioriteit_' + kamer)|int, max_prio_entity='null')  %}
+          {% for item in states.groep.attributes.entity_id %}
+            {% if is_state(item, 'on') and state_attr(item, 'prioriteit') > ns.max_prio %}
+              {% set ns.max_prio = state_attr(item, 'prioriteit') %}
+              {% set ns.max_prio_entity = item %}
+          {% endif %}
+        {% endfor %}
+        "{{ state_attr(ns.max_prio_entity,'scene') }}"
+        {% endif %}

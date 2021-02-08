@@ -12,19 +12,39 @@
 
 
 # Globaal
-input_boolean.scene_special_nacht:
-  prioriteit: 1
-  kamers: 'woonkamer,hal,badkamer'
-  scenes: 'Gedimd,Uit,Gedimd'
+# input_boolean.scene_special_nacht:
+#   prioriteit: 2
+#   kamers: 'woonkamer,hal,badkamer'
+#   scenes: 'Gedimd,Uit,Gedimd'
 
 # Woonkamer
 input_boolean.scene_special_woonkamer_bioscoop:
-  prioriteit: 1
-  kamers: 'woonkamer'
-  scenes: 'Gedimd'
+  prioriteit: 2
+  kamer: 'woonkamer'
+  scene: 'Gedimd'
+input_boolean.scene_special_woonkamer_nacht:
+  prioriteit: 2
+  kamer: 'woonkamer'
+  scene: 'Gedimd'
 
 # Slaapkamer
 input_boolean.scene_special_slaapkamer_bed_bezet:
+  prioriteit: 1
+  kamer: 'slaapkamer'
+  scene: 'Gedimd'
+input_boolean.scene_special_slaapkamer_nacht:
   prioriteit: 2
-  kamers: 'slaapkamer'
-  scenes: 'Gedimd'
+  kamer: 'slaapkamer'
+  scene: 'Nacht'
+
+# Hal
+input_boolean.scene_special_hal_nacht:
+  prioriteit: 2
+  kamer: 'slaapkamer'
+  scene: 'Nacht'
+
+# Badkamer
+input_boolean.scene_special_badkamer_nacht:
+  prioriteit: 2
+  kamer: 'slaapkamer'
+  scene: 'Nacht'
