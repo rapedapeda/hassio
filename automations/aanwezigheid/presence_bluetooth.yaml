@@ -1,0 +1,24 @@
+- id: presence_bluetooth
+  alias: 'Aanwezigheid bluetooth'
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+  - condition: template
+    value_template: >
+      {{
+        trigger.event.data.entity_id.startswith('sensor.aanwezigheid_') 
+      }}
+  action:
+    - service: device_tracker.see
+      data_template:
+        dev_id: >
+          {{ trigger.event.data.entity_id.split('_')[1] }}
+        location_name: >
+          {% if trigger.event.data.new_state.state | int > 10 %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+        source_type: bluetooth

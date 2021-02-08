@@ -1,7 +1,0 @@
-platform: template
-sensors:
-  vacuum_bin_amount_full:
-    friendly_name: "Opvangbak"
-    unit_of_measurement: '%'
-    value_template: "{{ (states('counter.vacuum_total_area_since_emptying') | float /150*100) | round(0) }}"
-    icon_template: mdi:trash-can-outline

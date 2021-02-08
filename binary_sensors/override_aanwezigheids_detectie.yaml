@@ -1,0 +1,44 @@
+# Deze sensoren worden gebruikt om geen gebruik te maken van de bewegingsdetectie in de ruimte
+### Bijvoorbeeld zodat 's nachts de lampen in de hal niet aangaan
+- platform: template
+  sensors:
+    woonkamer_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: >-
+          {% if is_state('binary_sensor.woonkamer_lichtstatus','on') %}
+          Off
+          {% else %}
+          On
+          {% endif %}
+- platform: template
+  sensors:
+    hal_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: >-
+        {% if is_state('input_boolean.scene_special_in_bed', 'on') %}
+        On
+        {% else %}
+        On
+        {% endif %}
+- platform: template
+  sensors:
+    badkamer_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: >-
+        {% if is_state('input_boolean.scene_special_wolf_in_bed', 'on') %}
+        Off
+        {% else %}
+        On
+        {% endif %}
+- platform: template
+  sensors:
+    slaapkamer_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: >-
+        {% if is_state('input_boolean.scene_special_in_bed', 'on') 
+        or states('sensor.slaapkamer')|float > 100
+        %}
+          Off
+        {%- else -%}
+          On
+        {%- endif %}

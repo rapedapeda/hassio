@@ -1,0 +1,34 @@
+- id: modus_nacht
+  alias: Modus nacht (de)activeren
+  trigger:
+  - entity_id: sensor.slaapkamer_bedbezetting
+    platform: state
+    for:
+      minutes: 3
+  condition: []
+  action:
+    service: >
+      {% if is_state('sensor.slaapkamer_bedbezetting','bezet') %}
+      input_boolean.turn_on
+      {% else %}
+      input_boolean.turn_off
+      {% endif %}
+    data:
+      entity_id:
+        - input_boolean.scene_special_nacht
+- id: slaapkamer_bedmodus
+  alias: Slaapkamer bedmodus
+  trigger:
+  - entity_id: binary_sensor.slaapkamer_bed
+    platform: state
+  condition: []
+  action:
+    service: >
+      {% if is_state('binary_sensor.slaapkamer_bed','off') %}
+      input_boolean.turn_off
+      {% else %}
+      input_boolean.turn_on
+      {% endif %}
+    data:
+      entity_id:
+        - input_boolean.scene_special_slaapkamer_bed_bezet

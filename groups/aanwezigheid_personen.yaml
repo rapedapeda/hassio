@@ -1,0 +1,9 @@
+# This groups are for presence detection. There should be never used a
+# device directly. Instead create a new group.
+
+aanwezigheid_personen:
+  name: Aanwezigheid
+  entities:
+    - person.ramon
+    - person.flore
+#    - person.sissel

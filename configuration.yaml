@@ -1,21 +1,24 @@
 
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
-# default_config:
+#default_config:
 
 config:
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
 frontend:
-  themes: !include_dir_merge_named themes
+  themes: 
+    default:
+      header-height: 44px
 mobile_app:
 person:
-ssdp:
+#ssdp: used for discovery
 sun:
 system_health:
 updater:
+websocket_api:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-   base_url: muizeluuk.duckdns.org:8123
+
 
 # Text to speech
 tts:
@@ -32,38 +35,19 @@ alarm_control_panel:
 
 browser_mod:
 
-#emulated_hue:
-#  listen_port: 80
-
-#influxdb:
-#  host: a0d7b954-influxdb
-#  port: 8086
-#  database: homeassistant
-#  username: homeassistant
-#  password: !secret password982h2
-#  max_retries: 3
-#  default_measurement: state
-
-ios:
-  push:
-    categories:
-      - name: Stofzuiger
-        identifier: 'vacuum_stop'
-        actions:
-          - identifier: 'STOP_CLEANING'
-            title: 'Stoppen'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
-
-
 logger:
-  default: warning
+  default: info
+  logs:
+    # pydeconz: debug
+    # homeassistant.components.deconz: debug
+    custom_components.localtuya: debug
 
-mqtt:
-  discovery: true
-  discovery_prefix: homeassistant
+matrix:
+  homeserver: https://matrix.org
+  username: "@takkie-ha:matrix.org"
+  password: !secret matrix
+  rooms:
+    - !secret matrix-room
 
 media_player:
   - platform: androidtv
@@ -90,39 +74,33 @@ notify:
   - platform: group
     name: all
     services:
-      - service: mobile_app_hdb_iphone_1902 # Ramon
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
+      - service: mobile_app_iphone_ramon # Ramon
+      - service: mobile_app_iphone_van_f_s_o # Flore
   - platform: group
     name: flore
     services:
-      - service: mobile_app_hdb_iphone_van_f_s_o_7101 # Flore
+      - service: mobile_app_iphone_van_f_s_o # Flore
   - platform: group
     name: ramon
     services:
-      - service: mobile_app_hdb_iphone_1902 # Ramon
+      - service: mobile_app_iphone_ramon # Ramon
+  - name: matrix
+    platform: matrix
+    default_room: !secret matrix-room
 
-#recorder:
-#  purge_keep_days: 7
-#  db_url: !secret recorder
-
-# Homekit integration
-#homekit:
-#  auto_start: false
-#  safe_mode: false
-#  filter:
-#    exclude_domains:
-#      - automation
-#      - device_tracker
-#      - alarm_control_panel
-#      - sensor
-#      - binary_sensor
-#    exclude_entities:
-#      - binary_sensor.updater
-#    include_entities:
-#      - sensor.temperature_4
-
+recorder:
+  purge_keep_days: 31
+  include:
+    domains:
+      - person
+      - input_boolean
+      - binary_sensor
+    entities:
+      - sensor.buiten_temperatuur
+      - sensor.cpu_temperatuur
+      - sensor.disk_use_percent
+      - sensor.memory_use_percent
 ######################################################################
-# Includes
 
 #alert: !include_dir_merge_named alerts/
 automation: !include_dir_merge_list automations/
@@ -137,9 +115,10 @@ logbook: !include logbook.yaml
 #notify: !include_dir_list notify/
 python_script:
 scene: !include_dir_merge_list scenes/
-sensor: !include_dir_list sensors/
+sensor: !include_dir_merge_list sensors/
 script: !include_dir_merge_named scripts/
 timer: !include_dir_merge_named timers/
+utility_meter: !include_dir_merge_named utility_meter/
 zone: !include_dir_list zones/
 
 

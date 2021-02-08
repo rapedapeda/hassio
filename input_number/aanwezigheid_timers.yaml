@@ -1,0 +1,28 @@
+kamers_aanwezigheid_woonkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 15
+  unit_of_measurement: 'min'
+kamers_aanwezigheid_slaapkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 1
+  unit_of_measurement: 'min'
+kamers_aanwezigheid_hal:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 1
+  unit_of_measurement: 'min'
+kamers_aanwezigheid_badkamer:
+  name: Vertraging uit
+  min: 0
+  max: 15
+  step: 1
+  initial: 3
+  unit_of_measurement: 'min'
