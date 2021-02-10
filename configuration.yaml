@@ -32,6 +32,10 @@ alarm_control_panel:
 
 browser_mod:
 
+device_tracker:
+  - platform: bluetooth_le_tracker
+
+
 #emulated_hue:
 #  listen_port: 80
 
