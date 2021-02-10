@@ -42,28 +42,6 @@ device_tracker:
 #emulated_hue:
 #  listen_port: 80
 
-#influxdb:
-#  host: a0d7b954-influxdb
-#  port: 8086
-#  database: homeassistant
-#  username: homeassistant
-#  password: !secret password982h2
-#  max_retries: 3
-#  default_measurement: state
-
-ios:
-  push:
-    categories:
-      - name: Stofzuiger
-        identifier: 'vacuum_stop'
-        actions:
-          - identifier: 'STOP_CLEANING'
-            title: 'Stoppen'
-            activationMode: 'background'
-            authenticationRequired: false
-            destructive: false
-            behavior: 'default'
-
 
 logger:
   default: info
@@ -71,13 +49,6 @@ logger:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     custom_components.localtuya: debug
-
-matrix:
-  homeserver: https://matrix.org
-  username: "@takkie-ha:matrix.org"
-  password: !secret matrix
-  rooms:
-    - !secret matrix-room
 
 media_player:
   - platform: androidtv
@@ -114,9 +85,6 @@ notify:
     name: ramon
     services:
       - service: mobile_app_iphone_ramon # Ramon
-  - name: matrix
-    platform: matrix
-    default_room: !secret matrix-room
 
 recorder:
   purge_keep_days: 31
