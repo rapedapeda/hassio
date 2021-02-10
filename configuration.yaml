@@ -35,7 +35,6 @@ alarm_control_panel:
 
 browser_mod:
 
-<<<<<<< HEAD
 device_tracker:
   - platform: bluetooth_le_tracker
 
@@ -66,8 +65,6 @@ ios:
             behavior: 'default'
 
 
-=======
->>>>>>> f641d8db28f753a0d9239ed381c2027ea435dc07
 logger:
   default: info
   logs:
