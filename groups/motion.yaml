@@ -1,6 +1,0 @@
-motion:
-  name: Motion
-  entities:
-    - binary_sensor.presence_slaapkamer
-    - binary_sensor.hal
-    - binary_sensor.badkamer

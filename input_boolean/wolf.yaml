@@ -1,0 +1,7 @@
+wolf_presence:
+  name: Presence Wolf
+  icon: mdi:cat
+
+wolf_drinkbak:
+  name: Drinkbak Wolf
+  icon: mdi:cat

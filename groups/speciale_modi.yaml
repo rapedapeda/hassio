@@ -1,0 +1,20 @@
+speciale_modus_woonkamer:
+  name: Speciale modus
+  icon: mdi:cards
+  entities:
+    - input_boolean.scene_special_nacht
+    - input_boolean.scene_special_woonkamer_bioscoop
+speciale_modus_slaapkamer:
+  name: Speciale modus
+  icon: mdi:cards
+  entities:
+    - input_boolean.scene_special_nacht
+    - input_boolean.scene_special_slaapkamer_bed_bezet
+speciale_modus_hal:
+  name: Speciale modus
+  icon: mdi:cards
+  entities: []
+speciale_modus_badkamer:
+  name: Speciale modus
+  icon: mdi:cards
+  entities: []

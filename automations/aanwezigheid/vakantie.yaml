@@ -1,0 +1,21 @@
+- id: vakantie
+  alias: Vakantie
+  description: 'Schakelt de vakantiemodus in (langer dan 1 dag afwezig) of uit'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.presence_status
+      to:  'off'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_boolean.presence_status
+      to:  'on'
+  condition: []
+  action:
+    entity_id: input_boolean.vakantie
+    service: >
+      {% if trigger.to_state.state == 'on' %}
+        input_boolean.turn_off
+      {% elif trigger.to_state.state == 'off' %}
+        input_boolean.turn_on
+      {% endif %}

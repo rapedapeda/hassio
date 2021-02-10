@@ -1,5 +1,0 @@
-platform: mqtt
-state_topic: 'location/monitor/bedroom/iphone_sissel'
-value_template: '{{ value_json.confidence }}'
-unit_of_measurement: '%'
-name: 'Presence Sissel'

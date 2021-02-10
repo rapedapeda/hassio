@@ -1,0 +1,9 @@
+scene_special_slaapkamer_bed_bezet:
+  name: In bed
+  icon: mdi:bed
+scene_special_nacht:
+  name: Iederen in bed
+  icon: mdi:weather-night
+scene_special_woonkamer_bioscoop:
+  name: Bioscoop
+  icon: mdi:theater

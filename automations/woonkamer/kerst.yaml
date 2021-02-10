@@ -1,0 +1,43 @@
+# Deze switch afhankelijk van of er kerstapparaten zijn de kerstmodus aan/uit
+- id: kerst
+  alias: Kerst modus aan/uit
+  trigger: 
+    - platform: state
+      entity_id: group.kerst
+      from: 'unknown'
+    - platform: state
+      entity_id: group.kerst
+      to: 'unknown'
+  action:
+    - service: >-
+        {% if is_state(trigger.entity_id,'unknown') %}
+          input_boolean.turn_off
+        {% else %}
+          input_boolean.turn_on
+        {% endif %}
+      data:
+        entity_id: input_boolean.kerst
+
+# Aan en uitzetten van de verlichting op basis van aanwezigheid en bedstatus
+- id: kerst_woonkamer
+  alias: Kerst woonkamer
+  trigger:
+    - platform: state
+      entity_id: input_boolean.presence_status
+    - platform: state
+      entity_id: input_boolean.scene_special_nacht
+  condition:
+    - condition: state
+      entity_id: input_boolean.kerst
+      state:  'on'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: >
+          {% if is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','off')  %}
+            scene.kerst_aan
+          {% elif is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','on')  %}
+            scene.kerst_uit
+          {% else %}
+            scene.kerst_uit
+          {% endif %}

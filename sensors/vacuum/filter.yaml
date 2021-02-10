@@ -1,7 +1,0 @@
-platform: template
-sensors:
-  vacuum_filter:
-    friendly_name: "Filter"
-    unit_of_measurement: 'uur'
-    value_template: "{{ state_attr('vacuum.rockrobo', 'filter') | round(0) }}"
-    icon_template: mdi:air-filter

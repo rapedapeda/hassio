@@ -1,3 +1,11 @@
 include:
+  domains:
+    - alarm_control_panel
+    - person
+    - vacuum
   entities:
-    - alarm.huis
+    - input_boolean.presence_status
+    - input_boolean.kerst
+    - input_boolean.vakantie
+    - switch.drinkbak
+    - binary_sensor.drinkbak

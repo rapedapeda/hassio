@@ -3,7 +3,6 @@ vacuum_locations:
   icon: mdi:broom
   options:
     - None
-    - Badkamer
     - Hal
     - Slaapkamer
   initial: None

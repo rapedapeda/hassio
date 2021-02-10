@@ -1,0 +1,17 @@
+- id: speciale_modes_bed_lampen_uit
+  alias: Slaapkamer in bed automatisch lampen uit
+  description: Zorgt ervoor dat als iedereen 30 min in bed licht, de lampen in de slaapkamer uitgaan
+  mode: parallel
+  trigger:
+  - platform: state
+    entity_id: sensor.slaapkamer_bedbezetting
+  action:
+    service: >-
+      {% if trigger.to_state.state == 'bezet' %}
+      timer.start
+      {% else %}
+      timer.cancel
+      {% endif %}
+    data:
+      entity_id: timer.slaapkamer
+      duration: 00:30:00
