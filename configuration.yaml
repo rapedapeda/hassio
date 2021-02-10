@@ -37,6 +37,7 @@ browser_mod:
 
 device_tracker:
   - platform: bluetooth_le_tracker
+  - platform: bluetooth_tracker
 
 
 #emulated_hue:
