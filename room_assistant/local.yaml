@@ -1,0 +1,5 @@
+global:
+  instanceName: slaapkamer
+  integrations:
+    - homeAssistant
+    - bluetoothClassic
