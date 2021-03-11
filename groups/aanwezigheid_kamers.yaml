@@ -1,8 +1,10 @@
 beweging_woonkamer:
   name: Beweging woonkamer
   entities:
-    - binary_sensor.esp_woonkamer_pir
+    - binary_sensor.esp_woonkamer_pir #kan op den duur weg
     - binary_sensor.beweging_keuken
+    - binary_sensor.beweging_woonkamer_eettafel
+    - binary_sensor.beweging_woonkamer
 beweging_slaapkamer:
   name: Beweging slaapkamer
   entities:
