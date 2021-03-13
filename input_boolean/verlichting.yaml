@@ -1,0 +1,12 @@
+verlichting_woonkamer:
+  name: Woonkamer
+  icon: mdi:sofa
+verlichting_slaapkamer:
+  name: Slaapkamer
+  icon: mdi:bed-king
+verlichting_hal:
+  name: Hal
+  icon: mdi:door-closed
+verlichting_badkamer:
+  name: Badkamer
+  icon: mdi:shower

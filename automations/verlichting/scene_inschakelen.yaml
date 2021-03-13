@@ -1,0 +1,22 @@
+# Schakel verlichting in kamer uit als input_boolean van de kamer naar uit is veranderd
+- id: verlichting_inschakelen
+  alias: Verlichting inschakelen
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+  - condition: and
+    conditions:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('input_boolean.verlichting_') 
+        }}    
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
+  action:
+  - service: scene.turn_on
+    data_template:
+      entity_id: scene.{{ 'scene.' + trigger.entity_id.split('_')[2] + '_' + states('input_select.kamer_scene_' + trigger.entity_id.split('_')[2] )|lower }}}}
+      transition: 0.8

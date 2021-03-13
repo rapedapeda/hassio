@@ -1,6 +1,6 @@
-- id: scene_aanwezigheid_aan
-  alias: Scene aanwezigheid aan
-  description: Automatisering die een scene activeert wanneer aanwezigheid wordt gedetecteerd en de detectie aan staat
+- id: verlichting_aan
+  alias: Verlichting aan
+  description: Activeer verlichting wanneer aanwezigheid wordt gedetecteerd en/of er geen licht is
   mode: parallel
   trigger:
     platform: event
@@ -33,25 +33,11 @@
           value_template: >-
             {{ is_state('group.beweging_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}            
   action:
-    - service: input_select.select_option
+    - service: input_boolean.turn_on
       data_template: 
         entity_id: >-
           {% if 'lichtstatus' in trigger.event.data.entity_id %}
-            input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
+            input_boolean.verlichting_{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
           {% else %}
-            input_select.kamer_scenes_{{ trigger.event.data.entity_id.split('_')[1] }}
+            input_boolean.verlichting_{{ trigger.event.data.entity_id.split('_')[1] }}
           {% endif%}
-        option: >-
-          {% if 'lichtstatus' in trigger.event.data.entity_id %}
-            {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[1].split('.')[1]) }}
-          {% else %}
-            {{ states('input_select.kamer_scenes_modus_' + trigger.event.data.entity_id.split('_')[1]) }}
-          {% endif %}
-    # - service: timer.cancel
-    #   data:
-    #     entity_id: >-
-    #       {% if 'lichtstatus' in trigger.event.data.entity_id %}
-    #       timer.{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
-    #       {% else %}
-    #       timer.{{ trigger.event.data.entity_id.split('_')[1] }}
-    #       {% endif %}

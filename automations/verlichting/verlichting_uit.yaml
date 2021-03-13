@@ -1,0 +1,43 @@
+- id: verlichting_uit
+  alias: Verlichting uit
+  description: Activeer verlichting wanneer geen aanwezigheid wordt gedetecteerd en/of er licht is
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: state_changed
+  condition:
+    condition: or
+    conditions:
+      # Triggert als aanwezigheidssensor van kamer op 'on' gaat
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: >
+            {{
+              trigger.event.data.entity_id.startswith('group.beweging_') 
+            }}
+        - condition: template
+          value_template: "{{ trigger.event.data.new_state.state == 'off' }}"
+        - condition: template
+          value_template: >-
+            {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[1] + '_aanwezigheid_detectie', 'on') }}
+      # Triggert als Daylight naar on gaat (terwijl aanwezigheid van de kamer evt al op 'aan' staat)
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: >
+            {{ 'lichtstatus' in trigger.event.data.entity_id }}
+        - condition: template
+          value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
+        - condition: template
+          value_template: >-
+            {{ is_state('group.beweging_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}     
+  action:
+    - service: input_boolean.turn_off
+      data_template: 
+        entity_id: >-
+          {% if 'lichtstatus' in trigger.event.data.entity_id %}
+            input_boolean.verlichting_{{ trigger.event.data.entity_id.split('_')[1].split('.')[1] }}
+          {% else %}
+            input_boolean.verlichting_{{ trigger.event.data.entity_id.split('_')[1] }}
+          {% endif%}
