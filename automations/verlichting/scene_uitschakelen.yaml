@@ -18,5 +18,6 @@
   action:
   - service: scene.turn_on
     data_template:
-      entity_id: scene.{{ 'scene.' + trigger.event.data.entity_id.split('_')[2] + '_uit' }}}}
+      entity_id: >
+        {{ 'scene.' + trigger.event.data.entity_id.split('_')[2] + '_uit' }}
       transition: 0.8
