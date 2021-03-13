@@ -17,6 +17,6 @@
       value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
   action:
   - service: scene.turn_on
-    data_template:
+    data:
       entity_id: scene.{{ 'scene.' + trigger.event.data.entity_id.split('_')[2] + '_' + states('input_select.kamer_scene_' + trigger.event.data.entity_id.split('_')[2] )|lower }}}}
       transition: 0.8
