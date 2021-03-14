@@ -14,8 +14,8 @@
         {{
           trigger.event.data.entity_id.startswith('input_select.kamer_scene_') 
         }}    
-    # - condition: template
-    #   value_template: "{{ ('input_boolean.verlichting_' + trigger.event.data.entity_id.split('_')[3])  == 'on' }}"
+    - condition: template
+      value_template: "{{ is_state('input_boolean.verlichting_' + trigger.event.data.entity_id.split('_')[3], 'on') }}"
   action:
   - service: scene.turn_on
     data:
