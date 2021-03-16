@@ -8,7 +8,6 @@
     event_data:
       entity_id: timer.slaapkamer
   action:
-    service: input_select.select_option
+    service: input_boolean.turn_off
     data:
-      entity_id: input_select.kamer_scenes_slaapkamer
-      option: Uit
+      entity_id: input_boolean.verlichting_slaapkamer
