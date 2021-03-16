@@ -8,7 +8,7 @@
   condition:
     condition: or
     conditions:
-      # Triggert als aanwezigheidssensor van kamer op 'on' gaat
+      # Triggert als aanwezigheidssensor van kamer op 'off' gaat
       - condition: and
         conditions:
         - condition: template
@@ -21,7 +21,7 @@
         - condition: template
           value_template: >-
             {{ is_state('binary_sensor.' + trigger.event.data.entity_id.split('_')[2] + '_aanwezigheid_detectie', 'on') }}
-      # Triggert als Daylight naar on gaat (terwijl aanwezigheid van de kamer evt al op 'aan' staat)
+      # Triggert als Daylight naar off gaat (terwijl aanwezigheid van de kamer evt al op 'aan' staat)
       - condition: and
         conditions:
         - condition: template
@@ -29,9 +29,9 @@
             {{ 'lichtstatus' in trigger.event.data.entity_id }}
         - condition: template
           value_template: "{{ trigger.event.data.new_state.state == 'on' }}"
-        - condition: template
-          value_template: >-
-            {{ is_state('group.beweging_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}     
+        # - condition: template
+        #   value_template: >-
+        #     {{ is_state('group.beweging_' + trigger.event.data.entity_id.split('_')[1].split('.')[1], 'on') }}     
   action:
     - service: input_boolean.turn_off
       data_template: 
