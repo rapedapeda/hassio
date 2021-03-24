@@ -5,7 +5,8 @@ geen_detectie_woonkamer:
 geen_detectie_slaapkamer:
   name: Geen aanwezigheidsdetectie
   entities:
-    - input_boolean.scene_special_in_bed
+    - input_boolean.scene_special_slaapkamer_bed_bezet
+    - input_boolean.scene_special_nacht
 geen_detectie_hal:
   name: Geen aanwezigheidsdetectie
   entities:
