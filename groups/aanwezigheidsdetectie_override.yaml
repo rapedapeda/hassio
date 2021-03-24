@@ -1,0 +1,16 @@
+geen_detectie_woonkamer:
+  name: Geen aanwezigheidsdetectie
+  entities:
+    - input_boolean.logeren
+geen_detectie_slaapkamer:
+  name: Geen aanwezigheidsdetectie
+  entities:
+    - input_boolean.scene_special_in_bed
+geen_detectie_hal:
+  name: Geen aanwezigheidsdetectie
+  entities:
+    - input_boolean.scene_special_wolf_in_bed
+geen_detectie_badkamer:
+  name: Geen aanwezigheidsdetectie
+  entities:
+    - binary_sensor.beweging_badkamer
