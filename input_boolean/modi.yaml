@@ -4,3 +4,6 @@ kerst:
 vakantie:
   name: Vakantie
   icon: mdi:beach
+logeren:
+  name: Logé
+  icon: mdi:home-heart
