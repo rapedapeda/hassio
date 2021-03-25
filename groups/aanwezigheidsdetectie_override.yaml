@@ -13,5 +13,4 @@ geen_detectie_hal:
     - input_boolean.scene_special_wolf_in_bed
 geen_detectie_badkamer:
   name: Geen aanwezigheidsdetectie
-  entities:
-    - binary_sensor.beweging_badkamer
+  entities: []
