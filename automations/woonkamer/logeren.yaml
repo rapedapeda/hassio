@@ -3,7 +3,7 @@
   trigger:
   - entity_id: input_boolean.scene_special_slaapkamer_bed_bezet
     platform: state
-    to: off
+    to: 'off'
   condition: []
   action:
     service: input_boolean.turn_off
