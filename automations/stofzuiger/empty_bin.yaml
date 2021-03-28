@@ -20,6 +20,6 @@
       entity_id: 'vacuum.rockrobo'
       command: 'go_to'
       params:
-        'spot_id': 'Prullenbak'
+        'spot_id': '72354065-b6f8-44e0-86d0-8c34423cec40'
   - service: counter.reset
     entity_id: counter.vacuum_total_area_since_emptying
