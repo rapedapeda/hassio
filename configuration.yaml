@@ -40,6 +40,7 @@ browser_mod:
 
 device_tracker:
   - platform: bluetooth_le_tracker
+    track_new_devices: true
   - platform: bluetooth_tracker
 
 
