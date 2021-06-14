@@ -1,9 +1,11 @@
 include:
   entities:
-    - sensor.buiten_temperatuur
+    - sensor.licht_woonkamer
+    - sensor.temperatuur_buiten
+    - sensor.temperatuur_slaapkamer
+    - sensor.temperatuur_woonkamer
     - binary_sensor.drinkbak
     - switch.drinkbak
-    - binary_sensor.beweging_keuken
     - person.flore
     - person.ramon
     
