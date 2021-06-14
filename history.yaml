@@ -4,6 +4,11 @@ include:
     - sensor.temperatuur_buiten
     - sensor.temperatuur_slaapkamer
     - sensor.temperatuur_woonkamer
+    - sensor.luchtdruk_buiten
+    - sensor.luchtdruk_woonkamer
+    - sensor.luchtvochtigheid_buiten
+    - sensor.luchtvochtigheid_slaapkamer
+    - sensor.luchtvochtigheid_woonkamer
     - binary_sensor.drinkbak
     - switch.drinkbak
     - person.flore
