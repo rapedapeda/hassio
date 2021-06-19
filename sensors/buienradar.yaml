@@ -1,21 +1,23 @@
-- platform: buienradar
-  name: "delft"
-  latitude: 52.0116
-  longitude: 4.3571
-  monitored_conditions:
-    - temperature
-    - feeltemperature
-    - condition
-    - conditiondetailed
-    - windforce
-    - windgust
-    - windazimuth
-    - irradiance
-    - precipitation
-    - humidity
-    - temperature_1d
-    - rainchance_1d
-    - windforce_1d
+### Gaat nu via UI
+
+# - platform: buienradar
+#   name: "delft"
+#   latitude: 52.0116
+#   longitude: 4.3571
+#   monitored_conditions:
+#     - temperature
+#     - feeltemperature
+#     - condition
+#     - conditiondetailed
+#     - windforce
+#     - windgust
+#     - windazimuth
+#     - irradiance
+#     - precipitation
+#     - humidity
+#     - temperature_1d
+#     - rainchance_1d
+#     - windforce_1d
 
 - platform: template
   sensors:
