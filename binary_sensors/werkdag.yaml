@@ -1,4 +1,4 @@
-- platform: werkdag
+- platform: workday
   country: NL
   workdays: [mon, tue, wed, thu, fri]
   excludes: [sat, sun]
