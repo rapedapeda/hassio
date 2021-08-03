@@ -7,7 +7,6 @@
   sensors:
     kantoordag:
       friendly_name: "Kantoordag"
-      device_class: occupancy
       delay_off: 
         hours: 1
       value_template: >-
