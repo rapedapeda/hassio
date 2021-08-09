@@ -61,31 +61,7 @@ logger:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     custom_components.localtuya: debug
-
-media_player:
-  - platform: androidtv
-    host: 192.168.200.149
-    name: "TV"
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
-    get_sources: false
-    apps:
-      com.google.android.tvlauncher: "Home"
-      com.amazon.amazonvideo.livingroom: "Amazon"
-      com.netflix.ninja: "Netflix"
-      nl.nlziet: "NLZiet"
-      com.plexapp.android: "Plex"
-      com.appgeneration.itunerfree: "Radio"
-      com.spotify.tv.android: "Spotify"
-      com.aspiro.tidal: "Tidal"
-      com.google.android.youtube.tv: "Youtube"
-      com.nvidia.tegrazone3: "Geforce NOW"
-      org.dolphinemu.dolphinemu: "Dolphin"
-      com.retroarch: "RetroArch"
-  - platform: mpd
-    host: 192.168.200.177
-    name: "Woonkamer"
-
+    
 notify:
   - platform: group
     name: all
