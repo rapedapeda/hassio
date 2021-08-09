@@ -48,6 +48,7 @@ device_tracker:
   - platform: bluetooth_le_tracker
     track_new_devices: false
   - platform: bluetooth_tracker
+    track_new_devices: false
 
 
 #emulated_hue:
