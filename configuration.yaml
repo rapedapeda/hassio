@@ -42,18 +42,10 @@ alarm_control_panel:
   - platform: manual
     name: Huis
 
-browser_mod:
-
-device_tracker:
-  - platform: bluetooth_le_tracker
-    track_new_devices: false
-  - platform: bluetooth_tracker
-    track_new_devices: false
-
+#browser_mod:
 
 #emulated_hue:
 #  listen_port: 80
-
 
 logger:
   default: info
