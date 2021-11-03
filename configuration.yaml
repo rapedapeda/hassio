@@ -47,6 +47,15 @@ alarm_control_panel:
 #emulated_hue:
 #  listen_port: 80
 
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: takkie
+  password: !secret influxdb
+  max_retries: 3
+  default_measurement: state
+
 logger:
   default: info
   logs:
