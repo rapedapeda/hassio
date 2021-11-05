@@ -8,12 +8,12 @@
     - service: input_number.set_value
       data_template:
         entity_id: input_number.delft_today_max
-        value: "{{ states('sensor.delft_temperature_1d') }}"
+        value: "{{ states('sensor.buienradar_temperature_1d') }}"
     - service: input_number.set_value
       data_template:
         entity_id: input_number.delft_today_rain
-        value: "{{ states('sensor.delft_rainchance_1d') }}"
+        value: "{{ states('sensor.buienradar_rainchance_1d') }}"
     - service: input_number.set_value
       data_template:
         entity_id: input_number.delft_today_wind
-        value: "{{ states('sensor.delft_wind_force_1d') }}"
+        value: "{{ states('sensor.buienradar_wind_force_1d') }}"
