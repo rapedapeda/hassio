@@ -7,6 +7,9 @@ stofzuig_kamer:
 stofzuig_slaapkamer:
   name: Slaapkamer
   icon: mdi:bed-empty
+stofzuig_huis:
+  name: Huis
+  icon: mdi:home
   # stofzuig_k:
   #   name: Kitchen
   #   icon: mdi:silverware-fork-knife
