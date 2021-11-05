@@ -12,6 +12,7 @@ http:
     - 172.30.33.2
     - 127.0.0.1
     - ::1
+
 frontend:
   themes: 
     default:
@@ -55,6 +56,27 @@ influxdb:
   password: !secret influxdb
   max_retries: 3
   default_measurement: state
+  include:
+    domains:
+      - alarm_control_panel
+      - sun
+    entity_globs:
+      - binary_sensor.beweging_*
+      - binary_sensor.aanwezigheid_*
+      - binary_sensor.*_aanwezigheid_detectie
+      - binary_sensor.*_lichtstatus
+      - binary_sensor.slaapkamer_*
+      - binary_sensor.woonkamer_*
+      - binary_sensor.hal_*
+      - binary_sensor.buiten_*
+      - binary_sensor.lekkage_wasmachine
+      - sensor.beweging_*
+      - sensor.licht_*
+      - sensor.luchtdruk_*
+      - sensor.luchtvochtigheid_*
+      - sensor.*batterij
+      - person.*
+
 
 logger:
   default: info
