@@ -10,12 +10,16 @@ stofzuig_zone:
   mode: single
   alias: Stofzuig zone
   icon: mdi:arrow-right
+
 stofzuig_zone_message:
   alias: stofzuig_zone_message
+  mode: single
   sequence:
   - service: mqtt.publish
     data:
       #payload_template: '{"segment_ids": {{segments}}}'
       topic: homeassistant/rockrobo/ZoneCleaningCapability/start/set
       payload_template: '{{zones}}'
-  mode: single
+  - delay: 00:01:00
+  - wait_template: "{{ is_state('vacuum.stofzuiger', 'docked') }}"
+  - service: script.stofzuiger_afvalbak_vullen

@@ -7,4 +7,4 @@ stofzuiger_afvalbak_vullen:
       step: "{{ (states.sensor.vacuum_last_area|round(0))|int }}"
       entity_id: counter.vacuum_total_area
   - service: counter.increment
-    entity_id: counter.vacuum_total_area_since_emptying
+    entity_id: counter.vacuum_total_area
