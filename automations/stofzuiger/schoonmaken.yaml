@@ -16,7 +16,7 @@
     - service: script.stofzuig_zone_message
       data:
         variables:
-          zones: "fed7b042-5325-455b-94d3-09d21723aba3"
+          zones: 'fed7b042-5325-455b-94d3-09d21723aba3'
     - service: input_boolean.turn_off
       data:
         entity_id:
