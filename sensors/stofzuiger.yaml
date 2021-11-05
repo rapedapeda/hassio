@@ -1,3 +1,10 @@
+# Sensor die de laatste oppervlakte van het stofzuigen weergeeft (2021-11 valetudo)
+- platform: rest
+  name: Vacuum last area
+  resource: http://192.168.200.127/api/v2/robot/state/attributes
+  value_template: "{{ value_json[3].value }}"
+
+
 # Eigengemaakte sensor die de volheid van de opvangbank registreerd
 - platform: template
   sensors:
