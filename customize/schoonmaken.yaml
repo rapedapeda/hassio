@@ -1,6 +1,6 @@
 input_boolean.stofzuig_hal:
-  zone_id: '1be5af96-20cc-4e5a-bcdc-9f435a3a8340'
+  zone_id: "1be5af96-20cc-4e5a-bcdc-9f435a3a8340"
 input_boolean.stofzuig_kamer:
-  zone_id: '0e8c050e-26f0-495e-a2a3-b7c084d9fa08'
+  zone_id: "0e8c050e-26f0-495e-a2a3-b7c084d9fa08"
 input_boolean.stofzuig_slaapkamer:
-  zone_id: '65c1a7fa-6d85-4217-aa23-a8a03f54b1d4'
+  zone_id: "65c1a7fa-6d85-4217-aa23-a8a03f54b1d4"

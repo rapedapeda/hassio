@@ -1,0 +1,21 @@
+stofzuig_zone:
+  sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.stofzuig_zone_message
+    data:
+      variables:
+        zones: '{{expand("group.schoonmaken") | selectattr("state","eq","on")
+          | map(attribute="attributes.zone_id") | list | to_json}}'
+  mode: single
+  alias: Stofzuig zone
+  icon: mdi:arrow-right
+stofuizg_zone_message:
+  alias: stofzuig_zone_message
+  sequence:
+  - service: mqtt.publish
+    data:
+      #payload_template: '{"segment_ids": {{segments}}}'
+      topic: valetudo/robot/ZoneCleaningCapability/start/set
+      payload_template: '{{zones}}'
+  mode: single
