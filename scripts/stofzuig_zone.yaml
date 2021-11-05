@@ -16,6 +16,6 @@ stofzuig_zone_message:
   - service: mqtt.publish
     data:
       #payload_template: '{"segment_ids": {{segments}}}'
-      topic: valetudo/robot/ZoneCleaningCapability/start/set
+      topic: homeassistant/rockrobo/ZoneCleaningCapability/start/set
       payload_template: {{zones}}
   mode: single
