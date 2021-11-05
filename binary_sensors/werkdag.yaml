@@ -7,9 +7,10 @@
   sensors:
     kantoordag:
       friendly_name: "Kantoordag"
-      delay_off: 
-        hours: 1
       value_template: >-
           {{ 
-              is_state('group.aanwezigheid_personen', 'off')
+              is_state('group.aanwezigheid_personen', 'not_home')
+              and is_state('binary_sensor.workday_sensor', 'on')
+              and ( 20 < now().hour > 8 )
           }}
+
