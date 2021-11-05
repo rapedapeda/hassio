@@ -10,7 +10,7 @@ stofzuig_zone:
   mode: single
   alias: Stofzuig zone
   icon: mdi:arrow-right
-stofuizg_zone_message:
+stofzuig_zone_message:
   alias: stofzuig_zone_message
   sequence:
   - service: mqtt.publish
