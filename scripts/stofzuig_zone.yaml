@@ -17,5 +17,5 @@ stofzuig_zone_message:
     data:
       #payload_template: '{"segment_ids": {{segments}}}'
       topic: homeassistant/rockrobo/ZoneCleaningCapability/start/set
-      payload_template: '{{zones}}'
+      payload_template: {{zones}}
   mode: single
