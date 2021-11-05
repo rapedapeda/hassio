@@ -4,7 +4,7 @@ stofzuig_zone:
     target:
       entity_id: script.stofzuig_zone_message
     data:
-      variables:
+      variables: # hier zit nog in dat ie een lijst aanlevert. Dat werkt niet bij zones met de V1 
         zones: '{{expand("group.schoonmaken") | selectattr("state","eq","on")
           | map(attribute="attributes.zone_id") | list | to_json}}'
   mode: single

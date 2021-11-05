@@ -10,12 +10,30 @@
       entity_id: input_boolean.scene_special_slaapkamer_bed_bezet
       state: 'off'
     - condition: state
-      entity_id: input_boolean.stofzuigen
+      entity_id: input_boolean.stofzuig_huis
       state: 'on' 
   action:
-    - service: vacuum.start
-      target:
-        entity_id: vacuum.rockrobo
+    - service: script.stofzuig_zone_message
+      data:
+        variables:
+          zones: "fed7b042-5325-455b-94d3-09d21723aba3"
+    - service: input_boolean.turn_off
+      data:
+        entity_id:
+          - input_boolean.stofzuig_huis
 
-    # - service: script.turn_on
-    #   entity_id: script.vacuum_everything
+- id: vacuum_herstel_status
+  alias: Stofzuiger herstel status
+  description: De automation zet elke nacht om 03:00:00 de schoonmaakstatus weer aan.
+  trigger:
+  - platform: time
+    at: "03:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.vakantie
+    state: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id:
+        - input_boolean.stofzuig_huis
