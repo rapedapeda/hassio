@@ -1,0 +1,6 @@
+schoonmaken:
+  name: Schoonmaken
+  entities:
+    - input_boolean.stofzuig_hal
+    - input_boolean.stofzuig_kamer
+    - input_boolean.stofzuig_slaapkamer
