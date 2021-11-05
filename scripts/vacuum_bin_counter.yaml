@@ -1,9 +1,10 @@
-counter_emptying_increase:
-  alias: Stofzuiger update opvangbak na schoonmaak
+# Deze counter wordt geupdatet nav area cleaned van de stofzuiger
+stofzuiger_afvalbak_vullen:
+  alias: Update stofzuiger afvalbak
   sequence:
   - service: counter.configure
     data_template:
-      step: "{{ (states.vacuum.rockrobo.attributes.last_run_stats.area|round(0))|int }}"
-      entity_id: counter.vacuum_total_area_since_emptying
+      step: "{{ (states.sensor.vacuum_last_area|round(0))|int }}"
+      entity_id: counter.vacuum_total_area
   - service: counter.increment
     entity_id: counter.vacuum_total_area_since_emptying

@@ -1,49 +1,14 @@
 # Sensor die de laatste oppervlakte van het stofzuigen weergeeft (2021-11 valetudo)
 - platform: rest
-  name: Vacuum last area
+  name: Vacuum last cleaned area
   resource: http://192.168.200.127/api/v2/robot/state/attributes
   value_template: "{{ value_json[3].value }}"
 
-
-# Eigengemaakte sensor die de volheid van de opvangbank registreerd
+# Eigengemaakte sensor die de volheid van de opvangbank registreert op basis van een counter
 - platform: template
   sensors:
     vacuum_bin_amount_full:
       friendly_name: "Opvangbak"
       unit_of_measurement: '%'
-      value_template: "{{ (states('counter.vacuum_total_area_since_emptying') | float /150*100) | round(0) }}"
+      value_template: "{{ (states('counter.vacuum_total_area') | float /150*100) | round(0) }}"
       icon_template: mdi:trash-can-outline
-
-
-# Standaardsensoren uit de stofzuiger
-- platform: template
-  sensors:
-    vacuum_battery:
-      friendly_name: "Batterij"
-      unit_of_measurement: '%'
-      value_template: "{{ state_attr('vacuum.rockrobo', 'battery_level') }}"
-      device_class: battery
-
-- platform: template
-  sensors:
-    vacuum_filter:
-      friendly_name: "Filter"
-      unit_of_measurement: 'uur'
-      value_template: "{{ state_attr('vacuum.rockrobo', 'filter') | round(0) }}"
-      icon_template: mdi:air-filter
-
-- platform: template
-  sensors:
-    vacuum_main_brush:
-      friendly_name: "Borstel"
-      unit_of_measurement: 'uur'
-      value_template: "{{ state_attr('vacuum.rockrobo', 'mainBrush') | round(0) }}"
-      icon_template: mdi:broom
-
-- platform: template
-  sensors:
-    vacuum_sensor:
-      friendly_name: "Sensoren"
-      unit_of_measurement: 'uur'
-      value_template: "{{ state_attr('vacuum.rockrobo', 'sensor') | round(0) }}"
-      icon_template: mdi:radar
