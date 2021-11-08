@@ -74,6 +74,8 @@ influxdb:
       - sensor.licht_*
       - sensor.luchtdruk_*
       - sensor.luchtvochtigheid_*
+      - sensor.temperatuur_*
+      - sensor.delft*
       - sensor.*batterij
       - person.*
 
