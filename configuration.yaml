@@ -90,7 +90,7 @@ logger:
 notify:
   - platform: telegram
     name: telegram
-    chat_id: -710384133
+    chat_id: !secret telegram_chatid
   - platform: group
     name: all
     services:
@@ -134,7 +134,7 @@ telegram_bot:
   - platform: polling
     api_key: !secret telegram_api
     allowed_chat_ids:
-      - !secret telegram_chatid_ramon
+      - !secret telegram_chatid
 
 ######################################################################
 
