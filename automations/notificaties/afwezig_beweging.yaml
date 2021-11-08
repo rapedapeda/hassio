@@ -1,5 +1,5 @@
-- id: motion_detected_away
-  alias: Notify, Beweging terwijl afwezig
+- id: notificatie_beweging_terwijl_afwezig
+  alias: Notificatie, beweging terwijl afwezig
   description: ''
   trigger:
   - platform: state
@@ -18,5 +18,5 @@
   #     threadid: "alarm"
   - service: notify.telegram
     data:
-      title: "Alarm"
-      message: "Er is beweging gedetecteerd in huis"
+      title: "*Alarm*"
+      message: "Ik heb beweging gedetecteerd in huis!"

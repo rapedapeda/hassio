@@ -1,12 +1,12 @@
 - id: notificatie_weer
-  alias: Weernotificatie
+  alias: Notificatie, dagelijks weerbericht
   trigger:
   - platform: time
     # Military time format. This trigger will fire at 3:32 PM
     at: "07:00:00"
   condition:
     - condition: state
-      entity_id: group.presence
+      entity_id: group.aanwezigheid_personen
       state: 'home'
   action:
   # - service: python_script.general_notification
@@ -23,7 +23,6 @@
   #     threadid: "weer"
   - service: notify.telegram
     data:
-      title: "Weerbericht"
       message: "Goedemorgen! Vandaag wordt het maximaal {{ states('sensor.delft_today_max') }} graden {% if states('sensor.delft_today_wind') | float < 4 %}met weinig wind.{% else %}en een krachtige wind van windkracht {{ states('sensor.delft_today_wind') }}.{% endif %} {% if states('sensor.delft_today_rain') | float > 20 %}De kans op regen is {{ states('sensor.delft_today_rain') }}%.
       {% else %}Het gaat waarschijnlijk niet regenen.{% endif %}"
           
