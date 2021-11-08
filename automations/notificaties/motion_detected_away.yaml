@@ -1,5 +1,5 @@
 - id: motion_detected_away
-  alias: Motion detected while away
+  alias: Notify, Beweging terwijl afwezig
   description: ''
   trigger:
   - platform: state
@@ -10,9 +10,13 @@
     entity_id: alarm_control_panel.ha_alarm
     state:  'armed_away'
   action:
-  - service: python_script.general_notification
-    data_template:
-      recipients: ramon,flore
+  # - service: python_script.general_notification
+  #   data_template:
+  #     recipients: ramon,flore
+  #     title: "Alarm"
+  #     message: "Er is beweging gedetecteerd in huis"
+  #     threadid: "alarm"
+  - service: notify.telegram
+    data:
       title: "Alarm"
       message: "Er is beweging gedetecteerd in huis"
-      threadid: "alarm"

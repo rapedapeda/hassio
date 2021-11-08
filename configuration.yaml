@@ -88,6 +88,9 @@ logger:
     custom_components.localtuya: debug
     
 notify:
+  - platform: telegram
+    name: telegram
+    chat_id: -710384133
   - platform: group
     name: all
     services:
@@ -126,6 +129,13 @@ recorder:
       - switch.drinkbak
       - person.flore
       - person.ramon
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - !secret telegram_chatid_ramon
+
 ######################################################################
 
 #alert: !include_dir_merge_named alerts/
