@@ -3,4 +3,4 @@
   name: Stofzuiger_totale_oppervlakte
   #resource: http://192.168.200.127/api/v2/robot/state/attributes
   resource: http://192.168.200.127/api/v2/robot/capabilities/TotalStatisticsCapability
-  value_template: "{{ value_json[1].value | float / 10000 | round(0) }}"
+  value_template: "{{ value_json[1].value | float / 10000 | int }}"
