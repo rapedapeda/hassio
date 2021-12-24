@@ -7,7 +7,7 @@
 #      to: 'off' 
 #      for: 00:10:00
     - platform: state
-      entity_id: vacuum.rockrobo
+      entity_id: vacuum.stofzuiger
       to: 'docked'
       for: 00:10:00
   condition:
