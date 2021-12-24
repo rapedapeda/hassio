@@ -12,14 +12,15 @@
       for: 00:10:00
   condition:
     - condition: numeric_state
-      entity_id: sensor.vacuum_bin_amount_full
-      above: 95
+      entity_id: sensor.stofzuiger_oppervlakte
+      above: 90
   action:
-  - service: vacuum.send_command
+  - service: mqtt.publish
     data:
-      entity_id: 'vacuum.rockrobo'
-      command: 'go_to'
-      params:
-        'spot_id': '72354065-b6f8-44e0-86d0-8c34423cec40'
-  - service: counter.reset
-    entity_id: counter.vacuum_total_area_since_emptying
+      topic: homeassistant/rockrobo/GoToLocationCapability/go/set
+      payload: 'fb1816dc-6868-4a56-aa5c-15e1d31b8c26'
+  - service: utility_meter.calibrate
+    target:
+      entity_id: sensor.stofzuiger_oppervlakte
+    data:
+      value: '0'

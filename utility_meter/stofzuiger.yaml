@@ -1,3 +1,4 @@
 stofzuiger_oppervlakte:
+  name: Stofzuigerbak
   source: sensor.stofzuiger_totale_oppervlakte
   cycle: yearly
