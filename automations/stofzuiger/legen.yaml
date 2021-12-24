@@ -1,5 +1,5 @@
-- id: vacuum_go_to_bin
-  alias: Stofzuiger naar afvalbak
+- id: stofzuiger_legen
+  alias: Stofzuiger legen
   description: Deze automation checkt na elke run of de opvangbak vol zit, en verplaatst de stofzuiger naar de prullenbak.
   trigger:
 #    - platform: state # Deze moet natuurlijk na elke cleanup gecheckt worden.
@@ -12,7 +12,7 @@
       for: 00:10:00
   condition:
     - condition: numeric_state
-      entity_id: sensor.stofzuiger_oppervlakte
+      entity_id: sensor.stofzuigerbak
       above: 90
   action:
   - service: mqtt.publish
@@ -21,6 +21,6 @@
       payload: 'fb1816dc-6868-4a56-aa5c-15e1d31b8c26'
   - service: utility_meter.calibrate
     target:
-      entity_id: sensor.stofzuiger_oppervlakte
+      entity_id: sensor.stofzuigerbak
     data:
       value: '0'
