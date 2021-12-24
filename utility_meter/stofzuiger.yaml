@@ -1,0 +1,3 @@
+stofzuiger_oppervlakte:
+  source: sensor.stofzuiger_totale_oppervlakte
+  cycle: yearly

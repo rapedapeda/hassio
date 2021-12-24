@@ -3,13 +3,4 @@
   name: Stofzuiger_totale_oppervlakte
   #resource: http://192.168.200.127/api/v2/robot/state/attributes
   resource: http://192.168.200.127/api/v2/robot/capabilities/TotalStatisticsCapability
-  value_template: "{{ value_json[1].value | float / 10000 | round() }}"
-
-# Eigengemaakte sensor die de volheid van de opvangbank registreert op basis van een counter
-- platform: template
-  sensors:
-    vacuum_bin_amount_full:
-      friendly_name: "Opvangbak"
-      unit_of_measurement: '%'
-      value_template: "{{ (states('counter.vacuum_total_area') | float /150*100) | round(0) }}"
-      icon_template: mdi:trash-can-outline
+  value_template: "{{ value_json[1].value | float / 10000 | round(0) }}"
