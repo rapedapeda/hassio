@@ -38,14 +38,10 @@
         {% for person in state_attr('group.aanwezigheid_personen', 'entity_id') if is_state(person, 'home') %}
           {% set personen_thuis.res = personen_thuis.res + 1 %}
         {%endfor%}
-        #{{ personen_thuis.res }}
-
         {% set personen_in_bed = namespace(res=0) %}
         {% for binary_sensor in state_attr('group.slaapkamer_bedsensors', 'entity_id') if is_state(binary_sensor, 'on') %}
           {% set personen_in_bed.res = personen_in_bed.res + 1 %}
         {%endfor%}
-        #{{ personen_in_bed.res }}
-
         {% if personen_thuis.res|int - personen_in_bed.res|int == personen_thuis.res|int %}
           leeg
         {% elif personen_thuis.res|int - personen_in_bed.res|int == 1 %}
