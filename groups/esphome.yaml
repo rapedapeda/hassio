@@ -1,0 +1,5 @@
+slaapkamer_bedsensors:
+  name: Slaapkamer bedsensors
+  entities: 
+    - binary_sensor.slaapkamer_bedsensor_rechts
+    - binary_sensor.slaapkamer_bedsensor_links

@@ -1,30 +1,55 @@
 - platform: template
   sensors:
+    # Weegschaal-variant
+    # slaapkamer_bedbezetting:
+    #   friendly_name: "Bed"
+    #   icon_template: mdi:bed-king
+    #   value_template: >-
+    #     {% set personen_thuis = namespace(count=0) %}
+    #     {% for state in states
+    #         if ( 'person.' in state.entity_id 
+    #             and state.state == 'home' ) -%}
+    #       {% if loop.last -%}
+    #         {% set personen_thuis.count = loop.index %}
+    #       {%- endif %}
+    #     {%- endfor %}      
+    #     {% set personen_in_bed = namespace(count=0) %}
+    #     {% set gewicht = states('sensor.gewicht') | float %}
+    #     {% if gewicht < 65 %}
+    #       {% set personen_in_bed.count = '0' %}
+    #     {% elif 65 <= gewicht < 90 %}
+    #       {% set personen_in_bed.count = '1' %}
+    #     {% elif gewicht >= 90 %}
+    #       {% set personen_in_bed.count = '2' %}
+    #     {% endif %}
+    #     {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
+    #       leeg
+    #     {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
+    #       gedeeltelijk
+    #     {% elif personen_thuis.count|int - personen_in_bed.count|int <= 0 %}
+    #       bezet
+    #     {% endif %}
+
     slaapkamer_bedbezetting:
-      friendly_name: "Bed"
+      friendly_name: "Bedbezetting"
       icon_template: mdi:bed-king
-      value_template: >-
-        {% set personen_thuis = namespace(count=0) %}
-        {% for state in states
-            if ( 'person.' in state.entity_id 
-                and state.state == 'home' ) -%}
-          {% if loop.last -%}
-            {% set personen_thuis.count = loop.index %}
-          {%- endif %}
-        {%- endfor %}      
-        {% set personen_in_bed = namespace(count=0) %}
-        {% set gewicht = states('sensor.gewicht') | float %}
-        {% if gewicht < 65 %}
-          {% set personen_in_bed.count = '0' %}
-        {% elif 65 <= gewicht < 90 %}
-          {% set personen_in_bed.count = '1' %}
-        {% elif gewicht >= 90 %}
-          {% set personen_in_bed.count = '2' %}
-        {% endif %}
-        {% if personen_thuis.count|int - personen_in_bed.count|int == personen_thuis.count %}
+      value_template: >-  
+        {% set personen_thuis = namespace(res=0) %}
+        {% for person in state_attr('group.aanwezigheid_personen', 'entity_id') if is_state(person, 'home') %}
+          {% set personen_thuis.res = personen_thuis.res + 1 %}
+        {%endfor%}
+        #{{ personen_thuis.res }}
+
+        {% set personen_in_bed = namespace(res=0) %}
+        {% for binary_sensor in state_attr('group.slaapkamer_bedsensors', 'entity_id') if is_state(binary_sensor, 'on') %}
+          {% set personen_in_bed.res = personen_in_bed.res + 1 %}
+        {%endfor%}
+        #{{ personen_in_bed.res }}
+
+        {% if personen_thuis.res|int - personen_in_bed.res|int == personen_thuis.res|int %}
           leeg
-        {% elif personen_thuis.count|int - personen_in_bed.count|int == 1 %}
+        {% elif personen_thuis.res|int - personen_in_bed.res|int == 1 %}
           gedeeltelijk
-        {% elif personen_thuis.count|int - personen_in_bed.count|int <= 0 %}
+        {% elif personen_thuis.res|int - personen_in_bed.res|int <= 0 %}
           bezet
-        {% endif %}
+        {% endif %}        
