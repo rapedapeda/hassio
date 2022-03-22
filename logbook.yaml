@@ -9,3 +9,5 @@ include:
     - input_boolean.vakantie
     - switch.drinkbak
     - binary_sensor.drinkbak
+    - sensor.shellyplug_power
+    - sensor.shellyplug_energy
