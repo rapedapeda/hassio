@@ -13,4 +13,5 @@ include:
     - switch.drinkbak
     - person.flore
     - person.ramon
-    
+    - sensor.shellyplug_power
+    - sensor.shellyplug_energy
