@@ -22,7 +22,7 @@ person:
 #ssdp: used for discovery
 sun:
 system_health:
-updater:
+#updater:
 websocket_api:
 
 
