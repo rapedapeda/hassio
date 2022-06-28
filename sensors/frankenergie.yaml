@@ -1,0 +1,13 @@
+- platform: frank_energie
+  display_options:
+    - gas_market
+    - gas_tax
+    - gas_markup
+    - elec_market
+    - elec_tax
+    - elec_markup
+    - gas_min
+    - gas_max
+    - elec_min
+    - elec_max
+    - elec_avg
