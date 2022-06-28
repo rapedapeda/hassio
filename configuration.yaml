@@ -107,7 +107,7 @@ notify:
       - service: mobile_app_iphone_ramon # Ramon
 
 recorder:
-  purge_keep_days: 365
+  purge_keep_days: 3650
   include:
     domains:
       - person
@@ -119,7 +119,6 @@ recorder:
       - sensor.memory_use_percent
       - sensor.shellyplug_energy
       - sensor.shellyplug_power
-      - sensor.p1_*
       - sensor.licht_woonkamer
       - sensor.temperatuur_buiten
       - sensor.temperatuur_slaapkamer
@@ -133,6 +132,8 @@ recorder:
       - switch.drinkbak
       - person.flore
       - person.ramon
+    entity_globs:
+      - sensor.p1_*
 
 telegram_bot:
   - platform: polling

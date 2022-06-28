@@ -15,4 +15,5 @@ include:
     - person.ramon
     - sensor.shellyplug_power
     - sensor.shellyplug_energy
+  entity_globs: 
     - sensor.p1_*
