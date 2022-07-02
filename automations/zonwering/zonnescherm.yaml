@@ -1,0 +1,39 @@
+- id: zonwering_zonnescherm
+  alias: Zonwering tuin automatisch open
+  trigger: 
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - and:
+      - condition: state
+        # clear weersomstandigheden
+        entity_id: sensor.buienradar_condition
+        state: 
+          - "clear"
+      - condition: numeric_state
+        # elevation boven x
+        entity_id: sun.sun
+        attribute: elevation
+        above: 15
+      - condition: numeric_state
+        # zon vanaf positie
+        entity_id: sun.sun
+        attribute: azimuth
+        above: 63
+      - condition: numeric_state
+        # zon tot positie
+        entity_id: sun.sun
+        attribute: azimuth
+        below: 197
+      - condition: numeric_state
+        # temperature > 16 graden
+        entity_id: sensor.buienradar_temperature
+        above: 15
+     # - # binnentemperatuur hoger dan 21 graden
+     # - irradiance > X (want zomer?)
+  action:
+    # open cover
+    - service: cover.open_cover
+      entity_id: cover.zonnescherm
+
+
