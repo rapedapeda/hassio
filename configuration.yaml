@@ -119,21 +119,14 @@ recorder:
       - sensor.memory_use_percent
       - sensor.shellyplug_energy
       - sensor.shellyplug_power
-      - sensor.licht_woonkamer
-      - sensor.temperatuur_buiten
-      - sensor.temperatuur_slaapkamer
-      - sensor.temperatuur_woonkamer
-      - sensor.luchtdruk_buiten
-      - sensor.luchtdruk_woonkamer
-      - sensor.luchtvochtigheid_buiten
-      - sensor.luchtvochtigheid_slaapkamer
-      - sensor.luchtvochtigheid_woonkamer
       - binary_sensor.drinkbak
       - switch.drinkbak
-      - person.flore
-      - person.ramon
     entity_globs:
       - sensor.p1_*
+      - sensor.luchtvochtigheid_*
+      - sensor.temperatuur_*
+      - sensor.luchtdruk_*
+      - sensor.licht_*
 
 telegram_bot:
   - platform: polling
@@ -147,6 +140,7 @@ telegram_bot:
 automation: !include_dir_merge_list automations/
 binary_sensor: !include_dir_merge_list binary_sensors/
 counter: !include_dir_merge_named counters/
+#fan: wtw.yaml
 group: !include_dir_merge_named groups/
 history: !include history.yaml
 input_boolean: !include_dir_merge_named input_boolean/
