@@ -1,10 +1,15 @@
 include:
   domains:
-    - sensor
     - person
   entities:
     - binary_sensor.drinkbak
     - switch.drinkbak
     - sensor.shellyplug_power
     - sensor.shellyplug_energy
-
+    - weather.buienradar
+  entity_globs:
+    - sensor.p1_*
+    - sensor.luchtvochtigheid_*
+    - sensor.temperatuur_*
+    - sensor.luchtdruk_*
+    - sensor.licht_*

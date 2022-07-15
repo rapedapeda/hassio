@@ -7,9 +7,11 @@
     - and:
       - condition: state
         # clear weersomstandigheden
-        entity_id: sensor.buienradar_condition
+        entity_id: weather.buienradar
         state: 
           - "clear"
+          - "partly_cloudy"
+          - "sunny"
       - condition: numeric_state
         # elevation boven x
         entity_id: sun.sun
