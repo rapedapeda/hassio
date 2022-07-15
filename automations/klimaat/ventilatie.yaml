@@ -25,22 +25,13 @@
   alias: Ventilatie naar stand 3 (luchtvochtigheid)
   mode: parallel
   trigger:
-  - platform: time_pattern
-    minutes: "/1"
   - platform: numeric_state
     entity_id:
       - sensor.luchtvochtigheid_badkamer
       - sensor.luchtvochtigheid_slaapkamer
     above: 70
-  condition:
-  - alias: "Hoge luchtvochtigheid"
-    condition: numeric_state
-    entity_id:
-    - sensor.luchtvochtigheid_badkamer
-    - sensor.luchtvochtigheid_slaapkamer
-    above: 70
+  condition: []
   action:
     service: switch.turn_on
     data:
       entity_id: switch.wtw_3
-
