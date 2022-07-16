@@ -14,12 +14,11 @@
     entity_id: sensor.luchtvochtigheid_badkamer
     below: 60
   action:
-    service: switch.turn_off
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
     data:
-      entity_id: 
-        - switch.wtw_3
-        - switch.wtw_2
-        - switch.wtw_1
+      percentage: 33
 
 - id: ventilatie_naar_stand_3
   alias: Ventilatie naar stand 3 (luchtvochtigheid)
@@ -32,6 +31,8 @@
     above: 70
   condition: []
   action:
-    service: switch.turn_on
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
     data:
-      entity_id: switch.wtw_3
+      percentage: 67
