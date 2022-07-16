@@ -1,0 +1,7 @@
+wtw_schakelaars:
+  name: WTW Sonoff schakelaars
+  icon: mdi:fan
+  entities:
+    - switch.wtw_1
+    - switch.wtw_2
+    - switch.wtw_3
