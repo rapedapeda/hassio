@@ -22,7 +22,7 @@
             entity_id: >
               {% if percentage == 100 %}
                 switch.wtw_3
-              {% elif percentage == 67 %}
+              {% elif percentage == 66 %}
                 switch.wtw_2
               {% elif percentage == 33 %}
                 switch.wtw_1, switch.wtw_2, switch.wtw_3
