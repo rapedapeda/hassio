@@ -1,0 +1,29 @@
+  - platform: template
+    fans:
+      wtw:
+        unique_id: wtwinstallatie
+        friendly_name: "Ventilatie"
+        value_template: "{{ 'on' if is_state('switch.wtw_1', 'on') else 'off' }}"
+        preset_mode_template: "{{ states('input_select.preset_mode') }}"
+        turn_on:
+          service: switch.turn_off
+          target:
+            entity_id: 
+            - switch.wtw_1
+        turn_off:
+          service: switch.turn_on
+          target:
+            entity_id: 
+            - switch.wtw_1        
+        set_percentage:
+          service: script.fans_set_speed
+          data:
+            percentage: "{{ percentage }}"
+        set_preset_mode:
+          service: script.fans_set_preset_mode
+          data:
+            preset_mode: "{{ preset_mode }}"
+        speed_count: 3
+        preset_modes:
+          - 'auto'
+          - 'boost'
