@@ -1,0 +1,5 @@
+wtw_percentage:
+  name: Ventilatiesnelheid
+  min: 0
+  max: 100
+  step: 1
