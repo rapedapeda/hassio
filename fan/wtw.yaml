@@ -17,17 +17,17 @@
             - switch.wtw_1        
         set_percentage:
           service: "switch.turn_{{ 'off' if percentage == 33 else 'on' }}"
-          entity_id: >
+          entity_id: >-
             {% if percentage == 100 %}
-              switch.wtw_3
+              - switch.wtw_3
             {% elif percentage == 67 %}
-              switch.wtw_2
+              - switch.wtw_2
             {% elif percentage == 33 %}
               - switch.wtw_1
               - switch.wtw_2
               - switch.wtw_3
             {% else %}
-              switch.wtw_1
+              - switch.wtw_1
             {% endif %}
         set_preset_mode:
           service: script.fans_set_preset_mode
