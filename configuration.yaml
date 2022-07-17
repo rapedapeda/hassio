@@ -127,6 +127,7 @@ recorder:
       - sensor.temperatuur_*
       - sensor.luchtdruk_*
       - sensor.licht_*
+      - sensor.co2*
 
 telegram_bot:
   - platform: polling

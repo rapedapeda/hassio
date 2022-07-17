@@ -13,3 +13,5 @@ include:
     - sensor.temperatuur_*
     - sensor.luchtdruk_*
     - sensor.licht_*
+    - sensor.co2*
+
