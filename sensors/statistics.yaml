@@ -11,3 +11,10 @@
   sampling_size: 20
   max_age:
     hours: 8
+
+- platform: statistics
+  name: CO2 statistics 15m
+  entity_id: sensor.co2
+  sampling_size: 15
+  max_age:
+    hours: 8
