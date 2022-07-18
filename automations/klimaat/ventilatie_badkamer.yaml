@@ -1,0 +1,36 @@
+# Boost ventilatie als luchtvochtigheid meer is dan 110% van het gemiddelde
+- id: ventilatie_boost_luchtvochtigheid_badkamer
+  alias: Ventilatie boost aan (luchtvochtigheid badkamer)
+  mode: parallel
+  trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.luchtvochtigheid_badkamer
+  condition: 
+  - condition: template
+    # Afwijking ten opzichte van gemiddelde waarde
+    value_template: '{{ ( states("sensor.luchtvochtigheid_badkamer")|float - states("sensor.luchtvochtigheid_badkamer_statistics")|float ) / states("sensor.luchtvochtigheid_badkamer_statistics")|float > 0.2 }}'
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: 67
+
+- id: ventilatie_boost_luchtvochtigheid_badkamer_uit
+  alias: Ventilatie boost uit (luchtvochtigheid badkamer)
+  mode: parallel
+  trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.luchtvochtigheid_badkamer
+  condition: 
+  - condition: template
+    # Afwijking ten opzichte van gemiddelde waarde
+    value_template: '{{ ( states("sensor.luchtvochtigheid_badkamer")|float - states("sensor.luchtvochtigheid_badkamer_statistics")|float ) / states("sensor.luchtvochtigheid_badkamer_statistics")|float < 0.1 }}'
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: 33
