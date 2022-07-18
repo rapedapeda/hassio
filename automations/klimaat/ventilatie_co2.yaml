@@ -1,0 +1,36 @@
+# Boost ventilatie als CO2 meer is dan 1000ppm van het gemiddelde
+- id: ventilatie_boost_co2
+  alias: Ventilatie boost aan (CO2)
+  mode: parallel
+  trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.co2_statistics_15m
+  condition: 
+  - condition: numeric_state
+    entity_id: sensor.co2_statistics_15m
+    above: 1000    
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: 67
+
+- id: ventilatie_boost_co2_uit
+  alias: Ventilatie boost uit (CO2)
+  mode: parallel
+  trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.co2_statistics_15m
+  condition: 
+  - condition: numeric_state
+    entity_id: sensor.co2_statistics_15m
+    below: 800   
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: 33
