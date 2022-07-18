@@ -25,9 +25,9 @@
               {% elif percentage == 66 %}
                 switch.wtw_2
               {% elif percentage == 33 %}
-                group.wtw_schakelaars
+                group.wtw_1
               {% else %}
-                switch.wtw_1
+                switch.wtw_0
               {% endif %}
         set_preset_mode:
           service: script.fans_set_preset_mode
