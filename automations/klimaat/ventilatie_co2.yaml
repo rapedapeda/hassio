@@ -21,7 +21,7 @@
   trigger:
   - platform: numeric_state
     entity_id:
-      - sensor.co2_statistics_15m
+      - sensor.co2_statistics_5m
     below: 800
   condition: []  
   action:
