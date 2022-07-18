@@ -6,6 +6,7 @@
   - platform: numeric_state
     entity_id:
       - sensor.luchtvochtigheid_badkamer
+    above: 0
   condition: 
   - condition: template
     # Afwijking ten opzichte van gemiddelde waarde
@@ -24,6 +25,7 @@
   - platform: numeric_state
     entity_id:
       - sensor.luchtvochtigheid_badkamer
+    above: 0
   condition: 
   - condition: template
     # Afwijking ten opzichte van gemiddelde waarde

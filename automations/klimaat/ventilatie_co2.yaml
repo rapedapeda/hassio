@@ -6,6 +6,7 @@
   - platform: numeric_state
     entity_id:
       - sensor.co2_statistics_5m
+    above: 0
   condition: 
   - condition: numeric_state
     entity_id: sensor.co2_statistics_15m
@@ -24,6 +25,7 @@
   - platform: numeric_state
     entity_id:
       - sensor.co2_statistics_15m
+    above: 0
   condition: 
   - condition: numeric_state
     entity_id: sensor.co2_statistics_15m
