@@ -5,13 +5,21 @@
       minutes: "/5"
   condition:
     - and:
-      - condition: state
-        # clear weersomstandigheden
-        entity_id: weather.buienradar
-        state: 
-          - "clear"
-          - "partly_cloudy"
-          - "sunny"
+      - condition: and
+        conditions:
+        - condition: state
+          # clear weersomstandigheden
+          entity_id: weather.buienradar
+          state: 
+            - "clear"
+            - "partly_cloudy"
+            - "sunny"
+        - condition: state
+          entity_id: weather.knmi_thuis
+          state:
+            - "sunny"
+            - "clear"
+            - "partly_cloudy"
       - condition: numeric_state
         # elevation boven x
         entity_id: sun.sun
