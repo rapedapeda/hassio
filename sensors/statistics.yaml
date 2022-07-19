@@ -1,16 +1,16 @@
 - platform: statistics
   name: Luchtvochtigheid badkamer (statistics)
   entity_id: sensor.luchtvochtigheid_badkamer
-  sampling_size: 20
+  sampling_size: 100
   max_age:
-    hours: 8
+    hours: 12
 
 - platform: statistics
   name: Luchtvochtigheid slaapkamer (statistics)
   entity_id: sensor.luchtvochtigheid_slaapkamer
-  sampling_size: 20
+  sampling_size: 100
   max_age:
-    hours: 8
+    hours: 12
 
 - platform: statistics
   name: CO2 statistics 15m
