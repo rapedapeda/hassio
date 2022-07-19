@@ -3,14 +3,19 @@
   alias: Ventilatie boost aan (luchtvochtigheid badkamer)
   mode: parallel
   trigger:
-  - platform: numeric_state
-    entity_id:
-      - sensor.luchtvochtigheid_badkamer
-    above: 0
+  - platform: event
+    event_type: state_changed
   condition: 
-  - condition: template
-    # Afwijking ten opzichte van gemiddelde waarde
-    value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float > 0.2 }}"
+  - condition: and
+    conditions:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('sensor.luchtvochtigheid_badkamer') 
+        }}  
+    - condition: template
+      # Afwijking ten opzichte van gemiddelde waarde
+      value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float > 0.2 }}"
   action:
     service: fan.set_percentage
     target:
@@ -22,14 +27,19 @@
   alias: Ventilatie boost uit (luchtvochtigheid badkamer)
   mode: parallel
   trigger:
-  - platform: numeric_state
-    entity_id:
-      - sensor.luchtvochtigheid_badkamer
-    above: 0
+  - platform: event
+    event_type: state_changed
   condition: 
-  - condition: template
-    # Afwijking ten opzichte van gemiddelde waarde
-    value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < 0.1 }}"
+  - condition: and
+    conditions:
+    - condition: template
+      value_template: >
+        {{
+          trigger.event.data.entity_id.startswith('sensor.luchtvochtigheid_badkamer') 
+        }}  
+    - condition: template
+      # Afwijking ten opzichte van gemiddelde waarde
+      value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < 0.1 }}"
   action:
     service: fan.set_percentage
     target:
