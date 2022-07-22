@@ -27,7 +27,7 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.beweging_slaapkamer_licht')|float > states('input_number.esp_slaapkamer_lichtsensor_threshold')|float }}
+        {{ states('sensor.beweging_slaapkamer_licht')|float > states('input_number.lichtsensor_drempelwaarde_slaapkamer')|float }}
 
 # Bed status (leeg of niet-leeg)        
 - platform: template
