@@ -1,0 +1,14 @@
+# Per kamer
+
+lichtsensor_drempelwaarde_woonkamer:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 25
+lichtsensor_drempelwaarde_slaapkamer:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 25
+
+
