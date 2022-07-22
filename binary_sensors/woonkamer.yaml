@@ -12,7 +12,7 @@
         {{ ({ "minutes": states('input_number.kamers_aanwezigheid_woonkamer') }) }}
       value_template: >-
           {{
-              is_state('group.beweging_woonkamer', 'on')
+              is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on')
           }}
 
 # Lichtstatus
@@ -26,4 +26,4 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.licht_woonkamer')|float > states('input_number.esp_woonkamer_lichtsensor_threshold')|float }}
+        {{ states('sensor.licht_woonkamer')|float > states('input_number.woonkamer_lichtsensor_drempel')|float }}
