@@ -7,6 +7,8 @@ include:
     - sensor.shellyplug_power
     - sensor.shellyplug_energy
     - weather.buienradar
+    - weather.knmi_thuis
+    - sun.sun
   entity_globs:
     - sensor.p1_*
     - sensor.luchtvochtigheid_*
