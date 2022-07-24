@@ -5,7 +5,7 @@
       minutes: "/5"
   condition:
     - and:
-      - condition: and
+      - condition: or
         conditions:
         - condition: state
           # clear weersomstandigheden
@@ -19,7 +19,7 @@
           state:
             - "sunny"
             - "clear"
-            - "partly_cloudy"
+            - "partlycloudy"
       - condition: numeric_state
         # elevation boven x
         entity_id: sun.sun
