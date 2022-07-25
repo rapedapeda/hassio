@@ -14,7 +14,7 @@
 # Overloop eerste
 - platform: template
   sensors:
-    aanwezigheid_overloop_eerste:
+    aanwezigheid_overloopeerste:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
       delay_off: >-
@@ -26,7 +26,7 @@
 # Overloop tweede
 - platform: template
   sensors:
-    aanwezigheid_overloop_tweede:
+    aanwezigheid_overlooptweede:
       friendly_name: "Aanwezigheid"
       device_class: occupancy
       delay_off: >-
