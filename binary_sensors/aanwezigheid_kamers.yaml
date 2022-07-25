@@ -18,10 +18,10 @@
       friendly_name: "Aanwezigheid"
       device_class: occupancy
       delay_off: >-
-        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overloop_eerste') }) }}
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overloopeerste') }) }}
       value_template: >-
           {{
-              is_state('binary_sensor.group_aanwezigheid_overloop_eerste', 'on')
+              is_state('binary_sensor.group_aanwezigheid_overloopeerste', 'on')
           }}
 # Overloop tweede
 - platform: template
@@ -30,10 +30,10 @@
       friendly_name: "Aanwezigheid"
       device_class: occupancy
       delay_off: >-
-        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overloop_tweede') }) }}
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overlooptweede') }) }}
       value_template: >-
           {{
-              is_state('binary_sensor.group_aanwezigheid_overloop_tweede', 'on')
+              is_state('binary_sensor.group_aanwezigheid_overlooptweede', 'on')
           }}
 #Slaapkamer
 - platform: template

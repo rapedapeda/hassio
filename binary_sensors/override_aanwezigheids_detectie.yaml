@@ -26,12 +26,12 @@
         {% endif %}
 - platform: template
   sensors:
-    overloop_eerste_aanwezigheid_detectie:
+    overloopeerste_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
       value_template: 'on'
 - platform: template
   sensors:
-    overloop_tweede_aanwezigheid_detectie:
+    overlooptweede_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
       value_template: 'on'
 - platform: template

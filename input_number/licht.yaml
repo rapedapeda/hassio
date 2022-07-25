@@ -10,12 +10,12 @@ lichtsensor_drempelwaarde_hal:
   min: 0
   max: 200
   step: 10
-lichtsensor_drempelwaarde_overloop_eerste:
+lichtsensor_drempelwaarde_overloopeerste:
   name: Drempelwaarde
   min: 0
   max: 200
   step: 10
-lichtsensor_drempelwaarde_overloop_tweede:
+lichtsensor_drempelwaarde_overlooptweede:
   name: Drempelwaarde
   min: 0
   max: 200

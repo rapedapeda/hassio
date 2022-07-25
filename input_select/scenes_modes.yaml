@@ -23,7 +23,7 @@ kamer_scene_hal:
     - Gedimd
     - Normaal
     - Vol
-kamer_scene_overloop_eerste:
+kamer_scene_overloopeerste:
   name: Scene
   icon: mdi:door-closed
   options:
@@ -31,7 +31,7 @@ kamer_scene_overloop_eerste:
     - Gedimd
     - Normaal
     - Vol
-kamer_scene_overloop_tweede:
+kamer_scene_overlooptweede:
   name: Scene
   icon: mdi:door-closed
   options:

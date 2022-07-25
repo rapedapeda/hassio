@@ -26,7 +26,7 @@
 #Hal
 - platform: template
   sensors:
-    overloop_eerste_lichtstatus:
+    overloopeerste_lichtstatus:
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
@@ -38,7 +38,7 @@
 #Hal
 - platform: template
   sensors:
-    overloop_tweede_lichtstatus:
+    overlooptweede_lichtstatus:
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:

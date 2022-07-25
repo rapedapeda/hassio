@@ -10,13 +10,13 @@ kamers_aanwezigheid_hal:
   max: 15
   step: 1
   unit_of_measurement: 'min'
-kamers_aanwezigheid_overloop_eerste:
+kamers_aanwezigheid_overloopeerste:
   name: Vertraging uit
   min: 0
   max: 15
   step: 1
   unit_of_measurement: 'min'
-kamers_aanwezigheid_overloop_tweede:
+kamers_aanwezigheid_overlooptweede:
   name: Vertraging uit
   min: 0
   max: 15

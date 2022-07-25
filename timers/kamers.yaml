@@ -7,6 +7,12 @@ slaapkamer:
 hal:
   name: Timer
   duration: '00:00:30'
+overloopeerste:
+  name: Timer
+  duration: '00:00:30'
+overlooptweede:
+  name: Timer
+  duration: '00:00:30'
 badkamer:
   name: Timer
   duration: '00:03:00'

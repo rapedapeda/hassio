@@ -11,6 +11,12 @@ geen_detectie_hal:
   name: Geen aanwezigheidsdetectie
   entities:
     - input_boolean.scene_special_wolf_in_bed
+geen_detectie_overloopeerste:
+  name: Geen aanwezigheidsdetectie
+  entities: []
+geen_detectie_overlooptweede:
+  name: Geen aanwezigheidsdetectie
+  entities: []
 geen_detectie_badkamer:
   name: Geen aanwezigheidsdetectie
   entities: []
