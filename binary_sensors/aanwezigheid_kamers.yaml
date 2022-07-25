@@ -1,15 +1,5 @@
 ######## Aanwezigheidssensoren voor kamers
-- platform: template
-  sensors:
-    aanwezigheid_hal:
-      friendly_name: "Aanwezigheid"
-      device_class: occupancy
-      delay_off: >-
-        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_hal') }) }}
-      value_template: >-
-          {{
-              is_state('group.beweging_hal', 'on')
-          }}
+# Badkamer
 - platform: template
   sensors:
     aanwezigheid_badkamer:
@@ -20,4 +10,53 @@
       value_template: >-
           {{ 
               is_state('group.beweging_badkamer', 'on')
+          }}
+# Overloop eerste
+- platform: template
+  sensors:
+    aanwezigheid_overloop_eerste:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overloop_eerste') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.group_aanwezigheid_overloop_eerste', 'on')
+          }}
+# Overloop tweede
+- platform: template
+  sensors:
+    aanwezigheid_overloop_tweede:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_overloop_tweede') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.group_aanwezigheid_overloop_tweede', 'on')
+          }}
+#Slaapkamer
+- platform: template
+  sensors:
+    aanwezigheid_slaapkamer:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_slaapkamer') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.group_aanwezigheid_slaapkamer', 'on') or
+              not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
+          }}
+# Woonkamer
+- platform: template
+  sensors:
+    aanwezigheid_woonkamer:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_woonkamer') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on')
           }}

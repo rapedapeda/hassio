@@ -1,0 +1,19 @@
+- name: overloop_tweede_uit
+  entities:
+    light.overloop_tweede_plafond:
+      state: 'off'
+- name: overloop_tweede_normaal
+  entities:
+    light.overloop_tweede_plafond:
+      state: 'on'
+      brightness: 125
+- name: overloop_tweede_vol
+  entities:
+    light.overloop_tweede_plafond:
+      state: 'on'
+      brightness: 255
+- name: overloop_tweede_gedimd
+  entities:
+    light.overloop_tweede_plafond:
+      state: 'on'
+      brightness: 10

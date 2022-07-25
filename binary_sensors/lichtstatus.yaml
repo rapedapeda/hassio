@@ -1,0 +1,39 @@
+########### Lichtstatus
+#Slaapkamer
+- platform: template
+  sensors:
+    slaapkamer_lichtstatus:
+      friendly_name: "Lichtstatus"
+      device_class: light
+      delay_on:
+        minutes: 5
+      delay_off:
+        minutes: 5
+      value_template: >-
+        {{ states('sensor.beweging_slaapkamer_licht')|float > states('input_number.lichtsensor_drempelwaarde_slaapkamer')|float }}
+#Hal
+- platform: template
+  sensors:
+    hal_lichtstatus:
+      friendly_name: "Lichtstatus"
+      device_class: light
+      delay_on:
+        minutes: 5 
+      delay_off:
+        minutes: 5
+      value_template: >-
+        {{ states('sensor.licht_woonkamer')|float > states('input_number.lichtsensor_drempelwaarde_hal')|float }}
+
+
+#Woonkamer
+- platform: template
+  sensors:
+    woonkamer_lichtstatus:
+      friendly_name: "Lichtstatus"
+      device_class: light
+      delay_on:
+        minutes: 5 
+      delay_off:
+        minutes: 5
+      value_template: >-
+        {{ states('sensor.licht_woonkamer')|float > states('input_number.lichtsensor_drempelwaarde_woonkamer')|float }}

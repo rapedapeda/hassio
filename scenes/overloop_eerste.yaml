@@ -1,0 +1,19 @@
+- name: overloop_eerste_uit
+  entities:
+    light.overloop_eerste_plafond:
+      state: 'off'
+- name: overloop_eerste_normaal
+  entities:
+    light.overloop_eerste_plafond:
+      state: 'on'
+      brightness: 125
+- name: overloop_eerste_vol
+  entities:
+    light.overloop_eerste_plafond:
+      state: 'on'
+      brightness: 255
+- name: overloop_eerste_gedimd
+  entities:
+    light.overloop_eerste_plafond:
+      state: 'on'
+      brightness: 10

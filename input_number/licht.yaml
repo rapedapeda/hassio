@@ -4,11 +4,26 @@ lichtsensor_drempelwaarde_woonkamer:
   name: Drempelwaarde
   min: 0
   max: 200
-  step: 25
+  step: 10
+lichtsensor_drempelwaarde_hal:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 10
+lichtsensor_drempelwaarde_overloop_eerste:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 10
+lichtsensor_drempelwaarde_overloop_tweede:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 10
 lichtsensor_drempelwaarde_slaapkamer:
   name: Drempelwaarde
   min: 0
   max: 200
-  step: 25
+  step: 10
 
 
