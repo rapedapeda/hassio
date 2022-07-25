@@ -26,6 +26,16 @@
         {% endif %}
 - platform: template
   sensors:
+    overloop_eerste_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: 'on'
+- platform: template
+  sensors:
+    overloop_tweede_aanwezigheid_detectie:
+      friendly_name: "Aanwezigheidsdetectie"
+      value_template: 'on'
+- platform: template
+  sensors:
     badkamer_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
       value_template: >-
