@@ -7,6 +7,12 @@ verlichting_slaapkamer:
 verlichting_hal:
   name: Hal
   icon: mdi:door-closed
+verlichting_overloop_eerste:
+  name: Overloop eerste
+  icon: mdi:door-closed
+verlichting_overloop_tweede:
+  name: Overloop tweede
+  icon: mdi:door-closed
 verlichting_badkamer:
   name: Badkamer
   icon: mdi:shower
