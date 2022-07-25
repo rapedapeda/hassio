@@ -23,6 +23,22 @@ kamer_scene_hal:
     - Gedimd
     - Normaal
     - Vol
+kamer_scene_overloop_eerste:
+  name: Scene
+  icon: mdi:door-closed
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
+kamer_scene_overloop_tweede:
+  name: Scene
+  icon: mdi:door-closed
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
 kamer_scene_badkamer:
   name: Scene
   icon: mdi:shower
