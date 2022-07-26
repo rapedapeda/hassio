@@ -13,13 +13,13 @@ lichtsensor_drempelwaarde_hal:
 lichtsensor_drempelwaarde_overloopeerste:
   name: Drempelwaarde
   min: 0
-  max: 200
-  step: 10
+  max: 100
+  step: 5
 lichtsensor_drempelwaarde_overlooptweede:
   name: Drempelwaarde
   min: 0
-  max: 200
-  step: 10
+  max: 100
+  step: 5
 lichtsensor_drempelwaarde_slaapkamer:
   name: Drempelwaarde
   min: 0
