@@ -28,12 +28,22 @@
   sensors:
     overloopeerste_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
-      value_template: 'on'
+      value_template: >-
+          {% if is_state('binary_sensor.overloopeerste_lichtstatus','on') %}
+          Off
+          {% else %}
+          On
+          {% endif %}
 - platform: template
   sensors:
     overlooptweede_aanwezigheid_detectie:
       friendly_name: "Aanwezigheidsdetectie"
-      value_template: 'on'
+      value_template: >-
+          {% if is_state('binary_sensor.overlooptweede_lichtstatus','on') %}
+          Off
+          {% else %}
+          On
+          {% endif %}
 - platform: template
   sensors:
     badkamer_aanwezigheid_detectie:
