@@ -7,7 +7,16 @@
     entity_id:
       - sensor.co2_statistics_5m
     above: 1000
-  condition: []    
+  condition: 
+  - alias: "Ventilatie moet op auto staan"
+    condition: state
+    entity_id: fan.wtw
+    attribute: preset_mode
+    state: auto
+  - alias: "Ventilatie moet aan staan"
+    condition: state
+    entity_id: fan.wtw
+    state: on
   action:
     service: fan.set_percentage
     target:
@@ -23,7 +32,16 @@
     entity_id:
       - sensor.co2_statistics_5m
     below: 800
-  condition: []  
+  condition:
+  - alias: "Ventilatie moet op auto staan"
+    condition: state
+    entity_id: fan.wtw
+    attribute: preset_mode
+    state: auto
+  - alias: "Ventilatie moet aan staan"
+    condition: state
+    entity_id: fan.wtw
+    state: on
   action:
     service: fan.set_percentage
     target:

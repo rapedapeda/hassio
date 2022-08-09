@@ -1,0 +1,15 @@
+- id: ventilatie_preset_boost
+  alias: Ventilatie boost handmatig
+  mode: parallel
+  trigger:
+  - platform: state
+    entity_id: fan.wtw
+    attribute: preset_mode
+    to: boost
+  condition: []    
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: 66

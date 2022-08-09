@@ -16,6 +16,15 @@
     - condition: template
       # Afwijking ten opzichte van gemiddelde waarde
       value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float > 0.2 }}"
+    - alias: "Ventilatie moet op auto staan"
+      condition: state
+      entity_id: fan.wtw
+      attribute: preset_mode
+      state: auto
+    - alias: "Ventilatie moet aan staan"
+      condition: state
+      entity_id: fan.wtw
+      state: on
   action:
     service: fan.set_percentage
     target:
@@ -40,6 +49,15 @@
     - condition: template
       # Afwijking ten opzichte van gemiddelde waarde
       value_template: "{{ ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < 0.1 }}"
+    - alias: "Ventilatie moet op auto staan"
+      condition: state
+      entity_id: fan.wtw
+      attribute: preset_mode
+      state: auto
+    - alias: "Ventilatie moet aan staan"
+      condition: state
+      entity_id: fan.wtw
+      state: on
   action:
     service: fan.set_percentage
     target:

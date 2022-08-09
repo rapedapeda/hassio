@@ -1,0 +1,9 @@
+wtw_set_preset_mode:
+  alias: Ventilatie set preset mode
+  icon: mdi:arrow-right
+  sequence:
+  - service: fan.set_preset_mode
+    target:
+      entity_id: fan.wtw
+    data:
+      preset_mode: {{ preset_mode}}
