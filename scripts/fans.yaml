@@ -6,4 +6,4 @@ wtw_set_preset_mode:
     target:
       entity_id: fan.wtw
     data_template:
-      preset_mode: "{{ preset_mode }}""
+      preset_mode: "{{ preset_mode }}"
