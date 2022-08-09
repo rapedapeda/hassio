@@ -30,7 +30,7 @@
                 switch.wtw_0
               {% endif %}
         set_preset_mode:
-          service: script.fans_set_preset_mode
+          service: script.wtw_set_preset_mode
           data:
             preset_mode: "{{ preset_mode }}"
         speed_count: 3
