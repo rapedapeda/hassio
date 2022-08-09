@@ -20,11 +20,11 @@
       condition: state
       entity_id: fan.wtw
       attribute: preset_mode
-      state: auto
+      state: "auto"
     - alias: "Ventilatie moet aan staan"
       condition: state
       entity_id: fan.wtw
-      state: on
+      state: "on"
   action:
     service: fan.set_percentage
     target:
@@ -53,11 +53,11 @@
       condition: state
       entity_id: fan.wtw
       attribute: preset_mode
-      state: auto
+      state: "auto"
     - alias: "Ventilatie moet aan staan"
       condition: state
       entity_id: fan.wtw
-      state: on
+      state: "on"
   action:
     service: fan.set_percentage
     target:
