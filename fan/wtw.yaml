@@ -3,7 +3,7 @@
       wtw:
         unique_id: wtwinstallatie
         friendly_name: "Ventilatie"
-        value_template: "{{ 'off' if is_state('switch.wtw_1', 'on') else 'on' }}"
+        value_template: "{{ 'off' if is_state('switch.wtw_0', 'on') else 'on' }}"
         #preset_mode_template: "{{ states('input_select.wtw_preset') }}"
         percentage_template: "{{ states('input_number.wtw_percentage') }}"
         turn_on:
