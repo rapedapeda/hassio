@@ -1,4 +1,5 @@
 wtw_set_preset_mode:
+  mode: parallel
   alias: Ventilatie set preset mode
   icon: mdi:arrow-right
   sequence:
