@@ -3,9 +3,8 @@
   mode: parallel
   trigger:
   - platform: state
-    entity_id: fan.wtw
-    attribute: preset_mode
-    to: boost
+    entity_id: input_select.ventilatie_preset_mode
+    to: "boost"
   condition: []    
   action:
     service: fan.set_percentage
