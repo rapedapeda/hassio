@@ -9,6 +9,8 @@ include:
     - weather.buienradar
     - weather.knmi_thuis
     - sun.sun
+    - cover.zonnescherm
+    - fan.wtw
   entity_globs:
     - sensor.p1_*
     - sensor.luchtvochtigheid_*
