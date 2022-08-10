@@ -1,5 +1,26 @@
+
 - id: ventilatie_preset_boost
-  alias: Ventilatie boost handmatig
+  alias: Ventilatie boost wordt aan- of uitgezet
+  mode: parallel
+  trigger:
+  - platform: state
+    entity_id: input_boolean.fan_boost
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.ventilatie_preset_mode
+    data:
+      option: >-
+        {% if is_state('input_boolean.fan_boost','on') %}
+          boost
+        {% else %}
+          auto
+        {% endif %}
+
+
+- id: ventilatie_preset_boost_activeren
+  alias: Ventilatie boost-stand activeren
   mode: parallel
   trigger:
   - platform: state
