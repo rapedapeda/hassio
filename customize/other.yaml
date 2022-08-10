@@ -5,3 +5,6 @@ person.ramon:
 
 vacuum.rockrobo:
   friendly_name: Stofzuiger
+
+fan.wtw:
+  speed_list: [ "auto", "boost"]
