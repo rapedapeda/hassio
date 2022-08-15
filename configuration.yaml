@@ -121,13 +121,15 @@ recorder:
       - sensor.shellyplug_power
       - binary_sensor.drinkbak
       - switch.drinkbak
+      - sensor.co2
+      - sensor.irradiance
     entity_globs:
       - sensor.p1_*
       - sensor.luchtvochtigheid_*
       - sensor.temperatuur_*
       - sensor.luchtdruk_*
       - sensor.licht_*
-      - sensor.co2*
+
 
 telegram_bot:
   - platform: polling

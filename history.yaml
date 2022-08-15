@@ -6,6 +6,7 @@ include:
     - switch.drinkbak
     - sensor.shellyplug_power
     - sensor.shellyplug_energy
+    - sensor.irradiance
     - weather.buienradar
     - weather.knmi_thuis
     - sun.sun
