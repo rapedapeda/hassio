@@ -19,7 +19,7 @@
       to:  on
   action:
   - service: >
-      {% if states('group.aanwezigheid_personen') == 'home' %}
+      {% if (states('group.aanwezigheid_personen') == 'home' or states('group.aanwezigheid_personen') == 'on') %}
         input_boolean.turn_on
       {% else %}
         input_boolean.turn_off
