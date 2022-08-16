@@ -7,3 +7,6 @@ aanwezigheid_personen:
     - person.ramon
     - person.flore
 #    - person.sissel
+    # Deze zijn specifiek voor HomeKit met automations in iOS Home App
+    - input_boolean.tracker_homekit_ramon
+    - input_boolean.tracker_homekit_flore
