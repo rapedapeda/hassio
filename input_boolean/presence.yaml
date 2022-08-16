@@ -1,3 +1,11 @@
 presence_status:
   name: Aanwezigheid
   icon: mdi:home-account
+
+tracker_homekit_flore:
+  name: Homekit tracker Flore
+  icon: mdi:face-woman
+
+tracker_homekit_ramon:
+  name: Homekit tracker Ramon
+  icon: mdi:face-man
