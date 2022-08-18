@@ -1,46 +1,17 @@
-- id: zonwering_zonnescherm
-  alias: Zonwering tuin automatisch open
+- id: zonwering_achterkant
+  alias: Zonwering achterkant open
   trigger: 
-    - platform: time_pattern
-      minutes: "/5"
+    - platform: state
+      entity_id:
+        - binary_sensor.zonwering_nodig
+        - binary_sensor.zon_achterkant
+      to: 'on'
   condition:
-    - and:
-      - condition: or
-        conditions:
-        - condition: state
-          # clear weersomstandigheden
-          entity_id: weather.buienradar
-          state: 
-            - "clear"
-            - "partly_cloudy"
-            - "sunny"
-        - condition: state
-          entity_id: weather.knmi_thuis
-          state:
-            - "sunny"
-            - "clear"
-            - "partlycloudy"
-      - condition: numeric_state
-        # elevation boven x
-        entity_id: sun.sun
-        attribute: elevation
-        above: 15
-      - condition: numeric_state
-        # zon vanaf positie
-        entity_id: sun.sun
-        attribute: azimuth
-        above: 63
-      - condition: numeric_state
-        # zon tot positie
-        entity_id: sun.sun
-        attribute: azimuth
-        below: 197
-      - condition: numeric_state
-        # temperature > 16 graden
-        entity_id: sensor.buienradar_temperature
-        above: 15
-     # - # binnentemperatuur hoger dan 21 graden
-     # - irradiance > X (want zomer?)
+    - condition: state
+      entity_id:
+        - binary_sensor.zonwering_nodig
+        - binary_sensor.zon_achterkant
+      state: 'on'
   action:
     # open cover
     - service: cover.open_cover
