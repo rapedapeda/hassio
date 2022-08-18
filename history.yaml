@@ -19,4 +19,5 @@ include:
     - sensor.luchtdruk_*
     - sensor.licht_*
     - sensor.co2*
+    - binary_sensor.zon*
 
