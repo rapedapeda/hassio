@@ -2,26 +2,31 @@
 # Deze worden gebruikt om de "zonwering nodig"-sensor te vertragen
 zonwering_nodig_delay_on:
   name: Vertraging aan
+  icon: mdi:timer-outline
   min: 0
   max: 60
   step: 1
 zonwering_nodig_delay_off:
   name: Vertraging uit
+  icon: mdi:timer-off-outline
   min: 0
   max: 60
   step: 1 
 zonwering_irradiance_threshold:
   name: Zonnekracht
+  icon: mdi:sun-wireless-outline
   min: 0
   max: 1000
   step: 10
 zonwering_binnentemperatuur_threshold:
   name: Binnentemperatuur
+  icon: mdi:home-thermometer-outline
   min: 18
   max: 30
   step: 1
 zonwering_buitentemperatuur_threshold:
   name: Buitentemperatuur
+  icon: mdi:home-thermometer
   min: 10
   max: 30
   step: 1
