@@ -1,21 +1,21 @@
 - platform: template
   sensors:
-    zomermaanden:
-      friendly_name: Zomermaanden
+    zomermaand:
+      friendly_name: Zomermaand
       value_template: "{{ 3 < now().month < 11 }}"
 
 # Is het nodig zonwering in te schakelen?
 - platform: template
   sensors:
-    zonwering_nodig:
-      friendly_name: "Zonwering vanwege weer"
+    zonweringweer:
+      friendly_name: "Zonweringweer"
       delay_on: >-
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_on') }) }}
       delay_off: >-
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_off') }) }}
       value_template: >-
         {{ 
-            is_state('binary_sensor.zomermaanden', 'on')
+            is_state('binary_sensor.zomermaand', 'on')
             and
             states('sensor.delft_today_max') >= states('input_number.zonwering_buitentemperatuur_threshold')
             and
@@ -27,7 +27,7 @@
 - platform: template
   sensors:
     zon_achterkant:
-      friendly_name: "Zonwering zonstand achter"
+      friendly_name: "Zon achterkant huis"
       value_template: >-
         {{
           state_attr("sun.sun", "elevation") > 15
@@ -40,7 +40,7 @@
 - platform: template
   sensors:
     zon_voorkant:
-      friendly_name: "Zonwering zonstand achter"
+      friendly_name: "Zon voorkant huis"
       value_template: >-
         {{
           state_attr("sun.sun", "elevation") > 10
