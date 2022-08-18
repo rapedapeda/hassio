@@ -24,16 +24,16 @@
     delft_today_max:
       friendly_name: "Maximum temperatuur"
       unit_of_measurement: '°C'
-      value_template: "{{ states('input_number.delft_today_max') }}"
+      value_template: "{{ int(states('input_number.delft_today_max')) }}"
 - platform: template
   sensors:
     delft_today_rain:
       friendly_name: "Regenkans vandaag"
       unit_of_measurement: '%'
-      value_template: "{{ states('input_number.delft_today_rain') }}"
+      value_template: "{{ int(states('input_number.delft_today_rain')) }}"
 - platform: template
   sensors:
     delft_today_wind:
       friendly_name: "Windkracht vandaag"
       unit_of_measurement: 'Bft'
-      value_template: "{{ states('input_number.delft_today_wind') }}"
+      value_template: "{{ int(states('input_number.delft_today_wind')) }}"
