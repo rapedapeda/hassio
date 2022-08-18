@@ -1,0 +1,45 @@
+
+# Deze worden gebruikt om de "zonwering nodig"-sensor te vertragen
+zonwering_nodig_delay_on:
+  name: Vertraging aan
+  min: 0
+  max: 60
+  step: 1
+zonwering_nodig_delay_off:
+  name: Vertraging uit
+  min: 0
+  max: 60
+  step: 1 
+zonwering_irradiance_threshold:
+  name: Zonnekracht
+  min: 0
+  max: 1000
+  step: 10
+zonwering_binnentemperatuur_threshold:
+  name: Binnentemperatuur
+  min: 18
+  max: 30
+  step: 1
+zonwering_buitentemperatuur_threshold:
+  name: Buitentemperatuur
+  min: 10
+  max: 30
+  step: 1
+
+
+# Hierin wordt de max temperatuur opgeslagen
+delft_today_max:
+  name: Temperatuur
+  min: -20
+  max: 60
+  step: 1
+delft_today_rain:
+  name: Regen
+  min: 0
+  max: 100
+  step: 1
+delft_today_wind:
+  name: Wind
+  min: 0
+  max: 15
+  step: 1
