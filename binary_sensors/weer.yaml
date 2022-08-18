@@ -16,7 +16,7 @@
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_off') }) }}
       value_template: >-
         {{ 
-            states('binary_sensor.zomermaanden' == "on")
+            is_state('binary_sensor.zomermaanden', 'on')
             and
             states('sensor.delft_today_max') >= states('input_number.zonwering_buitentemperatuur_threshold')
             and
