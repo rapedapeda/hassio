@@ -10,12 +10,11 @@
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_off') }) }}
       value_template: >-
         {{ 
-          and(
             states('sensor.delft_today_max') >= states('input_number.zonwering_buitentemperatuur_threshold')
             and
             states('sensor.irradiance') >= states('input_number.zonwering_irradiance_threshold')
             and
             states('sensor.temperatuur_woonkamer') >= states('input_number.zonwering_binnentemperatuur_threshold')
-          )
+          
           
         }}
