@@ -1,0 +1,33 @@
+- id: opnemen_aan
+  alias: Opname aan (beweging)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.camera_achter_smart_motion_human
+        - binary_sensor.camera_achter_motion_alarm
+      to: 'on'
+  condition:
+    - not:
+      - condition: state
+        entity_id: alarm_control_panel.huis
+        state: disarmed
+  action:
+    # start opname
+    - service: shell_command.camera_1_start_recording
+
+- id: opnemen_uit
+  alias: Opname uit (beweging)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.camera_achter_smart_motion_human
+        - binary_sensor.camera_achter_motion_alarm
+      to: 'off'
+  condition:
+    - not:
+      - condition: state
+        entity_id: alarm_control_panel.huis
+        state: disarmed
+  action:
+    # start opname
+    - service: shell_command.camera_1_stop_recording
