@@ -17,6 +17,7 @@ frontend:
   themes: 
     default:
       header-height: 44px
+media_source:
 mobile_app:
 person:
 #ssdp: used for discovery
@@ -38,7 +39,6 @@ homeassistant:
   customize: !include_dir_merge_named customize/
   unit_system: metric
   time_zone: Europe/Amsterdam
-  media_source:
   media_dirs:
     opnames: /share/Opnames
 
