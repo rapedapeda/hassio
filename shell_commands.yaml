@@ -1,2 +1,2 @@
-camera_1_start_recording: curl "http://localhost:7999/1/config/set?emulate_motion=1
-camera_1_stop_recording: curl "http://localhost:7999/1/config/set?emulate_motion=0
+camera_1_start_recording: curl "http://homeassistant.lan:7999/1/config/set?emulate_motion=1
+camera_1_stop_recording: curl "http://homeassistant.lan:7999/1/config/set?emulate_motion=0
