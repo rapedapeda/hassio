@@ -87,7 +87,10 @@ logger:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     custom_components.localtuya: debug
-    
+  
+  media_dirs:
+    opnames: /share/Opnames
+
 notify:
   - platform: telegram
     name: telegram
