@@ -38,6 +38,8 @@ homeassistant:
   customize: !include_dir_merge_named customize/
   unit_system: metric
   time_zone: Europe/Amsterdam
+  media_dirs:
+    opnames: /share/Opnames
 
 alarm_control_panel:
   - platform: manual
@@ -87,9 +89,7 @@ logger:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     custom_components.localtuya: debug
-  
-media_dirs:
-  opnames: /share/Opnames
+
 
 notify:
   - platform: telegram
