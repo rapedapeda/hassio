@@ -40,7 +40,7 @@
         {% if is_state("input_boolean.fan_boost", "on") -%}
         66
         {% elif is_state("input_boolean.fan_slaapstand", "on") -%}
-        0
+        1
         {% else %}
         33
         {% endif %}
