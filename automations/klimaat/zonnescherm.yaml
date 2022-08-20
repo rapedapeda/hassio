@@ -3,18 +3,16 @@
   trigger: 
     - platform: state
       entity_id:
-        - binary_sensor.zonwering_nodig
+        - binary_sensor.zonweringweer
         - binary_sensor.zon_achterkant
       to: 'on'
   condition:
     - condition: state
       entity_id:
-        - binary_sensor.zonwering_nodig
+        - binary_sensor.zonweringweer
         - binary_sensor.zon_achterkant
       state: 'on'
   action:
     # open cover
     - service: cover.open_cover
       entity_id: cover.zonnescherm
-
-
