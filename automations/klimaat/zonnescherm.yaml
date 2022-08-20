@@ -1,4 +1,4 @@
-- id: zonwering_achterkant
+- id: zonwering_achterkant_open
   alias: Zonwering achterkant open
   trigger: 
     - platform: state
@@ -15,4 +15,18 @@
   action:
     # open cover
     - service: cover.open_cover
+      entity_id: cover.zonnescherm
+
+- id: zonwering_achterkant_dicht
+  alias: Zonwering achterkant dicht
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.zonweringweer
+        - binary_sensor.zon_achterkant
+      to: 'off'
+  condition: []
+  action:
+    # sluit cover
+    - service: cover.close_cover
       entity_id: cover.zonnescherm
