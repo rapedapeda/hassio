@@ -50,10 +50,7 @@
       entity_id:
         - input_boolean.camera_1_neemt_op
       to: 'off'
-  condition:
-    - condition: state
-      entity_id: input_boolean.camera_1_neemt_op
-      state: 'on'
+  condition: []
   action:
     # start opname
     - service: shell_command.camera_1_stop_recording
