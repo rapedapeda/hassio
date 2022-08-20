@@ -11,9 +11,12 @@
       - condition: state
         entity_id: alarm_control_panel.huis
         state: disarmed
+    - condition: state
+      entity_id: input_boolean.camera_1_neemt_op
+      state: 'off'
   action:
-    # start opname
-    - service: shell_command.camera_1_start_recording
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.camera_1_neemt_op
 
 - id: opnemen_uit
   alias: Opname uit (beweging)
@@ -23,11 +26,34 @@
         - binary_sensor.camera_achter_smart_motion_human
         - binary_sensor.camera_achter_motion_alarm
       to: 'off'
+  condition: []
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.camera_1_neemt_op
+
+- id: camera_start_opname
+  alias: Camera start opname
+  trigger: 
+    - platform: state
+      entity_id:
+        - input_boolean.camera_1_neemt_op
+      to: 'on'
+  condition: []
+  action:
+    # start opname
+    - service: shell_command.camera_1_start_recording
+
+- id: camera_stop_opname
+  alias: Camera stop opname
+  trigger: 
+    - platform: state
+      entity_id:
+        - input_boolean.camera_1_neemt_op
+      to: 'off'
   condition:
-    - not:
-      - condition: state
-        entity_id: alarm_control_panel.huis
-        state: disarmed
+    - condition: state
+      entity_id: input_boolean.camera_1_neemt_op
+      state: 'on'
   action:
     # start opname
     - service: shell_command.camera_1_stop_recording
