@@ -114,8 +114,6 @@ recorder:
   include:
     domains:
       - person
-      - input_boolean
-      - binary_sensor
     entities:
       - sensor.cpu_temperatuur
       - sensor.disk_use_percent
