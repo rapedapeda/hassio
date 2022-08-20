@@ -36,4 +36,4 @@
         speed_count: 3
         preset_modes:
           - 'auto'
-          - 'boost'
+          - 'handmatig'

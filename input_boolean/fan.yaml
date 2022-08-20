@@ -1,3 +1,6 @@
 fan_boost:
   name: Boost
   icon: mdi:fan
+fan_slaapstand:
+  name: Slaapstand
+  icon: mdi:fan

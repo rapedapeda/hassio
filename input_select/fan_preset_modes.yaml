@@ -3,5 +3,5 @@ ventilatie_preset_mode:
   icon: mdi:fan
   options:
     - auto
-    - boost
+    - handmatig
   initial: auto

@@ -1,10 +1,12 @@
 
-- id: ventilatie_preset_boost
-  alias: Ventilatie boost wordt aan- of uitgezet
+- id: ventilatie_preset_
+  alias: Ventilatiepreset handmatig aan- of uitgezet
   mode: parallel
   trigger:
   - platform: state
-    entity_id: input_boolean.fan_boost
+    entity_id: 
+      - input_boolean.fan_boost
+      - input_boolean.fan_slaapstand
   condition: []
   action:
   - service: input_select.select_option
@@ -12,24 +14,33 @@
       entity_id: input_select.ventilatie_preset_mode
     data:
       option: >-
-        {% if is_state('input_boolean.fan_boost','on') %}
-          boost
+        {% if is_state('input_boolean.fan_boost','on') or 
+        is_state('input_boolean.fan_slaapstand','on') %}
+          handmatig
         {% else %}
           auto
         {% endif %}
 
-
-- id: ventilatie_preset_boost_activeren
-  alias: Ventilatie boost-stand activeren
+- id: ventilatie_handmatige_preset_activeren
+  alias: Ventilatie preset activeren bij fan
   mode: parallel
   trigger:
   - platform: state
     entity_id: input_select.ventilatie_preset_mode
-    to: "boost"
-  condition: []    
+  condition: 
+    - condition: state
+      entity_id: input_select.ventilatie_preset_mode
+      state: "handmatig"
   action:
     service: fan.set_percentage
     target:
       entity_id: fan.wtw
     data:
-      percentage: 66
+      percentage: ->
+        {% if is_state("input_boolean.fan_boost", "on") -%}
+        66
+        {% elif is_state("input_boolean.fan_slaapstand", "on") -%}
+        0
+        {% else %}
+        33
+        {% endif %}
