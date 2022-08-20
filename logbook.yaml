@@ -10,3 +10,6 @@ include:
     - switch.drinkbak
     - binary_sensor.drinkbak
     - cover.zonnescherm
+exclude:
+  entity_globs:
+    - binary_sensor.camera_achter*
