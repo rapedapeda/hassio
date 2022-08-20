@@ -1,15 +1,15 @@
-include:
-  domains:
-    - alarm_control_panel
-    - person
-    - vacuum
-  entities:
-    - input_boolean.presence_status
-    - input_boolean.kerst
-    - input_boolean.vakantie
-    - switch.drinkbak
-    - binary_sensor.drinkbak
-    - cover.zonnescherm
-exclude:
-  entity_globs:
-    - binary_sensor.camera_achter*
+- include:
+    domains:
+      - alarm_control_panel
+      - person
+      - vacuum
+    entities:
+      - input_boolean.presence_status
+      - input_boolean.kerst
+      - input_boolean.vakantie
+      - switch.drinkbak
+      - binary_sensor.drinkbak
+      - cover.zonnescherm
+- exclude:
+    entity_globs:
+      - binary_sensor.camera_achter*
