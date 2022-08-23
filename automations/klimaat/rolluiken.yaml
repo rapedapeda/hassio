@@ -1,0 +1,32 @@
+- id: rolluik_kantoor_dicht
+  alias: Rolluik kantoor dicht
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.zonweringweer
+        - binary_sensor.zon_voorkant
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id:
+        - binary_sensor.zonweringweer
+        - binary_sensor.zon_voorkant
+      state: 'on'
+  action:
+    # open cover
+    - service: cover.close_cover
+      entity_id: cover.rolluikkantoor
+
+- id: rolluik_kantoor_open
+  alias: Rolluik kantoor open
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.zonweringweer
+        - binary_sensor.zon_voorkant
+      to: 'off'
+  condition: []
+  action:
+    # sluit cover
+    - service: cover.open_cover
+      entity_id: cover.rolluikkantoor
