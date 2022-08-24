@@ -28,5 +28,8 @@
   condition: []
   action:
     # sluit cover
-    - service: cover.open_cover
+  - service: cover.set_cover_position
+    data:
+      position: 80
+    target:
       entity_id: cover.rolluikkantoor
