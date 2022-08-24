@@ -30,6 +30,6 @@
     # sluit cover
   - service: cover.set_cover_position
     data:
-      position: 80
+      position: 20
     target:
       entity_id: cover.rolluikkantoor
