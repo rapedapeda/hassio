@@ -14,9 +14,11 @@
       state: 'on'
   action:
     # open cover
-    - service: cover.close_cover
-      entity_id: cover.rolluikkantoor
-
+  - service: cover.set_cover_position
+      data:
+        position: 35
+      target:
+        entity_id: cover.rolluikkantoor
 - id: rolluik_kantoor_open
   alias: Rolluik kantoor open
   trigger: 
@@ -28,8 +30,5 @@
   condition: []
   action:
     # sluit cover
-  - service: cover.set_cover_position
-    data:
-      position: 35
-    target:
+    - service: cover.open_cover
       entity_id: cover.rolluikkantoor
