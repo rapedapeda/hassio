@@ -2,6 +2,7 @@
   name: Luchtvochtigheid badkamer (statistics)
   entity_id: sensor.luchtvochtigheid_badkamer
   sampling_size: 200
+  state_characteristic: mean
   max_age:
     hours: 48
 
@@ -9,6 +10,7 @@
   name: Luchtvochtigheid slaapkamer (statistics)
   entity_id: sensor.luchtvochtigheid_slaapkamer
   sampling_size: 200
+  state_characteristic: mean
   max_age:
     hours: 48
 
@@ -16,6 +18,7 @@
   name: CO2 statistics 15m
   entity_id: sensor.co2
   sampling_size: 15
+  state_characteristic: mean
   max_age:
     hours: 8
 
@@ -23,5 +26,6 @@
   name: CO2 statistics 5m
   entity_id: sensor.co2
   sampling_size: 5
+  state_characteristic: mean
   max_age:
     hours: 8
