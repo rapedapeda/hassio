@@ -10,7 +10,7 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.beweging_slaapkamer_licht')|float > states('input_number.lichtsensor_drempelwaarde_slaapkamer')|float }}
+        {{ states('sensor.beweging_slaapkamer_licht')|float(0) > states('input_number.lichtsensor_drempelwaarde_slaapkamer')|float }}
 #Hal
 - platform: template
   sensors:
@@ -22,7 +22,7 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.licht_woonkamer')|float > states('input_number.lichtsensor_drempelwaarde_hal')|float }}
+        {{ states('sensor.licht_woonkamer')|float(0) > states('input_number.lichtsensor_drempelwaarde_hal')|float(0) }}
 #Overloop eerste
 - platform: template
   sensors:
@@ -34,7 +34,7 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.licht_overloopeerste')|float > states('input_number.lichtsensor_drempelwaarde_overloopeerste')|float }}
+        {{ states('sensor.licht_overloopeerste')|float(0) > states('input_number.lichtsensor_drempelwaarde_overloopeerste')|float(0) }}
 #Overloop tweede
 - platform: template
   sensors:
@@ -46,7 +46,7 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.licht_overlooptweede')|float > states('input_number.lichtsensor_drempelwaarde_overlooptweede')|float }}
+        {{ states('sensor.licht_overlooptweede')|float(0) > states('input_number.lichtsensor_drempelwaarde_overlooptweede')|float(0) }}
 
 #Woonkamer
 - platform: template
@@ -59,4 +59,4 @@
       delay_off:
         minutes: 5
       value_template: >-
-        {{ states('sensor.licht_woonkamer')|float > states('input_number.lichtsensor_drempelwaarde_woonkamer')|float }}
+        {{ states('sensor.licht_woonkamer')|float(0) > states('input_number.lichtsensor_drempelwaarde_woonkamer')|float(0) }}

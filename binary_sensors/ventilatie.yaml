@@ -1,0 +1,10 @@
+- platform: template
+  sensors:
+    luchtkwaliteit_co2:
+      friendly_name: "CO2-waarde te hoog"
+      delay_on: >-
+        {{ ({ "minutes": states('input_number.luchtkwaliteit_co2_delay_on') }) }}
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.luchtkwaliteit_co2_delay_off') }) }}
+      value_template: >-
+        {{ [ states('sensor.co2')|int(0) ]|max > states('input_number.luchtkwaliteit_co2_threshold')}}
