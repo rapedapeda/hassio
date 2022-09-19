@@ -17,11 +17,11 @@
         {{ 
             is_state('binary_sensor.zomermaand', 'on')
             and
-            states('sensor.delft_today_max') >= states('input_number.zonwering_buitentemperatuur_threshold')|float(0)
+            states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
             and
-            int(states('sensor.irradiance')) >= int(states('input_number.zonwering_irradiance_threshold')|float(0))
+            states('sensor.irradiance')|int(0) >= states('input_number.zonwering_irradiance_threshold')|int(250)
             and
-            states('sensor.temperatuur_woonkamer') >= states('input_number.zonwering_binnentemperatuur_threshold')|float(0)          
+            states('sensor.temperatuur_woonkamer') >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
         }}
 
 - platform: template
