@@ -7,4 +7,4 @@
       delay_off: >-
         {{ ({ "minutes": states('input_number.luchtkwaliteit_co2_delay_off') }) }}
       value_template: >-
-        {{ [ states('sensor.co2')|int(0) ]|max > states('input_number.luchtkwaliteit_co2_threshold')}}
+        {{ [ states('sensor.co2')|int(0) ]|max > states('input_number.luchtkwaliteit_co2_threshold')|int(800)}}
