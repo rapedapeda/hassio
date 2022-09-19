@@ -2,7 +2,7 @@
   sensors:
     zomermaand:
       friendly_name: Zomermaand
-      value_template: "{{ 3 < now().month < 11 }}"
+      value_template: "{{ 3 < now().month < 10 }}"
 
 # Is het nodig zonwering in te schakelen?
 - platform: template
