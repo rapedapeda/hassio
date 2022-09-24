@@ -1,0 +1,10 @@
+- alias: MinderGas uploaden
+  trigger:
+  - platform: time
+    at: '23:58'
+  action:
+    data_template:
+      date: '{{ (as_timestamp(now())) | timestamp_custom("%Y-%m-%d", True)}}'
+      reading: "{{ states('sensor.p1_meter_total_gas') }}"
+    service: rest_command.mindergas_upload
+  mode: single
