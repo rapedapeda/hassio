@@ -8,7 +8,7 @@
     weekday:
       - sun
   action:
-    - service: hassio.snapshot_full
+    - service: hassio.backup_full
       data:
         name: "{{ now().strftime('%Y-%m-%d') }}-full"
         password: !secret snapshot
