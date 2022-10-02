@@ -1,12 +1,42 @@
+###########
+# Deze activeert de juiste (initiele) stand van de Sonoff (lees: WTW) als een preset wordt veranderd.
+# Bijvoorbeeld 'away' mode als niemand thuis is
+###########
+- id: ventilatie_preset_activeren
+  alias: Ventilatie juiste stand activeren op basis van geselecteerde preset
+  description: Automatisering om afhankelijk van de geselecteerde preset van de WTW, de juiste stand van de WTW te activeren
+  mode: parallel
+  trigger:
+  - platform: state
+    entity_id: input_select.ventilatie_preset_mode
+  condition: []
+  action:
+    service: fan.set_percentage
+    target:
+      entity_id: fan.wtw
+    data:
+      percentage: >
+        {% if is_state("input_select.ventilatie_preset_mode", "boost") -%}
+        66
+        {% elif is_state("input_select.ventilatie_preset_mode", "away") -%}
+        1
+        {% else %}
+        33
+        {% endif %}
 
-- id: ventilatie_preset_
-  alias: Ventilatiepreset handmatig aan- of uitgezet
+###########
+# Deze zijn om verschillende presets te activeren.
+# Bijvoorbeeld 'away' mode als niemand thuis is
+###########
+- id: ventilatie_preset
+  alias: "Ventilatie (de)activeer preset: boost"
+  description: Deze automatisering zorgt dat de handmatige boost-preset wordt geactiveerd als hier aanleiding voor is.
   mode: parallel
   trigger:
   - platform: state
     entity_id: 
       - input_boolean.fan_boost
-      - input_boolean.fan_slaapstand
+      #- input_boolean.fan_slaapstand
   condition: []
   action:
   - service: input_select.select_option
@@ -14,33 +44,29 @@
       entity_id: input_select.ventilatie_preset_mode
     data:
       option: >-
-        {% if is_state('input_boolean.fan_boost','on') or 
-        is_state('input_boolean.fan_slaapstand','on') %}
-          handmatig
+        {% if is_state('input_boolean.fan_boost','on') %}
+          boost
         {% else %}
           auto
         {% endif %}
 
-- id: ventilatie_handmatige_preset_activeren
-  alias: Ventilatie preset activeren bij fan
+- id: ventilatie_preset
+  alias: "Ventilatie (de)activeer preset: away"
+  description: Deze automatisering zorgt dat de away wordt geactiveerd als niemand thuis is.
   mode: parallel
   trigger:
   - platform: state
-    entity_id: input_select.ventilatie_preset_mode
-  condition: 
-    - condition: state
-      entity_id: input_select.ventilatie_preset_mode
-      state: "handmatig"
+    entity_id: 
+      - alarm_control_panel.huis
+  condition: []
   action:
-    service: fan.set_percentage
+  - service: input_select.select_option
     target:
-      entity_id: fan.wtw
+      entity_id: input_select.ventilatie_preset_mode
     data:
-      percentage: >
-        {% if is_state("input_boolean.fan_boost", "on") -%}
-        66
-        {% elif is_state("input_boolean.fan_slaapstand", "on") -%}
-        1
+      option: >-
+        {% if is_state('alarm_control_panel.huis','armed_away') %}
+          away
         {% else %}
-        33
+          auto
         {% endif %}
