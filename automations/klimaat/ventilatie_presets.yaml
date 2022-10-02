@@ -3,7 +3,7 @@
 # Bijvoorbeeld 'away' mode als niemand thuis is
 ###########
 - id: ventilatie_preset_activeren
-  alias: Ventilatie juiste stand activeren op basis van geselecteerde preset
+  alias: "Ventilatie: stand wtw aanpassen"
   description: Automatisering om afhankelijk van de geselecteerde preset van de WTW, de juiste stand van de WTW te activeren
   mode: parallel
   trigger:
@@ -28,8 +28,8 @@
 # Deze zijn om verschillende presets te activeren.
 # Bijvoorbeeld 'away' mode als niemand thuis is
 ###########
-- id: ventilatie_preset
-  alias: "Ventilatie (de)activeer preset: boost"
+- id: ventilatie_preset_boost
+  alias: "Ventilatie: (de)activeer preset 'boost'"
   description: Deze automatisering zorgt dat de handmatige boost-preset wordt geactiveerd als hier aanleiding voor is.
   mode: parallel
   trigger:
@@ -50,8 +50,8 @@
           auto
         {% endif %}
 
-- id: ventilatie_preset
-  alias: "Ventilatie (de)activeer preset: away"
+- id: ventilatie_preset_away
+  alias: "Ventilatie: (de)activeer preset 'away'"
   description: Deze automatisering zorgt dat de away wordt geactiveerd als niemand thuis is.
   mode: parallel
   trigger:
