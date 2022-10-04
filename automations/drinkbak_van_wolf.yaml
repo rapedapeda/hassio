@@ -1,92 +1,22 @@
-# - id: drinkbak_tuya_fix
-#   alias: Drinkbak tuya fix
-#   mode: parallel
-#   trigger: 
-#     - platform: time_pattern
-#       minutes: "/1"
-#   condition:
-#     - condition: state
-#       entity_id: input_boolean.wolf_drinkbak
-#       state:  'off'
-#   action:
-#   - service: scene.turn_on
-#     data:
-#       entity_id: scene.tuya_drinkbak_uit
-
-# - id: drinkbak_automatisch
-#   alias: Drinkbak Wolf automatisch
-#   description: Als Wolf zelf triggert gaat de input_boolean aan
-#   mode: parallel
-#   trigger:
-#   - entity_id: binary_sensor.drinkbak
-#     platform: state
-#     to: 'on'
-#   - entity_id: binary_sensor.drinkbak
-#     platform: state
-#     to: 'off'
-#     for: "00:05:00"
-#   action:
-#   - service: >-
-#       {% if is_state('binary_sensor.drinkbak','on') %}
-#       input_boolean.turn_on
-#       {% else %}
-#       input_boolean.turn_off
-#       {% endif %}
-#     entity_id: input_boolean.wolf_drinkbak
-
-# - id: drinkbak
-#   alias: Drinkbak Wolf
-#   description: Als de input_boolean verandert van staat wordt de juiste scene geselecteerd
-#   mode: parallel
-#   trigger:
-#   - entity_id: input_boolean.wolf_drinkbak
-#     platform: state
-#   action:
-#   - service: scene.turn_on
-#     data:
-#       entity_id: >-
-#         {% if is_state('input_boolean.wolf_drinkbak','on') %}
-#         scene.tuya_drinkbak_aan
-#         {% else %}
-#         scene.tuya_drinkbak_uit
-#         {% endif %}
-
-
-
-
-### Local Tuya integration
-- id: drinkbak_automatisch
+- id: drinkbak_automatisch_aan
   alias: Drinkbak Wolf automatisch aan
   mode: parallel
   trigger:
   - entity_id: binary_sensor.drinkbak
     platform: state
     to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.drinkbak
+
+- id: drinkbak_automatisch_uit
+  alias: Drinkbak Wolf automatisch uit
+  mode: parallel
+  trigger:
   - entity_id: switch.drinkbak
     platform: state
     to: 'on'
-    for: "00:06:00"
+    for: "00:02:00"
   action:
-  - service: >-
-      {% if is_state('switch.drinkbak','off') %}
-      switch.turn_on
-
-      {% else %}
-      switch.turn_off
-      {% endif %}
+  - service: witch.turn_off
     entity_id: switch.drinkbak
-
-# - id: drinkbak_fix
-#   alias: Drinkbak Wolf fix
-#   mode: parallel
-#   trigger:
-#   - entity_id: switch.drinkbak
-#     platform: state
-#     to: 'on'
-#   condition:
-#     - condition: state
-#       entity_id: binary_sensor.drinkbak
-#       state:  'off'
-#   action:
-#     service: switch.turn_off
-#     entity_id: switch.drinkbak
