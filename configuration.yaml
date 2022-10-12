@@ -81,6 +81,7 @@ influxdb:
       - sensor.delft*
       - sensor.*batterij
       - sensor.p1_*
+      - sensor.omvormer_*
       - person.*
 
 
