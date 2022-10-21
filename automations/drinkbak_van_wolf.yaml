@@ -18,5 +18,5 @@
     to: 'on'
     for: "00:02:00"
   action:
-  - service: witch.turn_off
+  - service: switch.turn_off
     entity_id: switch.drinkbak

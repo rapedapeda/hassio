@@ -81,6 +81,7 @@ influxdb:
       - sensor.delft*
       - sensor.*batterij
       - sensor.p1_*
+      - sensor.omvormer_*
       - person.*
 
 
@@ -126,6 +127,7 @@ recorder:
       - sensor.irradiance
     entity_globs:
       - sensor.p1_*
+      - sensor.omvormer_*
       - sensor.luchtvochtigheid_*
       - sensor.temperatuur_*
       - sensor.luchtdruk_*
