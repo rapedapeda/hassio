@@ -1,5 +1,5 @@
 mindergas_upload:
-  url: 'http(s)://www.mindergas.nl/api/meter_readings'
+  url: 'https://www.mindergas.nl/api/meter_readings'
   method: POST
   headers:
     content-type: application/json
