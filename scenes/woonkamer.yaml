@@ -2,14 +2,14 @@
   entities:
     light.woonkamer_lotek:
       state: off
-    switch.eettafel:
+    light.eettafel:
       state: off
 - name: woonkamer_normaal
   entities:
     light.woonkamer_lotek:
       state: on
       brightness: 150
-    switch.eettafel:
+    light.eettafel:
       state: on
       brightness: 5
 - name: woonkamer_gedimd
@@ -17,13 +17,13 @@
     light.woonkamer_lotek:
       state: on
       brightness: 150
-    switch.eettafel:
+    light.eettafel:
       state: off
 - name: woonkamer_vol
   entities:
     light.woonkamer_lotek:
       state: on
       brightness: 255
-    switch.eettafel:
+    light.eettafel:
       state: on
       brightness: 255
