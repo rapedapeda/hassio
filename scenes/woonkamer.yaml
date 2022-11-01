@@ -11,7 +11,8 @@
       brightness: 150
     light.eettafel:
       state: on
-      brightness: 5
+      brightness: 129
+      color_temp: 380
 - name: woonkamer_gedimd
   entities:
     light.woonkamer_lotek:
@@ -27,3 +28,4 @@
     light.eettafel:
       state: on
       brightness: 255
+      color_temp: 380
