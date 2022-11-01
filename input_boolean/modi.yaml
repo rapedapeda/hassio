@@ -7,3 +7,6 @@ vakantie:
 logeren:
   name: Logé
   icon: mdi:home-heart
+stofzuigen:
+  name: Stofzuigen
+  icon: mdi:broom
