@@ -8,16 +8,16 @@
   entities:
     light.woonkamer_lotek:
       state: on
-      brightness: 150
+      brightness: 65
     light.eettafel:
       state: on
-      brightness: 129
+      brightness: 75
       color_temp: 380
 - name: woonkamer_gedimd
   entities:
     light.woonkamer_lotek:
       state: on
-      brightness: 150
+      brightness: 1
     light.eettafel:
       state: off
 - name: woonkamer_vol
