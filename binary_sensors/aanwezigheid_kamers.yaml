@@ -60,3 +60,16 @@
           {{
               is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on')
           }}
+
+# Hal
+- platform: template
+  sensors:
+    aanwezigheid_hal:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_hal') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.group_aanwezigheid_hal', 'on')
+          }}
