@@ -6,7 +6,7 @@
   entities:
     light.hal_plafond:
       state: 'on'
-      brightness: 125
+      brightness: 5
 - name: hal_vol
   entities:
     light.hal_plafond:
@@ -16,4 +16,4 @@
   entities:
     light.hal_plafond:
       state: 'on'
-      brightness: 10
+      brightness: 5

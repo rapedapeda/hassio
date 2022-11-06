@@ -14,8 +14,8 @@
 # Globaal
 input_boolean.scene_special_nacht:
   prioriteit: 1
-  kamers: 'woonkamer,hal,badkamer'
-  scenes: 'Gedimd,Uit,Gedimd'
+  kamers: 'badkamer'
+  scenes: 'Gedimd'
 
 # Woonkamer
 input_boolean.scene_special_woonkamer_bioscoop:
