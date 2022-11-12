@@ -8,7 +8,7 @@
   entities:
     light.overloop_eerste_plafond:
       state: 'on'
-      brightness: 125
+      brightness: 70
     light.trap:
       state: 'on'
       brightness: 65
@@ -27,4 +27,4 @@
       brightness: 10
     light.trap:
       state: 'on'
-      brightness: '10'
+      brightness: 10
