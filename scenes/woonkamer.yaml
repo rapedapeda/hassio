@@ -1,31 +1,42 @@
 - name: woonkamer_uit
   entities:
     light.woonkamer_lotek:
-      state: off
+      state: 'off'
     light.eettafel:
-      state: off
+      state: 'off'
+    light.parentesi:
+      state: 'off'
 - name: woonkamer_normaal
   entities:
     light.woonkamer_lotek:
-      state: on
+      state: 'on'
       brightness: 65
     light.eettafel:
-      state: on
+      state: 'on'
       brightness: 75
       color_temp: 380
+    light.parentesi:
+      state: 'on'
+      brightness: 50
 - name: woonkamer_gedimd
   entities:
     light.woonkamer_lotek:
-      state: on
+      state: 'on'
       brightness: 1
     light.eettafel:
-      state: off
+      state: 'off'
+    light.parentesi:
+      state: 'on'
+      brightness: 20
 - name: woonkamer_vol
   entities:
     light.woonkamer_lotek:
-      state: on
+      state: 'on'
       brightness: 255
     light.eettafel:
-      state: on
+      state: 'on'
       brightness: 255
       color_temp: 380
+    light.parentesi:
+      state: 'on'
+      brightness: 255
