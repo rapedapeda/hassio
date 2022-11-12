@@ -83,6 +83,8 @@ influxdb:
       - sensor.p1_*
       - sensor.omvormer_*
       - person.*
+      - sensor.ventilator_woonkamer_*
+
 
 
 logger:
@@ -132,7 +134,7 @@ recorder:
       - sensor.temperatuur_*
       - sensor.luchtdruk_*
       - sensor.licht_*
-
+      - sensor.ventilator_woonkamer_*
 
 telegram_bot:
   - platform: polling
