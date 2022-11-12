@@ -11,7 +11,7 @@
       brightness: 125
     light.trap:
       state: 'on'
-      brightness: 165
+      brightness: 65
 - name: overloopeerste_vol
   entities:
     light.overloop_eerste_plafond:
