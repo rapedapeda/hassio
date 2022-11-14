@@ -19,9 +19,7 @@
         {{ ({ "minutes": states('input_number.luchtkwaliteit_luchtvochtigheid_delay_off')|int(5) }) }}
       value_template: >-
         {{ 
-          # Als de huidige afwijkt van de moving average 
           ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < states('input_number.luchtkwaliteit_luchtvochtigheid_threshold')|float(0.1)
-          # Maar alleen als de luchtvochtigheid boven de 65 is
           and states('sensor.luchtvochtigheid_badkamer')|float > 65
         }}
         
