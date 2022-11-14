@@ -19,7 +19,7 @@
         {{ ({ "minutes": states('input_number.luchtkwaliteit_luchtvochtigheid_delay_off')|int(5) }) }}
       value_template: >-
         {{ 
-          ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < states('input_number.luchtkwaliteit_luchtvochtigheid_threshold')|float(0.1)
+          ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float > states('input_number.luchtkwaliteit_luchtvochtigheid_threshold')|float(0.1)
           and states('sensor.luchtvochtigheid_badkamer')|float > 65
         }}
         
