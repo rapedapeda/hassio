@@ -34,7 +34,7 @@
       entity_id: 
         - binary_sensor.luchtkwaliteit_co2
         - binary_sensor.luchtkwaliteit_luchtvochtigheid
-      to: "on"
+      to: "off"
   condition:
   - condition: and
     conditions:
