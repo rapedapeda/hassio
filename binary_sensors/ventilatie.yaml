@@ -1,10 +1,27 @@
 - platform: template
   sensors:
     luchtkwaliteit_co2:
-      friendly_name: "CO2-waarde te hoog"
+      friendly_name: "CO2 te hoog"
       delay_on: >-
         {{ ({ "minutes": states('input_number.luchtkwaliteit_co2_delay_on')|int(10) }) }}
       delay_off: >-
         {{ ({ "minutes": states('input_number.luchtkwaliteit_co2_delay_off')|int(10) }) }}
       value_template: >-
-        {{ [ states('sensor.co2')|int(0) ]|max > states('input_number.luchtkwaliteit_co2_threshold')|int(800)}}
+        {{ [ states('sensor.co2')|int(0) ]|max > states('input_number.luchtkwaliteit_co2_threshold')|int(1000)}}
+
+- platform: template
+  sensors:
+    luchtkwaliteit_luchtvochtigheid:
+      friendly_name: "Luchtvochtigheid te hoog"
+      delay_on: >-
+        {{ ({ "minutes": states('input_number.luchtkwaliteit_luchtvochtigheid_delay_on')|int(0) }) }}
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.luchtkwaliteit_luchtvochtigheid_delay_off')|int(5) }) }}
+      value_template: >-
+        {{ 
+          # Als de huidige afwijkt van de moving average 
+          ( states('sensor.luchtvochtigheid_badkamer')|float - states('sensor.luchtvochtigheid_badkamer_statistics')|float ) / states('sensor.luchtvochtigheid_badkamer_statistics')|float < states('input_number.luchtkwaliteit_luchtvochtigheid_threshold')|float(0.1)
+          # Maar alleen als de luchtvochtigheid boven de 65 is
+          and states('sensor.luchtvochtigheid_badkamer')|float > 65
+        }}
+        
