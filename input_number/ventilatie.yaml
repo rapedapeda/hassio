@@ -20,8 +20,8 @@ luchtkwaliteit_co2_threshold:
   name: Grenswaarde CO2
   icon: mdi:sun-wireless-outline
   min: 0
-  max: 1000
-  step: 10
+  max: 2500
+  step: 100
 
 luchtkwaliteit_luchtvochtigheid_delay_on:
   name: Vertraging aan
