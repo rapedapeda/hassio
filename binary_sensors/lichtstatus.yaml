@@ -38,7 +38,7 @@
 #Kantoor
 - platform: template
   sensors:
-    hal_lichtstatus:
+    kantoor_lichtstatus:
       friendly_name: "Lichtstatus"
       device_class: light
       delay_on:
