@@ -15,6 +15,11 @@ lichtsensor_drempelwaarde_overloopeerste:
   min: 0
   max: 100
   step: 5
+lichtsensor_drempelwaarde_kantoor:
+  name: Drempelwaarde
+  min: 0
+  max: 200
+  step: 5
 lichtsensor_drempelwaarde_overlooptweede:
   name: Drempelwaarde
   min: 0

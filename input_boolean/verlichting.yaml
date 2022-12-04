@@ -10,6 +10,9 @@ verlichting_hal:
 verlichting_overloopeerste:
   name: Overloop eerste
   icon: mdi:door-closed
+verlichting_kantoor:
+  name: Kantoor
+  icon: mdi:desk
 verlichting_overlooptweede:
   name: Overloop tweede
   icon: mdi:door-closed

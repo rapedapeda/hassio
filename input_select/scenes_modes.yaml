@@ -31,6 +31,14 @@ kamer_scene_overloopeerste:
     - Gedimd
     - Normaal
     - Vol
+kamer_scene_kantoor:
+  name: Scene
+  icon: mdi:desk
+  options:
+    - Uit
+    - Gedimd
+    - Normaal
+    - Vol
 kamer_scene_overlooptweede:
   name: Scene
   icon: mdi:door-closed

@@ -23,6 +23,18 @@
           {{
               is_state('binary_sensor.group_aanwezigheid_overloopeerste', 'on')
           }}
+# Kantoor
+- platform: template
+  sensors:
+    aanwezigheid_kantoor:
+      friendly_name: "Aanwezigheid"
+      device_class: occupancy
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_kantoor') }) }}
+      value_template: >-
+          {{
+              is_state('binary_sensor.beweging_kantoor', 'on')
+          }}
 # Overloop tweede
 - platform: template
   sensors:
