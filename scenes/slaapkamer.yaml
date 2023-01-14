@@ -1,21 +1,25 @@
 - name: slaapkamer_uit
   entities:
-    light.slaapkamer_artemide:
+    light.kantoor_lotek:
       state: 'off'
 - name: slaapkamer_normaal
   entities:
-    light.slaapkamer_artemide:
+    light.kantoor_lotek:
       state: 'on'
+      brightness: 35
 - name: slaapkamer_vol
   entities:
-    light.slaapkamer_artemide:
+    light.kantoor_lotek:
       state: 'on'
+      brightness: 255
 - name: slaapkamer_gedimd
   entities:
-    light.slaapkamer_artemide:
+    light.kantoor_lotek:
       state: 'on'
+      brightness: 1
 
 - name: slaapkamer_nacht
   entities:
-    light.slaapkamer_artemide:
+    light.kantoor_lotek:
       state: 'on'
+      brightness: 35
