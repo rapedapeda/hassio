@@ -12,6 +12,9 @@
   - delay: '00:00:01'
   - service: switch.turn_off
     entity_id: switch.deurbel_gong  
+  - delay: '00:00:05'
+  - service: switch.turn_off
+    entity_id: switch.deurbel_gong  
 
 - id: deurbel_schakel_lamp_in
   alias: Deurbel schakel lamp in
