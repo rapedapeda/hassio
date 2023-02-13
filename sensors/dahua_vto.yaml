@@ -1,0 +1,6 @@
+platform: dahua_vto
+name: Bel voordeur
+host: !secret voordeur_bel
+username: !secret dahua_user
+password: !secret dahua_password
+scan_interval: 5
