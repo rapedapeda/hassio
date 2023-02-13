@@ -9,7 +9,10 @@
   action:
   - service: switch.turn_on
     entity_id: switch.deurbel_gong
-  - delay: '00:00:00:500'
+  - delay: '00:00:00:750'
+  - service: switch.turn_off
+    entity_id: switch.deurbel_gong  
+  - delay: '00:00:00:750'
   - service: switch.turn_off
     entity_id: switch.deurbel_gong  
 
