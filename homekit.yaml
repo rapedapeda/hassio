@@ -1,0 +1,8 @@
+- name: Deurbel
+  port: 21066
+  filter:
+    include_entities:
+      - camera.deurbel_main
+  entity_config:
+    camera.carport:
+      linked_doorbell_sensor: binary_sensor.deurbel_button_pressed
