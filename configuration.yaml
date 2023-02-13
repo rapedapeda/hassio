@@ -162,6 +162,7 @@ rest_command: !include rest_command.yaml
 scene: !include_dir_merge_list scenes/
 sensor: !include_dir_merge_list sensors/
 shell_command: !include shell_commands.yaml
+template: !include_dir_merge_list template/
 script: !include_dir_merge_named scripts/
 timer: !include_dir_merge_named timers/
 utility_meter: !include_dir_merge_named utility_meter/
