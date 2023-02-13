@@ -1,5 +1,5 @@
 - id: deurbel_activeer_gong
-  alias: Verlichting achter (aan/uit)
+  alias: Deurbel activeer gong
   trigger: 
     - platform: state
       entity_id:
@@ -9,6 +9,39 @@
   action:
   - service: switch.turn_on
     entity_id: switch.deurbel_gong
-  - delay: '00:00:01'
+  - delay: '00:00:00:500'
   - service: switch.turn_off
     entity_id: switch.deurbel_gong  
+
+- id: deurbel_schakel_lamp_in
+  alias: Deurbel schakel lamp in
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.deurbel_button_pressed
+      to: 'on'
+  condition: 
+  - alias: "Als de buitenlamp nog niet aan is"
+    condition: state
+    entity_id: light.voordeur
+    state: "off"
+  action:
+  - service: light.turn_on
+    entity_id: light.voordeur
+
+- id: deurbel_schakel_lamp_uit
+  alias: Deurbel schakel lamp uit
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.deurbel_button_pressed
+      to: 'off'
+      for: 00:05
+  condition: 
+  - alias: "De lamp moet aan zijn"
+    condition: state
+    entity_id: light.voordeur
+    state: "on"
+  action:
+  - service: light.turn_off
+    entity_id: light.voordeur
