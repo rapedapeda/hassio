@@ -1,0 +1,14 @@
+- id: ventilatie_handmatig_boost
+  alias: Ventilatie handmatige boost
+  trigger: 
+    - platform: state
+      entity_id:
+        - input_boolean.fan_boost
+      to: 'on'
+      for: 00:15
+  condition:
+    - condition: []
+  action:
+    # open cover
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.fan_boost
