@@ -4,7 +4,7 @@
     - platform: state
       entity_id:
         - binary_sensor.camera_achter_smart_motion_human
-        - binary_sensor.camera_achter_motion_alarm
+        #- binary_sensor.camera_achter_motion_alarm
       to: 'on'
   condition:
     - not:
@@ -24,7 +24,7 @@
     - platform: state
       entity_id:
         - binary_sensor.camera_achter_smart_motion_human
-        - binary_sensor.camera_achter_motion_alarm
+        #- binary_sensor.camera_achter_motion_alarm
       to: 'off'
   condition: []
   action:
