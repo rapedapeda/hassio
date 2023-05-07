@@ -13,6 +13,7 @@ http:
     - 127.0.0.1
     - ::1
 energy:
+ffmpeg:
 frontend:
   themes: 
     default:
@@ -21,12 +22,12 @@ media_source:
 mobile_app:
 person:
 #ssdp: used for discovery
+stream:
 sun:
 system_health:
 #updater:
 websocket_api:
 
-ffmpeg:
 
 # Text to speech
 tts:
