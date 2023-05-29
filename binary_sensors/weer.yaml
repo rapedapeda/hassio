@@ -21,7 +21,7 @@
             and
             states('sensor.irradiance')|int(0) >= states('input_number.zonwering_irradiance_threshold')|int(250)
             and
-            states('sensor.temperatuur_woonkamer')|int(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
+            states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
         }}
 
 - platform: template

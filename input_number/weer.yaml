@@ -23,13 +23,13 @@ zonwering_binnentemperatuur_threshold:
   icon: mdi:home-thermometer-outline
   min: 18
   max: 30
-  step: 1
+  step: 0.5
 zonwering_buitentemperatuur_threshold:
   name: Buitentemperatuur
   icon: mdi:home-thermometer
   min: 10
   max: 30
-  step: 1
+  step: 0.5
 
 
 # Hierin wordt de max temperatuur opgeslagen
