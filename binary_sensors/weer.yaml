@@ -4,12 +4,11 @@
       friendly_name: Zomermaand
       value_template: "{{ 3 < now().month < 10 }}"
 
-# Is het nodig zonwering beneden in te schakelen?
+# Is het nodig zonwering in de woonkamer in te schakelen?
 - platform: template
   sensors:
     zonweringweer_woonkamer:
       friendly_name: "Zonweringweer woonkamer"
-      description: "Is het nodig zonwering in de woonkamer in te schakelen?"
       delay_on: >-
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_on') }) }}
       delay_off: >-
@@ -25,11 +24,11 @@
             states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
         }}
 
+# Is het nodig zonwering aan de voorkant (1e en 2e) in te schakelen?
 - platform: template
   sensors:
     zonweringweer_voorkant:
       friendly_name: "Zonweringweer voorkant"
-      description: "Is het nodig zonwering aan de voorkant (1e en 2e) in te schakelen?"
       delay_on: >-
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_on') }) }}
       delay_off: >-
