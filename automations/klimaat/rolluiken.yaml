@@ -3,13 +3,13 @@
   trigger: 
     - platform: state
       entity_id:
-        - binary_sensor.zonweringweer
+        - binary_sensor.zonweringweer_voorkant
         - binary_sensor.zon_voorkant
       to: 'on'
   condition:
     - condition: state
       entity_id:
-        - binary_sensor.zonweringweer
+        - binary_sensor.zonweringweer_voorkant
         - binary_sensor.zon_voorkant
       state: 'on'
   action:
@@ -24,7 +24,7 @@
   trigger: 
     - platform: state
       entity_id:
-        - binary_sensor.zonweringweer
+        - binary_sensor.zonweringweer_voorkant
         - binary_sensor.zon_voorkant
       to: 'off'
   condition: []

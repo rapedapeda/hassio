@@ -4,11 +4,12 @@
       friendly_name: Zomermaand
       value_template: "{{ 3 < now().month < 10 }}"
 
-# Is het nodig zonwering in te schakelen?
+# Is het nodig zonwering beneden in te schakelen?
 - platform: template
   sensors:
-    zonweringweer:
-      friendly_name: "Zonweringweer"
+    zonweringweer_woonkamer:
+      friendly_name: "Zonweringweer woonkamer"
+      description: "Is het nodig zonwering in de woonkamer in te schakelen?"
       delay_on: >-
         {{ ({ "minutes": states('input_number.zonwering_nodig_delay_on') }) }}
       delay_off: >-
@@ -22,6 +23,26 @@
             states('sensor.irradiance')|int(0) >= states('input_number.zonwering_irradiance_threshold')|int(250)
             and
             states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
+        }}
+
+- platform: template
+  sensors:
+    zonweringweer_voorkant:
+      friendly_name: "Zonweringweer voorkant"
+      description: "Is het nodig zonwering aan de voorkant (1e en 2e) in te schakelen?"
+      delay_on: >-
+        {{ ({ "minutes": states('input_number.zonwering_nodig_delay_on') }) }}
+      delay_off: >-
+        {{ ({ "minutes": states('input_number.zonwering_nodig_delay_off') }) }}
+      value_template: >-
+        {{ 
+            is_state('binary_sensor.zomermaand', 'on')
+            and
+            states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
+            and
+            states('sensor.irradiance')|int(0) >= states('input_number.zonwering_irradiance_threshold')|int(250)
+            and
+            states('sensor.temperatuur_kantoor')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
         }}
 
 - platform: template
