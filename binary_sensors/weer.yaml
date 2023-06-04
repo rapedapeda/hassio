@@ -43,7 +43,7 @@
       friendly_name: "Zon voorkant huis"
       value_template: >-
         {{
-          state_attr("sun.sun", "elevation") > 10
+          state_attr("sun.sun", "elevation") > 1
           and
           state_attr("sun.sun", "azimuth") > 227
           and
