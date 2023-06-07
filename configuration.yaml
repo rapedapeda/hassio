@@ -95,6 +95,7 @@ logger:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     custom_components.dahua: debug
+    homeassistant.components.shell_command: debug
 
 notify:
   - platform: telegram
