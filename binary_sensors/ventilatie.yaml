@@ -23,3 +23,11 @@
           and states('sensor.luchtvochtigheid_badkamer')|float > 65
         }}
         
+- platform: template
+  sensors:
+    wtw_bypass:
+      friendly_name: "WTW bypass"
+      delay_on: 10
+      delay_off: 10
+      value_template: >-
+        {{ ( [ states('sensor.temperatuur_badkamer'), states('sensor.temperatuur_woonkamer'), states('sensor.temperatuur_slaapkamer') ]|float(22) - states('sensor.knmi_thuis_gevoelstemperatuur')|float ) > 3 }}
