@@ -44,9 +44,7 @@ homeassistant:
   media_dirs:
     opnames: /share/Opnames
     snapshots: /share/Snapshots
-  allowlist_external_dirs:
-    - "/share"
-    - "/media"
+
 
 alarm_control_panel:
   - platform: manual
