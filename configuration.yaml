@@ -46,7 +46,7 @@ homeassistant:
     snapshots: "/share/Snapshots"
   allowlist_external_dirs:
     - "/share/"
-    - "/media"
+    - "/media/"
 
 alarm_control_panel:
   - platform: manual
