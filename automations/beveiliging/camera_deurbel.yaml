@@ -1,0 +1,33 @@
+- id: deurbel_camera_opname
+  alias: Opname (deurbel)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.deurbel_button_pressed
+        - binary_sensor.voordeur
+      to: 'on'
+  condition: []
+  action:
+    service: camera.record
+    target:
+      entity_id: camera.deurbel_main
+    data:
+      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      duration: 10
+      lookback: 5
+
+- id: deurbel_camera_snapshot
+  alias: Snapshot (deurbel)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.deurbel_button_pressed
+        - binary_sensor.voordeur
+      to: 'on'
+  condition: []
+  action:
+    service: camera.snapshot
+    target:
+      entity_id: camera.deurbel_main
+    data:
+      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
