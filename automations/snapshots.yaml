@@ -1,5 +1,5 @@
-- id: snapshot_wekelijks
-  alias: Snapshot (wekelijks)
+- id: backup_systeem
+  alias: Backup (systeem)
   trigger:
     platform: time
     at: '02:00:00'
