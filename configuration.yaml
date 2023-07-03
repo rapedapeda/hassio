@@ -43,6 +43,9 @@ homeassistant:
   country: NL
   media_dirs:
     opnames: /share/Opnames
+  allowlist_external_dirs:
+    - "/share/"
+    - "/media"
 
 alarm_control_panel:
   - platform: manual
