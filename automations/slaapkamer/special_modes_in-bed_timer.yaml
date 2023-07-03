@@ -5,7 +5,7 @@
   trigger:
   - platform: state
     entity_id: sensor.slaapkamer_bedbezetting
-    to: on
+    to: 'on'
   action:
     service: timer.start
     data:
