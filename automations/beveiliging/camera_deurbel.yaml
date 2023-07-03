@@ -12,8 +12,8 @@
     target:
       entity_id: camera.deurbel_main
     data:
-      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
-      duration: 10
+      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      duration: 15
       lookback: 5
 
 - id: opname_voordeur
@@ -35,8 +35,8 @@
     target:
       entity_id: camera.deurbel_main
     data:
-      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
-      duration: 10
+      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      duration: 15
       lookback: 5
 
 - id: snapshot_deurbel
@@ -53,7 +53,7 @@
     target:
       entity_id: camera.deurbel_main
     data:
-      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
 
 - id: snapshot_voordeur
   alias: Snapshot (voordeur)
@@ -74,4 +74,4 @@
     target:
       entity_id: camera.deurbel_main
     data:
-      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
