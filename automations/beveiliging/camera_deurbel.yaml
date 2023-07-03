@@ -1,4 +1,4 @@
-- id: deurbel_camera_opname
+- id: opname_deurbel
   alias: Opname (deurbel)
   trigger: 
     - platform: state
@@ -16,7 +16,30 @@
       duration: 10
       lookback: 5
 
-- id: deurbel_camera_snapshot
+- id: opname_voordeur
+  alias: Opname (voordeur)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.voordeur
+      to: 'on'
+  condition: 
+    alias: "Alarm is armed"
+    condition: not
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.huis
+      state: "home"
+  action:
+    service: camera.record
+    target:
+      entity_id: camera.deurbel_main
+    data:
+      filename: '/share/Opnames/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      duration: 10
+      lookback: 5
+
+- id: snapshot_deurbel
   alias: Snapshot (deurbel)
   trigger: 
     - platform: state
@@ -25,6 +48,27 @@
         - binary_sensor.voordeur
       to: 'on'
   condition: []
+  action:
+    service: camera.snapshot
+    target:
+      entity_id: camera.deurbel_main
+    data:
+      filename: '/share/Snapshot/Deurbel/{{ now().strftime("%Y%m%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+
+- id: snapshot_voordeur
+  alias: Snapshot (voordeur)
+  trigger: 
+    - platform: state
+      entity_id:
+        - binary_sensor.voordeur
+      to: 'on'
+  condition: 
+    alias: "Alarm is armed"
+    condition: not
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.huis
+      state: "home"
   action:
     service: camera.snapshot
     target:
