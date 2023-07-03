@@ -42,8 +42,8 @@ homeassistant:
   time_zone: Europe/Amsterdam
   country: NL
   media_dirs:
-    opnames: /share/Opnames
-    snapshots: /share/Snapshots
+    opnames: "/share/Opnames"
+    snapshots: "/share/Snapshots"
   allowlist_external_dirs:
     - "/share/"
     - "/media"
