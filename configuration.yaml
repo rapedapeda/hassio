@@ -42,7 +42,7 @@ homeassistant:
   time_zone: Europe/Amsterdam
   country: NL
   media_dirs:
-    media: /media
+    media: /share
   allowlist_external_dirs:
     - "/share"
     - "/media"
