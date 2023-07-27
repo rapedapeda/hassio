@@ -42,4 +42,4 @@
     target:
       entity_id: camera.deurbel_main
     data:
-      filename: '/share/Snapshot/Achterkant/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.mp4'
+      filename: '/share/Snapshot/Achterkant/{{ now().strftime("%Y-%m-%d") }}/{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg'
