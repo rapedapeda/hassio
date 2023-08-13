@@ -90,8 +90,6 @@ influxdb:
       - person.*
       - sensor.ventilator_woonkamer_*
 
-
-
 logger:
   default: info
   logs:
@@ -99,6 +97,14 @@ logger:
     # homeassistant.components.deconz: debug
     custom_components.dahua: debug
     homeassistant.components.shell_command: debug
+
+media_player:
+  - platform: webrtc
+    name: Deurbel
+    stream: deurbel
+  - platform: webrtc
+    name: Achtertuin
+    stream: achtertuin
 
 notify:
   - platform: telegram
