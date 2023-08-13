@@ -98,13 +98,9 @@ logger:
     custom_components.dahua: debug
     homeassistant.components.shell_command: debug
 
-media_player:
-  - platform: webrtc
-    name: Deurbel
-    stream: deurbel
-  - platform: webrtc
-    name: Achtertuin
-    stream: achtertuin
+streams:
+  achtertuin: !secret achtertuin_rtsp
+  deurbel: !secret deurbel_rtsp
 
 notify:
   - platform: telegram
