@@ -13,5 +13,4 @@
   action:
     - type: toggle
       device_id: 2696c12d63355292a1b643f65d5c3fcb
-      entity_id: c83a8e011605eedd8d2dc85e88d4c84e
       domain: light
