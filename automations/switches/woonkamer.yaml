@@ -1,0 +1,17 @@
+- id: switch_woonkamer_toggle
+  alias: Toggle switch woonkamer
+  description: ""
+  mode: single
+  trigger:
+    - platform: device
+      domain: mqtt
+      device_id: e6fb3dc371d8d1724a566e971037345f
+      type: action
+      subtype: toggle
+      discovery_id: 0x001788010cc49e62 action_toggle
+  condition: []
+  action:
+    - type: toggle
+      device_id: 2696c12d63355292a1b643f65d5c3fcb
+      entity_id: c83a8e011605eedd8d2dc85e88d4c84e
+      domain: light
