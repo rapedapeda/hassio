@@ -11,6 +11,7 @@
       discovery_id: 0x001788010cc49e62 action_toggle
   condition: []
   action:
-    - type: toggle
-      device_id: 2696c12d63355292a1b643f65d5c3fcb
-      domain: light
+    - service: light.toggle
+      data: {}
+      target:
+        device_id: 2696c12d63355292a1b643f65d5c3fcb
