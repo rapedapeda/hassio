@@ -98,10 +98,6 @@ logger:
     custom_components.dahua: debug
     homeassistant.components.shell_command: debug
 
-streams:
-  achtertuin: !secret achtertuin_rtsp
-  deurbel: !secret deurbel_rtsp
-
 notify:
   - platform: telegram
     name: telegram
