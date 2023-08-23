@@ -1,5 +1,5 @@
-- id: switch_woonkamer_toggle
-  alias: Toggle switch woonkamer
+- id: switch_slaapkamer_toggle
+  alias: Toggle lights slaapkamer
   description: ""
   mode: single
   trigger:
@@ -11,7 +11,7 @@
       discovery_id: 0x001788010cc49e82 action_left_press
   condition: []
   action:
-    - service: light.toggle
-      data: {}
-      target:
-        device_id: 51940fa8322221f4e99bfbee4817607b
+    - type: toggle
+      device_id: 79b1873123ff7a8d1975929dcfe51f75
+      entity_id: ef86681e37913c42e397be02cbcc63e5
+      domain: light
