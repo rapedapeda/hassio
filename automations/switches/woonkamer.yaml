@@ -7,8 +7,8 @@
       domain: mqtt
       device_id: e6fb3dc371d8d1724a566e971037345f
       type: action
-      subtype: left_press
-      discovery_id: 0x001788010cc49e62 action_left_press
+      subtype: left_press_release
+      discovery_id: 0x001788010cc49e62 action_left_press_release
   condition: []
   action:
     - service: light.toggle
