@@ -5,13 +5,13 @@
   trigger:
     - platform: device
       domain: mqtt
-      device_id: e6fb3dc371d8d1724a566e971037345f
+      device_id: 1d73edb1b5a34df0631d7b19f3dff9f1
       type: action
-      subtype: left_press_release
-      discovery_id: 0x001788010cc49e62 action_left_press_release
+      subtype: left_press
+      discovery_id: 0x001788010cc49e82 action_left_press
   condition: []
   action:
     - service: light.toggle
       data: {}
       target:
-        device_id: 2696c12d63355292a1b643f65d5c3fcb
+        device_id: 51940fa8322221f4e99bfbee4817607b
