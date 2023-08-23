@@ -1,14 +1,14 @@
 - id: switch_woonkamer_toggle
-  alias: Toggle lights slaapkamer
+  alias: Toggle lights woonkamer
   description: ""
   mode: single
   trigger:
     - platform: device
       domain: mqtt
-      device_id: 1d73edb1b5a34df0631d7b19f3dff9f1
+      device_id: e6fb3dc371d8d1724a566e971037345f
       type: action
       subtype: left_press
-      discovery_id: 0x001788010cc49e82 action_left_press
+      discovery_id: 0x001788010cc49e62 action_left_press
   condition: []
   action:
     - service: input_boolean.toggle
