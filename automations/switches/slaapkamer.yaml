@@ -12,6 +12,6 @@
   condition: []
   action:
     - type: toggle
-      device_id: 79b1873123ff7a8d1975929dcfe51f75
-      entity_id: ef86681e37913c42e397be02cbcc63e5
+      device_id: f1f1b349aa7e9fa99044304ee7a298f6
+      entity_id: d62633020e6817215f05c76164daa0e3
       domain: light
