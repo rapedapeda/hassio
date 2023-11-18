@@ -87,6 +87,7 @@ influxdb:
       - sensor.*batterij
       - sensor.p1_*
       - sensor.omvormer_*
+      - sensor.zonnepanelen*
       - person.*
       - sensor.ventilator_woonkamer_*
 
