@@ -44,11 +44,6 @@ alarm_control_panel:
   - platform: manual
     name: Huis
 
-#browser_mod:
-
-#emulated_hue:
-#  listen_port: 80
-
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
@@ -93,24 +88,6 @@ logger:
     custom_components.dahua: debug
     homeassistant.components.shell_command: debug
 
-notify:
-  - platform: telegram
-    name: telegram
-    chat_id: !secret telegram_chatid
-  - platform: group
-    name: all
-    services:
-      - service: mobile_app_iphone_ramon # Ramon
-      - service: mobile_app_iphone_van_f_s_o # Flore
-  - platform: group
-    name: flore
-    services:
-      - service: mobile_app_iphone_van_f_s_o # Flore
-  - platform: group
-    name: ramon
-    services:
-      - service: mobile_app_iphone_ramon # Ramon
-
 recorder:
   purge_keep_days: 3650
   include:
@@ -136,12 +113,6 @@ recorder:
       - sensor.luchtdruk_*
       - sensor.licht_*
       - sensor.ventilator_woonkamer_*
-
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegram_api
-    allowed_chat_ids:
-      - !secret telegram_chatid
 
 ######################################################################
 
