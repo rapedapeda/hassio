@@ -29,13 +29,6 @@ system_health:
 websocket_api:
 
 
-# Text to speech
-tts:
-  - platform: google_translate
-    language: 'nl'
-    service_name: google_say
-    cache: true
-
 homeassistant:
   customize: !include_dir_merge_named customize/
   unit_system: metric
