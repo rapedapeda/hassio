@@ -14,7 +14,8 @@ include:
     - fan.wtw
   entity_globs:
     - sensor.p1_*
-    - sensor.omvormer_*
+    - sensor.omvormer_* #Mag er uit
+    - sensor.zonnepanelen*
     - sensor.luchtvochtigheid_*
     - sensor.temperatuur_*
     - sensor.luchtdruk_*
