@@ -1,9 +1,0 @@
-- name: Deurbel
-  port: 21066
-  mode: accessory
-  filter:
-    include_entities:
-      - camera.deurbel_main
-  entity_config:
-    camera.deurbel_main:
-      linked_doorbell_sensor: binary_sensor.deurbel_button_pressed
