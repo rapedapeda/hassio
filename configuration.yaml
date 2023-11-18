@@ -123,12 +123,10 @@ counter: !include_dir_merge_named counters/
 fan: !include_dir_merge_list fan/
 group: !include_dir_merge_named groups/
 history: !include history.yaml
-homekit: !include homekit.yaml
 input_boolean: !include_dir_merge_named input_boolean/
 input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
 logbook: !include logbook.yaml
-#notify: !include_dir_list notify/
 python_script:
 rest_command: !include rest_command.yaml
 scene: !include_dir_merge_list scenes/
