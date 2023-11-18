@@ -13,7 +13,7 @@ include:
     - cover.zonnescherm
     - fan.wtw
     - sensor.zonnepanelen_power
-    - sensor.zonnepanelen_power
+    - sensor.zonnepanelen_energy
   entity_globs:
     - sensor.p1_*
     - sensor.omvormer_* #Mag er uit
