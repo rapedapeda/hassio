@@ -68,6 +68,8 @@ influxdb:
     domains:
       - alarm_control_panel
       - sun
+      - sensor.zonnepanelen_power
+      - sensor.zonnepanelen_power
     entity_globs:
       - binary_sensor.beweging_*
       - binary_sensor.aanwezigheid_*
@@ -87,7 +89,6 @@ influxdb:
       - sensor.*batterij
       - sensor.p1_*
       - sensor.omvormer_*
-      - sensor.zonnepanelen*
       - person.*
       - sensor.ventilator_woonkamer_*
 
@@ -132,6 +133,8 @@ recorder:
       - switch.drinkbak
       - sensor.co2
       - sensor.irradiance
+      - sensor.zonnepanelen_power
+      - sensor.zonnepanelen_power
     entity_globs:
       - sensor.p1_*
       - sensor.omvormer_*
