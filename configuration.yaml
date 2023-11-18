@@ -69,7 +69,7 @@ influxdb:
       - alarm_control_panel
       - sun
       - sensor.zonnepanelen_power
-      - sensor.zonnepanelen_power
+      - sensor.zonnepanelen_energy
     entity_globs:
       - binary_sensor.beweging_*
       - binary_sensor.aanwezigheid_*
@@ -134,7 +134,7 @@ recorder:
       - sensor.co2
       - sensor.irradiance
       - sensor.zonnepanelen_power
-      - sensor.zonnepanelen_power
+      - sensor.zonnepanelen_energy
     entity_globs:
       - sensor.p1_*
       - sensor.omvormer_*
