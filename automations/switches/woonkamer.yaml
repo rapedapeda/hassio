@@ -17,8 +17,8 @@
       target:
         entity_id: input_select.kamer_scene_woonkamer
 
-- id: switch_slaapkamer_hold
-  alias: Schakelaar slaapkamer (hold)
+- id: switch_woonkamer_hold
+  alias: Schakelaar woonkamer (hold)
   description: ""
   mode: single
   trigger:
