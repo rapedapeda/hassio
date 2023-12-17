@@ -27,7 +27,11 @@
         - binary_sensor.zonweringweer_voorkant
         - binary_sensor.zon_voorkant
       to: 'off'
-  condition: []
+  condition: 
+    - condition: numeric_state
+      entity_id: cover.rolluikkantoor
+      attribute: current_position
+      below: 100
   action:
     # sluit cover
     - service: cover.open_cover
