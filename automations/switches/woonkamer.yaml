@@ -7,8 +7,8 @@
       domain: mqtt
       device_id: e6fb3dc371d8d1724a566e971037345f
       type: action
-      subtype: left_press
-      discovery_id: 0x001788010cc49e62 action_left_press
+      subtype: left_press_release
+      discovery_id: 0x001788010cc49e62 action_left_press_release
   condition: []
   action:
     - service: input_select.select_next
@@ -16,3 +16,21 @@
         cycle: true
       target:
         entity_id: input_select.kamer_scene_woonkamer
+
+- id: switch_slaapkamer_hold
+  alias: Schakelaar slaapkamer (hold)
+  description: ""
+  mode: single
+  trigger:
+    - platform: device
+      domain: mqtt
+      device_id: e6fb3dc371d8d1724a566e971037345f
+      type: action
+      subtype: left_hold
+      discovery_id: 0x001788010cc49e62 action_left_hold
+  condition: []
+  action:
+    - service: input_boolean.toggle
+      target:
+        entity_id: input_boolean.verlichting_slaapkamer
+      data: {}
