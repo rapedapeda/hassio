@@ -26,8 +26,8 @@
       domain: mqtt
       device_id: 1d73edb1b5a34df0631d7b19f3dff9f1
       type: action
-      subtype: left_hold_release
-      discovery_id: 0x001788010cc49e82 action_left_hold_release
+      subtype: left_hold
+      discovery_id: 0x001788010cc49e82 action_left_hold
   condition: []
   action:
     - service: input_boolean.toggle
