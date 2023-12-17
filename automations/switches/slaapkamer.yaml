@@ -11,7 +11,8 @@
       discovery_id: 0x001788010cc49e82 action_left_press
   condition: []
   action:
-    - type: toggle
-      device_id: f1f1b349aa7e9fa99044304ee7a298f6
-      entity_id: d62633020e6817215f05c76164daa0e3
-      domain: light
+    - service: input_select.select_next
+      target:
+        entity_id: input_select.kamer_scene_slaapkamer
+      data:
+        cycle: true
