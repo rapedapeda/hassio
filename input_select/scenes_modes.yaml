@@ -2,7 +2,6 @@ kamer_scene_woonkamer:
   name: Scene
   icon: mdi:sofa
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
@@ -10,7 +9,6 @@ kamer_scene_slaapkamer:
   name: Scene
   icon: mdi:bed-king
   options:
-    - Uit
     - Gedimd
     - Nacht
     - Normaal
@@ -19,7 +17,6 @@ kamer_scene_hal:
   name: Scene
   icon: mdi:door-closed
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
@@ -27,7 +24,6 @@ kamer_scene_overloopeerste:
   name: Scene
   icon: mdi:door-closed
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
@@ -35,7 +31,6 @@ kamer_scene_kantoor:
   name: Scene
   icon: mdi:desk
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
@@ -43,7 +38,6 @@ kamer_scene_overlooptweede:
   name: Scene
   icon: mdi:door-closed
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
@@ -51,7 +45,6 @@ kamer_scene_badkamer:
   name: Scene
   icon: mdi:shower
   options:
-    - Uit
     - Gedimd
     - Normaal
     - Vol
