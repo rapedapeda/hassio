@@ -32,5 +32,5 @@
   action:
     - service: input_boolean.toggle
       target:
-        entity_id: input_boolean.verlichting_slaapkamer
+        entity_id: input_boolean.verlichting_woonkamer
       data: {}
