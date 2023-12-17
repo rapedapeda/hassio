@@ -20,7 +20,7 @@
 - id: switch_slaapkamer_hold
   alias: Schakelaar slaapkamer (hold)
   description: ""
-  modus: single
+  mode: single
   trigger:
     - platform: device
       domain: mqtt
