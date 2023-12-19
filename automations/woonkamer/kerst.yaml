@@ -32,7 +32,7 @@
       state:  'on'
   action:
     - service: >-
-        {% elif is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','on')  %}
+        {% if is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','off')  %}
           light.turn_on
         {% else %}
           light.turn_off
