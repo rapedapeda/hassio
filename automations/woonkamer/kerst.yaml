@@ -31,13 +31,11 @@
       entity_id: input_boolean.kerst
       state:  'on'
   action:
-    - service: scene.turn_on
+    - service: >-
+        {% elif is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','on')  %}
+          light.turn_on
+        {% else %}
+          light.turn_off
+        {% endif %}
       data:
-        entity_id: >
-          {% if is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','off')  %}
-            scene.kerst_aan
-          {% elif is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','on')  %}
-            scene.kerst_uit
-          {% else %}
-            scene.kerst_uit
-          {% endif %}
+        entity_id: light.kerst 
