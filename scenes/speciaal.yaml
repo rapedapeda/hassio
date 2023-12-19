@@ -5,9 +5,14 @@
       brightness: 127
     switch.kerstboom:
       state: on
+    switch.keuken:
+      state: on
+
 - name: kerst_uit
   entities:
     light.kerstster:
       state: off
     switch.kerstboom:
+      state: off
+    switch.keuken:
       state: off
