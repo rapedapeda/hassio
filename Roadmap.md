@@ -17,10 +17,10 @@ In de afgelopen 2 jaren zijn er een hoop zaken gestroomlijnd binnen Home Assista
 
 Samengevat is er genoeg reden om de code eens goed te herzien en een aantal functionaliteiten toe te voegen, om beter aan te pakken. Het uitgangspunt is om automatiseringen en scripts zo efficient en generiek mogelijk op te stellen. Samengevat:
 
-- [ ] Verlichting per kamer uniform regelen
-- [ ] Verwarming per kamer uniform regelen
-- [ ] Maximaal gebruik maken van Zigbee-groepen en scenes
-- [ ] Opschonen van de codebase
+1. Verlichting per kamer uniform regelen
+2. Verwarming per kamer uniform regelen
+3. Maximaal gebruik maken van Zigbee-groepen en scenes
+4. Opschonen van de codebase
 
 ## Automatisering generaliseren per ruimte
 ...
@@ -32,15 +32,20 @@ Deze sectie beschrijft de use-cases voor de verlichting op kamerniveau. De volge
 De input hiervoor zijn een of meerdere daglichtsensoren, die in een group worden gegroepeerd. Dat moet via de UI kunnen. Een aparte template-sensor is nodig om het gemeten daglicht te vergelijken met een drempelwaarde. Die drempelwaarde moet kunnen worden ingesteld via de UI.
 
 Sensoren:
-    - een of meerdere daglichtsensoren
+
+- een of meerdere daglichtsensoren
+
 Helpers:
-    - input_number.**ruimte**_daglicht_drempelwaarde: om de drempelwaarde in te stellen
-    - group.**ruimte**_daglichtsensoren (via UI): hierin worden alle daglichtsensoren toegevoegd, en de max/min/gem berekend
-    - binary_sensor.**ruimte**_daglicht: toetst de group.**ruimte**_daglichtsensoren aan de input_number.**ruimte**_daglicht_drempelwaarde
+
+- input_number.**ruimte**_daglicht_drempelwaarde: om de drempelwaarde in te stellen
+- group.**ruimte**_daglichtsensoren (via UI): hierin worden alle daglichtsensoren toegevoegd, en de max/min/gem berekend
+- binary_sensor.**ruimte**_daglicht: toetst de group.**ruimte**_daglichtsensoren aan de input_number.**ruimte**_daglicht_drempelwaarde
+
 Automatiseringen: geen
 
 Resultaat:
-    - een binary_sensor die als input geldt voor andere use-cases
+
+- een binary_sensor die als input geldt voor andere use-cases
 
 ### 1.2 Het moet mogelijk zijn om per kamer te zien of er personen aanwezig zijn
 Hiervoor gebruiken we een of meerdere bewegingssensoren (binary_sensors), die moeten via de UI kunnen worden toegevoegd aan een groep. Dezelfde groep wordt in een aparte template-sensor gebruikt om de aanwezigheid van de kamer aan te geven, inclusief een delay voordat hij naar 'uit' gaat (om te zorgen dat als iemand even stilzit, de lampen niet meteen uitgaat). De delay moet ook via de UI kunnen worden aangepast.
