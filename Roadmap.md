@@ -46,17 +46,23 @@ Resultaat:
 Hiervoor gebruiken we een of meerdere bewegingssensoren (binary_sensors), die moeten via de UI kunnen worden toegevoegd aan een groep. Dezelfde groep wordt in een aparte template-sensor gebruikt om de aanwezigheid van de kamer aan te geven, inclusief een delay voordat hij naar 'uit' gaat (om te zorgen dat als iemand even stilzit, de lampen niet meteen uitgaat). De delay moet ook via de UI kunnen worden aangepast.
 
 Sensoren:
-    - een of meerdere bewegingssensoren
+
+- een of meerdere bewegingssensoren
+
 Helpers:
-    - input_number.**ruimte**_aanwezigheid_vertraging
-    - group.**ruimte**_bewegingssensoren
-    - binary_sensor.**ruimte**_aanwezigheid: geeft de status van de group door, en hanteert een delay_off als de group naar 'off' gaat ter hoogte van de waarde van input_number.**ruimte**_aanwezigheid_vertraging
+
+- input_number.**ruimte**_aanwezigheid_vertraging
+- group.**ruimte**_bewegingssensoren
+- binary_sensor.**ruimte**_aanwezigheid: geeft de status van de group door, en hanteert een delay_off als de group naar 'off' gaat ter hoogte van de waarde van input_number.**ruimte**_aanwezigheid_vertraging
+
 Automatiseringen: geen
 
 Resultaat (output):
-    - een binary_sensor die als input geldt voor andere use-cases
+
+- een binary_sensor die als input geldt voor andere use-cases
 
 ### 1.2 Wanneer er aanwezigheid is gedetecteerd gaan de lampen aan afhankelijk van het daglichtniveau
+
 De input hiervan zijn bewegingssensoren
 
-2. Wanneer er geen aanwezigheid van personen is, of het daglicht toereikend is dan gaat de verlichting uit
+### 1.3 Wanneer er geen aanwezigheid van personen is, of het daglicht toereikend is dan gaat de verlichting uit
