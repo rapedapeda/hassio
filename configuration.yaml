@@ -79,6 +79,7 @@ influxdb:
       - sensor.omvormer_*
       - person.*
       - sensor.ventilator_woonkamer_*
+      - sensor.heatbooster*
 
 logger:
   default: info
