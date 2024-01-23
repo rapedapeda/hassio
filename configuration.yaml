@@ -114,7 +114,7 @@ recorder:
       - sensor.luchtdruk_*
       - sensor.licht_*
       - sensor.ventilator_woonkamer_*
-
+      - sensor.heatbooster*
 ######################################################################
 
 #alert: !include_dir_merge_named alerts/
