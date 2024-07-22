@@ -108,7 +108,10 @@ recorder:
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
       - sensor.knmi_thuis_waarschuwing
-      - sensor.sensor.knmi_thuis_wind
+      - sensor.knmi_thuis_wind
+      - sensor.buienradar_precipitation
+      - sensor.buienradar_wind_force
+      - sensor.buienradar_wind_gust
     entity_globs:
       - sensor.p1_*
       - sensor.omvormer_*
