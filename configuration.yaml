@@ -74,6 +74,7 @@ influxdb:
       - sensor.luchtvochtigheid_*
       - sensor.temperatuur_*
       - sensor.delft*
+      - sensor.knmi_thuis_*
       - sensor.*batterij
       - sensor.p1_*
       - sensor.omvormer_*
@@ -106,6 +107,8 @@ recorder:
       - sensor.irradiance
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
+      - sensor.knmi_thuis_waarschuwing
+      - sensor.sensor.knmi_thuis_wind
     entity_globs:
       - sensor.p1_*
       - sensor.omvormer_*
