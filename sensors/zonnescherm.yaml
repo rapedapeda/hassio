@@ -3,7 +3,7 @@
     zonnescherm_positie:
       friendly_name: Zonnescherm positie
       unit_of_measurement: "%"
-      value_template:
+      value_template: >-
         {% set zon_altitude = state_attr('sun.sun', 'altitude') | int(0) %}
         {% set zon_azimuth = state_attr('sun.sun', 'azimuth') | int(0) %}
         {% set azimuth_lower = 63 | float %}
