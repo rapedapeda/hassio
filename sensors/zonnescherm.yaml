@@ -1,0 +1,25 @@
+- platform: template
+  sensors:
+    zonnescherm_positie:
+      friendly_name: Zonnescherm positie
+      unit_of_measurement: "%"
+      value_template: >-
+        {% set zon_altitude = (state_attr('sun.sun', 'elevation') *pi/180) | float(0) %}
+        {% set zon_azimuth = state_attr('sun.sun', 'azimuth') | int(0) %}
+        {% set azimuth_lower = 63 | float %}
+        {% set azimuth_upper = 200 | float %}
+        {% set schermhoogte = 200 | float %} {# centimeters #}
+        {% set schermlengte = 240 | float %} {# centimeters #}
+
+        {# Bereken de gewenste positie van het scherm, met als max de schermlengte #}
+        {# Zorg ook dat we afrond op 1 decimaal, zodat het percentage in stappen van 10% gaat #}
+        {% set positie = min([(schermhoogte / tan(zon_altitude)), schermlengte ]) | round(0) %}
+
+        {# Alleen als de zon op het raam staat #}
+        {% if azimuth_lower < zon_azimuth < azimuth_upper %}
+          {# Vertaal het naar een relatieve positie #}
+          {{ ((positie / schermlengte) | round(1)) * 100 | int(0) }}
+        {% else %}
+          0
+        {% endif %}
+

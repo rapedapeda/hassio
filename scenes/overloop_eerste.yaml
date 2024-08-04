@@ -4,6 +4,8 @@
       state: 'off'
     light.trap:
       state: 'off'
+    light.donut:
+      state: 'off'
 - name: overloopeerste_normaal
   entities:
     light.overloop_eerste_plafond:
@@ -12,6 +14,8 @@
     light.trap:
       state: 'on'
       brightness: 65
+    light.donut:
+      state: 'on'
 - name: overloopeerste_vol
   entities:
     light.overloop_eerste_plafond:
@@ -20,6 +24,8 @@
     ligth.trap:
       state: 'on'
       brightness: 255
+    light.donut:
+      state: 'on'
 - name: overloopeerste_gedimd
   entities:
     light.overloop_eerste_plafond:
@@ -28,3 +34,5 @@
     light.trap:
       state: 'on'
       brightness: 10
+    light.donut:
+      state: 'on'
