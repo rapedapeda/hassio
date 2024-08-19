@@ -7,7 +7,7 @@
     light.parentesi:
       state: 'off'
     light.woonkamer_artemide:
-      state: ' off'
+      state: 'off'
 - name: woonkamer_normaal
   entities:
     light.woonkamer_lotek:
