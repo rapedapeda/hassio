@@ -4,7 +4,7 @@
     - platform: state
       entity_id:
         - binary_sensor.zonweringweer_woonkamer
-        - binary_sensor.zon_achterkant
+        # - binary_sensor.zon_achterkant
       to: 'on'
     - platform: state
       entity_id:
@@ -13,7 +13,7 @@
     - condition: state
       entity_id:
         - binary_sensor.zonweringweer_woonkamer
-        - binary_sensor.zon_achterkant
+        # - binary_sensor.zon_achterkant
       state: 'on'
   action:
     # open cover
