@@ -23,7 +23,7 @@
       target:
         device_id: 387139086e10c87416e1d190c8717923
       data:
-        position: {{states('sensor.zonnescherm_positie')}}
+        position: "{{states('sensor.zonnescherm_positie')}}"
 
 - id: zonwering_achterkant_dicht
   alias: Zonwering achterkant dicht
