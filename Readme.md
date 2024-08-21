@@ -65,7 +65,7 @@ De verlichting schakelt op aanwezigheid en het omgevingslicht. Daarvoor is per r
 - [ ] Een groep met lampen (op Zigbee-niveau)
 - [ ] Enkele scenes (op Zigbee-niveau): gedimd, normaal, vol
 - [ ] Een helper (input select) om de actieve scene vast te leggen
-- [ ] Een helper (input slider) met een drempelwaarde voor de minimale lichtsterkte
+- [ ] Een helper (threshold) met een drempelwaarde voor de minimale lichtsterkte
 - [ ] Een helper (input slider) met een vertraging voor het in- en uitschakelen op basis van omgevingslicht
 - [ ] Een helper (input slider) met een vertraging voor het uitschakelen van licht wanneer er niemand meer aanwezig is
 
