@@ -101,6 +101,11 @@ De beveiliging maakt gebruik van eigen automatiseringen en helpers, gezien de ee
   - [ ] Aan- of afwezigheid van personen
   - [ ] Tijd om de nacht-stand in of uit te schakelen
 
+### Stofzuigen
+
+De scripts zijn op dit moment ingericht op één stofzuigrobot. Vanaf v2024 ondersteunen ze ook meerdere stofzuigrobots, in het geval van de use-case van één robot per verdieping. De robots dienen een schema te volgen, en automatisch bij een volle opvangbak naar een vooraf ingestelde te verplaatsen. Ook houden ze rekening met vakantieperiodes, zodat ze bij langdurige afwezigheid niet dezelfde hoge frequentie aanhouden.
+
+
 
 De volgende wijzigingen worden doorgevoerd:
 
