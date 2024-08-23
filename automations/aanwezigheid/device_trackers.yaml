@@ -7,7 +7,7 @@
   variables:
     person_name: "{{ trigger.entity_id.split('_')[-1] | capitalize }}"
   action:
-    - service: device_tracker.see
+  - service: device_tracker.see
     data:
       dev_id: "tracker_{{ person_name | lower }}"
       host_name: "Tracker {{ person_name }}"
