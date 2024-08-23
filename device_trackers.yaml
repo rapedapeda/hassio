@@ -1,14 +1,14 @@
-- platform: template
-devices:
-    flore:
-    source: "input_boolean.tracker_homekit_flore"
-    value_template: "{{ 'home' if is_state('input_boolean.tracker_homekit_flore', 'on') else 'not_home' }}"
-    attributes:
-        source_type: "virtual"
-- platform: template
-devices:
-    ramon:
-    source: "input_boolean.tracker_homekit_ramon"
-    value_template: "{{ 'home' if is_state('input_boolean.tracker_homekit_ramon', 'on') else 'not_home' }}"
-    attributes:
-        source_type: "virtual"
+-   platform: template
+    devices:
+        flore:
+        source: "input_boolean.tracker_homekit_flore"
+        value_template: "{{ 'home' if is_state('input_boolean.tracker_homekit_flore', 'on') else 'not_home' }}"
+        attributes:
+            source_type: "virtual"
+-   platform: template
+    devices:
+        ramon:
+        source: "input_boolean.tracker_homekit_ramon"
+        value_template: "{{ 'home' if is_state('input_boolean.tracker_homekit_ramon', 'on') else 'not_home' }}"
+        attributes:
+            source_type: "virtual"
