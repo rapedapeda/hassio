@@ -63,6 +63,7 @@ De Ruimte App is een class die voor iedere geinitieerde ruimte in appdeamon.yaml
 Iedere app heeft de volgende (verplichte) argumenten:
 
 | attribuut | mogelijke waarde | verplicht |
+| --- | --- | --- |
 | module    | 'rooms.room'     |     X     | 
 | class     | 'Room'         |  X    |
 | room_name | 'Woonkamer'   | X |
