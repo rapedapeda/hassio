@@ -10,8 +10,8 @@ alarm_trigger:
   module: alarm/alarm_trigger
   class: AlarmTrigger
   sensor_configurations:
-    group.ramen_1:
+    binary_sensor.ramen_1:
       - armed_away
-    group.ramen_deuren_bg:
+    binary_sensor.ramen_deuren_bg:
       - armed_away
       - armed_home
