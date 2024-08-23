@@ -18,7 +18,7 @@ class AlarmMode(hass.Hass):
 
         # Plan callbacks voor zonsondergang en zonsopgang
         self.run_at_sunrise(self.handle_alarm, offset=3600)
-        self.run_at_sunset(self.handle_alarm offset=-3600)  # 15 minuten voor zonsondergang
+        self.run_at_sunset(self.handle_alarm, offset=-3600)  # 15 minuten voor zonsondergang
 
         # Voer een initiële controle van de alarmstatus uit
         self.handle_alarm()
