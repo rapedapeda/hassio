@@ -1,0 +1,14 @@
+woonkamer:
+  module: rooms.room
+  class: Room
+  room_name: "Woonkamer"
+  motion_sensor: "binary_sensor.motion_woonkamer"
+  light_sensor: "sensor.lux_woonkamer"
+  light_threshold: "input_number.lux_threshold_woonkamer"
+  light_delay: "input_number.light_delay_woonkamer"
+  lights: "light.group_woonkamer"
+  climate: "climate.woonkamer"
+  climate_schedule: "schedule.woonkamer_heating"
+  media_player: "media_player.woonkamer"
+  shading: "cover.woonkamer_shade"
+
