@@ -3,11 +3,11 @@ hello_world2:
   class: HelloWorldRamon
 
 alarm_mode:
-  module: alarm/alarm_mode
+  module: alarm.alarm_mode
   class: AlarmMode
 
 alarm_trigger:
-  module: alarm/alarm_trigger
+  module: alarm.alarm_trigger
   class: AlarmTrigger
   sensor_configurations:
     binary_sensor.ramen_1:
