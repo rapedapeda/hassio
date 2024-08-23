@@ -5,7 +5,7 @@ class AlarmMode(hass.Hass):
     AppDaemon-app voor het beheren van de alarmstatus op basis van aanwezigheid en tijd van de dag.
     """
 
-     def initialize(self):
+    def initialize(self):
         """
         Initialiseert de app door:
         - Luisteren naar veranderingen in de aanwezigheidstoestand van alle gedefinieerde personen
