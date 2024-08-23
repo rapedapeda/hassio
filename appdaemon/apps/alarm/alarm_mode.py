@@ -17,13 +17,13 @@ class AlarmMode(hass.Hass):
         self.listen_state(self.handle_alarm, "input_boolean.presence_status")
 
         # Plan callbacks voor zonsondergang en zonsopgang
-        self.run_at_sunrise(self.handle_alarm(night=True), ofset=3600)
-        self.run_at_sunset(self.handle_alarm(night=False), offset=-3600)  # 15 minuten voor zonsondergang
+        self.run_at_sunrise(self.handle_alarm, offset=3600)
+        self.run_at_sunset(self.handle_alarm offset=-3600)  # 15 minuten voor zonsondergang
 
         # Voer een initiële controle van de alarmstatus uit
         self.handle_alarm()
 
-    def handle_alarm(self, night, *args, **kwargs):
+    def handle_alarm(self, *args, **kwargs):
         """
         Behandelt het instellen van de alarmstatus op basis van aanwezigheid en tijd van de dag.
         """
