@@ -4,43 +4,44 @@ In deze versie gaat over het versimpelen van de codebase, beter gebruik maken va
 
 ## Introductie
 
-De grootste stap van v2021 naar v2024 is de gedeeltelijke overstap van YAML naar de UI voor een deel van de configuratie. HomeAssistant blijft de basis om de verschillende platformen (Zigbee, MQTT, HomeKit etcetera) aan elkaar te knopen.  Voor de automatiseringen maken we gebruik van YAML, maar helpers (groepen, knoppen en dergelijken) configureren we vanuit de UI. Dat maakt het onderhoud gemakkelijker, en toegankelijker voor andere leden van het huishouden. Daarnaast is de stap van v2021 naar v2024 een reden om de codebase grondig tegen het licht te houden, en om enkele nieuwe functionaliteiten toe te voegen en te verbeteren.
+De grootste stap van v2021 naar v2024 is de gedeeltelijke overstap van YAML naar de UI voor een deel van de configuratie. HomeAssistant blijft de basis om de verschillende platformen (Zigbee, MQTT, HomeKit etcetera) aan elkaar te knopen.  Voor de complexe automatiseringen op woning- of kamer-niveau wordt gebruik gemaakt van AppDeamon. Voor eenvoudige automatiseringen wordt YAML gebruikt, maar helpers (groepen, knoppen en dergelijken) configureren we vanuit de UI. Dat maakt het onderhoud gemakkelijker, en toegankelijker voor andere leden van het huishouden. Daarnaast is de stap van v2021 naar v2024 een reden om de codebase grondig tegen het licht te houden, en om enkele nieuwe functionaliteiten toe te voegen en te verbeteren.
 
 De uitgangspunten voor versie 3 zijn als volgt, en worden hieronder toegelicht:
 
 - Minimaliseren van gebruikersinput;
-- Ruimtes als uitgangspunt;
-- Automatiseren van verlichting, verwarming, zonwering, ventilatie en beveiliging;
+- Kamers als uitgangspunt;
+- Automatiseren van verlichting, verwarming, zonwering, ventilatie, schoonmaken en beveiliging;
 - Maximaliseren robuustheid (o.a. geen cloudservices, backup bij uitval Homeassistant);
 - Opschonen codebase.
 
 ### Minimaliseren van gebruikersinput
 
-Hierover kan ik kort zijn: het doel van automatiseren is ervoor zorgen dat in ons huis, de verlichting, de verwarming, de ventilatie etcetera zich automatisch aanpast aan de omstandigheden - zonder - dat hierbij gebruikersinput nodig is.
+Het doel van automatiseren is ervoor zorgen dat in ons huis, de verlichting, de verwarming, de ventilatie etcetera zich automatisch aanpast aan de omstandigheden - zonder - dat hierbij gebruikersinput nodig is.
 
 ### Ruimtes als uitgangspunt
 
-Door de opzet per ruimte, verdieping of het gehele huis in te richting kan er efficiënt gebruik worden gemaakt van herhaling is scripts. Dit maakt de codebase klein en de werking van het huis en iedere ruimte univorm en herkenbaar.
+Door de opzet per kamer, verdieping of het gehele huis in te richting kan er efficiënt gebruik worden gemaakt van herhaling is scripts. Dit maakt de codebase klein en de werking van het huis en iedere ruimte univorm en herkenbaar.
 
-Op dit moment groepeert HomeAssistant een aantal (alle) entiteiten per ruimte in eenzelfde 'Area'. Ook zijn er sinds 2024.4 'Floors', en labels beschikbaar. Hiermee kunnen meerdere ruimtes worden gegegroepeerd. Versie 2 maakt hiervan nog geen gebruik. Door functies, en instellingen per ruimte in te richting is het mogelijk om efficiënt te werken, compacte code te schrijven. Als voorbeeld kun je hierbij denken aan één automatisering om de lampen aan- en uit te doen die alle ruimtes kan bedienen.
+Op dit moment groepeert HomeAssistant een aantal (alle) entiteiten per ruimte in eenzelfde 'Area'. Ook zijn er sinds 2024.4 'Floors', en labels beschikbaar. Hiermee kunnen meerdere ruimtes worden gegegroepeerd. Versie 2021 maakt hiervan nog geen gebruik. Door functies, en instellingen per ruimte in te richting is het mogelijk om efficiënt te werken, compacte code te schrijven. Als voorbeeld kun je hierbij denken aan één automatisering om de lampen aan- en uit te doen die alle ruimtes kan bedienen.
 
 ### Automatiseren van functies
 
 De roadmap van deze update omvat het verder automatiseren van de volgende functies: verlichting, verwarming, zonwering, ventilatie en beveiliging. Sommige functionaliteiten zijn op huisniveau, terwijl andere functies op ruimteniveau zijn. Hieronder een overzicht:
 
-| Functie | Ruimte | Huis |
-| ------- | ------ | ---- |
-| Verlichting | X | |
-| Verwarming | X | |
-| Zonwering | X | |
-| Ventilatie | X | X |
-| Beveiliging | | X |
+| Functie     | Kamer | Huis | Verdieping |
+| ----------- | ----- | ---- | ---------- |
+| Verlichting |   X   |      |            |
+| Verwarming  |   X   |      |            |
+| Zonwering   |   X   |      |            |
+| Ventilatie  |   X   |   X  |            |
+| Beveiliging |       |   X  |     X      |
+| Schoonmaken |       |      |     X      |
 
 **Verlichting**: De verlichting schakelt op dit moment automatisch op basis van de aanwezige bewegingssensoren en het aanwezige daglicht in een ruimte. Dit werkt goed. De scripts die dit automatiseren zijn echter gedateerd. Daarnaast gaan we gebruik maken van scenes en groepen op Zigbee-niveau. Hiermee ontlasten we het netwerk en verminderen we vertragingen. Daarnaast zorgt dit ervoor dat we fysieke knoppen los van Homeassistant de lampen op zigbeeniveau kunnen laten aansturen. Dit heeft als groot voordeel dat bediening van de verlichting ook bij uitval van het systeem werkt.
 
-**Verwarming**: De huidige versie voorziet niet in het automatisch verwarmen van ruimtes; hiervoor gebruiker we nu de App van Tado. Het is de bedoeling om de verwarming 100% lokaal te gaan regelen, door de thermostaat en radiatorknoppen via HomeKit te bedienen, en automatische verwarmingsschemas in Homeassistant vast te leggen.
+**Verwarming**: De huidige versie voorziet niet in het automatisch verwarmen van kamers; hiervoor is nu nog de Cloud-app van Tado in gebruik. Vanaf v2024 wordt de verwarming 100% lokaal geregeld. Voor de thermostaat en radiatorknoppen wordt gebruik gemaakt van HomeKit, en automatische verwarmingsschemas worden in Homeassistant vastgelegd.
 
-**Zonwering**: De besturing van de zonwering is nog nog niet op kamerniveau geregeld. Het zonnescherm of het rolluik gaat wel automatisch dicht op basis van onder andere de stand van de zon, maar gebruikt de temperatuur in de woonkamer als referentie voor de kamertemperatuur. Dat is problematisch omdat de temperatuur in het kantoor veelal hoger ligt dan in de woonkamer. Deze referentiewaarde moet, per kamer worden bepaald. Daarnaast maakt de zonwering gebruik van het KNMI voor onder andere de zonintensiteit en de actuele buitentemperatuur. Dat is niet ideaal, vanwege de afhankelijkheid van cloudservices, maar vooralsnog werkt dit prima. In de toekomst kunnen deze entiteiten simpel vervangen worden door een lokaal weerstation op het dak.
+**Zonwering**: De besturing van de zonwering is nog niet op kamerniveau geregeld. Het zonnescherm of het rolluik gaat wel automatisch dicht op basis van onder andere de stand van de zon, maar gebruikt de temperatuur in de woonkamer als referentie voor de kamertemperatuur. Dat is problematisch omdat de temperatuur in het kantoor veelal hoger ligt dan in de woonkamer. Deze referentiewaarde moet, per kamer worden bepaald. Daarnaast maakt de zonwering gebruik van het KNMI voor onder andere de zonintensiteit en de actuele buitentemperatuur. Dat is niet ideaal, vanwege de afhankelijkheid van cloudservices, maar vooralsnog werkt dit prima. In de toekomst kunnen deze entiteiten simpel vervangen worden door een lokaal weerstation op het dak. Daarnaast is het noodzakelijk om enkele veiligheidsmaatregelen in te bouwen om te kunnen reageren op slecht weer (harde wind, of regen).
 
 **Ventilatie**: De ventilatie is op dit moment al afdoende geregeld. Deze schakelt op de aanwezigheid van personen, en neemt daarin per ruimte ook de CO2-concentratie in mee. Niet in elke ruimte is een CO2-meter aanwezig, waardoor de scripts nu specifiek gemaakt zijn voor ruimtes waarin zij wel zijn. Het doel van deze versie is om deze scripts te algemeniseren.
 
@@ -54,7 +55,26 @@ Voor de gevallen dat bediening of monitoring noodzakelijk is, wordt HomeKit gebr
 
 ## Beschrijving functies
 
-Onderstaande secties beschrijven de functies per thema, zoals hierboven geïntroduceerd.
+Onderstaande secties beschrijven de functies per thema, zoals hierboven geïntroduceerd. Om deze complexe automatiseringen uit te voeren, is gekozen voor AppDeamon, in plaats van YAML of de GUI. Dit geeft de mogelijkheid om 1 app te schrijven die alle kamers, en verdiepingen bestuurt, en waaronder de hieronder besproken modules vallen. 
+
+### Ruimte App
+De Ruimte App is een class die voor iedere geinitieerde ruimte in appdeamon.yaml automatisch de benodigde modules aanzet. In de woonkamer is bijvoorbeeld zowel een module nodig voor de verlichting, ventilatie, schoonmaak en mediaspeler, terwijl dat niet het geval is in het kantoor. Op basis van aangegeven entiteiten selecteert de kamermanager automatisch de correcte modules.
+
+Iedere app heeft de volgende (verplichte) argumenten:
+
+| attribuut | mogelijke waarde | verplicht |
+| module    | 'rooms.room'     |     X     | 
+| class     | 'Room'         |  X    |
+| room_name | 'Woonkamer'   | X |
+| motion_sensor | entiteit | |
+| light_sensor | entiteit | |
+| light_threshold | entiteit (number_input) | |
+| light_delay | entiteit (number_input) | |
+| lights | light_group | |
+| climate | entiteit | |
+| climate_schedule | entiteit (schedule) | |
+| media_player | entiteit | |
+| shading | entiteit | |
 
 ### Verlichting
 
