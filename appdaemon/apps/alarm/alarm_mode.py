@@ -28,11 +28,12 @@ class AlarmMode(hass.Hass):
         Behandelt het instellen van de alarmstatus op basis van aanwezigheid en tijd van de dag.
         """
         presence_status = self.get_state("input_boolean.presence_status")
+        night = self.now_is_between("sunset - 01:00:00", "sunrise + 01:00:00")
 
         if presence_status == 'off':
             self.call_service("alarm_control_panel/alarm_arm_away", entity_id="alarm_control_panel.huis", code=0000)
         elif presence_status == 'on':
-            if self.sun_down():
+            if night:
                 self.call_service("alarm_control_panel/alarm_arm_home", entity_id="alarm_control_panel.huis", code=0000)
             else:
                 self.call_service("alarm_control_panel/alarm_disarm", entity_id="alarm_control_panel.huis", code=0000)
