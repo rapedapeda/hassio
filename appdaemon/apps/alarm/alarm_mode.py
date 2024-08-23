@@ -15,7 +15,6 @@ class AlarmMode(hass.Hass):
         
         # Verkrijg alle device_tracker entiteiten
         self.trackers = self.get_trackers()
-        self.log(f'Trackers: {self.trackers}')
         
         # Dynamisch luisteren naar de aanwezigheidstoestand van elke tracker
         for tracker in self.trackers:
