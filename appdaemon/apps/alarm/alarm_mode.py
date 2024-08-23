@@ -1,13 +1,5 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-
-#
-# Applicatie voor het beheren van de alarmstatus
-#
-# Args:
-#
-
-
 class AlarmMode(hass.Hass):
     """
     AppDaemon-app voor het beheren van de alarmstatus op basis van aanwezigheid en tijd van de dag.
@@ -17,15 +9,15 @@ class AlarmMode(hass.Hass):
         """
         Initialiseert de app door:
         - Luisteren naar veranderingen in de aanwezigheidstoestand
-        - Luisteren naar zonsondergang en zonsopgang
+        - Planning van callbacks voor zonsondergang en zonsopgang met offsets
         - Voer een initiële controle van de alarmstatus uit
         """
         # Luister naar veranderingen in de aanwezigheidstoestand
         self.listen_state(self.handle_alarm, "input_boolean.presence_status")
 
-        # Luister naar zonsondergang en zonsopgang
-        self.listen_event(self.handle_alarm, "sunset")
-        self.listen_event(self.handle_alarm, "sunrise")
+        # Plan callbacks voor zonsondergang en zonsopgang
+        self.run_at_sunrise(self.handle_alarm, ofset=3600)
+        self.run_at_sunset(self.handle_alarm, offset=-3600)  # 15 minuten voor zonsondergang
 
         # Voer een initiële controle van de alarmstatus uit
         self.handle_alarm()
@@ -49,3 +41,15 @@ class AlarmMode(hass.Hass):
                 self.call_service("alarm_control_panel/alarm_arm_home", entity_id="alarm_control_panel.huis")
             else:
                 self.call_service("alarm_control_panel/alarm_disarm", entity_id="alarm_control_panel.huis")
+
+    def sunrise_cb(self, *args, **kwargs):
+        """
+        Callback functie die wordt aangeroepen bij zonsopgang.
+        """
+        self.handle_alarm()
+
+    def before_sunset_cb(self, *args, **kwargs):
+        """
+        Callback functie die wordt aangeroepen 15 minuten vóór zonsondergang.
+        """
+        self.handle_alarm()
