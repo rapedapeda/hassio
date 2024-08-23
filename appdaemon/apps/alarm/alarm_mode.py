@@ -14,7 +14,7 @@ class AlarmMode(hass.Hass):
         """
         self.log("Hello from AlarmMode")
         # Luister naar veranderingen in de aanwezigheidstoestand
-        self.listen_state(self.handle_alarm, "input_boolean.presence_status")
+        self.listen_state(self.handle_alarm, self.anyone_home(person=True))
 
         # Plan callbacks voor zonsondergang en zonsopgang
         self.run_at_sunrise(self.handle_alarm, offset=3600)
