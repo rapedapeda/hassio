@@ -32,7 +32,7 @@ class AlarmMode(hass.Hass):
         if presence_status == 'off':
             self.call_service("alarm_control_panel/alarm_arm_away", entity_id="alarm_control_panel.huis")
         elif presence_status == 'on':
-            if sunset <= now <= sunset:
+            if self.sun_down():
                 self.call_service("alarm_control_panel/alarm_arm_home", entity_id="alarm_control_panel.huis")
             else:
                 self.call_service("alarm_control_panel/alarm_disarm", entity_id="alarm_control_panel.huis")
