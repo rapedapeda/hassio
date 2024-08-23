@@ -12,6 +12,7 @@ class AlarmMode(hass.Hass):
         - Planning van callbacks voor zonsondergang en zonsopgang met offsets
         - Voer een initiële controle van de alarmstatus uit
         """
+        self.log("Hello from AlarmMode")
         # Luister naar veranderingen in de aanwezigheidstoestand
         self.listen_state(self.handle_alarm, "input_boolean.presence_status")
 
