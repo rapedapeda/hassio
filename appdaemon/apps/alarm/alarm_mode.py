@@ -1,5 +1,13 @@
 import appdaemon.plugins.hass.hassapi as hass
 
+
+#
+# Applicatie voor het beheren van de alarmstatus
+#
+# Args:
+#
+
+
 class AlarmMode(hass.Hass):
     """
     AppDaemon-app voor het beheren van de alarmstatus op basis van aanwezigheid en tijd van de dag.
