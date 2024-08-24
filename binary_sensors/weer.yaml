@@ -23,7 +23,7 @@
             and
             states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
             and 
-            states('sensor.buienradar_precipation)|float(0) == 0
+            states('sensor.buienradar_precipation')|float(0) == 0
         }}
 
 # Is het nodig zonwering aan de voorkant (1e en 2e) in te schakelen?
