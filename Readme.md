@@ -1,160 +1,68 @@
-# HomeAssistant v2024 Roadmap
+# Home Assistant configuratie (v2024)
 
-In deze versie gaat over het versimpelen van de codebase, beter gebruik maken van nieuwe HA-mogelijkheden en het meer configuratie via de UI van Homeassistant, in plaats van YAML.
+Welkom! Deze repository bevat de configuratie voor mijn smart home-setup die continu wordt geoptimaliseerd. Het doel van deze setup is om een gebruiksvriendelijke, robuuste en schaalbare oplossing te bieden voor het automatiseren van verschillende aspecten van ons huis.
 
-## Introductie
+## Uitgangspunten
 
-De grootste stap van v2021 naar v2024 is de gedeeltelijke overstap van YAML naar de UI voor een deel van de configuratie. HomeAssistant blijft de basis om de verschillende platformen (Zigbee, MQTT, HomeKit etcetera) aan elkaar te knopen.  Voor de complexe automatiseringen op woning- of kamer-niveau wordt gebruik gemaakt van AppDeamon. Voor eenvoudige automatiseringen wordt YAML gebruikt, maar helpers (groepen, knoppen en dergelijken) configureren we vanuit de UI. Dat maakt het onderhoud gemakkelijker, en toegankelijker voor andere leden van het huishouden. Daarnaast is de stap van v2021 naar v2024 een reden om de codebase grondig tegen het licht te houden, en om enkele nieuwe functionaliteiten toe te voegen en te verbeteren.
+De configuratie is opgebouwd rondom enkele belangrijke ontwerpprincipes:
 
-De uitgangspunten voor versie 3 zijn als volgt, en worden hieronder toegelicht:
+### Ruimteniveau, Verdiepingsniveau en Huisniveau
 
-- Minimaliseren van gebruikersinput;
-- Kamers als uitgangspunt;
-- Automatiseren van verlichting, verwarming, zonwering, ventilatie, schoonmaken en beveiliging;
-- Maximaliseren robuustheid (o.a. geen cloudservices, backup bij uitval Homeassistant);
-- Opschonen codebase.
+Door automatiseringen te structureren per kamer, verdieping of het hele huis, kunnen scripts en instellingen efficiënt worden hergebruikt. Dit maakt de codebase klein, overzichtelijk en consistent in gebruik. HomeAssistant groepeert entiteiten per ruimte in 'Areas', en sinds v2024.4 kunnen ruimtes ook gegroepeerd worden in 'Floors' en met labels. Hierdoor is het mogelijk om bijvoorbeeld één automatisering voor verlichting te schrijven die alle kamers bedient.
 
-### Minimaliseren van gebruikersinput
+### Pluggable Design
 
-Het doel van automatiseren is ervoor zorgen dat in ons huis, de verlichting, de verwarming, de ventilatie etcetera zich automatisch aanpast aan de omstandigheden - zonder - dat hierbij gebruikersinput nodig is.
+De setup is flexibel opgezet zodat niet elke kamer dezelfde functies of apparaten hoeft te bevatten. Dit betekent bijvoorbeeld dat niet elke ruimte een media-speler heeft, of dat sommige kamers geavanceerdere sensoren hebben dan andere. De configuratie blijft daardoor modulair en makkelijk uit te breiden zonder alles opnieuw te hoeven inrichten.
 
-### Ruimtes als uitgangspunt
+### Complexe Logica in AppDaemon
 
-Door de opzet per kamer, verdieping of het gehele huis in te richting kan er efficiënt gebruik worden gemaakt van herhaling is scripts. Dit maakt de codebase klein en de werking van het huis en iedere ruimte univorm en herkenbaar.
+Voor eenvoudige automatiseringen wordt YAML gebruikt, maar voor complexe processen is gekozen voor AppDaemon. Dit stelt ons in staat om één app te schrijven die meerdere kamers, verdiepingen of het hele huis beheert. Dit maakt het mogelijk om complexe automatiseringen centraal te beheren en code herbruikbaar en overzichtelijk te houden.
 
-Op dit moment groepeert HomeAssistant een aantal (alle) entiteiten per ruimte in eenzelfde 'Area'. Ook zijn er sinds 2024.4 'Floors', en labels beschikbaar. Hiermee kunnen meerdere ruimtes worden gegegroepeerd. Versie 2021 maakt hiervan nog geen gebruik. Door functies, en instellingen per ruimte in te richting is het mogelijk om efficiënt te werken, compacte code te schrijven. Als voorbeeld kun je hierbij denken aan één automatisering om de lampen aan- en uit te doen die alle ruimtes kan bedienen.
+## Beschrijving van functies
 
-### Automatiseren van functies
-
-De roadmap van deze update omvat het verder automatiseren van de volgende functies: verlichting, verwarming, zonwering, ventilatie en beveiliging. Sommige functionaliteiten zijn op huisniveau, terwijl andere functies op ruimteniveau zijn. Hieronder een overzicht:
-
-| Functie     | Kamer | Huis | Verdieping |
-| ----------- | ----- | ---- | ---------- |
-| Verlichting |   X   |      |            |
-| Verwarming  |   X   |      |            |
-| Zonwering   |   X   |      |            |
-| Ventilatie  |   X   |   X  |            |
-| Beveiliging |       |   X  |     X      |
-| Schoonmaken |       |      |     X      |
-
-**Verlichting**: De verlichting schakelt op dit moment automatisch op basis van de aanwezige bewegingssensoren en het aanwezige daglicht in een ruimte. Dit werkt goed. De scripts die dit automatiseren zijn echter gedateerd. Daarnaast gaan we gebruik maken van scenes en groepen op Zigbee-niveau. Hiermee ontlasten we het netwerk en verminderen we vertragingen. Daarnaast zorgt dit ervoor dat we fysieke knoppen los van Homeassistant de lampen op zigbeeniveau kunnen laten aansturen. Dit heeft als groot voordeel dat bediening van de verlichting ook bij uitval van het systeem werkt.
-
-**Verwarming**: De huidige versie voorziet niet in het automatisch verwarmen van kamers; hiervoor is nu nog de Cloud-app van Tado in gebruik. Vanaf v2024 wordt de verwarming 100% lokaal geregeld. Voor de thermostaat en radiatorknoppen wordt gebruik gemaakt van HomeKit, en automatische verwarmingsschemas worden in Homeassistant vastgelegd.
-
-**Zonwering**: De besturing van de zonwering is nog niet op kamerniveau geregeld. Het zonnescherm of het rolluik gaat wel automatisch dicht op basis van onder andere de stand van de zon, maar gebruikt de temperatuur in de woonkamer als referentie voor de kamertemperatuur. Dat is problematisch omdat de temperatuur in het kantoor veelal hoger ligt dan in de woonkamer. Deze referentiewaarde moet, per kamer worden bepaald. Daarnaast maakt de zonwering gebruik van het KNMI voor onder andere de zonintensiteit en de actuele buitentemperatuur. Dat is niet ideaal, vanwege de afhankelijkheid van cloudservices, maar vooralsnog werkt dit prima. In de toekomst kunnen deze entiteiten simpel vervangen worden door een lokaal weerstation op het dak. Daarnaast is het noodzakelijk om enkele veiligheidsmaatregelen in te bouwen om te kunnen reageren op slecht weer (harde wind, of regen).
-
-**Ventilatie**: De ventilatie is op dit moment al afdoende geregeld. Deze schakelt op de aanwezigheid van personen, en neemt daarin per ruimte ook de CO2-concentratie in mee. Niet in elke ruimte is een CO2-meter aanwezig, waardoor de scripts nu specifiek gemaakt zijn voor ruimtes waarin zij wel zijn. Het doel van deze versie is om deze scripts te algemeniseren.
-
-**Beveiliging**: De beveiliging heeft als doel om bij afwezigheid, in de avond of nacht, meldingen te geven (via Homekit) wanneer ramen of deuren geopend zijn, of als er beweging is gedetecteerd.
-
-### Maximaliseren robuustheid
-
-Elke cloudservices is er één teveel, alles moet lokaal *kunnen* werken. Dat wil niet zeggen dat er geen cloudservices worden gebruikt. Het uitgangspunt is dat de functies die hierboven zijn beschreven zoveel mogelijk blijven werken zonder internet. 
-
-Voor de gevallen dat bediening of monitoring noodzakelijk is, wordt HomeKit gebruikt. Dit is weliswaar geen lokale service (hoewel het ook zonder internetverbinding werkt), maar ontzorgt op een aantal punten in onderhoud en zorgt voor een vlekkenloze gebruikservaring op iOS-apparaten. Via de Homebridge plugin van Home Assistant worden alleen hoogstnoodzakelijke entiteiten ontsloten, zodat Homekit als simpele afstandsbediening werkt. Home Assistant zelf kan op deze manier losgekoppeld blijven van het internet, en de firewall kan gesloten blijven. Dat betekent dat de aanvalsvector minimaal is (met de aanname dat Homekit een te vertrouwen service is).
-
-## Beschrijving functies
-
-Onderstaande secties beschrijven de functies per thema, zoals hierboven geïntroduceerd. Om deze complexe automatiseringen uit te voeren, is gekozen voor AppDeamon, in plaats van YAML of de GUI. Dit geeft de mogelijkheid om 1 app te schrijven die alle kamers, en verdiepingen bestuurt, en waaronder de hieronder besproken modules vallen. 
-
-### Ruimte App
-De Ruimte App is een class die voor iedere geinitieerde ruimte in appdeamon.yaml automatisch de benodigde modules aanzet. In de woonkamer is bijvoorbeeld zowel een module nodig voor de verlichting, ventilatie, schoonmaak en mediaspeler, terwijl dat niet het geval is in het kantoor. Op basis van aangegeven entiteiten selecteert de kamermanager automatisch de correcte modules.
-
-Iedere app heeft de volgende (verplichte) argumenten:
-
-| attribuut | mogelijke waarde | verplicht |
-| --- | --- | --- |
-| module    | 'rooms.room'     |     X     | 
-| class     | 'Room'         |  X    |
-| room_name | 'Woonkamer'   | X |
-| motion_sensor | entiteit | |
-| light_sensor | entiteit | |
-| light_threshold | entiteit (number_input) | |
-| light_delay | entiteit (number_input) | |
-| lights | light_group | |
-| climate | entiteit | |
-| climate_schedule | entiteit (schedule) | |
-| media_player | entiteit | |
-| shading | entiteit | |
+De automatiseringen zijn opgesplitst in verschillende thema’s, afhankelijk van het niveau waarop ze actief zijn (ruimte, verdieping, of huis).
 
 ### Verlichting
 
-De verlichting schakelt op aanwezigheid en het omgevingslicht. Daarvoor is per ruimte het volgende nodig:
+*Werkt op ruimteniveau*
 
-- [ ] Een helper (groep) met lichtsensoren
-- [ ] Een helper (groep) met bewegingssensoren
-- [ ] Een groep met lampen (op Zigbee-niveau)
-- [ ] Enkele scenes (op Zigbee-niveau): gedimd, normaal, vol
-- [ ] Een helper (input select) om de actieve scene vast te leggen
-- [ ] Een helper (threshold) met een drempelwaarde voor de minimale lichtsterkte
-- [ ] Een helper (input slider) met een vertraging voor het in- en uitschakelen op basis van omgevingslicht
-- [ ] Een helper (input slider) met een vertraging voor het uitschakelen van licht wanneer er niemand meer aanwezig is
-
-Naast deze basisfunctionaliteit is het belangrijk dat verlichting ook te **bedienen is fysieke schakelaars** die gebruik maken van de aanwezige schakelmateriaal. Hiervoor is per ruimte (waar dit gewenst is) gebruik gemaakt van een Philips Hue wall switch die achter een bestaande pulsdrukker is gemonteerd. Vooralsnog maakt deze functie gebruik van automations, en niet van Zigbee bindings. De reden hiervoor is dat het niet mogelijk lijkt te zijn om scenes direct via Zigbee te toggelen.
-
-- [ ] Short press: zorgt ervoor dat lampen handmatig aan of uit schakelen
-- [ ] Long press: toggle actieve scene
+De verlichting schakelt automatisch op basis van aanwezigheid en omgevingslicht (binnen en buiten). De logica houdt rekening met tijd van de dag, de stand van de gordijnen of rolluiken, en eventuele manuele bedieningen via fysieke schakelaars. Door gebruik te maken van Zigbee-scenes en groepen wordt het netwerk ontlast en werkt de bediening ook bij uitval van HomeAssistant.
 
 ### Verwarming
 
-De verwarming maakt gebruik van Tado-materiaal. Deze zijn afgesloten van het internet en te bedienen via de Homekit Device-integratie. Het instellen van schema's gaat via Home Assistant.
+*Werkt op ruimteniveau*
 
-- [ ] Een schema via Home Assistant dat onderscheid maakt tussen weekdagen en weekenddagen
-- [ ] Een automatisering om een schema in of uit te schakelen op basis van 
-...
+De verwarming wordt 100% lokaal geregeld met Tado-apparaten via HomeKit. Automatische schema’s voor verschillende dagtypes en aanwezigheid zorgen voor een optimale temperatuur per kamer. Hierdoor kan de verwarming flexibel inspelen op veranderende situaties zonder afhankelijk te zijn van cloudservices.
 
 ### Zonwering
 
-...
+*Werkt op ruimteniveau*
+
+De zonwering reageert op de stand van de zon, de temperatuur in de betreffende kamer en weersomstandigheden zoals wind en regen. Hoewel er momenteel gebruik wordt gemaakt van KNMI-data voor zonintensiteit en buitentemperatuur, is er in de toekomst ruimte voor een lokaal weerstation om de afhankelijkheid van cloudservices verder te verkleinen.
 
 ### Ventilatie
 
-...
+*Werkt op huisniveau*
+
+De ventilatie wordt automatisch aangepast op basis van CO2-niveaus en luchtvochtigheid in verschillende ruimtes. Een Tasmota-aangestuurde WTW-installatie zorgt voor de aansturing. De automatisering imiteert daarnaast de bypass-functie om het huis ’s zomers extra te koelen tijdens koele nachten.
 
 ### Beveiliging
 
-De beveiliging maakt gebruik van eigen automatiseringen en helpers, gezien de eenvoudige eisen is een *addon* als Alarmo op dit moment niet noodzakelijk. De volgende functies nodig:
+*Werkt op huisniveau*
 
-- [ ] Een helper (groep) per verdieping met raamsensoren
-- [ ] Een helper (groep) met deursensoren op de begane grond
-- [ ] Een automatisering om als het alarm is ingeschakeld op night of away het alarm te triggeren
-- [ ] Automatische schakeling van het alarm op basis van:
-  - [ ] Aan- of afwezigheid van personen
-  - [ ] Tijd om de nacht-stand in of uit te schakelen
+De beveiliging schakelt automatisch in bij afwezigheid en waarschuwt bij beweging of open ramen en deuren. Integratie met HomeKit zorgt voor een eenvoudige bediening en meldingen, zonder afhankelijk te zijn van cloudservices.
 
 ### Stofzuigen
 
-De scripts zijn op dit moment ingericht op één stofzuigrobot. Vanaf v2024 ondersteunen ze ook meerdere stofzuigrobots, in het geval van de use-case van één robot per verdieping. De robots dienen een schema te volgen, en automatisch bij een volle opvangbak naar een vooraf ingestelde te verplaatsen. Ook houden ze rekening met vakantieperiodes, zodat ze bij langdurige afwezigheid niet dezelfde hoge frequentie aanhouden.
+*Werkt op verdiepingsniveau*
 
+De robots voor verschillende verdiepingen werken volgens een schoonmaakschema dat rekening houdt met aanwezigheid en frequentie. Ze passen hun schema’s automatisch aan tijdens vakanties en verplaatsen zich naar een vooraf ingestelde locatie bij een volle opvangbak.
 
+## Toekomstige verbeteringen en roadmap
 
-De volgende wijzigingen worden doorgevoerd:
+De configuratie blijft in ontwikkeling. Toekomstige plannen omvatten onder andere:
 
-    - Verlichting:
-        - [ ] Daglicht: is er daglicht
-        - [ ] Aanwezigheid: zijn er personen aanwezig
-        - [ ] Detectie: automatische schakelen op beweging (input_boolean)
-        - [ ] Scene: welke modus is actief (input_select)
-
-    - [ ] Gewenste werkmodussen integreren
-        - [ ] Verwarming [Auto, Normaal, Comfort, Uit]
-        - [ ] Verwarmingsschema: instellen met een schedule entity van HA
-        - [ ] Verlichting [Auto, Handmatig] 
-
-### Apps per overkoepelend thema
-
-- [ ] Ventilatie (WTW)
-    - [ ] Status: [Auto, Normaal, Boost, Uit] 
-    - [ ] Automatisch modi
-        - [ ] Boost: op basis van luchtvochtigheid per ruimte tov gemiddelde
-        - [ ] Uit: op basis van afwezigheid personen
-        - [ ] Boost: op basis van gemeten CO2
-        - [ ] Nachtkoeling: kopieren eigenschappen WTW-unit
-
-- [ ] Zonwering
-    - [ ] Zonstand
-    - [ ] Temperatuur
-    - [ ] ...
-
-
-    
+    - Integratie van een lokaal weerstation voor nauwkeurige data.
+    - Optimalisatie van bestaande AppDaemon-apps voor nog efficiëntere code.
+    - Verdere automatisering van huishoudelijke taken zoals het beheer van apparaten en energiebesparing.
+    - Automatische volgsysteem van multi-room-audio op basis van locatie van personen in huis.
