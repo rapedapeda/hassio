@@ -16,7 +16,7 @@
     # open cover
   - service: cover.set_cover_position
     data:
-      position: 35
+      position: 30
     target:
       entity_id: cover.rolluikkantoor
 
