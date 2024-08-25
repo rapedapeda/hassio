@@ -11,7 +11,7 @@
         {% set schermhoogte = 200 | float %} {# centimeters #}
         {% set schermlengte = 240 | float %} {# centimeters #}
         {% set wind = states('sensor.buienradar_wind_gust') | float %}
-        {% set wind_upper = 25 | float %}
+        {% set wind_upper = 30 | float %}
 
         {# Bereken de gewenste positie van het scherm, met als max de schermlengte #}
         {# Zorg ook dat we afrond op 1 decimaal, zodat het percentage in stappen van 10% gaat #}
