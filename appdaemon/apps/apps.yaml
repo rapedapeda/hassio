@@ -14,4 +14,4 @@ alarm_trigger:
       - armed_away
     binary_sensor.ramen_deuren_bg:
       - armed_away
-      - armed_home
+      - armed_night
