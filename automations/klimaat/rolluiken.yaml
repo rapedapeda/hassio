@@ -19,14 +19,18 @@
       position: 35
     target:
       entity_id: cover.rolluikkantoor
+
 - id: rolluik_kantoor_open
   alias: Rolluik kantoor open
   trigger: 
-    - platform: state
-      entity_id:
-        - binary_sensor.zonweringweer_voorkant
-        - binary_sensor.zon_voorkant
-      to: 'off'
+    - platform: sun
+      event: sunrise
+      offset: "01:00:00"
+    # - platform: state
+    #   entity_id:
+    #     - binary_sensor.zonweringweer_voorkant
+    #     - binary_sensor.zon_voorkant
+    #   to: 'off'
   condition: 
     - condition: numeric_state
       entity_id: cover.rolluikkantoor
