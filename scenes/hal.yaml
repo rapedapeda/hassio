@@ -6,14 +6,11 @@
   entities:
     light.hal_plafond:
       state: 'on'
-      brightness: 5
 - name: hal_vol
   entities:
     light.hal_plafond:
       state: 'on'
-      brightness: 255
 - name: hal_gedimd
   entities:
     light.hal_plafond:
       state: 'on'
-      brightness: 5
