@@ -1,3 +1,2 @@
-pyscript:
-  apps:
-    example:
+apps:
+example:
