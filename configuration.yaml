@@ -85,7 +85,7 @@ influxdb:
 
 logger:
   default: info
-  logs:
+  # logs:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
     # custom_components.dahua: debug
