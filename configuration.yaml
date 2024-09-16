@@ -88,8 +88,8 @@ logger:
   logs:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
-    custom_components.dahua: debug
-    homeassistant.components.shell_command: debug
+    # custom_components.dahua: debug
+    # homeassistant.components.shell_command: debug
 
 recorder:
   purge_keep_days: 3650
@@ -135,7 +135,6 @@ input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
 logbook: !include logbook.yaml
 python_script:
-pyscript: !include pyscript/config.yaml
 rest_command: !include rest_command.yaml
 scene: !include_dir_merge_list scenes/
 sensor: !include_dir_merge_list sensors/
