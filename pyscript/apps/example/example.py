@@ -1,5 +1,5 @@
 @service
-def hello_world(action=None, id=None):
+def hello_world2(action=None, id=None):
     """hello_world example using pyscript."""
     log.info(f"hello world: got action {action} id {id}")
     if action == "turn_on" and id is not None:
