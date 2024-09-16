@@ -18,6 +18,7 @@ frontend:
   themes: 
     default:
       header-height: 44px
+history: 
 media_source:
 mobile_app:
 person:
@@ -129,7 +130,6 @@ binary_sensor: !include_dir_merge_list binary_sensors/
 counter: !include_dir_merge_named counters/
 fan: !include_dir_merge_list fan/
 group: !include_dir_merge_named groups/
-history: !include history.yaml
 input_boolean: !include_dir_merge_named input_boolean/
 input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
