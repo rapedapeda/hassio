@@ -16,7 +16,7 @@
 
         {# Bereken de effectieve lengte van het scherm op basis van de horizontale positie van de zon #}
         {% set zon_azimuth_rad = zon_azimuth * pi/180 %}
-        {% set schermlengte = max_schermlemgte / cos(zon_azimuth_rad - schermorientatie) %}
+        {% set schermlengte = max_schermlengte / cos(zon_azimuth_rad - schermorientatie) %}
 
         {# Alleen als de zon op het raam staat #}
         {% if azimuth_lower < zon_azimuth < azimuth_upper %}
