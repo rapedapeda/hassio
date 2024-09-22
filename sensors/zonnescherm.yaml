@@ -9,16 +9,20 @@
         {% set azimuth_lower = 63 | float %}
         {% set azimuth_upper = 200 | float %}
         {% set schermhoogte = 200 | float %} {# centimeters #}
-        {% set schermlengte = 240 | float %} {# centimeters #}
+        {% set max_schermlengte = 240 | float %} {# centimeters #}
+        {% set schermorientatie = 123 * pi/180 | float %} {# orientatie van het zonnescherm in radialen #}
         {% set wind = states('sensor.buienradar_wind_gust') | float %}
         {% set wind_upper = 30 | float %}
 
-        {# Bereken de gewenste positie van het scherm, met als max de schermlengte #}
-        {# Zorg ook dat we afrond op 1 decimaal, zodat het percentage in stappen van 10% gaat #}
-        {% set positie = min([(schermhoogte / tan(zon_altitude)), schermlengte ]) | round(0) %}
+        {# Bereken de effectieve lengte van het scherm op basis van de horizontale positie van de zon #}
+        {% set zon_azimuth_rad = zon_azimuth * pi/180 %}
+        {% set schermlengte = max_schermlemgte / cos(zon_azimuth_rad - schermorientatie) %}
 
         {# Alleen als de zon op het raam staat #}
         {% if azimuth_lower < zon_azimuth < azimuth_upper %}
+          {# Bereken de gewenste positie van het scherm, met als max de schermlengte #}
+          {# Zorg ook dat we afrond op 1 decimaal, zodat het percentage in stappen van 10% gaat #}
+          {% set positie = min([(schermhoogte / tan(zon_altitude)), schermlengte ]) | round(0) %}
           {# Vertaal het naar een relatieve positie #}
           {% set positie_rel = ((positie / schermlengte) | round(1)) * 100 | int(0) %}
           {% if wind < wind_upper %}
