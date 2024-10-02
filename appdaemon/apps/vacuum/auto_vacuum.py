@@ -1,7 +1,8 @@
 import appdaemon.plugins.hass.hassapi as hass
+import mqttapi as mqtt
 from datetime import datetime, timedelta
 
-class AutoVacuum(hass.Hass):
+class AutoVacuum(hass.Hass, mqtt.Mqtt):
     
     def initialize(self):
         self.last_cleaned = {}
