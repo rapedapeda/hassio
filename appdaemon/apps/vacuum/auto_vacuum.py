@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 from datetime import datetime, timedelta
 
-class AutoVacuum():
+class AutoVacuum(hass.Hass):
     
     def initialize(self):
         self.last_cleaned = {}

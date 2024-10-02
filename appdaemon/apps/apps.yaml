@@ -15,7 +15,7 @@ alarm_trigger:
 AutoVacuum:
   module: auto_vacuum
   class: AutoVacuum
-  do_not_disturb=["21:00:00", "08:00:00"]
+  do_not_disturb: ["21:00:00", "08:00:00"]
   mqtt_topic_prefix: valetudo
   zones:
     beneden:
