@@ -76,12 +76,12 @@ class AutoVacuum(hass.Hass):
 
     def start_vacuum(self, zone):
         if zone["segments"]:
-            topic = f"{self.mqtt_topic_prefix}/{zone["vacuum"]}/MapSegmentationCapability/clean/set"
+            topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/MapSegmentationCapability/clean/set'
             payload = '{"segment_ids": ["17", "16", "18"], "iterations": 2}'
 
         else:
         # Domme aansturing door gewoon te starten met schoonmaken
-            topic = f"{self.mqtt_topic_prefix}/{zone["vacuum"]}/BasicControlCapability/operation/set"
+            topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/BasicControlCapability/operation/set'
             payload = '{"operation": "START"}'  # Payload voor starten van de stofzuiger
 
         self.mqtt_publish(topic, payload, qos=1)  # Verzend het MQTT-bericht
