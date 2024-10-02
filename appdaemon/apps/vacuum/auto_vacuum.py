@@ -99,3 +99,9 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             # Zet eventueel emty_vacuum op True
         pass
 
+
+    def update_cleaned_area(self, entity, attribute, old, new, kwargs):
+        # Als de total cleaned area veranderd
+        # Dan hier verschil met vorige berekenen
+        # Verschil toevoegen aan de zone["area_cleaned"]
+        pass
