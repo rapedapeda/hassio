@@ -24,9 +24,9 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 "area_cleaned": 0, # aantal cm schoongemaakt sinds leegmaken opvangbakje
                 "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
                 "last_clean": datetime(2024, 1, 1), # Initiele vroegere datum
-                "clean_interval": config["clean_interval"],
-                "do_not_disturb": config["do_not_disturb"],
-                "segments": config["segments"]
+                "clean_interval": config.get("clean_interval", 1),
+                "do_not_disturb": config.get("do_not_disturb", None),
+                "segments": config.get("segments", None)
             }
             
             zone = self.zones[item]
