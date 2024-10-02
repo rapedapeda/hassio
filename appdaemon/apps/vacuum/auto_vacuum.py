@@ -16,15 +16,15 @@ class AutoVacuum(hass.Hass):
 
             # Maak een entry in de dictionary voor dit area met de attributen vacuum, state en empty
             self.zones[item] = {
-                "zone": item # Naam van de zone (voor loggingdoeleinden)
+                "zone": item, # Naam van de zone (voor loggingdoeleinden)
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
                 "state": None,  # Status van de stofzuiger
-                "area": config["area"]
-                "area_cleaned": 0 # aantal cm schoongemaakt sinds leegmaken opvangbakje
-                "empty_vacuum": False  # Stofzuigerbak is in het begin leeg
-                "last_clean": datetime(2024, 1, 1) # Initiele vroegere datum
-                "clean_interval": config["clean_interval"]
-                "do_not_disturb": config["do_not_disturb"]
+                "area": config["area"],
+                "area_cleaned": 0, # aantal cm schoongemaakt sinds leegmaken opvangbakje
+                "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
+                "last_clean": datetime(2024, 1, 1), # Initiele vroegere datum
+                "clean_interval": config["clean_interval"],
+                "do_not_disturb": config["do_not_disturb"],
                 "segments": config["segments"]
             }
             
