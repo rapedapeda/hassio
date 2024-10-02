@@ -51,12 +51,12 @@ class AutoVacuum(hass.Hass):
                 now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
                 last_clean = zone["last_clean"].replace(hour=0, minute=0, second=0, microsecond=0)
                 if (now - last_clean).days < zone["clean_interval"]:
-                    self.log(f"[{zone["zone"]}] schoonmaakinterval nog niet overschreden, stofzuiger niet gestart.")
+                    self.log(f'[{zone["zone"]}] schoonmaakinterval nog niet overschreden, stofzuiger niet gestart.')
                     continue
 
                 # Kijk of er mag worden gestofzuigd
                 if zone["do_not_disturb"] and self.now_is_between(self.do_not_disturb[0], self.do_not_disturb[1]):
-                    self.log(f"[{zone["zone"]}] Do Not Disturb actief, stofzuiger niet gestart.")
+                    self.log(f'[{zone["zone"]}] Do Not Disturb actief, stofzuiger niet gestart.')
                     continue
                 
                 # Controleer de status van de stofzuiger
@@ -64,10 +64,10 @@ class AutoVacuum(hass.Hass):
                 if vacuum_state == "docked":
                     # Start de stofzuiger als hij in de dock staat
                     self.start_vacuum(zone)
-                    self.log(f"[{zone["zone"]}] Stofzuiger {zone["vacuum"]} is gestart.")
+                    self.log(f'[{zone["zone"]}] Stofzuiger {zone["vacuum"]} is gestart.')
 
                 else:
-                    self.log(f"[{area}] Stofzuiger is niet in dock. Huidige status: {zone["state"]}.")
+                    self.log(f'[{area}] Stofzuiger is niet in dock. Huidige status: {zone["state"]}.')
         
         else:
             # Check of een vacuum geleegd moet worden.
