@@ -31,7 +31,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             
             zone = self.zones[item]
             # Subscribe naar de MQTT van de stofzuiger
-            self.mqtt_subscribe(f'{self.mqtt_topic_prefix}/{zone["vacuum"]}')
+            # self.mqtt_subscribe(f'{self.mqtt_topic_prefix}/{zone["vacuum"]}')
 
             # Luister naar de status van de stofzuiger
             self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status')
@@ -43,7 +43,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis")
 
     def occupancy_triggered(self, entity, attribute, old, new, kwargs):
-        if new is "armed_away":
+        if new == "armed_away":
             # Loop door alle gebieden heen
             for item in self.zones.items():
                 zone = self.zones[item]
