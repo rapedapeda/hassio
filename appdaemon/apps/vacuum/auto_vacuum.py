@@ -43,7 +43,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/TotalStatisticsCapability/area')
 
         # Luister naar de statusverandering van het alarm
-        self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis")
+        self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis", namespace="default")
 
     def occupancy_triggered(self, entity, attribute, old, new, kwargs):
         if new == "armed_away":
