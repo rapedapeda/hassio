@@ -33,6 +33,9 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             # Subscribe naar de MQTT van de stofzuiger
             # self.mqtt_subscribe(f'{self.mqtt_topic_prefix}/{zone["vacuum"]}')
 
+            self.listen_event(self.test, event="MQTT_MESSAGE", namespace="MQTT")
+
+
             # Luister naar de status van de stofzuiger
             self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status')
 
@@ -87,7 +90,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
         self.mqtt_publish(topic, payload, qos=1)  # Verzend het MQTT-bericht
 
-
+    def test(self, even, event_data, kwargs):
+        self.log('Test message recieved')
 
     def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
