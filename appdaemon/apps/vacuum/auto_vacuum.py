@@ -2,7 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 import mqttapi as mqtt
 from datetime import datetime, timedelta
 
-class AutoVacuum(hass.Hass):
+class AutoVacuum(hass.Hass, mqtt.Mqtt):
     
     def initialize(self):
         self.last_cleaned = {}
@@ -32,6 +32,7 @@ class AutoVacuum(hass.Hass):
             zone = self.zones[item]
             # Subscribe naar de MQTT van de stofzuiger
             # self.mqtt_subscribe('valetudo', namespace="mqtt")
+            self.call_service("mqtt/subscribe", topic = "valetudo", namespace = "mqtt")
 
             self.listen_event(self.test, event="MQTT_MESSAGE", namespace="mqtt")
 
