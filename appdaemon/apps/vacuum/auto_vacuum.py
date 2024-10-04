@@ -31,7 +31,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             
             zone = self.zones[item]
             # Subscribe naar de MQTT van de stofzuiger
-            # self.mqtt_subscribe(f'{self.mqtt_topic_prefix}/{zone["vacuum"]}')
+            self.mqtt_subscribe('valetudo')
 
             self.listen_event(self.test, event="MQTT_MESSAGE", namespace="MQTT")
 
