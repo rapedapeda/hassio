@@ -32,7 +32,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             zone = self.zones[item]
             # Subscribe naar de MQTT van de stofzuiger
             # self.mqtt_subscribe('valetudo', namespace="mqtt")
-            self.call_service("mqtt/subscribe", topic = "valetudo", namespace = "mqtt")
+            self.call_service("mqtt/subscribe", topic = "valetudo/snoet/StatusStateAttribute/status", namespace = "mqtt")
 
             self.listen_event(self.test, event="MQTT_MESSAGE", namespace="mqtt")
 
