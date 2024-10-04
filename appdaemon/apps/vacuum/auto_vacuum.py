@@ -87,22 +87,18 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
         self.mqtt_publish(topic, payload, qos=1)  # Verzend het MQTT-bericht
 
-    def test(self, even, event_data, kwargs):
-        self.log('Test message recieved')
-
     def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
-
 
         # Plus de valetudo/snuffel/CurrentStatisticsCapability/area bij de self.areas etc op
         # Maar alleen als 
 
             # Zet eventueel emty_vacuum op True
-        self.log(f'MESSAGE RECEIVED')
+        self.log(f'Event status data: {event_data}')
 
 
-    def update_cleaned_area(self, entity, attribute, old, new, kwargs):
+    def update_cleaned_area(self, event, event_data, kwargs):
         # Als de total cleaned area veranderd
         # Dan hier verschil met vorige berekenen
         # Verschil toevoegen aan de zone["area_cleaned"]
-        pass
+        self.log(f'Event area data: {event_data}')
