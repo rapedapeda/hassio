@@ -9,6 +9,9 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         self.do_not_disturb = self.args["do_not_disturb"]
         self.mqtt_topic_prefix = self.args["mqtt_topic_prefix"]
         
+        # Subscribe naar de MQTT van de stofzuiger
+        self.mqtt_subscribe(f'{self.mqtt_topic_prefix}/#', namespace="mqtt")
+
         # Dictionary voor alle areas met hun relevante gegevens (vacuum, state, empty)
         self.zones = {}
 
@@ -30,18 +33,12 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             }
             
             zone = self.zones[item]
-            # Subscribe naar de MQTT van de stofzuiger
-            # self.mqtt_subscribe('valetudo', namespace="mqtt")
-            self.call_service("mqtt/subscribe", topic = "valetudo/snoet/StatusStateAttribute/status", namespace = "mqtt")
-
-            self.listen_event(self.test, event="MQTT_MESSAGE", namespace="mqtt")
-
 
             # Luister naar de status van de stofzuiger
-            self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic='valetudo/snoet/StatusStateAttribute/status')
+            self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status')
 
             # Luister naar een verandering in de total cleaned area
-            self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", namespace="mqtt", topic='valetudo/snoet/TotalStatisticsCapability/area')
+            self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/TotalStatisticsCapability/area')
 
         # Luister naar de statusverandering van het alarm
         self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis", namespace="default")
