@@ -5,9 +5,6 @@ from datetime import datetime, timedelta
 class AutoVacuum(hass.Hass, mqtt.Mqtt):
     
     def initialize(self):
-        # Set the namespace to mqtt
-        self.set_namespace("mqtt")
-        
         self.last_cleaned = {}
         self.do_not_disturb = self.args["do_not_disturb"]
         self.mqtt_topic_prefix = self.args["mqtt_topic_prefix"]
@@ -92,7 +89,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
 
 
-    def vacuum_status_message(self, entity, attribute, old, new, kwargs):
+    def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
 
 
@@ -100,7 +97,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         # Maar alleen als 
 
             # Zet eventueel emty_vacuum op True
-        pass
+        self.log(f'MESSAGE RECEIVED')
 
 
     def update_cleaned_area(self, entity, attribute, old, new, kwargs):
