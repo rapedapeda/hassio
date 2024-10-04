@@ -48,8 +48,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
     def occupancy_triggered(self, entity, attribute, old, new, kwargs):
         if new == "armed_away":
             # Loop door alle gebieden heen
-            for item in self.zones.items():
-                zone = self.zones[item]
+            for zone in self.zones.items():
 
                 # Kijk of er moet worden gestofzuigd
                 now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
