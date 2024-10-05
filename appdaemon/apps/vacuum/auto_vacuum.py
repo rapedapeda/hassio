@@ -137,7 +137,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
         # Haal de oude en de nieuwe cleaned_area op
         old_cleaned_area = zone_data["total_area_cleaned"]
-        new_cleaned_area = event_data.get("payload", 0)
+        new_cleaned_area = int(event_data.get("payload", 0))
 
         # Bereken het verschil sinds de laatste update
         difference = new_cleaned_area - old_cleaned_area
