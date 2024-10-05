@@ -24,8 +24,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 "zone": item, # Naam van de zone (voor loggingdoeleinden)
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
                 "state": 'None',  # Status van de stofzuiger
-                "area": config["area"],
-                "area_cleaned": 0, # aantal cm schoongemaakt sinds leegmaken opvangbakje
+                "area": config["area"], # in m2
+                "area_cleaned": 0, # aantal cm2 schoongemaakt sinds leegmaken opvangbakje
                 "total_area_cleaned": 0, # Tijdelijke opslag van de totale area van robot zelf
                 "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
                 "last_clean": datetime(2024, 1, 1), # Initiele vroegere datum
@@ -80,7 +80,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         
             elif new in ['armed_home', 'disarmed', 'armed_night']:
                 # Check of een vacuum geleegd moet worden.
-                if zone_data["area_cleaned"] >= 3 * zone_data["area"]:
+                if zone_data["area_cleaned"]/10000 >= 3 * zone_data["area"]:
                     self.log(f'[{zone_name}] Opvangbak stofzuiger vol.')
                     if not zone_data["bin_coordinates"]:
                         self.log(f'[{zone_name}] Opvangbak stofzuiger vol. Geen prullenbaklocatie gedefinieerd.', level="warning")
