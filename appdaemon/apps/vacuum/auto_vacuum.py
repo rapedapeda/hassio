@@ -73,7 +73,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         
             elif new in ['armed_home', 'disarmed', 'armed_night']:
                 # Check of een vacuum geleegd moet worden.
-                if zone_data["area_cleaned"] => 3 * zone_data["area"]
+                if zone_data["area_cleaned"] >= 3 * zone_data["area"]
                     
                     # Laat het naar de goede locatie gaan
                     
