@@ -22,7 +22,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             self.zones[item] = {
                 "zone": item, # Naam van de zone (voor loggingdoeleinden)
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
-                "state": None,  # Status van de stofzuiger
+                "state": 'None',  # Status van de stofzuiger
                 "area": config["area"],
                 "area_cleaned": 0, # aantal cm schoongemaakt sinds leegmaken opvangbakje
                 "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
@@ -44,48 +44,69 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis", namespace="default")
 
     def occupancy_triggered(self, entity, attribute, old, new, kwargs):
-        if new == "armed_away":
-            # Loop door alle gebieden heen
-            for zone in self.zones.items():
+        # Loop door alle gebieden heen
+        for zone_name, zone_data in self.zones.items():
 
+            if new == "armed_away":
                 # Kijk of er moet worden gestofzuigd
                 now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-                last_clean = zone["last_clean"].replace(hour=0, minute=0, second=0, microsecond=0)
-                if (now - last_clean).days < zone["clean_interval"]:
-                    self.log(f'[{zone["zone"]}] schoonmaakinterval nog niet overschreden, stofzuiger niet gestart.')
+                last_clean = zone_data["last_clean"].replace(hour=0, minute=0, second=0, microsecond=0)
+                if (now - last_clean).days < zone_data["clean_interval"]:
+                    self.log(f'[{zone_name}] schoonmaakinterval nog niet overschreden, stofzuiger niet gestart.')
                     continue
 
                 # Kijk of er mag worden gestofzuigd
-                if zone["do_not_disturb"] and self.now_is_between(self.do_not_disturb[0], self.do_not_disturb[1]):
-                    self.log(f'[{zone["zone"]}] Do Not Disturb actief, stofzuiger niet gestart.')
+                if zone_data["do_not_disturb"] and self.now_is_between(self.do_not_disturb[0], self.do_not_disturb[1]):
+                    self.log(f'[{zone_name}] Do Not Disturb actief, stofzuiger niet gestart.')
                     continue
                 
                 # Controleer de status van de stofzuiger
-                vacuum_state = self.get_state(zone)
+                vacuum_state = zone_data.get("state", "docked")
+
                 if vacuum_state == "docked":
                     # Start de stofzuiger als hij in de dock staat
-                    self.start_vacuum(zone)
-                    self.log(f'[{zone["zone"]}] Stofzuiger {zone["vacuum"]} is gestart.')
+                    self.start_vacuum(zone_data)
+                    self.log(f'[{zone_name}] Stofzuiger is gestart.')
 
                 else:
-                    self.log(f'[{area}] Stofzuiger is niet in dock. Huidige status: {zone["state"]}.')
+                    self.log(f'[{zone_name}] Stofzuiger is niet in dock. Huidige status: {zone["state"]}.')
         
-        else:
-            # Check of een vacuum geleegd moet worden.
-            # Laat het naar de goede locatie gaan
-            pass
+            elif new is in ['armed_home', 'disarmed', 'armed_night']:
+                # Check of een vacuum geleegd moet worden.
+                if zone_data["area_cleaned"] => 3 * zone_data["area"]
+                    
+                    # Laat het naar de goede locatie gaan
+                    
+                    self.log(f'[{zone_name}] Opvangbak stofzuiger vol. Stofzuiger naar schoonmaaklocatie.')
+                
 
-    def start_vacuum(self, zone):
-        if zone["segments"]:
-            topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/MapSegmentationCapability/clean/set'
-            payload = '{"segment_ids": ["17", "16", "18"], "iterations": 2}'
+    def start_vacuum(self, zone_data):
+        if zone_data["segments"]:
+            topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/MapSegmentationCapability/clean/set'
+            payload_data = {
+                "segment_ids": zone_data["segments"],
+                "iterations": 1
+            }
+            
+            # Zet de Python dictionary om naar een JSON string
+            payload = json.dumps(payload_data)
 
         else:
         # Domme aansturing door gewoon te starten met schoonmaken
             topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/BasicControlCapability/operation/set'
             payload = '{"operation": "START"}'  # Payload voor starten van de stofzuiger
 
-        self.mqtt_publish(topic, payload, qos=1)  # Verzend het MQTT-bericht
+        self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")  # Verzend het MQTT-bericht
+
+    def vacuum_to_location(self, zone_data):
+        topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/MapSegmentationCapability/clean/set'
+        payload_data = {
+            "segment_ids": zone_data["segments"],
+            "iterations": 1
+        }
+        
+        # Zet de Python dictionary om naar een JSON string
+        payload = json.dumps(payload_data)
 
     def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
@@ -95,7 +116,6 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
             # Zet eventueel emty_vacuum op True
         self.log(f'Event status data: {event_data}')
-
 
     def update_cleaned_area(self, event, event_data, kwargs):
         # Als de total cleaned area veranderd
