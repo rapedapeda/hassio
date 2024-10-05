@@ -148,5 +148,5 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             zone_data['total_area_cleaned'] = new_cleaned_area
             zone_data['area_cleaned'] += difference
             
-            self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_opvangbak', state=zone["area_cleaned"])
+            self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_opvangbak', state=zone_data["area_cleaned"])
             self.log(f'[{zone_data["zone"]}] Cleaned_area geupdatet.')
