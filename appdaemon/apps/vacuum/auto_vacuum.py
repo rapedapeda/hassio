@@ -81,22 +81,12 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             elif new in ['armed_home', 'disarmed', 'armed_night']:
                 # Check of een vacuum geleegd moet worden.
                 if zone_data["area_cleaned"] >= 3 * zone_data["area"]:
-                    
+                    self.log(f'[{zone_name}] Opvangbak stofzuiger vol.')
                     if not zone_data["bin_coordinates"]:
                         self.log(f'[{zone_name}] Opvangbak stofzuiger vol. Geen prullenbaklocatie gedefinieerd.', level="warning")
                     else:
                         # Laat het naar de goede locatie gaan
-                        topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/GoToLocationCapability/go/set'
-                        payload_data = {
-                            "coordinates": {
-                                "x": zone_data["bin_coordinates"][0],
-                                "y": zone_data["bin_coordinates"][1]
-                            }
-                        }
-                    
-                        # Zet de Python dictionary om naar een JSON string
-                        payload = json.dumps(payload_data)                    
-                        self.log(f'[{zone_name}] Opvangbak stofzuiger vol. Stofzuiger naar schoonmaaklocatie.')
+                        self.vacuum_to_location(zone_data)
                 
 
     def start_vacuum(self, zone_data):
@@ -118,17 +108,18 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")  # Verzend het MQTT-bericht
 
     def vacuum_to_location(self, zone_data):
-        topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/MapSegmentationCapability/clean/set'
+        topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/GoToLocationCapability/go/set'
         payload_data = {
-            "segment_ids": zone_data["segments"],
-            "iterations": 1
+            "coordinates": {
+                "x": zone_data["bin_coordinates"][0],
+                "y": zone_data["bin_coordinates"][1]
+            }
         }
-        
+    
         # Zet de Python dictionary om naar een JSON string
-        payload = json.dumps(payload_data)
+        payload = json.dumps(payload_data)  
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")
-        
-        self.log(f'[{zone_data["zone"]}] )
+        self.log(f'[{zone_data["zone"]}] verplaatst naar locatie')
 
     def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
