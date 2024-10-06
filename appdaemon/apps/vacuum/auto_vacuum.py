@@ -96,15 +96,14 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 "segment_ids": zone_data["segments"],
                 "iterations": 1
             }
-            
-            # Zet de Python dictionary om naar een JSON string
-            payload = json.dumps(payload_data)
 
         else:
         # Domme aansturing door gewoon te starten met schoonmaken
             topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/BasicControlCapability/operation/set'
             payload = '{"operation": "START"}'  # Payload voor starten van de stofzuiger
-
+        
+        # Zet de Python dictionary om naar een JSON string
+        payload = json.dumps(payload_data)
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")  # Verzend het MQTT-bericht
 
     def vacuum_to_location(self, zone_data):
