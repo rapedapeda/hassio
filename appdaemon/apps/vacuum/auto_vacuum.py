@@ -23,7 +23,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             self.zones[item] = {
                 "zone": item, # Naam van de zone (voor loggingdoeleinden)
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
-                "state": 'None',  # Status van de stofzuiger
+                "state": 'docked',  # Status van de stofzuiger
                 "area": config["area"], # in m2
                 "area_cleaned": 0, # aantal cm2 schoongemaakt sinds leegmaken opvangbakje
                 "total_area_cleaned": 0, # Tijdelijke opslag van de totale area van robot zelf
