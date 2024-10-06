@@ -76,7 +76,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                     self.log(f'[{zone_name}] Stofzuiger is gestart.')
 
                 else:
-                    self.log(f'[{zone_name}] Stofzuiger is niet in dock. Huidige status: {zone["state"]}.')
+                    self.log(f'[{zone_name}] Stofzuiger is niet in dock. Huidige status: {zone_data["state"]}.')
         
             elif new in ['armed_home', 'disarmed', 'armed_night']:
                 # Check of een vacuum geleegd moet worden.
