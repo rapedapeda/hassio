@@ -99,7 +99,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
         else:
         # Domme aansturing door gewoon te starten met schoonmaken
-            topic = f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/BasicControlCapability/operation/set'
+            topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/BasicControlCapability/operation/set'
             payload = '{"operation": "START"}'  # Payload voor starten van de stofzuiger
         
         # Zet de Python dictionary om naar een JSON string
