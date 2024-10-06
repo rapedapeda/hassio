@@ -45,7 +45,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status', zone=zone)
 
             # Luister naar een verandering in de total cleaned area
-            self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/TotalStatisticsCapability/area', zone=zone)
+            self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/CurrentStatisticsCapability/area', zone=zone)
 
         # Luister naar de statusverandering van het alarm
         self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis", namespace="default")
