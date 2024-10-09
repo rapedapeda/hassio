@@ -137,7 +137,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         if not zone_data["total_area_cleaned"]:
             # Initieer het attribuut met de huidige totale oppervlakte
             zone_data["total_area_cleaned"] = int(event_data.get("payload", 0))
-            self.log("Initiële waarde voor total area cleaned geüpdated", level="info")
+            self.log("Initiële waarde voor total area cleaned geüpdated")
 
         else:
             # Haal de oude en de nieuwe cleaned_area op
