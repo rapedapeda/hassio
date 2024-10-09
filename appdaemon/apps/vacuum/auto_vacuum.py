@@ -25,8 +25,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
                 "state": 'docked',  # Status van de stofzuiger
                 "area": config["area"], # in m2
-                "area_cleaned": 0, # aantal cm2 schoongemaakt sinds leegmaken opvangbakje
-                "total_area_cleaned": 0, # Tijdelijke opslag van de totale area van robot zelf
+                "area_cleaned": None, # aantal cm2 schoongemaakt sinds leegmaken opvangbakje
+                "total_area_cleaned": None, # Tijdelijke opslag van de totale area van robot zelf
                 "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
                 "last_clean": datetime(2024, 1, 1), # Initiele vroegere datum
                 "clean_interval": config.get("clean_interval", 1),
@@ -137,6 +137,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         if not zone_data["total_area_cleaned"]:
             # Initieer het attribuut met de huidige totale oppervlakte
             zone_data["total_area_cleaned"] = int(event_data.get("payload", 0))
+            self.log("Initiële waarde voor total area cleaned geüpdated", level="info")
 
         else:
             # Haal de oude en de nieuwe cleaned_area op
