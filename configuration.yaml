@@ -57,6 +57,7 @@ influxdb:
     domains:
       - alarm_control_panel
       - sun
+      - vacuum
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
     entity_globs:
@@ -96,6 +97,7 @@ recorder:
   include:
     domains:
       - person
+      - vacuum
     entities:
       - sensor.cpu_temperatuur
       - sensor.disk_use_percent
