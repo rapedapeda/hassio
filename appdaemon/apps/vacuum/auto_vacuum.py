@@ -24,9 +24,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 "zone": item, # Naam van de zone (voor loggingdoeleinden)
                 "vacuum": config["vacuum"],  # Naam van de stofzuiger
                 "state": 'docked',  # Status van de stofzuiger
-                "area": config["area"], # in m2
-                "area_cleaned": None, # aantal cm2 schoongemaakt sinds leegmaken opvangbakje
-                "total_area_cleaned": None, # Tijdelijke opslag van de totale area van robot zelf
+                "clean_times": config["clean_times"], # Na hoevaak stofzuigen is de opvangbak vol?
+                "clean_count": 0, # Aantal sessies sinds leegmaken opvangbakje
                 "empty_vacuum": False,  # Stofzuigerbak is in het begin leeg
                 "last_clean": datetime(2024, 1, 1), # Initiele vroegere datum
                 "clean_interval": config.get("clean_interval", 1),
@@ -40,12 +39,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             # Push de benodigde sensoren naar HomeAssistant
             self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone["vacuum"]}_opvangbak', state=0)
 
-
             # Luister naar de status van de stofzuiger
             self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status', zone=zone)
-
-            # Luister naar een verandering in de total cleaned area
-            self.listen_event(self.update_cleaned_area, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/TotalStatisticsCapability/area', zone=zone)
 
         # Luister naar de statusverandering van het alarm
         self.listen_state(self.occupancy_triggered, "alarm_control_panel.huis", namespace="default")
@@ -56,8 +51,8 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
 
             if new == "armed_away":
                 # Kijk of er moet worden gestofzuigd
-                now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-                last_clean = zone_data["last_clean"].replace(hour=0, minute=0, second=0, microsecond=0)
+                now = datetime.now().date()
+                last_clean = zone_data["last_clean"].date()
                 if (now - last_clean).days < zone_data["clean_interval"]:
                     self.log(f'[{zone_name}] schoonmaakinterval nog niet overschreden, stofzuiger niet gestart.')
                     continue
@@ -80,7 +75,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         
             elif new in ['armed_home', 'disarmed', 'armed_night']:
                 # Check of een vacuum geleegd moet worden.
-                if zone_data["area_cleaned"]/10000 >= zone_data["area"]:
+                if zone_data["clean_count"] >= zone_data["clean_times"]:
                     self.log(f'[{zone_name}] Opvangbak stofzuiger vol.')
                     if not zone_data["bin_coordinates"]:
                         self.log(f'[{zone_name}] Opvangbak stofzuiger vol. Geen prullenbaklocatie gedefinieerd.', level="warning")
@@ -106,6 +101,10 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         payload = json.dumps(payload_data)
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")  # Verzend het MQTT-bericht
 
+        # Update het aantal schoonmaaksessies
+        zone_data["clean_count"] += 1
+        self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_clean_count', state=zone_data["clean_count"])
+    
     def vacuum_to_location(self, zone_data):
         topic = f'{self.mqtt_topic_prefix}/{zone_data["vacuum"]}/GoToLocationCapability/go/set'
         payload_data = {
@@ -118,41 +117,15 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         # Zet de Python dictionary om naar een JSON string
         payload = json.dumps(payload_data)  
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")
-        self.log(f'[{zone_data["zone"]}] verplaatst naar locatie')
+        
+        # Reset de counter
+        zone_data["total_times_cleaned"] = 0
+        self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_clean_count', state=zone_data["clean_count"])
+        
+        self.log(f'[{zone_data["zone"]}] verplaatst naar onderhoudslocatie')
 
     def vacuum_status_message(self, event, event_data, kwargs):
         # Als de status-message verandert naar 'docked'
         state = event_data.get("payload", None)
         if state == "docked":
             pass
-
-
-    def update_cleaned_area(self, event, event_data, kwargs):
-        # Als de total cleaned area veranderd
-        # Dan hier verschil met vorige berekenen
-        # Verschil toevoegen aan de zone["area_cleaned"]
-        # Sensor updaten in home-assistant
-        zone_data = kwargs.get("zone")
-
-        if not zone_data["total_area_cleaned"]:
-            # Initieer het attribuut met de huidige totale oppervlakte
-            zone_data["total_area_cleaned"] = int(event_data.get("payload", 0))
-            self.log("Initiële waarde voor total area cleaned geüpdated")
-
-        else:
-            # Haal de oude en de nieuwe cleaned_area op
-            old_cleaned_area = zone_data["total_area_cleaned"]
-            new_cleaned_area = int(event_data.get("payload", 0))
-
-            # Bereken het verschil sinds de laatste update
-            difference = new_cleaned_area - old_cleaned_area
-            if difference < 0:
-                self.log(f"Oppervlakte statistieken van de robot lijken te zijn gereset", level="warning")
-                zone_data["total_area_cleaned"] = int(event_data.get("payload", 0))
-            
-            elif difference > 0:
-                zone_data['total_area_cleaned'] = new_cleaned_area
-                zone_data['area_cleaned'] += difference
-            
-                self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_opvangbak', state=zone_data["area_cleaned"])
-                #self.log(f'[{zone_data["zone"]}] Cleaned_area geupdatet.')
