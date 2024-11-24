@@ -21,13 +21,13 @@ AutoVacuum:
     beneden:
       vacuum: snuffel
       clean_interval: 1
-      area: 20
+      clean_times: 3
       do_not_disturb: True
       bin_coordinates: [2557, 2410]
       segments: [17, 16, 18]
     tweede:
       vacuum: snoet
       clean_interval: 2
-      area: 8
+      clean_times: 4
       do_not_disturb: True
       bin_coordinates: [2355, 2590]
