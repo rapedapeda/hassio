@@ -73,9 +73,9 @@
           is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on') or
           (is_state('binary_sensor.beweging_woonkamer_mmwave', 'on') and is_state(this.state, 'on'))
         }}
-        attributes:
-          test: >
-            {{ this.state }}
+      attributes:
+        test: >
+          {{ this.state }}
 
 # Hal
 - platform: template
