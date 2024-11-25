@@ -1,7 +1,7 @@
 - binary_sensor:
     - name: "Aanwezigheid Woonkamer"
       device_class: occupancy
-      delay_off: "{{ states('input_number.kamers_aanwezigheid_woonkamer') | int }}"
+      delay_off: "{{ states('input_number.kamers_aanwezigheid_woonkamer') | int * 60  }}"
       state: >-
         {{ 
           is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on') or
