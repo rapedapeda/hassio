@@ -37,7 +37,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
             zone = self.zones[item]
 
             # Push de benodigde sensoren naar HomeAssistant
-            self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone["vacuum"]}_clean_times', state=zone["clean_count"])
+            self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone["vacuum"]}_clean_count', state=zone["clean_count"])
 
             # Luister naar de status van de stofzuiger
             self.listen_event(self.vacuum_status_message, "MQTT_MESSAGE", namespace="mqtt", topic=f'{self.mqtt_topic_prefix}/{zone["vacuum"]}/StatusStateAttribute/status', zone=zone)
