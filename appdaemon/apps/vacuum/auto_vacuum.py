@@ -119,7 +119,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
         self.mqtt_publish(topic, payload, qos=1, namespace="mqtt")
         
         # Reset de counter
-        zone_data["total_times_cleaned"] = 0
+        zone_data["clean_count"] = 0
         self.set_state(f'sensor.{self.mqtt_topic_prefix}_{zone_data["vacuum"]}_clean_count', state=zone_data["clean_count"])
         
         self.log(f'[{zone_data["zone"]}] verplaatst naar onderhoudslocatie')
