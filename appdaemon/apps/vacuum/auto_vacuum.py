@@ -68,6 +68,7 @@ class AutoVacuum(hass.Hass, mqtt.Mqtt):
                 if vacuum_state == "docked":
                     # Start de stofzuiger als hij in de dock staat
                     self.start_vacuum(zone_data)
+                    zone_data["last_clean"] = datetime.now()
                     self.log(f'[{zone_name}] Stofzuiger is gestart.')
 
                 else:
