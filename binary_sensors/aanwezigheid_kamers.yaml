@@ -61,18 +61,8 @@
               not is_state('sensor.slaapkamer_bedbezetting', 'leeg')
           }}
 # Woonkamer
-- platform: template
-  sensors:
-    aanwezigheid_woonkamer:
-      friendly_name: "Aanwezigheid"
-      device_class: occupancy
-      delay_off: >-
-        {{ ({ "minutes": states('input_number.kamers_aanwezigheid_woonkamer') }) }}
-      value_template: >-
-        {{
-          is_state('binary_sensor.group_aanwezigheid_woonkamer', 'on') or
-          (is_state('binary_sensor.beweging_woonkamer_mmwave', 'on') and is_state(this.state, 'on'))
-        }}
+# naar templates/room_occupancy.yaml
+
 
 # Hal
 - platform: template

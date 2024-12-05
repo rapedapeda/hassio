@@ -18,6 +18,7 @@ frontend:
   themes: 
     default:
       header-height: 44px
+history: 
 media_source:
 mobile_app:
 person:
@@ -56,6 +57,7 @@ influxdb:
     domains:
       - alarm_control_panel
       - sun
+      - vacuum
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
     entity_globs:
@@ -84,17 +86,18 @@ influxdb:
 
 logger:
   default: info
-  logs:
+  # logs:
     # pydeconz: debug
     # homeassistant.components.deconz: debug
-    custom_components.dahua: debug
-    homeassistant.components.shell_command: debug
+    # custom_components.dahua: debug
+    # homeassistant.components.shell_command: debug
 
 recorder:
   purge_keep_days: 3650
   include:
     domains:
       - person
+      - vacuum
     entities:
       - sensor.cpu_temperatuur
       - sensor.disk_use_percent
@@ -129,7 +132,6 @@ binary_sensor: !include_dir_merge_list binary_sensors/
 counter: !include_dir_merge_named counters/
 fan: !include_dir_merge_list fan/
 group: !include_dir_merge_named groups/
-history: !include history.yaml
 input_boolean: !include_dir_merge_named input_boolean/
 input_number: !include_dir_merge_named input_number/
 input_select: !include_dir_merge_named input_select/
@@ -138,8 +140,7 @@ python_script:
 rest_command: !include rest_command.yaml
 scene: !include_dir_merge_list scenes/
 sensor: !include_dir_merge_list sensors/
-shell_command: !include shell_commands.yaml
-template: !include_dir_merge_list template/
+template: !include_dir_merge_list templates/
 script: !include_dir_merge_named scripts/
 timer: !include_dir_merge_named timers/
 utility_meter: !include_dir_merge_named utility_meter/

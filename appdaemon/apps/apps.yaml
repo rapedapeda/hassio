@@ -1,7 +1,3 @@
-hello_world2:
-  module: helloworld2
-  class: HelloWorldRamon
-
 alarm_mode:
   module: alarm_mode
   class: AlarmMode
@@ -15,3 +11,23 @@ alarm_trigger:
     binary_sensor.ramen_deuren_bg:
       - armed_away
       - armed_night
+
+AutoVacuum:
+  module: auto_vacuum
+  class: AutoVacuum
+  do_not_disturb: ["21:00:00", "07:00:00"]
+  mqtt_topic_prefix: valetudo
+  zones:
+    beneden:
+      vacuum: snuffel
+      clean_interval: 1
+      clean_times: 3
+      do_not_disturb: True
+      bin_coordinates: [2557, 2410]
+      segments: [17, 16, 18]
+    tweede:
+      vacuum: snoet
+      clean_interval: 2
+      clean_times: 4
+      do_not_disturb: True
+      bin_coordinates: [2355, 2590]
