@@ -15,9 +15,9 @@ http:
 energy:
 ffmpeg:
 frontend:
-  themes: 
-    default:
-      header-height: 44px
+  # themes: 
+    # default:
+      # header-height: 44px
 history: 
 media_source:
 mobile_app:
