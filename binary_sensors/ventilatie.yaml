@@ -30,9 +30,12 @@
       delay_on: 10
       delay_off: 10
       value_template: >-
-        {{ states('sensor.knmi_thuis_gevoelstemperatuur')|float > 10 and 
-            (
-              [ states('sensor.temperatuur_badkamer')|float(20), states('sensor.temperatuur_woonkamer')|float(20), states('sensor.temperatuur_slaapkamer')|float(20) ] > states('sensor.knmi_thuis_gevoelstemperatuur')|float(5) or
-              [ states('sensor.temperatuur_badkamer')|float(20), states('sensor.temperatuur_woonkamer')|float(20), states('sensor.temperatuur_slaapkamer')|float(20) ] > 23
-            )
+        {% set max_temp = max(
+          states('sensor.temperatuur_badkamer')|float(20), 
+          states('sensor.temperatuur_woonkamer')|float(20), 
+          states('sensor.temperatuur_slaapkamer')|float(20)
+        ) %}
+        {{ 
+          states('sensor.knmi_thuis_gevoelstemperatuur')|float(0) > 10 and 
+          (max_temp > states('sensor.knmi_thuis_gevoelstemperatuur')|float(5) or max_temp > 23)
         }}
