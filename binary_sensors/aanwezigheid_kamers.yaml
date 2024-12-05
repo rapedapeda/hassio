@@ -63,6 +63,7 @@
 # Woonkamer
 # naar templates/room_occupancy.yaml
 
+
 # Hal
 - platform: template
   sensors:
