@@ -23,7 +23,7 @@
   alias: Kerst woonkamer
   trigger:
     - platform: state
-      entity_id: input_boolean.presence_status
+      entity_id: alarm_control_panel.huis
     - platform: state
       entity_id: input_boolean.scene_special_nacht
   condition:
@@ -32,7 +32,7 @@
       state:  'on'
   action:
     - service: >-
-        {% if is_state('input_boolean.presence_status','on') and is_state('input_boolean.scene_special_nacht','off')  %}
+        {% if not is_state('alarm_control_panel.huis','armed_away') and is_state('input_boolean.scene_special_nacht','off')  %}
           light.turn_on
         {% else %}
           light.turn_off

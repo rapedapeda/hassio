@@ -4,7 +4,6 @@
     - platform: state
       entity_id:
         - binary_sensor.zonweringweer_woonkamer
-        # - binary_sensor.zon_achterkant
       to: 'on'
     - platform: state
       entity_id:
@@ -13,32 +12,10 @@
     - condition: state
       entity_id:
         - binary_sensor.zonweringweer_woonkamer
-        # - binary_sensor.zon_achterkant
       state: 'on'
   action:
-    # open cover
-    # - service: cover.open_cover
-    #   entity_id: cover.zonnescherm
     - service: cover.set_cover_position
       target:
         device_id: 387139086e10c87416e1d190c8717923
       data:
         position: "{{states('sensor.zonnescherm_positie')}}"
-
-- id: zonwering_achterkant_dicht
-  alias: Zonwering achterkant dicht
-  trigger: 
-    - platform: state
-      entity_id:
-        - binary_sensor.zonweringweer_woonkamer
-        - binary_sensor.zon_achterkant
-      to: 'off'
-  condition:
-    - condition: numeric_state
-      entity_id: cover.rolluikkantoor
-      attribute: current_position
-      above: 0
-  action:
-    # sluit cover
-    - service: cover.close_cover
-      entity_id: cover.zonnescherm
