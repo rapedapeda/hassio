@@ -1,5 +1,3 @@
-# core.py
-
 from parsers import parse_zones, parse_schedules
 from presence import is_present
 from thermostat import get_current_temperature, set_temperature
