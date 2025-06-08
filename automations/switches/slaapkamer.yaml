@@ -11,11 +11,10 @@
       discovery_id: 0x001788010cc49e82 action_left_press_release
   condition: []
   action:
-    - service: input_select.select_next
-      target:
-        entity_id: input_select.kamer_scene_slaapkamer
-      data:
-        cycle: true
+      - service: input_boolean.toggle
+        target:
+          entity_id: input_boolean.verlichting_slaapkamer
+        data: {}
 
 - id: switch_slaapkamer_hold
   alias: Schakelaar slaapkamer (hold)
@@ -30,7 +29,8 @@
       discovery_id: 0x001788010cc49e82 action_left_hold_release
   condition: []
   action:
-    - service: input_boolean.toggle
+    - service: input_select.select_next
       target:
-        entity_id: input_boolean.verlichting_slaapkamer
-      data: {}
+        entity_id: input_select.kamer_scene_slaapkamer
+      data:
+        cycle: true
