@@ -1,9 +1,9 @@
 alarm_mode:
-  module: alarm_mode
+  module: alarm.alarm_mode
   class: AlarmMode
 
 alarm_trigger:
-  module: alarm_trigger
+  module: alarm.alarm_trigger
   class: AlarmTrigger
   sensor_configurations:
     binary_sensor.ramen_1:
@@ -13,7 +13,7 @@ alarm_trigger:
       - armed_night
 
 AutoVacuum:
-  module: auto_vacuum
+  module: vacuum.auto_vacuum
   class: AutoVacuum
   do_not_disturb: ["21:00:00", "07:00:00"]
   mqtt_topic_prefix: valetudo
