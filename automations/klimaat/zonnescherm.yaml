@@ -1,21 +1,79 @@
-- id: zonwering_achterkant_open
-  alias: Zonwering achterkant positie
-  trigger: 
+- id: zonwering_achterkant_automatisch
+  alias: Zonwering achterkant automatisch bij weer/positie
+  description: >
+  Regelt automatisch de positie van het zonnescherm op basis van weer en gewenste positie.
+  - Bij slecht weer (regen) wordt het scherm ingetrokken (positie 0) en automatische modus aangezet.
+  - Bij goed weer en automatische modus aan, wordt het scherm ingesteld op de berekende positie.
+  mode: single
+  trigger:
     - platform: state
-      entity_id:
+      entity_id: 
         - binary_sensor.zonweringweer_woonkamer
-      to: 'on'
-    - platform: state
-      entity_id:
         - sensor.zonnescherm_positie
+  action:
+    - choose:
+        # Slecht weer: intrekken, ongeacht auto-modus
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.zonweringweer_woonkamer
+              state: 'off'
+          sequence:
+            - service: cover.set_cover_position
+              target:
+                device_id: 387139086e10c87416e1d190c8717923
+              data:
+                position: 0
+            - service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.zonnescherm_auto
+        # Goed weer + auto modus aan: positie volgen
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.zonweringweer_woonkamer
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.zonnescherm_auto
+              state: 'on'
+          sequence:
+            - service: cover.set_cover_position
+              target:
+                device_id: 387139086e10c87416e1d190c8717923
+              data:
+                position: "{{ states('sensor.zonnescherm_positie') | int }}"
+
+- id: zonwering_auto_modus_uit
+  alias: Zonwering – auto modus uit bij handmatige bediening
+  description: >
+    Schakelt automatische modus uit wanneer het zonnescherm handmatig wordt bediend (via knop of HomeKit).
+    Detecteert handmatige bediening door afwezigheid van parent_id in context.
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: cover.zonnescherm
   condition:
-    - condition: state
-      entity_id:
-        - binary_sensor.zonweringweer_woonkamer
-      state: 'on'
+    - condition: template
+      value_template: >
+        {{ trigger.to_state.context.parent_id is none }}
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.zonnescherm_auto
+
+- id: zonwering_auto_modus_reset
+  alias: Zonwering – nightly reset en auto modus aan
+  description: >
+    Zet elke avond om 22:00 uur het zonnescherm in positie 0 (ingetrokken)
+    en zet automatische modus weer aan om de volgende dag automatisch te regelen.
+  mode: single
+  trigger:
+    - platform: time
+      at: "22:00:00"
   action:
     - service: cover.set_cover_position
       target:
-        device_id: 387139086e10c87416e1d190c8717923
+        entity_id: cover.zonnescherm
       data:
-        position: "{{states('sensor.zonnescherm_positie')}}"
+        position: 0
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.zonnescherm_auto
