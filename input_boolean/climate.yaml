@@ -1,3 +1,4 @@
 zonnescherm_auto:
   name: Automatische modus
   icon: mdi:autorenew
+  initial: 'on'
