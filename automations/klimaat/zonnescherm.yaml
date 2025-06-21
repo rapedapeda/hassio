@@ -1,9 +1,6 @@
 - id: zonwering_achterkant_automatisch
   alias: Zonwering achterkant automatisch bij weer/positie
-  description: >
-  Regelt automatisch de positie van het zonnescherm op basis van weer en gewenste positie.
-  - Bij slecht weer (regen) wordt het scherm ingetrokken (positie 0) en automatische modus aangezet.
-  - Bij goed weer en automatische modus aan, wordt het scherm ingesteld op de berekende positie.
+  description: Regelt automatisch (of manueel) de positie van het zonnescherm op basis van weer en gewenste positie.
   mode: single
   trigger:
     - platform: state
@@ -43,9 +40,7 @@
 
 - id: zonwering_auto_modus_uit
   alias: Zonwering – auto modus uit bij handmatige bediening
-  description: >
-    Schakelt automatische modus uit wanneer het zonnescherm handmatig wordt bediend (via knop of HomeKit).
-    Detecteert handmatige bediening door afwezigheid van parent_id in context.
+  description: Schakelt automatische modus uit wanneer het zonnescherm handmatig wordt bediend (via knop of HomeKit).
   mode: single
   trigger:
     - platform: state
@@ -61,9 +56,7 @@
 
 - id: zonwering_auto_modus_reset
   alias: Zonwering – nightly reset en auto modus aan
-  description: >
-    Zet elke avond om 22:00 uur het zonnescherm in positie 0 (ingetrokken)
-    en zet automatische modus weer aan om de volgende dag automatisch te regelen.
+  description: Zet elke avond om 22:00 uur het zonnescherm in positie 0 (ingetrokken) en zet automatische modus weer aan om de volgende dag automatisch te regelen.
   mode: single
   trigger:
     - platform: time
