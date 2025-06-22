@@ -18,7 +18,7 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.ventilatie_preset
-                option: koeling
+                option: cooling
         - conditions:
             - condition: template
               value_template: >
@@ -28,4 +28,4 @@
             - service: input_select.select_option
               data:
                 entity_id: input_select.ventilatie_preset
-                option: normaal
+                option: normal
