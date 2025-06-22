@@ -45,9 +45,9 @@
   trigger:
     - platform: state
       entity_id: cover.zonnescherm
-    	from:
-      	- "open"
-      	- "closed"
+      from:
+        - "open"
+        - "closed"
   action:
     - choose:
         - conditions:
