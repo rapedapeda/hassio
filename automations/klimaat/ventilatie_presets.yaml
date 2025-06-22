@@ -1,28 +1,3 @@
-###########
-# Deze activeert de juiste (initiele) stand van de Sonoff (lees: WTW) als een preset wordt veranderd.
-# Bijvoorbeeld 'away' mode als niemand thuis is
-###########
-- id: ventilatie_preset_activeren
-  alias: "Ventilatie: stand wtw aanpassen"
-  description: Automatisering om afhankelijk van de geselecteerde preset van de WTW, de juiste stand van de WTW te activeren
-  mode: parallel
-  trigger:
-  - platform: state
-    entity_id: input_select.ventilatie_preset_mode
-  condition: []
-  action:
-    service: fan.set_percentage
-    target:
-      entity_id: fan.wtw
-    data:
-      percentage: >
-        {% if is_state("input_select.ventilatie_preset_mode", "boost") -%}
-        66
-        {% elif is_state("input_select.ventilatie_preset_mode", "away") -%}
-        1
-        {% else %}
-        33
-        {% endif %}
 
 ###########
 # Deze zijn om verschillende presets te activeren.
@@ -41,13 +16,13 @@
   action:
   - service: input_select.select_option
     target:
-      entity_id: input_select.ventilatie_preset_mode
+      entity_id: input_select.ventilatie_preset
     data:
       option: >-
         {% if is_state('input_boolean.fan_boost','on') %}
           boost
         {% else %}
-          auto
+          normal
         {% endif %}
 
 - id: ventilatie_preset_away
@@ -62,11 +37,11 @@
   action:
   - service: input_select.select_option
     target:
-      entity_id: input_select.ventilatie_preset_mode
+      entity_id: input_select.ventilatie_preset
     data:
       option: >-
         {% if is_state('alarm_control_panel.huis','armed_away') %}
-          away
+          off
         {% else %}
-          auto
+          normal
         {% endif %}
