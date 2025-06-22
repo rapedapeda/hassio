@@ -41,7 +41,7 @@
     data:
       option: >-
         {% if is_state('alarm_control_panel.huis','armed_away') %}
-          off
+          standby
         {% else %}
           normal
         {% endif %}
