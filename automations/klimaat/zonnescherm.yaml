@@ -45,14 +45,16 @@
   trigger:
     - platform: state
       entity_id: cover.zonnescherm
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.from_state.context.parent_id is none }}
   action:
-    - service: input_boolean.turn_off
-      target:
-        entity_id: input_boolean.zonnescherm_auto
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >
+                {{ trigger.to_state.context.parent_id is none }}
+          sequence:
+            - service: input_boolean.turn_off
+              target:
+                entity_id: input_boolean.zonnescherm_auto
 
 - id: zonwering_auto_modus_reset
   alias: Zonwering – nightly reset en auto modus aan
