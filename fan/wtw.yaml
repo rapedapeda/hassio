@@ -37,6 +37,7 @@ fan:
         speed_count: 3
         preset_modes:
           - normal
+          - boost
           - cooling
           - manual
           - off
