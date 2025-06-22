@@ -32,7 +32,7 @@
         - conditions:
             - condition: state
               entity_id: input_select.ventilatie_preset
-              state: 'off'
+              state: 'standby'
           sequence:
             - service: script.set_ventilatie_stand
               data:
