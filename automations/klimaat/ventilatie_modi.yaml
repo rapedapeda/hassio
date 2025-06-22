@@ -1,0 +1,31 @@
+- alias: Ventilatie – automatisch preset naar koeling of normaal
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.binnentemperatuur
+        - sensor.buitentemperatuur
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: numeric_state
+              entity_id: sensor.binnentemperatuur
+              above: 21
+            - condition: template
+              value_template: >
+                {{ states('sensor.buitentemperatuur') | float(0) <= (states('sensor.binnentemperatuur') | float(0) - 2) }}
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.ventilatie_preset
+                option: koeling
+        - conditions:
+            - condition: template
+              value_template: >
+                {{ states('sensor.binnentemperatuur') | float(0) <= 21 or
+                   states('sensor.buitentemperatuur') | float(0) > (states('sensor.binnentemperatuur') | float(0) - 2) }}
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.ventilatie_preset
+                option: normaal
