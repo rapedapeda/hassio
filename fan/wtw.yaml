@@ -15,7 +15,7 @@
           0
         {% endif %}
       preset_mode_template: >
-        {{ states('input_select.ventilatie_preset') }}
+        {{ states('input_select.ventilatie_preset') if states('input_select.ventilatie_preset') in ['normal', 'boost', 'cooling', 'manual', 'off'] else 'normal' }}
       turn_on:
         service: switch.turn_on
         target:
