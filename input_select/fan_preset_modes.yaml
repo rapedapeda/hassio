@@ -1,8 +1,8 @@
-ventilatie_preset_mode:
-  name: Ventilatiemodi
-  icon: mdi:fan
+ventilatie_preset:
+  name: Ventilatie Preset
   options:
-    - auto
-    - boost
-    - away
-  initial: auto
+    - normal
+    - cooling
+    - manual
+    - off
+  initial: normal
