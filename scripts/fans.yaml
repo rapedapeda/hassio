@@ -1,10 +1,15 @@
-wtw_set_preset_mode:
-  mode: parallel
-  alias: Ventilatie set preset mode
-  icon: mdi:arrow-right
+set_ventilatie_stand:
+  alias: Zet ventilatiestand
   sequence:
-  - service: fan.set_preset_mode
-    target:
-      entity_id: fan.wtw
-    data_template:
-      preset_mode: "{{ preset_mode }}"
+    - service: switch.turn_on
+      data:
+        entity_id: >
+          {% if percentage | int == 100 %}
+            switch.wtw_3
+          {% elif percentage | int == 66 %}
+            switch.wtw_2
+          {% elif percentage | int == 33 %}
+            switch.wtw_1
+          {% else %}
+            switch.wtw_0
+          {% endif %}
