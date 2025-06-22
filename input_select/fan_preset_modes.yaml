@@ -2,6 +2,7 @@ ventilatie_preset:
   name: Ventilatie Preset
   options:
     - normal
+    - boost
     - cooling
     - manual
     - off
