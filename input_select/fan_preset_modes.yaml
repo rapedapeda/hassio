@@ -5,5 +5,5 @@ ventilatie_preset:
     - boost
     - cooling
     - manual
-    - off
+    - standby
   initial: normal
