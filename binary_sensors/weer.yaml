@@ -19,7 +19,7 @@
             and
             states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
             and
-            (states('sensor.zonnepanelen_radiation') if states('sensor.zonnepanelen_radiation') not in ['unknown','unavailable','none',''] else states('sensor.irradiance')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
+            (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
             and
             states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
             and 
@@ -41,7 +41,7 @@
             and
             states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
             and
-            (states('sensor.zonnepanelen_radiation') if states('sensor.zonnepanelen_radiation') not in ['unknown','unavailable','none',''] else states('sensor.irradiance')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
+            (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
             and
             states('sensor.temperatuur_kantoor')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0)          
         }}
