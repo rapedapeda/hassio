@@ -55,6 +55,7 @@ influxdb:
       - vacuum
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
+      - sensor.zonnepanelen_radiation
     entity_globs:
       - binary_sensor.beweging_*
       - binary_sensor.aanwezigheid_*
@@ -106,6 +107,7 @@ recorder:
       - sensor.irradiance
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
+      - sensor.zonnepanelen_radiation
       - sensor.knmi_thuis_waarschuwing
       - sensor.knmi_thuis_wind
       - sensor.buienradar_precipitation
