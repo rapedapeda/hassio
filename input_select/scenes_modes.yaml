@@ -48,3 +48,9 @@ kamer_scene_badkamer:
     - Gedimd
     - Normaal
     - Vol
+kamer_scene_kinderkamer:
+  name: Scene
+  icon: mdi:bed-king
+  options:
+    - Nacht
+    - Normaal
