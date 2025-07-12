@@ -19,3 +19,6 @@ verlichting_overlooptweede:
 verlichting_badkamer:
   name: Badkamer
   icon: mdi:shower
+verlichting_kinderkamer:
+  name: Kinderkamer
+  icon: mdi:baby
