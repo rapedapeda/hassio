@@ -9,9 +9,9 @@
       subtype: "on"
   condition: []
   action:
-    - service: light.toggle
+    - service: input_boolean.toggle
       target:
-        entity_id: light.kinderkamer
+        entity_id: input_boolean.verlichting_kinderkamer
 
 - id: switch_babykamer_lights_next_scene
   alias: Next scene kinderkamer via RODRED
