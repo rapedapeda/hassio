@@ -3,7 +3,7 @@
     light.badkamer_plafond:
       state: on
       brightness: 200
-- name: kinderkamer_gedimd
+- name: kinderkamer_nacht
   entities:
     light.badkamer_plafond:
       state: on
