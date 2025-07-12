@@ -1,10 +1,10 @@
 - name: kinderkamer_normaal
   entities:
-    light.badkamer_plafond:
+    light.lotek_baby:
       state: on
       brightness: 200
 - name: kinderkamer_nacht
   entities:
-    light.badkamer_plafond:
+    light.lotek_baby:
       state: on
       brightness: 25
