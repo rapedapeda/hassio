@@ -6,7 +6,7 @@
       domain: mqtt
       device_id: 19aeb6e00a80a9b77d9de3410b6e23db
       type: action
-      subtype: on
+      subtype: "on"
   condition: []
   action:
     - service: light.toggle
@@ -21,7 +21,7 @@
       domain: mqtt
       device_id: 19aeb6e00a80a9b77d9de3410b6e23db
       type: action
-      subtype: off
+      subtype: "off"
   condition: []
   action:
     - service: input_select.select_next
