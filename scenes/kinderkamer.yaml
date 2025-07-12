@@ -8,3 +8,7 @@
     light.lotek_baby:
       state: on
       brightness: 25
+- name: kinderkamer_uit
+  entities:
+    light.lotek_baby:
+      state: off
