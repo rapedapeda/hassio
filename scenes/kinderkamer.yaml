@@ -1,0 +1,10 @@
+- name: kinderkamer_normaal
+  entities:
+    light.badkamer_plafond:
+      state: on
+      brightness: 200
+- name: kinderkamer_gedimd
+  entities:
+    light.badkamer_plafond:
+      state: on
+      brightness: 25
