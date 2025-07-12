@@ -1,5 +1,5 @@
-- id: switch_lotek_babykamer_toggle
-  alias: Toggle lotek babykamer via RODRED
+- id: switch_babykamer_toggle_lights
+  alias: Toggle lights babykamer via RODRED
   mode: single
   trigger:
     - platform: device
@@ -12,3 +12,18 @@
     - service: light.toggle
       target:
         entity_id: light.kinderkamer
+
+- id: switch_babykamer_lights_next_scene
+  alias: Next scene kinderkamer via RODRED
+  mode: single
+  trigger:
+    - platform: device
+      domain: mqtt
+      device_id: 19aeb6e00a80a9b77d9de3410b6e23db
+      type: action
+      subtype: off
+  condition: []
+  action:
+    - service: input_select.select_next
+      target:
+        entity_id: input_select.kamer_kinderkamer
