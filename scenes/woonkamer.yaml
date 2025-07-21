@@ -19,7 +19,7 @@
       #color_temp: 380
     light.parentesi:
       state: 'on'
-      brightness: 50
+      brightness: 255
     light.woonkamer_artemide:
       state: 'on'
 - name: woonkamer_gedimd
@@ -31,7 +31,7 @@
       state: 'off'
     light.parentesi:
       state: 'on'
-      brightness: 20
+      brightness: 255
     light.woonkamer_artemide:
       state: 'off'
 - name: woonkamer_vol
