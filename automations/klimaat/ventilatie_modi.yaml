@@ -13,7 +13,7 @@
               above: 21
             - condition: template
               value_template: >
-                {{ states('sensor.buitentemperatuur') | float(0) <= (states('sensor.binnentemperatuur') | float(0) - 2) }}
+                {{ states('sensor.buitentemperatuur') | float(0) <= (states('sensor.binnentemperatuur') | float(5) - 5) }}
           sequence:
             - service: input_select.select_option
               data:
