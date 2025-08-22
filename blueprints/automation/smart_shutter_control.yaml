@@ -1,0 +1,204 @@
+blueprint:
+  name: Smart Shutter Control
+  description: Sun-based shutter control with configurable positions and night mode
+  domain: automation
+  
+  input:
+    # Cover Settings
+    cover_entity:
+      name: Shutter Cover
+      selector:
+        entity:
+          domain: cover
+    
+    auto_mode_boolean:
+      name: Auto Mode Helper
+      selector:
+        entity:
+          domain: input_boolean
+    
+    # Sun Detection
+    sun_sensor:
+      name: Sun Position Sensor
+      description: Binary sensor indicating when sun hits this window
+      selector:
+        entity:
+          domain: binary_sensor
+    
+    # Position Settings
+    day_protection_position:
+      name: Day Protection Position
+      description: Percentage closed when sun hits window
+      default: 30
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+    
+    night_mode_position:
+      name: Night Mode Position
+      description: Position after sunset
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+    
+    # Timing
+    morning_reset_time:
+      name: Morning Reset Time (minimum)
+      description: Earliest time to reset auto mode (will use sunset if later)
+      default: "08:00:00"
+      selector:
+        time:
+    
+    # Seasonal Behavior
+    use_seasonal_positions:
+      name: Use Different Winter/Summer Positions
+      default: false
+      selector:
+        boolean:
+    
+    winter_night_position:
+      name: Winter Night Position
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+
+# Generate 3 automations per shutter
+automation:
+  # Automation 1: Sun-based Position Control
+  - id: !input auto_mode_boolean + "_position_control"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Position Control"
+    description: "Controls shutter position based on sun and time of day"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: !input sun_sensor
+        id: sun_change
+      - platform: sun
+        event: sunset
+        id: sunset
+      - platform: time
+        at: !input morning_reset_time
+        id: morning_time
+    action:
+      - choose:
+          # Morning: Open shutter
+          - conditions:
+              - condition: trigger
+                id: morning_time
+              - condition: state
+                entity_id: !input auto_mode_boolean
+                state: 'on'
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: !input cover_entity
+                data:
+                  position: 100
+          
+          # Sun hits window: Close to protection position
+          - conditions:
+              - condition: trigger
+                id: sun_change
+              - condition: state
+                entity_id: !input sun_sensor
+                state: 'on'
+              - condition: state
+                entity_id: !input auto_mode_boolean
+                state: 'on'
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: !input cover_entity
+                data:
+                  position: !input day_protection_position
+          
+          # Sun goes away: Open shutter
+          - conditions:
+              - condition: trigger
+                id: sun_change
+              - condition: state
+                entity_id: !input sun_sensor
+                state: 'off'
+              - condition: state
+                entity_id: !input auto_mode_boolean
+                state: 'on'
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: !input cover_entity
+                data:
+                  position: 100
+          
+          # Sunset: Set night mode position
+          - conditions:
+              - condition: trigger
+                id: sunset
+              - condition: state
+                entity_id: !input auto_mode_boolean
+                state: 'on'
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: !input cover_entity
+                data:
+                  position: >
+                    {% if use_seasonal_positions and now().month in [11, 12, 1, 2] %}
+                      {{ winter_night_position }}
+                    {% else %}
+                      {{ night_mode_position }}
+                    {% endif %}
+
+  # Automation 2: Manual Override Detection
+  - id: !input auto_mode_boolean + "_manual_override"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Manual Override Detection"
+    description: "Disables auto mode when shutter is manually controlled"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: !input cover_entity
+        from:
+          - "open"
+          - "closed"
+    action:
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.state not in ['unavailable', 'unknown'] }}
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.context.parent_id is none }}
+            sequence:
+              - service: input_boolean.turn_off
+                target:
+                  entity_id: !input auto_mode_boolean
+
+  # Automation 3: Auto Mode Reset
+  - id: !input auto_mode_boolean + "_auto_reset"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Auto Mode Reset"
+    description: "Resets auto mode at 8am or sunset, whichever is later"
+    mode: single
+    trigger:
+      - platform: time
+        at: !input morning_reset_time
+      - platform: sun
+        event: sunset
+    condition:
+      - condition: template
+        value_template: >
+          {% set morning_time = today_at(morning_reset_time) %}
+          {% set sunset_time = state_attr('sun.sun', 'next_setting') | as_datetime %}
+          {% set reset_time = [morning_time, sunset_time] | max %}
+          {{ now() >= reset_time and now() < reset_time + timedelta(minutes=1) }}
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: !input auto_mode_boolean

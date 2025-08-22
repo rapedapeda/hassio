@@ -1,0 +1,198 @@
+blueprint:
+  name: Smart Awning Control
+  description: Weather-sensitive awning with sun positioning, immediate rain/wind closure, and manual override detection
+  domain: automation
+  
+  input:
+    # Cover Settings
+    cover_entity:
+      name: Awning Cover
+      selector:
+        entity:
+          domain: cover
+    
+    auto_mode_boolean:
+      name: Auto Mode Helper
+      description: input_boolean to track automatic mode
+      selector:
+        entity:
+          domain: input_boolean
+    
+    position_sensor:
+      name: Position Calculation Sensor
+      description: Sensor that calculates desired awning position based on sun
+      selector:
+        entity:
+          domain: sensor
+    
+    # Weather Sensors (Immediate Closure - No Delay)
+    rain_sensor:
+      name: Rain Sensor
+      selector:
+        entity:
+          domain: sensor
+    
+    wind_sensor:
+      name: Wind Gust Sensor
+      selector:
+        entity:
+          domain: sensor
+    
+    wind_threshold:
+      name: Wind Speed Threshold (km/h)
+      default: 30
+      selector:
+        number:
+          min: 10
+          max: 100
+          unit_of_measurement: "km/h"
+    
+    weather_warning_sensor:
+      name: Weather Warning Sensor (optional)
+      default: ""
+      selector:
+        entity:
+          domain: binary_sensor
+    
+    # Delayed Weather Conditions
+    delayed_weather_sensor:
+      name: Delayed Weather Conditions Sensor
+      description: Your existing zonweringweer sensor with delays
+      selector:
+        entity:
+          domain: binary_sensor
+    
+    # Timing
+    night_reset_time:
+      name: Nightly Reset Time
+      default: "22:00:00"
+      selector:
+        time:
+
+# Generate 3 automations per awning
+automation:
+  # Automation 1: Weather Control
+  - id: !input auto_mode_boolean + "_weather_control"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Weather Control"
+    description: "Controls awning position based on weather conditions with immediate rain/wind closure"
+    mode: single
+    trigger:
+      # Immediate triggers (no delay)
+      - platform: numeric_state
+        entity_id: !input rain_sensor
+        above: 0
+        id: rain_detected
+      - platform: numeric_state
+        entity_id: !input wind_sensor
+        above: !input wind_threshold
+        id: wind_detected
+      - platform: state
+        entity_id: !input weather_warning_sensor
+        to: 'on'
+        id: weather_warning
+      # Delayed triggers
+      - platform: state
+        entity_id: 
+          - !input delayed_weather_sensor
+          - !input position_sensor
+        id: delayed_weather
+    action:
+      - choose:
+          # Immediate closure for bad weather (rain/wind/warnings)
+          - conditions:
+              - condition: or
+                conditions:
+                  - condition: trigger
+                    id: rain_detected
+                  - condition: trigger  
+                    id: wind_detected
+                  - condition: trigger
+                    id: weather_warning
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: !input cover_entity
+                data:
+                  position: 0
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: !input auto_mode_boolean
+          
+          # Normal weather logic (from your existing automation)
+          - conditions:
+              - condition: trigger
+                id: delayed_weather
+            sequence:
+              - choose:
+                  # Bad weather: close, enable auto mode
+                  - conditions:
+                      - condition: state
+                        entity_id: !input delayed_weather_sensor
+                        state: 'off'
+                    sequence:
+                      - service: cover.set_cover_position
+                        target:
+                          entity_id: !input cover_entity
+                        data:
+                          position: 0
+                      - service: input_boolean.turn_on
+                        target:
+                          entity_id: !input auto_mode_boolean
+                  
+                  # Good weather + auto mode: follow position
+                  - conditions:
+                      - condition: state
+                        entity_id: !input delayed_weather_sensor
+                        state: 'on'
+                      - condition: state
+                        entity_id: !input auto_mode_boolean
+                        state: 'on'
+                    sequence:
+                      - service: cover.set_cover_position
+                        target:
+                          entity_id: !input cover_entity
+                        data:
+                          position: "{{ states(position_sensor) | int }}"
+
+  # Automation 2: Manual Override Detection
+  - id: !input auto_mode_boolean + "_manual_override"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Manual Override Detection"
+    description: "Disables auto mode when cover is manually controlled"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: !input cover_entity
+        from:
+          - "open"
+          - "closed"
+    action:
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.state not in ['unavailable', 'unknown'] }}
+              - condition: template
+                value_template: >
+                  {{ trigger.to_state.context.parent_id is none }}
+            sequence:
+              - service: input_boolean.turn_off
+                target:
+                  entity_id: !input auto_mode_boolean
+
+  # Automation 3: Nightly Reset
+  - id: !input auto_mode_boolean + "_nightly_reset"
+    alias: "{{ cover_entity.split('.')[1] | title }} - Nightly Reset"
+    description: "Closes awning and enables auto mode every night"
+    mode: single
+    trigger:
+      - platform: time
+        at: !input night_reset_time
+    action:
+      - service: cover.set_cover_position
+        target:
+          entity_id: !input cover_entity
+        data:
+          position: 0
+      - service: input_boolean.turn_on
+        target:
+          entity_id: !input auto_mode_boolean
