@@ -10,7 +10,7 @@
         - conditions:
             - condition: numeric_state
               entity_id: sensor.binnentemperatuur
-              above: 21
+              above: 23
             - condition: template
               value_template: >
                 {{ states('sensor.buitentemperatuur') | float(0) <= (states('sensor.binnentemperatuur') | float(5) - 5) }}
