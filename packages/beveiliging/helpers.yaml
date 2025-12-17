@@ -1,0 +1,16 @@
+# Beveiliging Package - Helpers
+# Part of 2026-update: native HA security implementation
+
+# Input select voor gewenste alarm modus (onafhankelijk van daadwerkelijke alarm state)
+# Wordt bijgewerkt op basis van tijd/zon, alarm synchroniseert hiermee
+input_select:
+  alarm_gewenste_modus:
+    name: "Alarm Gewenste Modus"
+    options:
+      - "armed_home"
+      - "disarmed"
+    initial: "disarmed"
+    icon: mdi:shield-check
+
+# Note: group.beveiliging_deuren_ramen wordt via GUI aangemaakt
+# Bevat alle deuren/ramen sensoren die gemonitord moeten worden tijdens armed_away
