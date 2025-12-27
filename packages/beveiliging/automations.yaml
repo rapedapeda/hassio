@@ -9,7 +9,7 @@
 # Automatisering 1: Gewenste modus → armed_home
 # Trigger: Zonsondergang OF 19:00 (wat het EERST komt)
 - id: beveiliging_gewenste_modus_armed_home
-  alias: "Beveiliging: Gewenste Modus Armed Home"
+  alias: "Beveiliging: gewenste modus Armed Home"
   description: "Zet gewenste alarm modus op armed_home bij zonsondergang of 19:00 (wat eerst komt)"
 
   trigger:
@@ -30,15 +30,12 @@
         option: armed_home
 
 # Automatisering 2: Gewenste modus → disarmed
-# Trigger: Zonsopgang OF 08:00 (wat het LAATST komt)
+# Trigger: 07:30
 - id: beveiliging_gewenste_modus_disarmed
-  alias: "Beveiliging: Gewenste Modus Disarmed"
-  description: "Zet gewenste alarm modus op disarmed bij zonsopgang of 08:00 (wat laatst komt)"
+  alias: "Beveiliging: gewenste modus Disarmed"
+  description: "Zet gewenste alarm modus op disarmed om 07:30"
 
   trigger:
-    - platform: sun
-      event: sunrise
-      id: sunrise
     - platform: time
       at: "08:00:00"
       id: time
@@ -58,7 +55,7 @@
 
 # Automatisering 3: Armed_away wanneer niemand thuis is
 - id: beveiliging_armed_away_niemand_thuis
-  alias: "Beveiliging: Armed Away Niemand Thuis"
+  alias: "Beveiliging: Armed Away als niemand thuis"
   description: "Activeer armed_away wanneer niemand thuis is"
 
   trigger:
@@ -84,7 +81,7 @@
 
 # Automatisering 4: Naar gewenste modus wanneer iemand thuiskomt
 - id: beveiliging_gewenste_modus_thuisgekomen
-  alias: "Beveiliging: Gewenste Modus Thuisgekomen"
+  alias: "Beveiliging: gewenste modus bij thuiskomen"
   description: "Zet alarm naar gewenste modus wanneer iemand thuiskomt"
 
   trigger:
@@ -123,7 +120,7 @@
 # Dit respecteert manual overrides: handmatige wijzigingen blijven actief
 # tot de gewenste modus wijzigt (bijv. 's avonds of 's ochtends)
 - id: beveiliging_pas_alarm_aan_gewenste_modus
-  alias: "Beveiliging: Pas Alarm Aan Gewenste Modus"
+  alias: "Beveiliging: sync Alarm met gewenste modus"
   description: "Synchroniseer alarm met gewenste modus wanneer deze wijzigt (respecteert manual overrides)"
 
   trigger:
@@ -167,8 +164,8 @@
 
 # Automatisering 6: Trigger alarm bij open deuren/ramen tijdens armed_away
 - id: beveiliging_trigger_deuren_ramen
-  alias: "Beveiliging: Trigger Alarm Deuren Ramen"
-  description: "Trigger alarm wanneer deuren of ramen opengaan tijdens armed_away"
+  alias: "Beveiliging: trigger Alarm open deuren of ramen"
+  description: "Trigger alarm wanneer deuren of ramen opengaan tijdens armed_away. Group 'beveiliging_deuren_ramen' via GUI aanmaken."
 
   trigger:
     - platform: state
