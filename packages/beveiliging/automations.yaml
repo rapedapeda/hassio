@@ -186,3 +186,53 @@
     - service: alarm_control_panel.alarm_trigger
       target:
         entity_id: alarm_control_panel.huis
+
+# ============================================================================
+# VAKANTIEMODUS AUTOMATISERINGEN
+# ============================================================================
+
+# Automatisering 7: Activeer vakantiemodus na 24 uur niemand thuis
+- id: beveiliging_activeer_vakantiemodus
+  alias: "Beveiliging: Activeer Vakantiemodus"
+  description: "Activeer vakantiemodus wanneer niemand al 24 uur thuis is"
+
+  trigger:
+    - platform: state
+      entity_id: group.aanwezigheid_personen
+      to: "off"
+      for:
+        hours: 24
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.vakantiemodus
+      state: "off"
+
+  mode: single
+
+  action:
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.vakantiemodus
+
+# Automatisering 8: Deactiveer vakantiemodus bij thuiskomst
+- id: beveiliging_deactiveer_vakantiemodus
+  alias: "Beveiliging: Deactiveer Vakantiemodus"
+  description: "Deactiveer vakantiemodus wanneer iemand thuiskomt"
+
+  trigger:
+    - platform: state
+      entity_id: group.aanwezigheid_personen
+      to: "on"
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.vakantiemodus
+      state: "on"
+
+  mode: single
+
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.vakantiemodus

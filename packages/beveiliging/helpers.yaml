@@ -12,5 +12,14 @@ input_select:
     initial: "disarmed"
     icon: mdi:shield-check
 
+# Vakantiemodus: wordt automatisch geactiveerd na 24 uur niemand thuis
+# Kan handmatig overschreven worden via UI
+# Gebruikt door andere modules (verlichting, stofzuigen, etc.)
+input_boolean:
+  vakantiemodus:
+    name: "Vakantiemodus"
+    icon: mdi:airplane-takeoff
+    initial: false
+
 # Note: group.beveiliging_deuren_ramen wordt via GUI aangemaakt
 # Bevat alle deuren/ramen sensoren die gemonitord moeten worden tijdens armed_away
