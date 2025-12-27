@@ -43,8 +43,8 @@ Grote refactoring van de Home Assistant configuratie om gebruik te maken van mod
 - [x] Documentatie structuur opgezet
 - [x] Planning gemaakt
 
-### 🔄 Fase 1: Beveiliging
-**Status**: In Progress
+### ✅ Fase 1: Beveiliging
+**Status**: Completed
 **Documentatie**: [docs/2026-update/beveiliging.md](docs/2026-update/beveiliging.md)
 
 **Scope**:
@@ -53,23 +53,39 @@ Grote refactoring van de Home Assistant configuratie om gebruik te maken van mod
 - Automatische armed_home/disarmed op basis van tijd/zon
 - Presence-based armed_away
 - Trigger logic voor deuren/ramen
+- Vakantiemodus (automatisch na 24u niemand thuis)
 
 **Deliverables**:
-- [ ] Package `packages/beveiliging/alarm.yaml`
-- [ ] Package `packages/beveiliging/helpers.yaml`
-- [ ] Package `packages/beveiliging/automations.yaml`
-- [ ] Helpers aangemaakt via GUI
-- [ ] AppDaemon alarm apps uitgezet
-- [ ] Volledig getest
+- [x] Package `packages/beveiliging/alarm.yaml`
+- [x] Package `packages/beveiliging/helpers.yaml`
+- [x] Package `packages/beveiliging/automations.yaml`
+- [x] Vakantiemodus input_boolean + automations
+- [x] AppDaemon alarm apps verwijderd
+- [x] Volledig getest en gedocumenteerd
 
-### ⏳ Fase 2: Schoonmaken
-**Status**: Planned
+### ✅ Fase 2: Schoonmaken
+**Status**: Completed
 **Documentatie**: [docs/2026-update/schoonmaken.md](docs/2026-update/schoonmaken.md)
 
-**Scope**: TBD
-- Stofzuiger automations
-- Schema's en zones
-- Mogelijk blueprint usage
+**Scope**:
+- Migratie AppDaemon vacuum logica naar native HA
+- Package structuur: `packages/stofzuigen/`
+- Automatisch stofzuigen bij armed_away met interval check
+- Handmatige knoppen per verdieping (Apple Home compatible)
+- Opvangbak vol detectie met automatische lediging
+- Vakantiemodus integratie (geen stofzuigen tijdens vakantie)
+- Support voor 3 verdiepingen (beneden, eerste, tweede)
+
+**Deliverables**:
+- [x] Package `packages/stofzuigen/helpers.yaml`
+- [x] Package `packages/stofzuigen/automations.yaml`
+- [x] Input_datetime voor persistente laatste schoonmaak tracking
+- [x] Input_number voor opvangbak counter
+- [x] Input_boolean voor "schoonmaak nodig" status
+- [x] Input_button voor handmatige schoonmaak per verdieping
+- [x] MQTT integratie voor Valetudo stofzuigers
+- [x] AppDaemon vacuum apps verwijderd
+- [x] Volledig getest en gedocumenteerd
 
 ### ⏳ Fase 3: Verlichting
 **Status**: Planned
@@ -110,8 +126,9 @@ packages/
 │   ├── alarm.yaml
 │   ├── helpers.yaml
 │   └── automations.yaml
-├── schoonmaken/
-│   └── ...
+├── stofzuigen/
+│   ├── helpers.yaml
+│   └── automations.yaml
 ├── verlichting/
 │   └── ...
 └── ...
@@ -198,7 +215,11 @@ Voor grote wijzigingen:
 ## Voortgang
 
 **Gestart**: 2025-12-17
-**Huidige Fase**: Beveiliging (Fase 1)
+**Huidige Fase**: Verlichting (Fase 3)
+**Voltooid**:
+- ✅ Fase 1: Beveiliging (2025-12-27)
+- ✅ Fase 2: Schoonmaken (2025-12-27)
+
 **Geschatte Voltooiing**: TBD (afhankelijk van testing en scope)
 
 ## Notities
