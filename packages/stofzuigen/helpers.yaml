@@ -56,6 +56,20 @@ stofzuigen_helpers:
       icon: mdi:counter
 
 # ============================================================================
+# AUTO MODUS BOOLEAN
+# ============================================================================
+# Hoofdschakelaar voor automatisch stofzuigen
+# - Uit: interval checks en auto-stofzuigen zijn uitgeschakeld
+# - Aan: normale werking (default)
+# - Handmatige knoppen werken altijd, ongeacht deze instelling
+
+  input_boolean:
+    stofzuigen_auto_modus:
+      name: "Stofzuigen automatisch"
+      icon: mdi:robot-vacuum-variant
+      initial: true
+
+# ============================================================================
 # SCHOONMAAK NODIG BOOLEANS
 # ============================================================================
 # Geeft aan of stofzuigen nodig is op een verdieping
@@ -63,7 +77,6 @@ stofzuigen_helpers:
 # - Handmatig: kan door gebruiker gezet worden voor extra schoonmaak
 # - Na stofzuigen: automatisch terug naar 'off'
 
-  input_boolean:
     stofzuigen_beneden_nodig:
       name: "Stofzuigen beneden nodig"
       icon: mdi:broom

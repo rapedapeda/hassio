@@ -19,6 +19,9 @@ stofzuigen_automations:
           at: "07:00:00"
 
       condition:
+        - condition: state
+          entity_id: input_boolean.stofzuigen_auto_modus
+          state: "on"
         - condition: template
           value_template: >
             {% set last = states('input_datetime.stofzuigen_beneden_last_clean') %}
@@ -46,6 +49,9 @@ stofzuigen_automations:
           at: "07:00:00"
 
       condition:
+        - condition: state
+          entity_id: input_boolean.stofzuigen_auto_modus
+          state: "on"
         - condition: template
           value_template: >
             {% set last = states('input_datetime.stofzuigen_eerste_last_clean') %}
@@ -73,6 +79,9 @@ stofzuigen_automations:
           at: "07:00:00"
 
       condition:
+        - condition: state
+          entity_id: input_boolean.stofzuigen_auto_modus
+          state: "on"
         - condition: template
           value_template: >
             {% set last = states('input_datetime.stofzuigen_tweede_last_clean') %}
@@ -105,6 +114,10 @@ stofzuigen_automations:
           to: armed_away
 
       condition:
+      # Auto modus moet aan zijn
+        - condition: state
+          entity_id: input_boolean.stofzuigen_auto_modus
+          state: "on"
       # Moet nodig zijn
         - condition: state
           entity_id: input_boolean.stofzuigen_beneden_nodig
@@ -153,6 +166,10 @@ stofzuigen_automations:
           to: armed_away
 
       condition:
+      # Auto modus moet aan zijn
+        - condition: state
+          entity_id: input_boolean.stofzuigen_auto_modus
+          state: "on"
       # Moet nodig zijn
         - condition: state
           entity_id: input_boolean.stofzuigen_tweede_nodig
