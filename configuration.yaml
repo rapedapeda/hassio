@@ -32,7 +32,7 @@ websocket_api:
 
 homeassistant:
   customize: !include_dir_merge_named customize/
-  packages: !include_dir_named packages/
+  packages: !include_dir_merge_named packages/
   unit_system: metric
   time_zone: Europe/Amsterdam
   country: NL

@@ -1,44 +1,45 @@
+beveiliging_helpers:
 # Beveiliging Package - Helpers
 # Part of 2026-update: native HA security implementation
 
 # Input select voor gewenste alarm modus (onafhankelijk van daadwerkelijke alarm state)
 # Wordt bijgewerkt op basis van tijd/zon, alarm synchroniseert hiermee
-input_select:
-  alarm_gewenste_modus:
-    name: "Alarm Gewenste Modus"
-    options:
-      - "armed_home"
-      - "disarmed"
-    initial: "disarmed"
-    icon: mdi:shield-check
+  input_select:
+    alarm_gewenste_modus:
+      name: "Alarm Gewenste Modus"
+      options:
+        - "armed_home"
+        - "disarmed"
+      initial: "disarmed"
+      icon: mdi:shield-check
 
 # Vakantiemodus: wordt automatisch geactiveerd na 24 uur niemand thuis
 # Kan handmatig overschreven worden via UI
 # Gebruikt door andere modules (verlichting, stofzuigen, etc.)
-input_boolean:
-  vakantiemodus:
-    name: "Vakantiemodus"
-    icon: mdi:airplane-takeoff
-    initial: false
+  input_boolean:
+    vakantiemodus:
+      name: "Vakantiemodus"
+      icon: mdi:airplane-takeoff
+      initial: false
 
   # HomeKit trackers - geüpdatet door iOS Home automations op telefoons
-  tracker_homekit_ramon:
-    name: "HomeKit tracker Ramon"
-    icon: mdi:face-man
+    tracker_homekit_ramon:
+      name: "HomeKit tracker Ramon"
+      icon: mdi:face-man
 
-  tracker_homekit_flore:
-    name: "HomeKit tracker Flore"
-    icon: mdi:face-woman
+    tracker_homekit_flore:
+      name: "HomeKit tracker Flore"
+      icon: mdi:face-woman
 
 # Aanwezigheid group - gebruikt voor presence detection
 # Gebruikt alleen input_booleans (persistent, geen unavailable states na reboot)
 # iOS Home automations op telefoons updaten deze booleans
-group:
-  aanwezigheid_personen:
-    name: Aanwezigheid
-    entities:
-      - input_boolean.tracker_homekit_ramon
-      - input_boolean.tracker_homekit_flore
+  group:
+    aanwezigheid_personen:
+      name: Aanwezigheid
+      entities:
+        - input_boolean.tracker_homekit_ramon
+        - input_boolean.tracker_homekit_flore
 
 # Note: group.beveiliging_deuren_ramen wordt via GUI aangemaakt
 # Bevat alle deuren/ramen sensoren die gemonitord moeten worden tijdens armed_away

@@ -1,3 +1,4 @@
+beveiliging_automations:
 # Beveiliging Package - Automations
 # Part of 2026-update: native HA security implementation
 # Migratie van AppDaemon alarm logica naar native HA
@@ -6,282 +7,282 @@
 # TIJDGEBASEERDE AUTOMATISERINGEN (Gewenste Modus)
 # ============================================================================
 
-automation:
+  automation:
   # Automatisering 1: Gewenste modus → armed_home
   # Trigger: Zonsondergang OF 19:00 (wat het EERST komt)
-    - id: beveiliging_gewenste_modus_armed_home
-    alias: "Beveiliging: gewenste modus Armed Home"
-    description: "Zet gewenste alarm modus op armed_home bij zonsondergang of 19:00 (wat eerst komt)"
+      - id: beveiliging_gewenste_modus_armed_home
+      alias: "Beveiliging: gewenste modus Armed Home"
+      description: "Zet gewenste alarm modus op armed_home bij zonsondergang of 19:00 (wat eerst komt)"
 
-    trigger:
-      - platform: sun
-        event: sunset
-        id: sunset
-      - platform: time
-        at: "19:00:00"
-        id: time
+      trigger:
+        - platform: sun
+          event: sunset
+          id: sunset
+        - platform: time
+          at: "19:00:00"
+          id: time
 
-    mode: single
+      mode: single
 
-    action:
-      - service: input_select.select_option
-        target:
-          entity_id: input_select.alarm_gewenste_modus
-        data:
-          option: armed_home
+      action:
+        - service: input_select.select_option
+          target:
+            entity_id: input_select.alarm_gewenste_modus
+          data:
+            option: armed_home
 
 # Automatisering 2: Gewenste modus → disarmed
 # Trigger: 07:30
-  - id: beveiliging_gewenste_modus_disarmed
-    alias: "Beveiliging: gewenste modus Disarmed"
-    description: "Zet gewenste alarm modus op disarmed om 07:30"
+    - id: beveiliging_gewenste_modus_disarmed
+      alias: "Beveiliging: gewenste modus Disarmed"
+      description: "Zet gewenste alarm modus op disarmed om 07:30"
 
-    trigger:
-      - platform: time
-        at: "08:00:00"
-        id: time
+      trigger:
+        - platform: time
+          at: "08:00:00"
+          id: time
 
-    mode: single
+      mode: single
 
-    action:
-      - service: input_select.select_option
-        target:
-          entity_id: input_select.alarm_gewenste_modus
-        data:
-          option: disarmed
+      action:
+        - service: input_select.select_option
+          target:
+            entity_id: input_select.alarm_gewenste_modus
+          data:
+            option: disarmed
 
 # ============================================================================
 # PRESENCE-BASED AUTOMATISERINGEN (Alarm State)
 # ============================================================================
 
 # Automatisering 3: Armed_away wanneer niemand thuis is
-  - id: beveiliging_armed_away_niemand_thuis
-    alias: "Beveiliging: Armed Away als niemand thuis"
-    description: "Activeer armed_away wanneer niemand thuis is"
+    - id: beveiliging_armed_away_niemand_thuis
+      alias: "Beveiliging: Armed Away als niemand thuis"
+      description: "Activeer armed_away wanneer niemand thuis is"
 
-    trigger:
-      - platform: state
-        entity_id: group.aanwezigheid_personen
-        to: "off"
+      trigger:
+        - platform: state
+          entity_id: group.aanwezigheid_personen
+          to: "off"
 
-    condition:
-      - condition: not
-        conditions:
-          - condition: state
+      condition:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.huis
+              state:
+                - armed_away
+                - triggered
+
+      mode: single
+
+      action:
+        - service: alarm_control_panel.alarm_arm_away
+          target:
             entity_id: alarm_control_panel.huis
-            state:
-              - armed_away
-              - triggered
-
-    mode: single
-
-    action:
-      - service: alarm_control_panel.alarm_arm_away
-        target:
-          entity_id: alarm_control_panel.huis
 
 # Automatisering 4: Naar gewenste modus wanneer iemand thuiskomt
-  - id: beveiliging_gewenste_modus_thuisgekomen
-    alias: "Beveiliging: gewenste modus bij thuiskomen"
-    description: "Zet alarm naar gewenste modus wanneer iemand thuiskomt"
+    - id: beveiliging_gewenste_modus_thuisgekomen
+      alias: "Beveiliging: gewenste modus bij thuiskomen"
+      description: "Zet alarm naar gewenste modus wanneer iemand thuiskomt"
 
-    trigger:
-      - platform: state
-        entity_id: group.aanwezigheid_personen
-        to: "on"
+      trigger:
+        - platform: state
+          entity_id: group.aanwezigheid_personen
+          to: "on"
 
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.huis
-        state: armed_away
+      condition:
+        - condition: state
+          entity_id: alarm_control_panel.huis
+          state: armed_away
 
-    mode: single
+      mode: single
 
-    action:
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: armed_home
-            sequence:
-              - service: alarm_control_panel.alarm_arm_home
-                target:
-                  entity_id: alarm_control_panel.huis
-          - conditions:
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: disarmed
-            sequence:
-              - service: alarm_control_panel.alarm_disarm
-                target:
-                  entity_id: alarm_control_panel.huis
+      action:
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: armed_home
+              sequence:
+                - service: alarm_control_panel.alarm_arm_home
+                  target:
+                    entity_id: alarm_control_panel.huis
+            - conditions:
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: disarmed
+              sequence:
+                - service: alarm_control_panel.alarm_disarm
+                  target:
+                    entity_id: alarm_control_panel.huis
 
 # Automatisering 5: Synchroniseer alarm met gewenste modus
 # BELANGRIJK: Triggert alleen bij STATE CHANGE van gewenste modus
 # Dit respecteert manual overrides: handmatige wijzigingen blijven actief
 # tot de gewenste modus wijzigt (bijv. 's avonds of 's ochtends)
-  - id: beveiliging_pas_alarm_aan_gewenste_modus
-    alias: "Beveiliging: sync Alarm met gewenste modus"
-    description: "Synchroniseer alarm met gewenste modus wanneer deze wijzigt (respecteert manual overrides)"
+    - id: beveiliging_pas_alarm_aan_gewenste_modus
+      alias: "Beveiliging: sync Alarm met gewenste modus"
+      description: "Synchroniseer alarm met gewenste modus wanneer deze wijzigt (respecteert manual overrides)"
 
-    trigger:
-      - platform: state
-        entity_id: input_select.alarm_gewenste_modus
+      trigger:
+        - platform: state
+          entity_id: input_select.alarm_gewenste_modus
 
-    condition:
-      - condition: state
-        entity_id: group.aanwezigheid_personen
-        state: "on"
-      - condition: not
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.huis
-            state: triggered
+      condition:
+        - condition: state
+          entity_id: group.aanwezigheid_personen
+          state: "on"
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.huis
+              state: triggered
 
-    mode: single
+      mode: single
 
-    action:
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: armed_home
-            sequence:
-              - service: alarm_control_panel.alarm_arm_home
-                target:
-                  entity_id: alarm_control_panel.huis
-          - conditions:
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: disarmed
-            sequence:
-              - service: alarm_control_panel.alarm_disarm
-                target:
-                  entity_id: alarm_control_panel.huis
+      action:
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: armed_home
+              sequence:
+                - service: alarm_control_panel.alarm_arm_home
+                  target:
+                    entity_id: alarm_control_panel.huis
+            - conditions:
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: disarmed
+              sequence:
+                - service: alarm_control_panel.alarm_disarm
+                  target:
+                    entity_id: alarm_control_panel.huis
 
 # Automatisering 5b: Sync alarm bij Home Assistant startup
-  - id: beveiliging_sync_alarm_bij_startup
-    alias: "Beveiliging: sync Alarm bij startup"
-    description: "Synchroniseer alarm bij HA startup om juiste modus te garanderen (voorkomt onverwachte triggers)"
+    - id: beveiliging_sync_alarm_bij_startup
+      alias: "Beveiliging: sync Alarm bij startup"
+      description: "Synchroniseer alarm bij HA startup om juiste modus te garanderen (voorkomt onverwachte triggers)"
 
-    trigger:
-      - platform: homeassistant
-        event: start
+      trigger:
+        - platform: homeassistant
+          event: start
 
-    mode: single
+      mode: single
 
-    action:
+      action:
     # Wacht even tot alle entities geladen zijn
-      - delay:
-          seconds: 10
+        - delay:
+            seconds: 10
     # Check aanwezigheid en zet juiste modus
-      - choose:
+        - choose:
         # Niemand thuis → armed_away
-          - conditions:
-              - condition: state
-                entity_id: group.aanwezigheid_personen
-                state: "off"
-            sequence:
-              - service: alarm_control_panel.alarm_arm_away
-                target:
-                  entity_id: alarm_control_panel.huis
+            - conditions:
+                - condition: state
+                  entity_id: group.aanwezigheid_personen
+                  state: "off"
+              sequence:
+                - service: alarm_control_panel.alarm_arm_away
+                  target:
+                    entity_id: alarm_control_panel.huis
         # Iemand thuis + gewenste modus = armed_home
-          - conditions:
-              - condition: state
-                entity_id: group.aanwezigheid_personen
-                state: "on"
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: armed_home
-            sequence:
-              - service: alarm_control_panel.alarm_arm_home
-                target:
-                  entity_id: alarm_control_panel.huis
+            - conditions:
+                - condition: state
+                  entity_id: group.aanwezigheid_personen
+                  state: "on"
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: armed_home
+              sequence:
+                - service: alarm_control_panel.alarm_arm_home
+                  target:
+                    entity_id: alarm_control_panel.huis
         # Iemand thuis + gewenste modus = disarmed
-          - conditions:
-              - condition: state
-                entity_id: group.aanwezigheid_personen
-                state: "on"
-              - condition: state
-                entity_id: input_select.alarm_gewenste_modus
-                state: disarmed
-            sequence:
-              - service: alarm_control_panel.alarm_disarm
-                target:
-                  entity_id: alarm_control_panel.huis
+            - conditions:
+                - condition: state
+                  entity_id: group.aanwezigheid_personen
+                  state: "on"
+                - condition: state
+                  entity_id: input_select.alarm_gewenste_modus
+                  state: disarmed
+              sequence:
+                - service: alarm_control_panel.alarm_disarm
+                  target:
+                    entity_id: alarm_control_panel.huis
 
 # ============================================================================
 # TRIGGER AUTOMATISERINGEN
 # ============================================================================
 
 # Automatisering 6: Trigger alarm bij open deuren/ramen tijdens armed_away
-  - id: beveiliging_trigger_deuren_ramen
-    alias: "Beveiliging: trigger Alarm open deuren of ramen"
-    description: "Trigger alarm wanneer deuren of ramen opengaan tijdens armed_away. Group 'beveiliging_deuren_ramen' via GUI aanmaken."
+    - id: beveiliging_trigger_deuren_ramen
+      alias: "Beveiliging: trigger Alarm open deuren of ramen"
+      description: "Trigger alarm wanneer deuren of ramen opengaan tijdens armed_away. Group 'beveiliging_deuren_ramen' via GUI aanmaken."
 
-    trigger:
-      - platform: state
-        entity_id: group.beveiliging_deuren_ramen
-        to: "on"
+      trigger:
+        - platform: state
+          entity_id: group.beveiliging_deuren_ramen
+          to: "on"
 
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.huis
-        state: armed_away
-
-    mode: single
-
-    action:
-      - service: alarm_control_panel.alarm_trigger
-        target:
+      condition:
+        - condition: state
           entity_id: alarm_control_panel.huis
+          state: armed_away
+
+      mode: single
+
+      action:
+        - service: alarm_control_panel.alarm_trigger
+          target:
+            entity_id: alarm_control_panel.huis
 
 # ============================================================================
 # VAKANTIEMODUS AUTOMATISERINGEN
 # ============================================================================
 
 # Automatisering 7: Activeer vakantiemodus na 24 uur niemand thuis
-  - id: beveiliging_activeer_vakantiemodus
-    alias: "Beveiliging: Activeer Vakantiemodus"
-    description: "Activeer vakantiemodus wanneer niemand al 24 uur thuis is"
+    - id: beveiliging_activeer_vakantiemodus
+      alias: "Beveiliging: Activeer Vakantiemodus"
+      description: "Activeer vakantiemodus wanneer niemand al 24 uur thuis is"
 
-    trigger:
-      - platform: state
-        entity_id: group.aanwezigheid_personen
-        to: "off"
-        for:
-          hours: 24
+      trigger:
+        - platform: state
+          entity_id: group.aanwezigheid_personen
+          to: "off"
+          for:
+            hours: 24
 
-    condition:
-      - condition: state
-        entity_id: input_boolean.vakantiemodus
-        state: "off"
-
-    mode: single
-
-    action:
-      - service: input_boolean.turn_on
-        target:
+      condition:
+        - condition: state
           entity_id: input_boolean.vakantiemodus
+          state: "off"
+
+      mode: single
+
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.vakantiemodus
 
 # Automatisering 8: Deactiveer vakantiemodus bij thuiskomst
-  - id: beveiliging_deactiveer_vakantiemodus
-    alias: "Beveiliging: Deactiveer Vakantiemodus"
-    description: "Deactiveer vakantiemodus wanneer iemand thuiskomt"
+    - id: beveiliging_deactiveer_vakantiemodus
+      alias: "Beveiliging: Deactiveer Vakantiemodus"
+      description: "Deactiveer vakantiemodus wanneer iemand thuiskomt"
 
-    trigger:
-      - platform: state
-        entity_id: group.aanwezigheid_personen
-        to: "on"
+      trigger:
+        - platform: state
+          entity_id: group.aanwezigheid_personen
+          to: "on"
 
-    condition:
-      - condition: state
-        entity_id: input_boolean.vakantiemodus
-        state: "on"
-
-    mode: single
-
-    action:
-      - service: input_boolean.turn_off
-        target:
+      condition:
+        - condition: state
           entity_id: input_boolean.vakantiemodus
+          state: "on"
+
+      mode: single
+
+      action:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.vakantiemodus

@@ -1,3 +1,4 @@
+stofzuigen_automations:
 # Stofzuigen Package - Automations
 # Part of 2026-update: native HA vacuum automation
 # Migratie van AppDaemon vacuum logica naar native HA
@@ -8,348 +9,348 @@
 # Zet "nodig" boolean op 'on' als interval voorbij is
 
 # Beneden: elke dag (interval 1 dag)
-automation:
-  - id: stofzuigen_check_interval_beneden
-    alias: "Stofzuigen: check interval beneden"
-    description: "Zet stofzuigen_beneden_nodig op 'on' als 1 dag geleden"
+  automation:
+    - id: stofzuigen_check_interval_beneden
+      alias: "Stofzuigen: check interval beneden"
+      description: "Zet stofzuigen_beneden_nodig op 'on' als 1 dag geleden"
 
-    trigger:
-      - platform: time
-        at: "07:00:00"
+      trigger:
+        - platform: time
+          at: "07:00:00"
 
-    condition:
-      - condition: template
-        value_template: >
-          {% set last = states('input_datetime.stofzuigen_beneden_last_clean') %}
-          {% if last in ['unknown', 'unavailable'] %}
-            true
-          {% else %}
-            {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-            {{ days_ago >= 1 }}
-          {% endif %}
+      condition:
+        - condition: template
+          value_template: >
+            {% set last = states('input_datetime.stofzuigen_beneden_last_clean') %}
+            {% if last in ['unknown', 'unavailable'] %}
+              true
+            {% else %}
+              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
+              {{ days_ago >= 1 }}
+            {% endif %}
 
-    mode: single
+      mode: single
 
-    action:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.stofzuigen_beneden_nodig
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.stofzuigen_beneden_nodig
 
 # Eerste verdieping: om de dag (interval 2 dagen) - voorbereid voor toekomst
-  - id: stofzuigen_check_interval_eerste
-    alias: "Stofzuigen: check interval eerste"
-    description: "Zet stofzuigen_eerste_nodig op 'on' als 2 dagen geleden"
+    - id: stofzuigen_check_interval_eerste
+      alias: "Stofzuigen: check interval eerste"
+      description: "Zet stofzuigen_eerste_nodig op 'on' als 2 dagen geleden"
 
-    trigger:
-      - platform: time
-        at: "07:00:00"
+      trigger:
+        - platform: time
+          at: "07:00:00"
 
-    condition:
-      - condition: template
-        value_template: >
-          {% set last = states('input_datetime.stofzuigen_eerste_last_clean') %}
-          {% if last in ['unknown', 'unavailable'] %}
-            true
-          {% else %}
-            {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-            {{ days_ago >= 2 }}
-          {% endif %}
+      condition:
+        - condition: template
+          value_template: >
+            {% set last = states('input_datetime.stofzuigen_eerste_last_clean') %}
+            {% if last in ['unknown', 'unavailable'] %}
+              true
+            {% else %}
+              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
+              {{ days_ago >= 2 }}
+            {% endif %}
 
-    mode: single
+      mode: single
 
-    action:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.stofzuigen_eerste_nodig
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.stofzuigen_eerste_nodig
 
 # Tweede verdieping: om de dag (interval 2 dagen)
-  - id: stofzuigen_check_interval_tweede
-    alias: "Stofzuigen: check interval tweede"
-    description: "Zet stofzuigen_tweede_nodig op 'on' als 2 dagen geleden"
+    - id: stofzuigen_check_interval_tweede
+      alias: "Stofzuigen: check interval tweede"
+      description: "Zet stofzuigen_tweede_nodig op 'on' als 2 dagen geleden"
 
-    trigger:
-      - platform: time
-        at: "07:00:00"
+      trigger:
+        - platform: time
+          at: "07:00:00"
 
-    condition:
-      - condition: template
-        value_template: >
-          {% set last = states('input_datetime.stofzuigen_tweede_last_clean') %}
-          {% if last in ['unknown', 'unavailable'] %}
-            true
-          {% else %}
-            {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-            {{ days_ago >= 2 }}
-          {% endif %}
+      condition:
+        - condition: template
+          value_template: >
+            {% set last = states('input_datetime.stofzuigen_tweede_last_clean') %}
+            {% if last in ['unknown', 'unavailable'] %}
+              true
+            {% else %}
+              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
+              {{ days_ago >= 2 }}
+            {% endif %}
 
-    mode: single
+      mode: single
 
-    action:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.stofzuigen_tweede_nodig
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.stofzuigen_tweede_nodig
 
 # ============================================================================
 # AUTOMATISCH STOFZUIGEN BIJ ARMED_AWAY
 # ============================================================================
 
 # Beneden: automatisch stofzuigen
-  - id: stofzuigen_auto_beneden
-    alias: "Stofzuigen: auto beneden"
-    description: "Start automatisch stofzuigen beneden bij armed_away"
+    - id: stofzuigen_auto_beneden
+      alias: "Stofzuigen: auto beneden"
+      description: "Start automatisch stofzuigen beneden bij armed_away"
 
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.huis
-        to: armed_away
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to: armed_away
 
-    condition:
+      condition:
     # Moet nodig zijn
-      - condition: state
-        entity_id: input_boolean.stofzuigen_beneden_nodig
-        state: "on"
-    # Geen vakantiemodus
-      - condition: state
-        entity_id: input_boolean.vakantiemodus
-        state: "off"
-    # Niet tijdens do-not-disturb (21:00 - 07:00)
-      - condition: time
-        after: "07:00:00"
-        before: "21:00:00"
-
-    mode: single
-
-    action:
-    # Stuur MQTT commando
-      - service: mqtt.publish
-        data:
-          topic: valetudo/beneden/MapSegmentationCapability/clean/set
-          payload: '{"segment_ids": [17, 16, 18], "iterations": 1}'
-          qos: 1
-    # Update laatste schoonmaak tijd
-      - service: input_datetime.set_datetime
-        target:
-          entity_id: input_datetime.stofzuigen_beneden_last_clean
-        data:
-          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    # Increment clean counter
-      - service: input_number.increment
-        target:
-          entity_id: input_number.stofzuigen_beneden_clean_count
-    # Zet "nodig" uit
-      - service: input_boolean.turn_off
-        target:
+        - condition: state
           entity_id: input_boolean.stofzuigen_beneden_nodig
+          state: "on"
+    # Geen vakantiemodus
+        - condition: state
+          entity_id: input_boolean.vakantiemodus
+          state: "off"
+    # Niet tijdens do-not-disturb (21:00 - 07:00)
+        - condition: time
+          after: "07:00:00"
+          before: "21:00:00"
+
+      mode: single
+
+      action:
+    # Stuur MQTT commando
+        - service: mqtt.publish
+          data:
+            topic: valetudo/beneden/MapSegmentationCapability/clean/set
+            payload: '{"segment_ids": [17, 16, 18], "iterations": 1}'
+            qos: 1
+    # Update laatste schoonmaak tijd
+        - service: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.stofzuigen_beneden_last_clean
+          data:
+            datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+    # Increment clean counter
+        - service: input_number.increment
+          target:
+            entity_id: input_number.stofzuigen_beneden_clean_count
+    # Zet "nodig" uit
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.stofzuigen_beneden_nodig
 
 # Tweede verdieping: automatisch stofzuigen
-  - id: stofzuigen_auto_tweede
-    alias: "Stofzuigen: auto tweede"
-    description: "Start automatisch stofzuigen tweede verdieping bij armed_away"
+    - id: stofzuigen_auto_tweede
+      alias: "Stofzuigen: auto tweede"
+      description: "Start automatisch stofzuigen tweede verdieping bij armed_away"
 
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.huis
-        to: armed_away
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to: armed_away
 
-    condition:
+      condition:
     # Moet nodig zijn
-      - condition: state
-        entity_id: input_boolean.stofzuigen_tweede_nodig
-        state: "on"
-    # Geen vakantiemodus
-      - condition: state
-        entity_id: input_boolean.vakantiemodus
-        state: "off"
-    # Niet tijdens do-not-disturb (21:00 - 07:00)
-      - condition: time
-        after: "07:00:00"
-        before: "21:00:00"
-
-    mode: single
-
-    action:
-    # Stuur MQTT commando
-      - service: mqtt.publish
-        data:
-          topic: valetudo/tweede/MapSegmentationCapability/clean/set
-          payload: '{"segment_ids": [16, 17, 18, 19], "iterations": 1}'
-          qos: 1
-    # Update laatste schoonmaak tijd
-      - service: input_datetime.set_datetime
-        target:
-          entity_id: input_datetime.stofzuigen_tweede_last_clean
-        data:
-          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-    # Increment clean counter
-      - service: input_number.increment
-        target:
-          entity_id: input_number.stofzuigen_tweede_clean_count
-    # Zet "nodig" uit
-      - service: input_boolean.turn_off
-        target:
+        - condition: state
           entity_id: input_boolean.stofzuigen_tweede_nodig
+          state: "on"
+    # Geen vakantiemodus
+        - condition: state
+          entity_id: input_boolean.vakantiemodus
+          state: "off"
+    # Niet tijdens do-not-disturb (21:00 - 07:00)
+        - condition: time
+          after: "07:00:00"
+          before: "21:00:00"
+
+      mode: single
+
+      action:
+    # Stuur MQTT commando
+        - service: mqtt.publish
+          data:
+            topic: valetudo/tweede/MapSegmentationCapability/clean/set
+            payload: '{"segment_ids": [16, 17, 18, 19], "iterations": 1}'
+            qos: 1
+    # Update laatste schoonmaak tijd
+        - service: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.stofzuigen_tweede_last_clean
+          data:
+            datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+    # Increment clean counter
+        - service: input_number.increment
+          target:
+            entity_id: input_number.stofzuigen_tweede_clean_count
+    # Zet "nodig" uit
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.stofzuigen_tweede_nodig
 
 # ============================================================================
 # HANDMATIGE SCHOONMAAK KNOPPEN
 # ============================================================================
 
 # Beneden: handmatig stofzuigen
-  - id: stofzuigen_handmatig_beneden
-    alias: "Stofzuigen: handmatig beneden"
-    description: "Start direct stofzuigen beneden via knop"
+    - id: stofzuigen_handmatig_beneden
+      alias: "Stofzuigen: handmatig beneden"
+      description: "Start direct stofzuigen beneden via knop"
 
-    trigger:
-      - platform: state
-        entity_id: input_button.stofzuig_beneden
+      trigger:
+        - platform: state
+          entity_id: input_button.stofzuig_beneden
 
-    mode: single
+      mode: single
 
-    action:
+      action:
     # Stuur MQTT commando
-      - service: mqtt.publish
-        data:
-          topic: valetudo/beneden/MapSegmentationCapability/clean/set
-          payload: '{"segment_ids": [17, 16, 18], "iterations": 1}'
-          qos: 1
+        - service: mqtt.publish
+          data:
+            topic: valetudo/beneden/MapSegmentationCapability/clean/set
+            payload: '{"segment_ids": [17, 16, 18], "iterations": 1}'
+            qos: 1
     # Update laatste schoonmaak tijd
-      - service: input_datetime.set_datetime
-        target:
-          entity_id: input_datetime.stofzuigen_beneden_last_clean
-        data:
-          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+        - service: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.stofzuigen_beneden_last_clean
+          data:
+            datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     # Increment clean counter
-      - service: input_number.increment
-        target:
-          entity_id: input_number.stofzuigen_beneden_clean_count
+        - service: input_number.increment
+          target:
+            entity_id: input_number.stofzuigen_beneden_clean_count
     # Zet "nodig" uit
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.stofzuigen_beneden_nodig
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.stofzuigen_beneden_nodig
 
 # Tweede verdieping: handmatig stofzuigen
-  - id: stofzuigen_handmatig_tweede
-    alias: "Stofzuigen: handmatig tweede"
-    description: "Start direct stofzuigen tweede verdieping via knop"
+    - id: stofzuigen_handmatig_tweede
+      alias: "Stofzuigen: handmatig tweede"
+      description: "Start direct stofzuigen tweede verdieping via knop"
 
-    trigger:
-      - platform: state
-        entity_id: input_button.stofzuig_tweede
+      trigger:
+        - platform: state
+          entity_id: input_button.stofzuig_tweede
 
-    mode: single
+      mode: single
 
-    action:
+      action:
     # Stuur MQTT commando
-      - service: mqtt.publish
-        data:
-          topic: valetudo/tweede/MapSegmentationCapability/clean/set
-          payload: '{"segment_ids": [16, 17, 18, 19], "iterations": 1}'
-          qos: 1
+        - service: mqtt.publish
+          data:
+            topic: valetudo/tweede/MapSegmentationCapability/clean/set
+            payload: '{"segment_ids": [16, 17, 18, 19], "iterations": 1}'
+            qos: 1
     # Update laatste schoonmaak tijd
-      - service: input_datetime.set_datetime
-        target:
-          entity_id: input_datetime.stofzuigen_tweede_last_clean
-        data:
-          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+        - service: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.stofzuigen_tweede_last_clean
+          data:
+            datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
     # Increment clean counter
-      - service: input_number.increment
-        target:
-          entity_id: input_number.stofzuigen_tweede_clean_count
+        - service: input_number.increment
+          target:
+            entity_id: input_number.stofzuigen_tweede_clean_count
     # Zet "nodig" uit
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.stofzuigen_tweede_nodig
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.stofzuigen_tweede_nodig
 
 # Eerste verdieping: handmatig stofzuigen (voorbereid voor toekomst)
-  - id: stofzuigen_handmatig_eerste
-    alias: "Stofzuigen: handmatig eerste"
-    description: "Start direct stofzuigen eerste verdieping via knop (nog geen stofzuiger)"
+    - id: stofzuigen_handmatig_eerste
+      alias: "Stofzuigen: handmatig eerste"
+      description: "Start direct stofzuigen eerste verdieping via knop (nog geen stofzuiger)"
 
-    trigger:
-      - platform: state
-        entity_id: input_button.stofzuig_eerste
+      trigger:
+        - platform: state
+          entity_id: input_button.stofzuig_eerste
 
-    mode: single
+      mode: single
 
-    action:
+      action:
     # TODO: Implementeren als eerste verdieping stofzuiger heeft
     # - service: mqtt.publish
     #   data:
     #     topic: valetudo/eerste/MapSegmentationCapability/clean/set
     #     payload: '{"segment_ids": [...], "iterations": 1}'
     #     qos: 1
-      - service: system_log.write
-        data:
-          message: "Stofzuigen eerste verdieping: nog geen stofzuiger geconfigureerd"
-          level: warning
+        - service: system_log.write
+          data:
+            message: "Stofzuigen eerste verdieping: nog geen stofzuiger geconfigureerd"
+            level: warning
 
 # ============================================================================
 # OPVANGBAK VOL - NAAR PRULLENBAK
 # ============================================================================
 
 # Beneden: opvangbak vol
-  - id: stofzuigen_opvangbak_vol_beneden
-    alias: "Stofzuigen: opvangbak vol beneden"
-    description: "Stuur stofzuiger naar prullenbak als opvangbak vol is"
+    - id: stofzuigen_opvangbak_vol_beneden
+      alias: "Stofzuigen: opvangbak vol beneden"
+      description: "Stuur stofzuiger naar prullenbak als opvangbak vol is"
 
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.huis
-        to:
-          - armed_home
-          - disarmed
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to:
+            - armed_home
+            - disarmed
 
-    condition:
+      condition:
     # Clean counter moet >= 3 zijn
-      - condition: numeric_state
-        entity_id: input_number.stofzuigen_beneden_clean_count
-        above: 2.9
-
-    mode: single
-
-    action:
-    # Stuur naar prullenbak locatie
-      - service: mqtt.publish
-        data:
-          topic: valetudo/beneden/GoToLocationCapability/go/set
-          payload: '{"coordinates": {"x": 2557, "y": 2410}}'
-          qos: 1
-    # Reset counter
-      - service: input_number.set_value
-        target:
+        - condition: numeric_state
           entity_id: input_number.stofzuigen_beneden_clean_count
-        data:
-          value: 0
+          above: 2.9
+
+      mode: single
+
+      action:
+    # Stuur naar prullenbak locatie
+        - service: mqtt.publish
+          data:
+            topic: valetudo/beneden/GoToLocationCapability/go/set
+            payload: '{"coordinates": {"x": 2557, "y": 2410}}'
+            qos: 1
+    # Reset counter
+        - service: input_number.set_value
+          target:
+            entity_id: input_number.stofzuigen_beneden_clean_count
+          data:
+            value: 0
 
 # Tweede verdieping: opvangbak vol
-  - id: stofzuigen_opvangbak_vol_tweede
-    alias: "Stofzuigen: opvangbak vol tweede"
-    description: "Stuur stofzuiger naar prullenbak als opvangbak vol is"
+    - id: stofzuigen_opvangbak_vol_tweede
+      alias: "Stofzuigen: opvangbak vol tweede"
+      description: "Stuur stofzuiger naar prullenbak als opvangbak vol is"
 
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.huis
-        to:
-          - armed_home
-          - disarmed
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to:
+            - armed_home
+            - disarmed
 
-    condition:
+      condition:
     # Clean counter moet >= 3 zijn
-      - condition: numeric_state
-        entity_id: input_number.stofzuigen_tweede_clean_count
-        above: 2.9
-
-    mode: single
-
-    action:
-    # Stuur naar prullenbak locatie
-      - service: mqtt.publish
-        data:
-          topic: valetudo/tweede/GoToLocationCapability/go/set
-          payload: '{"coordinates": {"x": 2867, "y": 2517}}'
-          qos: 1
-    # Reset counter
-      - service: input_number.set_value
-        target:
+        - condition: numeric_state
           entity_id: input_number.stofzuigen_tweede_clean_count
-        data:
-          value: 0
+          above: 2.9
+
+      mode: single
+
+      action:
+    # Stuur naar prullenbak locatie
+        - service: mqtt.publish
+          data:
+            topic: valetudo/tweede/GoToLocationCapability/go/set
+            payload: '{"coordinates": {"x": 2867, "y": 2517}}'
+            qos: 1
+    # Reset counter
+        - service: input_number.set_value
+          target:
+            entity_id: input_number.stofzuigen_tweede_clean_count
+          data:
+            value: 0
