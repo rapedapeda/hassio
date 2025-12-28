@@ -21,5 +21,24 @@ input_boolean:
     icon: mdi:airplane-takeoff
     initial: false
 
+  # HomeKit trackers - geüpdatet door iOS Home automations op telefoons
+  tracker_homekit_ramon:
+    name: "HomeKit tracker Ramon"
+    icon: mdi:face-man
+
+  tracker_homekit_flore:
+    name: "HomeKit tracker Flore"
+    icon: mdi:face-woman
+
+# Aanwezigheid group - gebruikt voor presence detection
+# Gebruikt alleen input_booleans (persistent, geen unavailable states na reboot)
+# iOS Home automations op telefoons updaten deze booleans
+group:
+  aanwezigheid_personen:
+    name: Aanwezigheid
+    entities:
+      - input_boolean.tracker_homekit_ramon
+      - input_boolean.tracker_homekit_flore
+
 # Note: group.beveiliging_deuren_ramen wordt via GUI aangemaakt
 # Bevat alle deuren/ramen sensoren die gemonitord moeten worden tijdens armed_away

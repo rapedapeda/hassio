@@ -116,6 +116,24 @@ Grote refactoring van de Home Assistant configuratie om gebruik te maken van mod
 - Occupancy-based control
 - Presets en modes
 
+### ⏳ Fase 6: Configuratie Review
+**Status**: Planned
+
+**Scope**:
+- Review en cleanup van history configuratie
+- Review en cleanup van InfluxDB includes
+- Review en cleanup van logbook configuratie
+- Review en cleanup van recorder configuratie
+- Verwijderen van verouderde/ongebruikte entity references
+- Optimaliseren van database opslag
+
+**Deliverables**:
+- [ ] History configuratie gereviewed en geoptimaliseerd
+- [ ] InfluxDB includes up-to-date met nieuwe entities
+- [ ] Logbook alleen relevante entities
+- [ ] Recorder geoptimaliseerd voor performance
+- [ ] Documentatie van wat er gelogd wordt en waarom
+
 ## Algemene Principes
 
 ### Package Structuur

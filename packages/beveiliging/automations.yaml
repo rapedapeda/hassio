@@ -158,6 +158,57 @@
               target:
                 entity_id: alarm_control_panel.huis
 
+# Automatisering 5b: Sync alarm bij Home Assistant startup
+- id: beveiliging_sync_alarm_bij_startup
+  alias: "Beveiliging: sync Alarm bij startup"
+  description: "Synchroniseer alarm bij HA startup om juiste modus te garanderen (voorkomt onverwachte triggers)"
+
+  trigger:
+    - platform: homeassistant
+      event: start
+
+  mode: single
+
+  action:
+    # Wacht even tot alle entities geladen zijn
+    - delay:
+        seconds: 10
+    # Check aanwezigheid en zet juiste modus
+    - choose:
+        # Niemand thuis → armed_away
+        - conditions:
+            - condition: state
+              entity_id: group.aanwezigheid_personen
+              state: "off"
+          sequence:
+            - service: alarm_control_panel.alarm_arm_away
+              target:
+                entity_id: alarm_control_panel.huis
+        # Iemand thuis + gewenste modus = armed_home
+        - conditions:
+            - condition: state
+              entity_id: group.aanwezigheid_personen
+              state: "on"
+            - condition: state
+              entity_id: input_select.alarm_gewenste_modus
+              state: armed_home
+          sequence:
+            - service: alarm_control_panel.alarm_arm_home
+              target:
+                entity_id: alarm_control_panel.huis
+        # Iemand thuis + gewenste modus = disarmed
+        - conditions:
+            - condition: state
+              entity_id: group.aanwezigheid_personen
+              state: "on"
+            - condition: state
+              entity_id: input_select.alarm_gewenste_modus
+              state: disarmed
+          sequence:
+            - service: alarm_control_panel.alarm_disarm
+              target:
+                entity_id: alarm_control_panel.huis
+
 # ============================================================================
 # TRIGGER AUTOMATISERINGEN
 # ============================================================================
