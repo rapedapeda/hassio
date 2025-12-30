@@ -1,0 +1,30 @@
+hal_helpers:
+# Verlichting Helpers - Hal
+# Input helpers voor automatische verlichting
+
+  input_boolean:
+    verlichting_hal_auto:
+      name: "Hal automatische verlichting"
+      icon: mdi:lightbulb-auto
+      initial: true
+
+  input_number:
+    hal_aanwezigheid_timeout:
+      name: "Hal aanwezigheid timeout"
+      min: 1
+      max: 30
+      step: 1
+      mode: box
+      unit_of_measurement: "min"
+      icon: mdi:timer-outline
+      initial: 1
+
+    hal_illuminance_threshold:
+      name: "Hal lichtsterkte drempel"
+      min: 0
+      max: 100
+      step: 5
+      mode: box
+      unit_of_measurement: "lx"
+      icon: mdi:brightness-6
+      initial: 10

@@ -1,0 +1,91 @@
+verlichting_aan_uit:
+# Verlichting Package - Functie 1: Aan/Uit Logica
+# Generieke automation voor alle kamers
+# Beweging + lux based met hysteresis
+
+  automation:
+    - alias: Auto verlichting per ruimte
+      description: Automatische verlichting gebaseerd op motion en lux, met hysteresis en motion-off timeout
+      mode: parallel
+      max: 20
+
+      trigger:
+        # Motion aan triggers (kamer binary_sensors)
+        - platform: state
+          entity_id:
+            - binary_sensor.hal_occupancy
+            - binary_sensor.woonkamer_occupancy
+            # Voeg andere kamers toe
+          to: "on"
+
+        # Motion uit triggers met timeout
+        - platform: state
+          entity_id:
+            - binary_sensor.hal_occupancy
+            - binary_sensor.woonkamer_occupancy
+          to: "off"
+          for:
+            minutes: "{{ states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_aanwezigheid_timeout') | int }}"
+
+        # Lux triggers met 5-minuten hysteresis (licht aan)
+        - platform: numeric_state
+          entity_id:
+            - sensor.hal_illuminance
+            - sensor.woonkamer_illuminance
+          value_template: >-
+            {{ states(trigger.entity_id) | float -
+               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
+          below: 0
+          for:
+            minutes: 5
+
+        # Lux triggers met 5-minuten hysteresis (licht uit)
+        - platform: numeric_state
+          entity_id:
+            - sensor.hal_illuminance
+            - sensor.woonkamer_illuminance
+          value_template: >-
+            {{ states(trigger.entity_id) | float -
+               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
+          above: 0
+          for:
+            minutes: 5
+
+      variables:
+        # Kamer slug: extract kamer naam uit entity_id
+        room_slug: "{{ trigger.entity_id.split('.')[1].split('_')[0] }}"
+
+        # Dynamische entity_ids
+        light_id: "light.{{ room_slug }}"
+        motion_id: "binary_sensor.{{ room_slug }}_occupancy"
+        lux_sensor_id: "sensor.{{ room_slug }}_illuminance"
+        illuminance_threshold_id: "input_number.{{ room_slug }}_illuminance_threshold"
+        auto_enabled_id: "input_boolean.verlichting_{{ room_slug }}_auto"
+        motion_timeout_id: "input_number.{{ room_slug }}_aanwezigheid_timeout"
+
+        # Huidige toestand
+        occupied: "{{ is_state(motion_id, 'on') }}"
+        lux: "{{ states(lux_sensor_id) | float(9999) }}"
+        illuminance_threshold: "{{ states(illuminance_threshold_id) | float }}"
+        auto_enabled: "{{ states(auto_enabled_id) | default('on', true) == 'on' }}"
+
+      action:
+        - choose:
+            # Licht aan: auto enabled EN aanwezigheid EN donker
+            - conditions:
+                - "{{ auto_enabled }}"
+                - "{{ occupied }}"
+                - "{{ lux < illuminance_threshold }}"
+              sequence:
+                - service: light.turn_on
+                  target:
+                    entity_id: "{{ light_id }}"
+
+            # Licht uit: auto enabled EN (geen aanwezigheid OF te licht)
+            - conditions:
+                - "{{ auto_enabled }}"
+                - "{{ not occupied or lux >= illuminance_threshold }}"
+              sequence:
+                - service: light.turn_off
+                  target:
+                    entity_id: "{{ light_id }}"
