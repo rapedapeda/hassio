@@ -28,8 +28,7 @@ stofzuigen_automations:
             {% if last in ['unknown', 'unavailable'] %}
               true
             {% else %}
-              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-              {{ days_ago >= 1 }}
+              {{ now().date() > strptime(last, '%Y-%m-%d %H:%M:%S').date() }}
             {% endif %}
 
       mode: single
@@ -58,8 +57,7 @@ stofzuigen_automations:
             {% if last in ['unknown', 'unavailable'] %}
               true
             {% else %}
-              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-              {{ days_ago >= 2 }}
+              {{ now().date() > strptime(last, '%Y-%m-%d %H:%M:%S').date() }}
             {% endif %}
 
       mode: single
