@@ -4,5 +4,5 @@ include:
     - person
     - vacuum
   entities:
-    - input_boolean.vakantie
+    - input_boolean.vakantiemodus
     - switch.drinkbak

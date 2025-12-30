@@ -1,0 +1,17 @@
+beveiliging_alarm:
+# Beveiliging Package - Alarm Control Panel
+# Part of 2026-update: native HA security implementation
+# Migratie van AppDaemon naar native HA
+
+  alarm_control_panel:
+    - platform: manual
+      name: Huis
+      code_arm_required: false
+      arming_time: 0
+      delay_time: 0
+      trigger_time: 600
+      disarmed:
+        trigger_time: 0
+      armed_home:
+        arming_time: 0
+        delay_time: 0

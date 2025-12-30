@@ -1,0 +1,112 @@
+stofzuigen_helpers:
+# Stofzuigen Package - Helpers
+# Part of 2026-update: native HA vacuum automation
+# Migratie van AppDaemon vacuum logica naar native HA
+
+# ============================================================================
+# DATETIME HELPERS - Bijhouden laatste schoonmaak (persistent bij reboot)
+# ============================================================================
+
+  input_datetime:
+    stofzuigen_beneden_last_clean:
+      name: "Laatste schoonmaak beneden"
+      has_date: true
+      has_time: true
+      icon: mdi:calendar-clock
+
+    stofzuigen_eerste_last_clean:
+      name: "Laatste schoonmaak eerste verdieping"
+      has_date: true
+      has_time: true
+      icon: mdi:calendar-clock
+
+    stofzuigen_tweede_last_clean:
+      name: "Laatste schoonmaak tweede verdieping"
+      has_date: true
+      has_time: true
+      icon: mdi:calendar-clock
+
+# ============================================================================
+# COUNTER HELPERS - Opvangbak vol check (persistent bij reboot)
+# ============================================================================
+
+  input_number:
+    stofzuigen_beneden_clean_count:
+      name: "Schoonmaakteller beneden"
+      min: 0
+      max: 10
+      step: 1
+      mode: box
+      icon: mdi:counter
+
+    stofzuigen_eerste_clean_count:
+      name: "Schoonmaakteller eerste verdieping"
+      min: 0
+      max: 10
+      step: 1
+      mode: box
+      icon: mdi:counter
+
+    stofzuigen_tweede_clean_count:
+      name: "Schoonmaakteller tweede verdieping"
+      min: 0
+      max: 10
+      step: 1
+      mode: box
+      icon: mdi:counter
+
+# ============================================================================
+# AUTO MODUS BOOLEAN
+# ============================================================================
+# Hoofdschakelaar voor automatisch stofzuigen
+# - Uit: interval checks en auto-stofzuigen zijn uitgeschakeld
+# - Aan: normale werking (default)
+# - Handmatige knoppen werken altijd, ongeacht deze instelling
+
+  input_boolean:
+    stofzuigen_auto_modus:
+      name: "Stofzuigen automatisch"
+      icon: mdi:robot-vacuum-variant
+      initial: true
+
+# ============================================================================
+# SCHOONMAAK NODIG BOOLEANS
+# ============================================================================
+# Geeft aan of stofzuigen nodig is op een verdieping
+# - Automatisch: dagelijkse check zet op 'on' als interval voorbij is
+# - Handmatig: kan door gebruiker gezet worden voor extra schoonmaak
+# - Na stofzuigen: automatisch terug naar 'off'
+
+    stofzuigen_beneden_nodig:
+      name: "Stofzuigen beneden nodig"
+      icon: mdi:broom
+      initial: false
+
+    stofzuigen_eerste_nodig:
+      name: "Stofzuigen eerste nodig"
+      icon: mdi:broom
+      initial: false
+
+    stofzuigen_tweede_nodig:
+      name: "Stofzuigen tweede nodig"
+      icon: mdi:broom
+      initial: false
+
+# ============================================================================
+# HANDMATIGE SCHOONMAAK BUTTONS
+# ============================================================================
+# Knoppen voor direct handmatig schoonmaken van een verdieping
+# Te gebruiken via UI of Apple Home voor on-demand stofzuigen
+
+  input_button:
+    stofzuig_beneden:
+      name: "Stofzuig beneden"
+      icon: mdi:robot-vacuum
+
+    stofzuig_eerste:
+      name: "Stofzuig eerste"
+      icon: mdi:robot-vacuum
+
+    stofzuig_tweede:
+      name: "Stofzuig tweede"
+      icon: mdi:robot-vacuum
