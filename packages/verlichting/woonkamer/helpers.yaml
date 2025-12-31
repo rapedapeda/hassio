@@ -28,14 +28,3 @@ woonkamer_helpers:
       unit_of_measurement: "lx"
       icon: mdi:brightness-6
       initial: 20
-
-  # Template sensor: wijs primary illuminance sensor aan
-  # Woonkamer heeft meerdere multisensors (eettafel, bank, etc.)
-  # Eettafel sensor is primary (centrale positie, beste overzicht lichtinval)
-  template:
-    - sensor:
-        - name: "Woonkamer illuminance"
-          state: "{{ states('sensor.woonkamer_eettafel_illuminance') }}"
-          unit_of_measurement: "lx"
-          device_class: illuminance
-          state_class: measurement
