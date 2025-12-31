@@ -4,7 +4,8 @@ verlichting_aan_uit:
 # Beweging + lux based met hysteresis
 
   automation:
-    - alias: Auto verlichting per ruimte
+    - id: verlichting_auto_aan_uit
+      alias: Auto verlichting per ruimte
       description: Automatische verlichting gebaseerd op motion en lux, met hysteresis en motion-off timeout
       mode: parallel
       max: 20
