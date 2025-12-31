@@ -14,7 +14,7 @@ verlichting_aan_uit:
         - platform: state
           entity_id:
             - binary_sensor.hal_occupancy
-            - binary_sensor.woonkamer_occupancy
+            # - binary_sensor.woonkamer_occupancy  # TODO: Uncomment als woonkamer klaar is
             # Voeg andere kamers toe
           to: "on"
 
@@ -22,7 +22,7 @@ verlichting_aan_uit:
         - platform: state
           entity_id:
             - binary_sensor.hal_occupancy
-            - binary_sensor.woonkamer_occupancy
+            # - binary_sensor.woonkamer_occupancy  # TODO: Uncomment als woonkamer klaar is
           to: "off"
           for:
             minutes: "{{ states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_aanwezigheid_timeout') | int }}"
@@ -31,7 +31,7 @@ verlichting_aan_uit:
         - platform: numeric_state
           entity_id:
             - sensor.hal_illuminance
-            - sensor.woonkamer_illuminance
+            # - sensor.woonkamer_illuminance  # TODO: Uncomment als woonkamer klaar is
           value_template: >-
             {{ states(trigger.entity_id) | float -
                states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
@@ -43,7 +43,7 @@ verlichting_aan_uit:
         - platform: numeric_state
           entity_id:
             - sensor.hal_illuminance
-            - sensor.woonkamer_illuminance
+            # - sensor.woonkamer_illuminance  # TODO: Uncomment als woonkamer klaar is
           value_template: >-
             {{ states(trigger.entity_id) | float -
                states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
