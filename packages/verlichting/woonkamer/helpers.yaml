@@ -28,3 +28,15 @@ woonkamer_helpers:
       unit_of_measurement: "lx"
       icon: mdi:brightness-6
       initial: 20
+
+  # Template binary sensor: occupancy met PIR (initiëren) en mmWave (verlengen)
+  template:
+    - binary_sensor:
+        - name: "Woonkamer occupancy"
+          device_class: occupancy
+          # PIR kan initiëren, mmWave kan alleen verlengen (this.state check)
+          state: >-
+            {{
+              is_state('binary_sensor.beweging_eetkamer_occupancy', 'on') or
+              (is_state('binary_sensor.beweging_woonkamer_mmwave', 'on') and this.state == 'on')
+            }}
