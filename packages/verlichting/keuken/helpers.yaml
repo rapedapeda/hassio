@@ -4,13 +4,13 @@ keuken_helpers:
 
   input_boolean:
     verlichting_keuken_auto:
-      name: "Keuken automatische verlichting"
+      name: "Auto verlichting"
       icon: mdi:lightbulb-auto
       initial: true
 
   input_number:
     keuken_aanwezigheid_timeout:
-      name: "Keuken aanwezigheid timeout"
+      name: "Aanwezigheid timeout"
       min: 1
       max: 30
       step: 1
@@ -20,7 +20,7 @@ keuken_helpers:
       initial: 10
 
     keuken_illuminance_threshold:
-      name: "Keuken lichtsterkte drempel"
+      name: "Lichtsterkte drempel"
       min: 0
       max: 100
       step: 5

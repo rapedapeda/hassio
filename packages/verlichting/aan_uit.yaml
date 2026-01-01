@@ -17,6 +17,7 @@ verlichting_aan_uit:
             - binary_sensor.hal_occupancy
             - binary_sensor.woonkamer_occupancy
             - binary_sensor.keuken_occupancy
+            - binary_sensor.kantoor_occupancy
             # Voeg andere kamers toe
           to: "on"
 
@@ -26,6 +27,7 @@ verlichting_aan_uit:
             - binary_sensor.hal_occupancy
             - binary_sensor.woonkamer_occupancy
             - binary_sensor.keuken_occupancy
+            - binary_sensor.kantoor_occupancy
           to: "off"
           for:
             minutes: "{{ states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_aanwezigheid_timeout') | int }}"
@@ -36,6 +38,7 @@ verlichting_aan_uit:
             - sensor.hal_illuminance
             - sensor.woonkamer_illuminance
             - sensor.keuken_illuminance
+            - sensor.kantoor_illuminance
           value_template: >-
             {{ states(trigger.entity_id) | float -
                states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
@@ -49,6 +52,7 @@ verlichting_aan_uit:
             - sensor.hal_illuminance
             - sensor.woonkamer_illuminance
             - sensor.keuken_illuminance
+            - sensor.kantoor_illuminance
           value_template: >-
             {{ states(trigger.entity_id) | float -
                states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}

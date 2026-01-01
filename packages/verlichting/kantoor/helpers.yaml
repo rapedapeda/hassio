@@ -1,15 +1,15 @@
-hal_helpers:
-# Verlichting Helpers - Hal
+kantoor_helpers:
+# Verlichting Helpers - Kantoor
 # Input helpers voor automatische verlichting
 
   input_boolean:
-    verlichting_hal_auto:
+    verlichting_kantoor_auto:
       name: "Auto verlichting"
       icon: mdi:lightbulb-auto
       initial: true
 
   input_number:
-    hal_aanwezigheid_timeout:
+    kantoor_aanwezigheid_timeout:
       name: "Aanwezigheid timeout"
       min: 1
       max: 30
@@ -17,9 +17,9 @@ hal_helpers:
       mode: box
       unit_of_measurement: "min"
       icon: mdi:timer-outline
-      initial: 1
+      initial: 10
 
-    hal_illuminance_threshold:
+    kantoor_illuminance_threshold:
       name: "Lichtsterkte drempel"
       min: 0
       max: 100
@@ -27,4 +27,4 @@ hal_helpers:
       mode: box
       unit_of_measurement: "lx"
       icon: mdi:brightness-6
-      initial: 10
+      initial: 35

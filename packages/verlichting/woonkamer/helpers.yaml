@@ -4,13 +4,13 @@ woonkamer_helpers:
 
   input_boolean:
     verlichting_woonkamer_auto:
-      name: "Woonkamer automatische verlichting"
+      name: "Auto verlichting"
       icon: mdi:lightbulb-auto
       initial: true
 
   input_number:
     woonkamer_aanwezigheid_timeout:
-      name: "Woonkamer aanwezigheid timeout"
+      name: "Aanwezigheid timeout"
       min: 1
       max: 30
       step: 1
@@ -20,7 +20,7 @@ woonkamer_helpers:
       initial: 10
 
     woonkamer_illuminance_threshold:
-      name: "Woonkamer lichtsterkte drempel"
+      name: "Lichtsterkte drempel"
       min: 0
       max: 100
       step: 5
