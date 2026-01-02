@@ -1,7 +1,0 @@
-# AppDaemon Apps Configuration
-#
-# 2026-update: Alle apps zijn gemigreerd naar native Home Assistant packages
-# - alarm_mode & alarm_trigger → packages/beveiliging/
-# - AutoVacuum → packages/stofzuigen/
-#
-# Dit bestand wordt bewaard voor toekomstige AppDaemon apps indien nodig
