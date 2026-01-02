@@ -152,10 +152,15 @@ packages/
 └── ...
 ```
 
-### Naming Conventions
-- **Entities**: `<domein>_<functie>` (bijv. `alarm_gewenste_modus`, `beveiliging_deuren_ramen`)
-- **Automations**: `<domein>_<actie>_<trigger>` (bijv. `beveiliging_armed_away_niemand_thuis`)
-- **Files**: lowercase, underscores (bijv. `automations.yaml`, `helpers.yaml`)
+### Naamgevingsconventies
+
+Zie [docs/naamgeving.md](docs/naamgeving.md) voor volledige documentatie.
+
+**Samenvatting:**
+- **Zigbee2MQTT devices**: `{kamer}` of `{kamer}_{locatie}` (locatie alleen bij meerdere devices)
+- **Lights**: `light.{kamer}`
+- **Package helpers**: `{domein}_{kamer}_{functie}`
+- **Binary sensor groups**: `binary_sensor.{kamer}_beweging`, `binary_sensor.{kamer}_lichtstatus`
 
 ### Helpers in GUI
 Waar mogelijk helpers via GUI aanmaken:

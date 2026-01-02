@@ -1,0 +1,30 @@
+overloopeerste_helpers:
+# Verlichting Helpers - Overloop Eerste
+# Input helpers voor automatische verlichting
+
+  input_boolean:
+    verlichting_overloopeerste_auto:
+      name: "Auto verlichting"
+      icon: mdi:lightbulb-auto
+      initial: true
+
+  input_number:
+    overloopeerste_aanwezigheid_timeout:
+      name: "Aanwezigheid timeout"
+      min: 1
+      max: 30
+      step: 1
+      mode: box
+      unit_of_measurement: "min"
+      icon: mdi:timer-outline
+      initial: 1
+
+    overloopeerste_illuminance_threshold:
+      name: "Lichtsterkte drempel"
+      min: 0
+      max: 100
+      step: 5
+      mode: box
+      unit_of_measurement: "lx"
+      icon: mdi:brightness-6
+      initial: 50
