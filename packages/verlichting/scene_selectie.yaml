@@ -54,9 +54,9 @@ verlichting_scene_selectie:
           value_template: >
             {{ trigger.id == 'lamp_aan' or is_state('light.' ~ kamer, 'on') }}
 
-        # Check of scene entity bestaat
+        # Check of scene entity bestaat (area_name is none als scene niet bestaat)
         - condition: template
-          value_template: "{{ states(scene_entity) not in ['unknown', 'unavailable', none] }}"
+          value_template: "{{ area_name(scene_entity) is not none }}"
 
         # Korte delay zodat lamp eerst echt aan is
         - delay:
