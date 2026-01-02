@@ -15,6 +15,7 @@ verlichting_scene_selectie:
         - platform: state
           entity_id:
             - light.slaapkamer
+            - light.kinderkamer
             # Voeg andere kamers toe
           from: 'off'
           to: 'on'
@@ -24,6 +25,7 @@ verlichting_scene_selectie:
         - platform: state
           entity_id:
             - schedule.verlichting_slaapkamer
+            - schedule.verlichting_kinderkamer
             # Voeg andere kamers toe
           id: schedule_change
 
