@@ -1,0 +1,68 @@
+verlichting_scene_selectie:
+# Verlichting Package - Functie 2: Scene Selectie
+# Automatische scene selectie op basis van schedule
+# Activeert juiste scene bij aanzetten lamp of schedule wijziging
+
+  automation:
+    - id: verlichting_scene_selectie
+      alias: 'Lampgroep scene bij aanzetten met schedule'
+      description: 'Activeer de juiste scene bij aanzetten van een lightgroup of schedule wijziging'
+      mode: parallel
+      max: 20
+
+      trigger:
+        # Bij aanzetten lamp (off -> on)
+        - platform: state
+          entity_id:
+            - light.slaapkamer
+            # Voeg andere kamers toe
+          from: 'off'
+          to: 'on'
+          id: lamp_aan
+
+        # Bij schedule wijziging (scene wisseling terwijl lamp aan staat)
+        - platform: state
+          entity_id:
+            - schedule.verlichting_slaapkamer
+            # Voeg andere kamers toe
+          id: schedule_change
+
+      action:
+        - variables:
+            # Extract kamer naam afhankelijk van trigger type
+            kamer: >
+              {% if trigger.id == 'lamp_aan' %}
+                {{ trigger.entity_id.split('.')[1] }}
+              {% else %}
+                {{ trigger.entity_id.split('.')[1].replace('verlichting_', '') }}
+              {% endif %}
+
+            # Haal scene affix op uit schedule attribute (fallback: 0_normaal)
+            scene_affix: >
+              {% set schedule_entity = 'schedule.verlichting_' ~ kamer %}
+              {% if states(schedule_entity) not in ['unknown', 'unavailable', none] %}
+                {% set attr_scene = state_attr(schedule_entity, 'scene') %}
+                {{ attr_scene if attr_scene else '0_normaal' }}
+              {% else %}
+                0_normaal
+              {% endif %}
+
+            scene_entity: "scene.{{ kamer }}_{{ scene_affix }}"
+
+        # Bij schedule change: alleen toepassen als lamp aan staat
+        - condition: template
+          value_template: >
+            {{ trigger.id == 'lamp_aan' or is_state('light.' ~ kamer, 'on') }}
+
+        # Check of scene entity bestaat
+        - condition: template
+          value_template: "{{ states(scene_entity) not in ['unknown', 'unavailable', none] }}"
+
+        # Korte delay zodat lamp eerst echt aan is
+        - delay:
+            milliseconds: 100
+
+        # Activeer de juiste scene
+        - service: scene.turn_on
+          target:
+            entity_id: "{{ scene_entity }}"
