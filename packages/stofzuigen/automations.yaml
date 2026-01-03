@@ -86,8 +86,7 @@ stofzuigen_automations:
             {% if last in ['unknown', 'unavailable'] %}
               true
             {% else %}
-              {% set days_ago = (now() - strptime(last, '%Y-%m-%d %H:%M:%S')).days %}
-              {{ days_ago >= 2 }}
+              {{ (now().date() - (last | as_datetime).date()).days > 1 }}
             {% endif %}
 
       mode: single
