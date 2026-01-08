@@ -1,0 +1,35 @@
+klimaat_zonwering_weer:
+# Klimaat Package - Zonwering Weer
+# Generieke weersensoren voor zonwering
+
+  template:
+    - binary_sensor:
+        # Is het qua weer/temperatuur nodig om zonwering in te schakelen?
+        - name: "Zonwering nodig"
+          unique_id: zonwering_nodig
+          device_class: heat
+          delay_on:
+            minutes: 5
+          delay_off:
+            minutes: 5
+          state: >-
+            {{
+              (3 < now().month < 10)
+              and
+              states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
+              and
+              (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
+            }}
+
+        # Is het weer veilig voor zonwering? (geen wind/regen)
+        - name: "Zonwering veilig"
+          unique_id: zonwering_veilig
+          delay_on:
+            minutes: 10
+          delay_off: 0
+          state: >-
+            {{
+              states('sensor.weerstation_rain_rate')|float(0) == 0
+              and
+              states('sensor.buienradar_wind_gust')|float(0) < states('input_number.zonwering_wind_threshold')|int(30)
+            }}
