@@ -1,0 +1,18 @@
+klimaat_ventilatie_auto_reset:
+# Klimaat Package - Ventilatie Auto Reset
+# Reset auto mode elke ochtend om 6:00
+
+  automation:
+    - id: ventilatie_auto_reset
+      alias: 'Ventilatie auto mode reset'
+      description: 'Reset auto mode naar aan elke ochtend om 6:00'
+      mode: single
+
+      trigger:
+        - platform: time
+          at: "06:00:00"
+
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.ventilatie_auto

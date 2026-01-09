@@ -1,0 +1,52 @@
+klimaat_ventilatie_nachtkoeling:
+# Klimaat Package - Ventilatie Nachtkoeling
+# Automatische nachtkoeling op warme zomernachten
+
+  automation:
+    - id: ventilatie_nachtkoeling
+      alias: 'Ventilatie nachtkoeling'
+      description: 'Ventilatie naar 100% als warm en bypass aan, anders 33%'
+      mode: restart
+
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.ventilatie_nachtkoeling_gewenst
+
+        - platform: state
+          entity_id: binary_sensor.ventilatie_bypass
+
+      condition:
+        # Alleen als auto mode aan staat
+        - condition: state
+          entity_id: input_boolean.ventilatie_auto
+          state: 'on'
+
+        # Ventilatie moet aan staan
+        - condition: state
+          entity_id: fan.wtw
+          state: 'on'
+
+      action:
+        - choose:
+            # Nachtkoeling aan: temp te hoog EN bypass aan
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_nachtkoeling_gewenst
+                  state: 'on'
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_bypass
+                  state: 'on'
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 100
+
+          # Default: nachtkoeling uit
+          default:
+            - service: fan.set_percentage
+              target:
+                entity_id: fan.wtw
+              data:
+                percentage: 33

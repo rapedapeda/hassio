@@ -1,0 +1,73 @@
+klimaat_ventilatie_boost_luchtkwaliteit:
+# Klimaat Package - Ventilatie Boost Luchtkwaliteit
+# Automatische boost bij hoge CO2 of luchtvochtigheid
+
+  automation:
+    - id: ventilatie_boost_luchtkwaliteit_aan
+      alias: 'Ventilatie boost luchtkwaliteit aan'
+      description: 'Verhoog ventilatie naar 66% bij slechte luchtkwaliteit'
+      mode: restart
+
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.ventilatie_co2
+            - binary_sensor.ventilatie_humidity
+          to: 'on'
+
+      condition:
+        # Alleen als auto mode aan staat
+        - condition: state
+          entity_id: input_boolean.ventilatie_auto
+          state: 'on'
+
+        # Ventilatie moet aan staan
+        - condition: state
+          entity_id: fan.wtw
+          state: 'on'
+
+      action:
+        - service: fan.set_percentage
+          target:
+            entity_id: fan.wtw
+          data:
+            percentage: 66
+
+    - id: ventilatie_boost_luchtkwaliteit_uit
+      alias: 'Ventilatie boost luchtkwaliteit uit'
+      description: 'Verlaag ventilatie naar 33% als luchtkwaliteit weer goed is'
+      mode: restart
+
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.ventilatie_co2
+            - binary_sensor.ventilatie_humidity
+          to: 'off'
+
+      condition:
+        # Alleen als auto mode aan staat
+        - condition: state
+          entity_id: input_boolean.ventilatie_auto
+          state: 'on'
+
+        # Ventilatie moet aan staan
+        - condition: state
+          entity_id: fan.wtw
+          state: 'on'
+
+        # Beide sensors moeten off zijn
+        - condition: state
+          entity_id: binary_sensor.ventilatie_co2
+          state: 'off'
+
+        - condition: state
+          entity_id: binary_sensor.ventilatie_humidity
+          state: 'off'
+
+      action:
+        - service: fan.set_percentage
+          target:
+            entity_id: fan.wtw
+          data:
+            percentage: 33

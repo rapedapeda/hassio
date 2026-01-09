@@ -1,0 +1,49 @@
+klimaat_ventilatie_sensoren:
+# Klimaat Package - Ventilatie Sensoren
+# Binary sensors voor luchtkwaliteit en bypass beslissingen
+
+  binary_sensor:
+    - platform: threshold
+      name: "Nachtkoeling gewenst"
+      unique_id: ventilatie_nachtkoeling_gewenst
+      entity_id: sensor.temperatuur_bovenverdieping
+      upper: 21
+      hysteresis: 0.5
+
+  template:
+    - binary_sensor:
+        # CO2 te hoog?
+        - name: "Ventilatie CO2"
+          unique_id: ventilatie_co2
+          delay_off:
+            minutes: 10
+          state: >-
+            {{ states('sensor.co2_sensoren')|int(0) > 1000 }}
+
+        # Luchtvochtigheid te hoog in badkamer?
+        - name: "Ventilatie luchtvochtigheid"
+          unique_id: ventilatie_humidity
+          delay_off:
+            minutes: 10
+          state: >-
+            {{
+              (states('sensor.luchtvochtigheid_badkamer')|float(1) - states('sensor.luchtvochtigheid_badkamer_statistics')|float(1)) / states('sensor.luchtvochtigheid_badkamer_statistics')|float(1) > 0.1
+              and
+              states('sensor.luchtvochtigheid_badkamer')|float(0) > 65
+            }}
+
+        # Bypass simulatie (zou bypass aan moeten staan?)
+        - name: "Ventilatie bypass"
+          unique_id: ventilatie_bypass
+          delay_on:
+            minutes: 10
+          delay_off:
+            minutes: 10
+          state: >-
+            {% set binnen_temp = states('sensor.temperatuur_huis')|float(20) %}
+            {% set buiten_temp = (states('sensor.weerstation_outdoor_temperature') if states('sensor.weerstation_outdoor_temperature') not in ['unknown','unavailable','none',''] else states('sensor.knmi_thuis_gevoelstemperatuur')) | float(0) %}
+            {{
+              buiten_temp > 10
+              and
+              (binnen_temp > buiten_temp or binnen_temp > 23)
+            }}
