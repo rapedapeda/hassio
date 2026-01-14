@@ -4,8 +4,8 @@ klimaat_ventilatie_sensoren:
 
   binary_sensor:
     - platform: threshold
-      name: "Nachtkoeling nodig"
       default_entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+      name: "Nachtkoeling nodig"
       upper: 21
       hysteresis: 0.5
 
