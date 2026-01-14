@@ -22,17 +22,16 @@ klimaat_ventilatie_sensoren:
             {{ states('sensor.co2_sensoren')|int(0) > 1000 }}
 
         # Luchtvochtigheid te hoog in badkamer?
-        #- name: "Badkamer vochtig"
-        #  unique_id: ventilatie_humidity
-        #  default_entity_id: binary_sensor.ventilatie_humidity
-        #  delay_off:
-        #    minutes: 10
-        #  state: >-
-        #    {{
-        #      (states('sensor.luchtvochtigheid_badkamer')|float(1) - states('sensor.luchtvochtigheid_badkamer_statistics')|float(1)) / states('sensor.luchtvochtigheid_badkamer_statistics')|float(1) > 0.1
-        #      and
-        #      states('sensor.luchtvochtigheid_badkamer')|float(0) > 65
-        #    }}
+        - name: "Badkamer vochtig"
+          default_entity_id: binary_sensor.ventilatie_humidity
+          delay_off:
+            minutes: 10
+          state: >-
+            {{
+              (states('sensor.luchtvochtigheid_badkamer')|float(1) - states('sensor.luchtvochtigheid_badkamer_statistics')|float(1)) / states('sensor.luchtvochtigheid_badkamer_statistics')|float(1) > 0.1
+              and
+              states('sensor.luchtvochtigheid_badkamer')|float(0) > 65
+            }}
 
         # Bypass simulatie (zou bypass aan moeten staan?)
         - name: "Bypass open"
