@@ -1,0 +1,42 @@
+klimaat_verwarming_dagelijkse_reset:
+# Klimaat Package - Verwarming Dagelijkse Reset
+# Zet alle verwarming uit om 03:00, behalve als schedule actief
+# Robuuste fallback voor sensor failures en vergeten handmatige bediening
+
+  automation:
+    - id: verwarming_dagelijkse_reset
+      alias: 'Verwarming dagelijkse reset'
+      description: 'Fallback: zet verwarming uit om 03:00 (behalve actieve schedules)'
+      mode: single
+
+      trigger:
+        - platform: time
+          at: "03:00:00"
+
+      variables:
+        # Dynamisch alle schedules en climates ophalen
+        verwarming_schedules: "{{ label_entities('Verwarming') | select('match', '^schedule\\.') | list }}"
+        verwarming_climates: "{{ label_entities('Verwarming') | select('match', '^climate\\.') | list }}"
+
+      action:
+        # Check per climate of bijbehorende schedule actief is
+        - repeat:
+            for_each: "{{ verwarming_climates }}"
+            sequence:
+              - variables:
+                  kamer: "{{ repeat.item.split('.')[1] }}"
+                  schedule_entity: "schedule.verwarming_{{ kamer }}"
+
+              - choose:
+                  # Als er een schedule is en die is uit, of als er geen schedule is
+                  - conditions:
+                      - or:
+                          - condition: template
+                            value_template: "{{ schedule_entity not in verwarming_schedules }}"
+                          - condition: state
+                            entity_id: "{{ schedule_entity }}"
+                            state: 'off'
+                    sequence:
+                      - service: climate.turn_off
+                        target:
+                          entity_id: "{{ repeat.item }}"
