@@ -23,7 +23,7 @@ klimaat_zonwering_weer:
             }}
 
         # Is het weer veilig voor zonwering? (geen wind/regen)
-        - name: "Zonwering veilig"
+        - name: "Veilig voor zonwering"
           unique_id: zonwering_veilig
           default_entity_id: binary_sensor.zonwering_veilig
           delay_on:

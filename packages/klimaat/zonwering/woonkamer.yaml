@@ -10,7 +10,7 @@ klimaat_zonwering_woonkamer:
   template:
     - sensor:
         # Berekende gewenste positie op basis van zonhoek en wind
-        - name: "Zonwering woonkamer positie"
+        - name: "Zonnescherm positie"
           unique_id: zonwering_woonkamer_positie
           default_entity_id: sensor.zonwering_woonkamer_positie
           unit_of_measurement: "%"
