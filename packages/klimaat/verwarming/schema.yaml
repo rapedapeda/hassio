@@ -15,6 +15,7 @@ klimaat_verwarming_schema:
         - platform: state
           entity_id:
             - schedule.verwarming_woonkamer
+            - schedule.verwarming_hal
 
       variables:
         # Extract kamer uit entity_id
