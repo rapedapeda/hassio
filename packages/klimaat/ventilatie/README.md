@@ -39,6 +39,9 @@ Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid
 3. **`sensor.temperatuur_bovenverdieping`** (Aggregation: Max)
    - Slaapkamer, kinderkamer, overloopeerste toevoegen
 
+4. **`binary_sensor.ventilatie_nachtkoeling_nodig`** (Threshold sensor)
+   - entity_id voor de threshold: sensor.temperatuur_bovenverdieping
+
 ## Bestanden
 
 **fan.yaml** - Template fan entity `fan.wtw`
