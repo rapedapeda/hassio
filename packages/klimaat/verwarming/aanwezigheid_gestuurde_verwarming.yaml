@@ -14,14 +14,14 @@ klimaat_verwarming_occupancy_based_heating:
         # Beweging aan
         - platform: state
           entity_id:
-            - binary_sensor.kantoor_beweging
+            - binary_sensor.kantoor_occupancy
           to: 'on'
           id: beweging_aan
 
         # Beweging uit (30 min)
         - platform: state
           entity_id:
-            - binary_sensor.kantoor_beweging
+            - binary_sensor.kantoor_occupancy
           to: 'off'
           for:
             minutes: 30

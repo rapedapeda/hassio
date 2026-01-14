@@ -55,7 +55,7 @@ Label de volgende entities met **"Verwarming"**:
 - Actief als `verwarming_{kamer}_auto` = on
 - Beweging detected → 19°C
 - Geen beweging 30 min → uit
-- Gebruikt `binary_sensor.{kamer}_beweging`
+- Gebruikt `binary_sensor.{kamer}_occupancy`
 
 ### Functie 3: Afwezigheid
 **Eco mode bij afwezigheid, herstel bij thuiskomst**
@@ -106,6 +106,6 @@ Handmatige changes tijdens auto mode blijven actief tot volgende schedule change
 ### Zonder schedule (occupancy-based):
 1. Voeg `input_boolean.verwarming_{kamer}_auto` toe aan helpers.yaml
 2. Label `climate.{kamer}` met "Verwarming"
-3. Zorg dat `binary_sensor.{kamer}_beweging` bestaat
+3. Zorg dat `binary_sensor.{kamer}_occupancy` bestaat
 4. Reload package
 5. Klaar! occupancy_based_heating.yaml pakt automatisch op
