@@ -12,6 +12,7 @@ klimaat_zonwering_kantoor:
         # Gewenste positie op basis van zon voorkant
         - name: "Zonwering kantoor positie"
           unique_id: zonwering_kantoor_positie
+          default_entity_id: sensor.zonwering_kantoor_positie
           unit_of_measurement: "%"
           state: >-
             {% set zon_elevation = state_attr('sun.sun', 'elevation') | float(0) %}

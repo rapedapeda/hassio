@@ -7,6 +7,7 @@ klimaat_zonwering_weer:
         # Is het qua weer/temperatuur nodig om zonwering in te schakelen?
         - name: "Zonwering nodig"
           unique_id: zonwering_nodig
+          default_entity_id: binary_sensor.zonwering_nodig
           device_class: heat
           delay_on:
             minutes: 5
@@ -24,6 +25,7 @@ klimaat_zonwering_weer:
         # Is het weer veilig voor zonwering? (geen wind/regen)
         - name: "Zonwering veilig"
           unique_id: zonwering_veilig
+          default_entity_id: binary_sensor.zonwering_veilig
           delay_on:
             minutes: 10
           delay_off: 0

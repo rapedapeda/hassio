@@ -4,7 +4,7 @@ klimaat_ventilatie_sensoren:
 
   binary_sensor:
     - platform: threshold
-      name: "Nachtkoeling gewenst"
+      name: "Ventilatie nachtkoeling gewenst"
       entity_id: sensor.temperatuur_bovenverdieping
       upper: 21
       hysteresis: 0.5
@@ -14,6 +14,7 @@ klimaat_ventilatie_sensoren:
         # CO2 te hoog?
         - name: "Ventilatie CO2"
           unique_id: ventilatie_co2
+          default_entity_id: binary_sensor.ventilatie_co2
           delay_off:
             minutes: 10
           state: >-
@@ -22,6 +23,7 @@ klimaat_ventilatie_sensoren:
         # Luchtvochtigheid te hoog in badkamer?
         - name: "Ventilatie luchtvochtigheid"
           unique_id: ventilatie_humidity
+          default_entity_id: binary_sensor.ventilatie_humidity
           delay_off:
             minutes: 10
           state: >-
@@ -34,6 +36,7 @@ klimaat_ventilatie_sensoren:
         # Bypass simulatie (zou bypass aan moeten staan?)
         - name: "Ventilatie bypass"
           unique_id: ventilatie_bypass
+          default_entity_id: binary_sensor.ventilatie_bypass
           delay_on:
             minutes: 10
           delay_off:

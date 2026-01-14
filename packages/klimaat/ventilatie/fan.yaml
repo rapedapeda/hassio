@@ -6,6 +6,7 @@ klimaat_ventilatie_fan:
     - fan:
         - name: "WTW"
           unique_id: ventilatie_wtw
+          default_entity_id: fan.wtw
           state: >
             {{ not is_state('switch.wtw_0', 'on') }}
           percentage: >
