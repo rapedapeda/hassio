@@ -28,12 +28,10 @@ klimaat_verwarming_schema:
         - choose:
             # Schema aan + auto mode aan → set temperatuur
             - conditions:
-                - condition: state
-                  entity_id: "{{ schedule_entity }}"
-                  state: 'on'
-                - condition: state
-                  entity_id: "{{ auto_boolean }}"
-                  state: 'on'
+                - condition: template
+                  value_template: "{{ is_state(schedule_entity, 'on') }}"
+                - condition: template
+                  value_template: "{{ is_state(auto_boolean, 'on') }}"
               sequence:
                 - service: climate.set_temperature
                   target:

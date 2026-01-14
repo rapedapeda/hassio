@@ -27,9 +27,8 @@ klimaat_zonwering_handmatige_override:
           value_template: "{{ trigger.to_state.context.parent_id is none }}"
 
         # En alleen als auto mode aan staat
-        - condition: state
-          entity_id: "{{ auto_boolean }}"
-          state: 'on'
+        - condition: template
+          value_template: "{{ is_state(auto_boolean, 'on') }}"
 
       action:
         - service: input_boolean.turn_off
