@@ -14,6 +14,7 @@ klimaat_ventilatie_sensoren:
     - binary_sensor:
         # CO2 te hoog?
         - name: "CO2 te hoog"
+          unique_id: ventilatie_co2
           default_entity_id: binary_sensor.ventilatie_co2
           delay_off:
             minutes: 10
@@ -22,6 +23,7 @@ klimaat_ventilatie_sensoren:
 
         # Luchtvochtigheid te hoog in badkamer?
         - name: "Badkamer vochtig"
+          unique_id: ventilatie_humidity
           default_entity_id: binary_sensor.ventilatie_humidity
           delay_off:
             minutes: 10
@@ -34,6 +36,7 @@ klimaat_ventilatie_sensoren:
 
         # Bypass simulatie (zou bypass aan moeten staan?)
         - name: "Bypass open"
+          unique_id: ventilatie_bypass
           default_entity_id: binary_sensor.ventilatie_bypass
           delay_on:
             minutes: 10
