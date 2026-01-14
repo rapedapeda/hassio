@@ -30,12 +30,12 @@ klimaat_verwarming_dagelijkse_reset:
               - choose:
                   # Als er een schedule is en die is uit, of als er geen schedule is
                   - conditions:
-                      - or:
-                          - condition: template
-                            value_template: "{{ schedule_entity not in verwarming_schedules }}"
-                          - condition: state
-                            entity_id: "{{ schedule_entity }}"
-                            state: 'off'
+                      - condition: template
+                        value_template: >-
+                          {{
+                            schedule_entity not in verwarming_schedules
+                            or is_state(schedule_entity, 'off')
+                          }}
                     sequence:
                       - service: climate.turn_off
                         target:
