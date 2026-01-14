@@ -1,13 +1,12 @@
-klimaat_verwarming_away_override:
-# Klimaat Package - Verwarming Away Override
-# Eco mode na 1u away, uit na 4u away
+klimaat_verwarming_afwezigheid:
+# Klimaat Package - Verwarming Afwezigheid
+# Eco mode na 1u away, uit na 4u away, herstel bij thuiskomst
 # Gebruikt dynamische entity discovery via label 'Verwarming'
 
   automation:
-    # Away modus: eco na 1u, uit na 4u
-    - id: verwarming_away_modus
-      alias: 'Verwarming away modus'
-      description: 'Verwarming eco (-2°C) na 1u afwezigheid, uit na 4u afwezigheid'
+    - id: verwarming_afwezigheid
+      alias: 'Verwarming afwezigheid'
+      description: 'Eco na 1u, uit na 4u, herstel bij thuiskomst'
       mode: restart
 
       trigger:
@@ -26,6 +25,14 @@ klimaat_verwarming_away_override:
           for:
             hours: 4
           id: uit
+
+        # Herstel bij thuiskomst
+        - platform: state
+          entity_id: alarm_control_panel.ha_alarm
+          from: 'armed_away'
+          not_to:
+            - 'triggered'
+          id: herstel
 
       variables:
         eco_delta: -2
@@ -68,27 +75,15 @@ klimaat_verwarming_away_override:
                   target:
                     entity_id: "{{ verwarming_climates }}"
 
-    # Herstel bij thuiskomst
-    - id: verwarming_away_herstel
-      alias: 'Verwarming herstel bij thuiskomst'
-      description: 'Herstel schedule temperaturen bij einde afwezigheid'
-      mode: single
-
-      trigger:
-        - platform: state
-          entity_id: alarm_control_panel.ha_alarm
-          from: 'armed_away'
-          not_to:
-            - 'triggered'
-
-      variables:
-        verwarming_schedules: "{{ label_entities('Verwarming') | select('match', '^schedule\\.') | list }}"
-
-      action:
-        # Update alle schedules om schema.yaml automations te triggeren
-        - repeat:
-            for_each: "{{ verwarming_schedules }}"
-            sequence:
-              - service: schedule.reload
-                target:
-                  entity_id: "{{ repeat.item }}"
+            # Herstel bij thuiskomst
+            - conditions:
+                - condition: trigger
+                  id: herstel
+              sequence:
+                # Update alle schedules om schema.yaml automations te triggeren
+                - repeat:
+                    for_each: "{{ verwarming_schedules }}"
+                    sequence:
+                      - service: schedule.reload
+                        target:
+                          entity_id: "{{ repeat.item }}"

@@ -45,7 +45,7 @@ Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid
 **helpers.yaml** - `input_boolean.ventilatie_auto` + cooling threshold
 **sensoren.yaml** - Binary sensors (CO2, humidity, bypass, nachtkoeling temp)
 **away_modus.yaml** - Functie 1
-**boost_luchtkwaliteit.yaml** - Functie 2
+**boost_luchtkwaliteit.yaml** - Functie 2 (gecombineerd aan/uit)
 **nachtkoeling.yaml** - Functie 3
 **auto_reset.yaml** - Functie 4
 

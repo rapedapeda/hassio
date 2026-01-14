@@ -22,7 +22,7 @@ Automatische zonwering op basis van weer, zonpositie en binnentemperatuur.
 
 ### Automations
 
-**handmatige_override.yaml**
+**handmatige_bediening.yaml**
 - `automation.zonwering_handmatig_override` - Detecteert handmatige bediening, schakelt auto mode uit
 - `automation.zonwering_auto_reset` - Reset alle auto modes elke avond om 22:00
 
@@ -64,5 +64,5 @@ Automatische zonwering op basis van weer, zonpositie en binnentemperatuur.
    - `sensor.zonwering_{kamer}_positie`
    - `automation.zonwering_{kamer}_positie`
 2. Hernoem cover entity naar `cover.{kamer}`
-3. Voeg cover toe aan `handmatige_override.yaml` trigger
+3. Voeg cover toe aan `handmatige_bediening.yaml` trigger
 4. Voeg auto boolean toe aan `zonwering_auto_reset` action

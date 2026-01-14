@@ -50,15 +50,15 @@ Label de volgende entities met **"Verwarming"**:
 - Handmatige override blijft actief tot volgende schedule change
 - Alleen triggers op schedule changes (niet op climate changes)
 
-### Functie 2: Occupancy based heating
+### Functie 2: Aanwezigheid gestuurde verwarming
 **Verwarming bij beweging voor kamers zonder schedule**
 - Actief als `verwarming_{kamer}_auto` = on
 - Beweging detected → 19°C
 - Geen beweging 30 min → uit
 - Gebruikt `binary_sensor.{kamer}_beweging`
 
-### Functie 3: Away override
-**Eco mode bij afwezigheid**
+### Functie 3: Afwezigheid
+**Eco mode bij afwezigheid, herstel bij thuiskomst**
 - Na 1u `armed_away` + actieve schedule → -2°C (eco mode)
 - Na 4u `armed_away` → alle verwarming uit
 - Bij thuiskomst → herstel schedule temperaturen
@@ -79,8 +79,8 @@ Label de volgende entities met **"Verwarming"**:
 
 **helpers.yaml** - Auto mode toggles per kamer
 **schema.yaml** - Functie 1 (schedule-based)
-**occupancy_based_heating.yaml** - Functie 2 (beweging)
-**away_override.yaml** - Functie 3 (eco + uit)
+**aanwezigheid_gestuurde_verwarming.yaml** - Functie 2 (beweging)
+**afwezigheid.yaml** - Functie 3 (eco + uit + herstel)
 **slim_aan.yaml** - Functie 4 (08:00 check)
 **dagelijkse_reset.yaml** - Functie 5 (03:00 fallback)
 
