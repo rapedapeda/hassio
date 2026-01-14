@@ -5,7 +5,6 @@ klimaat_ventilatie_sensoren:
   binary_sensor:
     - platform: threshold
       name: "Nachtkoeling gewenst"
-      unique_id: ventilatie_nachtkoeling_gewenst
       entity_id: sensor.temperatuur_bovenverdieping
       upper: 21
       hysteresis: 0.5
