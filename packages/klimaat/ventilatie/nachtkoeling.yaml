@@ -10,7 +10,7 @@ klimaat_ventilatie_nachtkoeling:
 
       trigger:
         - platform: state
-          entity_id: binary_sensor.ventilatie_nachtkoeling_gewenst
+          entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
 
         - platform: state
           entity_id: binary_sensor.ventilatie_bypass
@@ -31,7 +31,7 @@ klimaat_ventilatie_nachtkoeling:
             # Nachtkoeling aan: temp te hoog EN bypass aan
             - conditions:
                 - condition: state
-                  entity_id: binary_sensor.ventilatie_nachtkoeling_gewenst
+                  entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
                   state: 'on'
                 - condition: state
                   entity_id: binary_sensor.ventilatie_bypass
