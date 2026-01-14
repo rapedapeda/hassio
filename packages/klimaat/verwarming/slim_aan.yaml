@@ -16,7 +16,7 @@ klimaat_verwarming_slim_aan:
       condition:
         # Alleen als iemand thuis is
         - condition: state
-          entity_id: alarm_control_panel.ha_alarm
+          entity_id: alarm_control_panel.huis
           state: 'disarmed'
 
       variables:

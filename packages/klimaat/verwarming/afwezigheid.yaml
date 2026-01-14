@@ -12,7 +12,7 @@ klimaat_verwarming_afwezigheid:
       trigger:
         # Eco mode na 1u
         - platform: state
-          entity_id: alarm_control_panel.ha_alarm
+          entity_id: alarm_control_panel.huis
           to: 'armed_away'
           for:
             hours: 1
@@ -20,7 +20,7 @@ klimaat_verwarming_afwezigheid:
 
         # Uit na 4u
         - platform: state
-          entity_id: alarm_control_panel.ha_alarm
+          entity_id: alarm_control_panel.huis
           to: 'armed_away'
           for:
             hours: 4
@@ -28,7 +28,7 @@ klimaat_verwarming_afwezigheid:
 
         # Herstel bij thuiskomst
         - platform: state
-          entity_id: alarm_control_panel.ha_alarm
+          entity_id: alarm_control_panel.huis
           from: 'armed_away'
           not_to:
             - 'triggered'

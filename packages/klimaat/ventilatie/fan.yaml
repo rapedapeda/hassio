@@ -4,7 +4,7 @@ klimaat_ventilatie_fan:
 
   template:
     - fan:
-        - name: "Ventilatie"
+        - name: "WTW"
           unique_id: ventilatie_wtw
           state: >
             {{ not is_state('switch.wtw_0', 'on') }}
