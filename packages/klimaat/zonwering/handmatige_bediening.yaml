@@ -15,6 +15,9 @@ klimaat_zonwering_handmatige_override:
           entity_id:
             - cover.woonkamer
             - cover.kantoor
+          from:
+            - "open"
+            - "closed"
 
       variables:
         # Extract kamer uit entity_id
@@ -22,6 +25,10 @@ klimaat_zonwering_handmatige_override:
         auto_boolean: "input_boolean.zonwering_{{ kamer }}_auto"
 
       condition:
+        # Niet triggeren op unavailable/unknown states
+        - condition: template
+          value_template: "{{ trigger.to_state.state not in ['unavailable', 'unknown'] }}"
+
         # Alleen bij handmatige bediening (geen parent context)
         - condition: template
           value_template: "{{ trigger.to_state.context.parent_id is none }}"
