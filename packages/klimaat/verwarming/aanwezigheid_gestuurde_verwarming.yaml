@@ -11,11 +11,13 @@ klimaat_verwarming_occupancy_based_heating:
       max: 10
 
       trigger:
-        # Beweging aan
+        # Beweging aan (2 min delay om korte visits te negeren)
         - platform: state
           entity_id:
             - binary_sensor.kantoor_occupancy
           to: 'on'
+          for:
+            minutes: 2
           id: beweging_aan
 
         # Beweging uit (30 min)
