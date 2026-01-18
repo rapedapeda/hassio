@@ -30,8 +30,11 @@ klimaat_verwarming_afwezigheid:
         - platform: state
           entity_id: alarm_control_panel.huis
           from: 'armed_away'
-          not_to:
-            - 'triggered'
+          to:
+            - 'armed_home'
+            - 'armed_night'
+            - 'armed_vacation'
+            - 'disarmed'
           id: herstel
 
       variables:
