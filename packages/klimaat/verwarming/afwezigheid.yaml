@@ -38,13 +38,13 @@ klimaat_verwarming_afwezigheid:
           id: herstel
 
       variables:
-        eco_delta: -2
+        eco_delta: "{{ states('sensor.verwarming_eco_delta') | float(-2) }}"
         verwarming_schedules: "{{ label_entities('Verwarming') | select('match', '^schedule\\.') | list }}"
         verwarming_climates: "{{ label_entities('Verwarming') | select('match', '^climate\\.') | list }}"
 
       action:
         - choose:
-            # Eco mode: -2°C voor actieve schedules
+            # Eco mode: dynamische offset (afhankelijk van buitentemperatuur) voor actieve schedules
             - conditions:
                 - condition: trigger
                   id: eco

@@ -59,7 +59,10 @@ Label de volgende entities met **"Verwarming"**:
 
 ### Functie 3: Afwezigheid
 **Eco mode bij afwezigheid, herstel bij thuiskomst**
-- Na 1u `armed_away` + actieve schedule → -2°C (eco mode)
+- Na 1u `armed_away` + actieve schedule → dynamische offset (eco mode)
+  - Koud (< 5°C): -1°C
+  - Fris (5-10°C): -1.5°C
+  - Mild (> 10°C): -2°C
 - Na 4u `armed_away` → alle verwarming uit
 - Bij thuiskomst → herstel schedule temperaturen
 
@@ -77,6 +80,7 @@ Label de volgende entities met **"Verwarming"**:
 
 ## Bestanden
 
+**sensoren.yaml** - Dynamische eco offset sensor (buitentemperatuur-gebaseerd)
 **helpers.yaml** - Auto mode toggles per kamer
 **schema.yaml** - Functie 1 (schedule-based)
 **aanwezigheid_gestuurde_verwarming.yaml** - Functie 2 (beweging)

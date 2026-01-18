@@ -1,0 +1,42 @@
+klimaat_verwarming_sensoren:
+# Klimaat Package - Verwarming Sensoren
+# Dynamische sensoren voor slimme verwarming
+
+  template:
+    - sensor:
+        # Dynamische eco offset op basis van buitentemperatuur
+        # Koud weer = minder offset (sneller opwarmen)
+        # Mild weer = meer offset (meer besparen)
+        - name: "Verwarming eco offset"
+          unique_id: verwarming_eco_delta
+          default_entity_id: sensor.verwarming_eco_delta
+          unit_of_measurement: "°C"
+          state_class: measurement
+          state: >-
+            {% set buiten_temp = (states('sensor.weerstation_outdoor_temperature')
+              if states('sensor.weerstation_outdoor_temperature') not in ['unknown','unavailable','none','']
+              else states('sensor.knmi_temperature')) | float(10) %}
+
+            {% if buiten_temp < 5 %}
+              -1
+            {% elif buiten_temp < 10 %}
+              -1.5
+            {% else %}
+              -2
+            {% endif %}
+          attributes:
+            buitentemperatuur: >-
+              {{ (states('sensor.weerstation_outdoor_temperature')
+                if states('sensor.weerstation_outdoor_temperature') not in ['unknown','unavailable','none','']
+                else states('sensor.knmi_temperature')) | float(10) }}
+            bereik: >-
+              {% set temp = (states('sensor.weerstation_outdoor_temperature')
+                if states('sensor.weerstation_outdoor_temperature') not in ['unknown','unavailable','none','']
+                else states('sensor.knmi_temperature')) | float(10) %}
+              {% if temp < 5 %}
+                Koud (< 5°C): -1°C offset
+              {% elif temp < 10 %}
+                Fris (5-10°C): -1.5°C offset
+              {% else %}
+                Mild (> 10°C): -2°C offset
+              {% endif %}
