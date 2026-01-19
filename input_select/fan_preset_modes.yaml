@@ -1,9 +1,0 @@
-ventilatie_preset:
-  name: Ventilatie Preset
-  options:
-    - normal
-    - boost
-    - cooling
-    - manual
-    - standby
-  initial: normal

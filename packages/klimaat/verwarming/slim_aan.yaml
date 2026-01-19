@@ -1,0 +1,60 @@
+klimaat_verwarming_slim_aan:
+# Klimaat Package - Verwarming Slim Aan
+# Check om 08:00 of iemand thuis is op niet-schedule dagen
+# Zet verwarming aan met temperatuur uit eerste schedule block
+
+  automation:
+    - id: verwarming_slim_aan
+      alias: 'Verwarming slim aan bij aanwezigheid'
+      description: 'Zet verwarming aan om 08:00 als iemand thuis is op niet-schedule dagen'
+      mode: single
+
+      trigger:
+        - platform: time
+          at: "08:00:00"
+
+      condition:
+        # Alleen als iemand thuis is
+        - condition: state
+          entity_id: alarm_control_panel.huis
+          state: 'disarmed'
+
+      variables:
+        verwarming_schedules: "{{ label_entities('Verwarming') | select('match', '^schedule\\.') | list }}"
+        current_day: "{{ now().strftime('%A').lower() }}"
+
+      action:
+        # Loop door alle schedules
+        - repeat:
+            for_each: "{{ verwarming_schedules }}"
+            sequence:
+              # Alleen als schedule NIET actief is
+              - if:
+                  - condition: template
+                    value_template: "{{ is_state(repeat.item, 'off') }}"
+                then:
+                  - variables:
+                      kamer: "{{ repeat.item.split('.')[1].replace('verwarming_', '') }}"
+                      climate_entity: "climate.{{ kamer }}"
+                      auto_boolean: "input_boolean.verwarming_{{ kamer }}_auto"
+
+                  # Alleen als auto mode aan staat
+                  - if:
+                      - condition: template
+                        value_template: "{{ is_state(auto_boolean, 'on') }}"
+                    then:
+                      # Haal schedule data op
+                      - service: schedule.get_schedule
+                        target:
+                          entity_id: "{{ repeat.item }}"
+                        response_variable: schedule_data
+
+                      - variables:
+                          schedule_temp: "{{ schedule_data[repeat.item][current_day][0].data.temperature | float(19) }}"
+
+                      - service: climate.set_temperature
+                        target:
+                          entity_id: "{{ climate_entity }}"
+                        data:
+                          temperature: "{{ schedule_temp }}"
+                          hvac_mode: heat

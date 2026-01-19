@@ -1,0 +1,59 @@
+klimaat_zonwering_handmatige_override:
+# Klimaat Package - Zonwering Handmatige Override
+# Detecteert handmatige bediening en schakelt auto mode uit
+# Reset auto mode elke avond
+
+  automation:
+    - id: zonwering_handmatig_override
+      alias: 'Zonwering handmatig override'
+      description: 'Schakel auto mode uit bij handmatige bediening'
+      mode: parallel
+      max: 10
+
+      trigger:
+        - platform: state
+          entity_id:
+            - cover.woonkamer
+            - cover.kantoor
+          from:
+            - "open"
+            - "closed"
+
+      variables:
+        # Extract kamer uit entity_id
+        kamer: "{{ trigger.entity_id.split('.')[1] }}"
+        auto_boolean: "input_boolean.zonwering_{{ kamer }}_auto"
+
+      condition:
+        # Niet triggeren op unavailable/unknown states
+        - condition: template
+          value_template: "{{ trigger.to_state.state not in ['unavailable', 'unknown'] }}"
+
+        # Alleen bij handmatige bediening (geen parent context)
+        - condition: template
+          value_template: "{{ trigger.to_state.context.parent_id is none }}"
+
+        # En alleen als auto mode aan staat
+        - condition: template
+          value_template: "{{ is_state(auto_boolean, 'on') }}"
+
+      action:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: "{{ auto_boolean }}"
+
+    - id: zonwering_auto_reset
+      alias: 'Zonwering auto mode reset'
+      description: 'Reset alle zonwering auto modes elke avond om 22:00'
+      mode: single
+
+      trigger:
+        - platform: time
+          at: "22:00:00"
+
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id:
+              - input_boolean.zonwering_woonkamer_auto
+              - input_boolean.zonwering_kantoor_auto

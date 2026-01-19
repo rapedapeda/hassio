@@ -3,3 +3,4 @@ automations/.DS_Store
 .DS_Store
 secrets.yaml
 .storage/
+.claude

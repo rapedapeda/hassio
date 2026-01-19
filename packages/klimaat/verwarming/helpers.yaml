@@ -1,0 +1,16 @@
+klimaat_verwarming_helpers:
+# Klimaat Package - Verwarming Helpers
+# Auto mode toggles per ruimte
+
+  input_boolean:
+    verwarming_woonkamer_auto:
+      name: Auto verwarming
+      icon: mdi:thermometer-auto
+
+    verwarming_hal_auto:
+      name: Auto verwarming
+      icon: mdi:thermometer-auto
+
+    verwarming_kantoor_auto:
+      name: Auto verwarming
+      icon: mdi:thermometer-auto

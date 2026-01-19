@@ -1,0 +1,64 @@
+klimaat_verwarming_occupancy_based_heating:
+# Klimaat Package - Verwarming Occupancy Based Heating
+# Verwarming automatisch op basis van occupancy
+# Aan bij beweging, uit na 30 min geen beweging
+
+  automation:
+    - id: verwarming_occupancy
+      alias: 'Verwarming automatisch door occupancy'
+      description: 'Verwarming aan bij beweging, uit na 30 min geen beweging'
+      mode: parallel
+      max: 10
+
+      trigger:
+        # Beweging aan (2 min delay om korte visits te negeren)
+        - platform: state
+          entity_id:
+            - binary_sensor.kantoor_occupancy
+          to: 'on'
+          for:
+            minutes: 2
+          id: beweging_aan
+
+        # Beweging uit (30 min)
+        - platform: state
+          entity_id:
+            - binary_sensor.kantoor_occupancy
+          to: 'off'
+          for:
+            minutes: 30
+          id: beweging_uit
+
+      variables:
+        # Extract kamer uit entity_id
+        kamer: "{{ trigger.entity_id.split('.')[1].split('_')[0] }}"
+        climate_entity: "climate.{{ kamer }}"
+        auto_boolean: "input_boolean.verwarming_{{ kamer }}_auto"
+
+      action:
+        # Alleen als auto mode aan staat
+        - if:
+            - condition: template
+              value_template: "{{ is_state(auto_boolean, 'on') }}"
+          then:
+            - choose:
+                # Beweging detected → verwarming aan
+                - conditions:
+                    - condition: trigger
+                      id: beweging_aan
+                  sequence:
+                    - service: climate.set_temperature
+                      target:
+                        entity_id: "{{ climate_entity }}"
+                      data:
+                        temperature: 19
+                        hvac_mode: heat
+
+                # Geen beweging 30 min → verwarming uit
+                - conditions:
+                    - condition: trigger
+                      id: beweging_uit
+                  sequence:
+                    - service: climate.turn_off
+                      target:
+                        entity_id: "{{ climate_entity }}"

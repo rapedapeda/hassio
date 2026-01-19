@@ -1,0 +1,92 @@
+klimaat_verwarming_afwezigheid:
+# Klimaat Package - Verwarming Afwezigheid
+# Eco mode na 1u away, uit na 4u away, herstel bij thuiskomst
+# Gebruikt dynamische entity discovery via label 'Verwarming'
+
+  automation:
+    - id: verwarming_afwezigheid
+      alias: 'Verwarming afwezigheid'
+      description: 'Eco na 1u, uit na 4u, herstel bij thuiskomst'
+      mode: restart
+
+      trigger:
+        # Eco mode na 1u
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to: 'armed_away'
+          for:
+            hours: 1
+          id: eco
+
+        # Uit na 4u
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to: 'armed_away'
+          for:
+            hours: 4
+          id: uit
+
+        # Herstel bij thuiskomst
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          from: 'armed_away'
+          to:
+            - 'armed_home'
+            - 'armed_night'
+            - 'armed_vacation'
+            - 'disarmed'
+          id: herstel
+
+      variables:
+        eco_delta: "{{ states('sensor.verwarming_eco_delta') | float(-2) }}"
+        verwarming_schedules: "{{ label_entities('Verwarming') | select('match', '^schedule\\.') | list }}"
+        verwarming_climates: "{{ label_entities('Verwarming') | select('match', '^climate\\.') | list }}"
+
+      action:
+        - choose:
+            # Eco mode: dynamische offset (afhankelijk van buitentemperatuur) voor actieve schedules
+            - conditions:
+                - condition: trigger
+                  id: eco
+              sequence:
+                - repeat:
+                    for_each: "{{ verwarming_schedules }}"
+                    sequence:
+                      - if:
+                          - condition: template
+                            value_template: "{{ is_state(repeat.item, 'on') }}"
+                        then:
+                          - variables:
+                              kamer: "{{ repeat.item.split('.')[1].replace('verwarming_', '') }}"
+                              climate_entity: "climate.{{ kamer }}"
+                              schedule_temp: "{{ state_attr(repeat.item, 'temperature') | float(21) }}"
+                              eco_temp: "{{ schedule_temp + eco_delta }}"
+
+                          - service: climate.set_temperature
+                            target:
+                              entity_id: "{{ climate_entity }}"
+                            data:
+                              temperature: "{{ eco_temp }}"
+                              hvac_mode: heat
+
+            # Alles uit na 4u
+            - conditions:
+                - condition: trigger
+                  id: uit
+              sequence:
+                - service: climate.turn_off
+                  target:
+                    entity_id: "{{ verwarming_climates }}"
+
+            # Herstel bij thuiskomst
+            - conditions:
+                - condition: trigger
+                  id: herstel
+              sequence:
+                # Update alle schedules om schema.yaml automations te triggeren
+                - repeat:
+                    for_each: "{{ verwarming_schedules }}"
+                    sequence:
+                      - service: schedule.reload
+                        target:
+                          entity_id: "{{ repeat.item }}"

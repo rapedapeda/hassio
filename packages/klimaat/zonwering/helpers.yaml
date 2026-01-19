@@ -1,0 +1,40 @@
+klimaat_helpers:
+# Klimaat Package - Helpers
+# Configureerbare thresholds voor zonwering
+
+  input_number:
+    zonwering_buitentemperatuur_threshold:
+      name: Zonwering min buitentemperatuur
+      min: 15
+      max: 35
+      step: 1
+      unit_of_measurement: "°C"
+      icon: mdi:thermometer
+      mode: box
+
+    zonwering_binnentemperatuur_threshold:
+      name: Zonwering min binnentemperatuur
+      min: 18
+      max: 30
+      step: 0.5
+      unit_of_measurement: "°C"
+      icon: mdi:home-thermometer
+      mode: box
+
+    zonwering_irradiance_threshold:
+      name: Zonwering min zonnestraling
+      min: 0
+      max: 1000
+      step: 50
+      unit_of_measurement: "W/m²"
+      icon: mdi:weather-sunny
+      mode: box
+
+    zonwering_wind_threshold:
+      name: Zonwering max windsnelheid
+      min: 10
+      max: 60
+      step: 5
+      unit_of_measurement: "km/h"
+      icon: mdi:weather-windy
+      mode: box

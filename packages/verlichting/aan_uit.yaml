@@ -43,8 +43,8 @@ verlichting_aan_uit:
             - sensor.kantoor_illuminance
             - sensor.overloopeerste_illuminance
           value_template: >-
-            {{ states(trigger.entity_id) | float -
-               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
+            {{ states(trigger.entity_id) | float(9999) -
+               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float(0) }}
           below: 0
           for:
             minutes: 5
@@ -58,8 +58,8 @@ verlichting_aan_uit:
             - sensor.kantoor_illuminance
             - sensor.overloopeerste_illuminance
           value_template: >-
-            {{ states(trigger.entity_id) | float -
-               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float }}
+            {{ states(trigger.entity_id) | float(9999) -
+               states('input_number.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_illuminance_threshold') | float(0) }}
           above: 0
           for:
             minutes: 5

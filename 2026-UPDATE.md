@@ -245,6 +245,26 @@ Voor grote wijzigingen:
 
 **Geschatte Voltooiing**: TBD (afhankelijk van testing en scope)
 
+## Open TODOs
+
+### Sensor Naming Refactor
+**Context**: Huidige sensor naming is inconsistent
+- Veel Nederlandse namen (bijv. `luchtvochtigheid_badkamer`, `temperatuur_woonkamer`)
+- Subsensors van multisensors vaak handmatig hernoemd
+- Standaard HA naming is `{device}_{measurement}` (bijv. `badkamer_humidity`, `badkamer_temperature`)
+
+**Actie**:
+- [ ] Sensor naming conventions documenteren
+- [ ] Besluit: Nederlandse names behouden of Engels standaard?
+- [ ] Plan maken voor geleidelijke migratie
+- [ ] **BELANGRIJK**: History behoud bij hernoemen (recorder rename)
+- [ ] Script/documentatie voor history migratie
+
+**Impact**:
+- >5 jaar history beschikbaar
+- Meerdere packages gebruiken deze sensors (klimaat ventilatie, zonwering)
+- Dashboards moeten mogelijk aangepast worden
+
 ## Notities
 
 - Branch blijft actief tijdens hele refactoring

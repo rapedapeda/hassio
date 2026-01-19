@@ -1,0 +1,67 @@
+klimaat_ventilatie_boost_luchtkwaliteit:
+# Klimaat Package - Ventilatie Boost Luchtkwaliteit
+# Automatische boost bij hoge CO2 of luchtvochtigheid
+
+  automation:
+    - id: ventilatie_boost_luchtkwaliteit
+      alias: 'Ventilatie boost luchtkwaliteit'
+      description: 'Boost 66% bij slechte luchtkwaliteit, terug naar 33% als goed'
+      mode: restart
+
+      trigger:
+        # Luchtkwaliteit slecht
+        - platform: state
+          entity_id:
+            - binary_sensor.ventilatie_co2
+            - binary_sensor.ventilatie_humidity
+          to: 'on'
+          id: boost_aan
+
+        # Luchtkwaliteit goed (beide off)
+        - platform: state
+          entity_id:
+            - binary_sensor.ventilatie_co2
+            - binary_sensor.ventilatie_humidity
+          to: 'off'
+          id: boost_uit
+
+      condition:
+        # Alleen als auto mode aan staat
+        - condition: state
+          entity_id: input_boolean.ventilatie_auto
+          state: 'on'
+
+        # Ventilatie moet aan staan
+        - condition: state
+          entity_id: fan.wtw
+          state: 'on'
+
+      action:
+        - choose:
+            # Boost aan: één van de sensors is on
+            - conditions:
+                - condition: trigger
+                  id: boost_aan
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 66
+
+            # Boost uit: beide sensors moeten off zijn
+            - conditions:
+                - condition: trigger
+                  id: boost_uit
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_co2
+                  state: 'off'
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_humidity
+                  state: 'off'
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 33

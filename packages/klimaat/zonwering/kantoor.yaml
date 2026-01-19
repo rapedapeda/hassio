@@ -1,0 +1,84 @@
+klimaat_zonwering_kantoor:
+# Klimaat Package - Zonwering Kantoor
+# Helpers, sensoren en automations voor rolluik voorkant
+
+  input_boolean:
+    zonwering_kantoor_auto:
+      name: Auto rolluik
+      icon: mdi:window-shutter
+
+  template:
+    - sensor:
+        # Gewenste positie op basis van zon voorkant
+        - name: "Rolluik positie"
+          unique_id: zonwering_kantoor_positie
+          default_entity_id: sensor.zonwering_kantoor_positie
+          unit_of_measurement: "%"
+          state: >-
+            {% set zon_elevation = state_attr('sun.sun', 'elevation') | float(0) %}
+            {% set zon_azimuth = state_attr('sun.sun', 'azimuth') | int(0) %}
+
+            {# Zon op voorkant: azimuth 227-293, elevation > 1 #}
+            {% if zon_elevation > 1 and 227 < zon_azimuth < 293 %}
+              {% if is_state('binary_sensor.zonwering_nodig', 'on') %}
+                30
+              {% else %}
+                100
+              {% endif %}
+            {% else %}
+              100
+            {% endif %}
+
+  automation:
+    - id: zonwering_kantoor_positie
+      alias: 'Zonwering kantoor positie'
+      description: 'Automatische zonwering kantoor op basis van zon en temperatuur'
+      mode: restart
+
+      trigger:
+        # Bij wijziging van de gewenste positie
+        - platform: state
+          entity_id: sensor.zonwering_kantoor_positie
+
+        # Bij wijziging van zonwering nodig
+        - platform: state
+          entity_id: binary_sensor.zonwering_nodig
+
+        # Bij wijziging binnentemperatuur
+        - platform: state
+          entity_id: sensor.temperatuur_kantoor
+
+      condition:
+        # Alleen als auto mode aan staat
+        - condition: state
+          entity_id: input_boolean.zonwering_kantoor_auto
+          state: 'on'
+
+      action:
+        - choose:
+            # Bij slecht weer: rolluik open
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.zonwering_nodig
+                  state: 'off'
+              sequence:
+                - service: cover.set_cover_position
+                  target:
+                    entity_id: cover.kantoor
+                  data:
+                    position: 100
+
+            # Bij goed weer: check temperatuur en volg positie
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.zonwering_nodig
+                  state: 'on'
+                - condition: template
+                  value_template: >-
+                    {{ states('sensor.temperatuur_kantoor')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0) }}
+              sequence:
+                - service: cover.set_cover_position
+                  target:
+                    entity_id: cover.kantoor
+                  data:
+                    position: "{{ states('sensor.zonwering_kantoor_positie') | int }}"
