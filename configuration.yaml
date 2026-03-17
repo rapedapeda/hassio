@@ -46,42 +46,34 @@ logger:
     # homeassistant.components.shell_command: debug
 
 recorder:
-  purge_keep_days: 3650
+  purge_keep_days: 30
   include:
     domains:
-      - person
-      - vacuum
+      # Beveiliging
+      - alarm_control_panel
+      # Klimaat
+      - climate
     entities:
-      - sensor.cpu_temperatuur
-      - sensor.disk_use_percent
-      - sensor.memory_use_percent
+      # Energie
+      - sensor.irradiance
       - sensor.shellyplug_energy
       - sensor.shellyplug_power
-      - binary_sensor.drinkbak
-      - switch.drinkbak
-      - sensor.co2
-      - sensor.irradiance
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
       - sensor.zonnepanelen_radiation
-      - sensor.knmi_thuis_waarschuwing
-      - sensor.knmi_thuis_wind
-      - sensor.buienradar_precipitation
-      - sensor.buienradar_wind_force
-      - sensor.buienradar_wind_gust
+      # Weer (KNMI fallback voor buitentemperatuur)
+      - sensor.knmi_temperature
     entity_globs:
+      # Energie
       - sensor.p1_*
-      - sensor.omvormer_*
-      - sensor.luchtvochtigheid_*
+      # Klimaat
       - sensor.temperatuur_*
+      - sensor.luchtvochtigheid_*
       - sensor.luchtdruk_*
+      - sensor.luchtkwaliteit_*
       - sensor.licht_*
-      - sensor.ventilator_woonkamer_*
-      - sensor.heatbooster*
+      # Weer
       - sensor.weerstation*
-      # Package: Verwarming (voorverwarming + eco-mode sensoren)
-      - sensor.verwarming_*
-      - binary_sensor.verwarming_*
 ######################################################################
 
 #alert: !include_dir_merge_named alerts/

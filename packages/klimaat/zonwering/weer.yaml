@@ -33,5 +33,5 @@ klimaat_zonwering_weer:
             {{
               states('sensor.weerstation_rain_rate')|float(0) == 0
               and
-              states('sensor.buienradar_wind_gust')|float(0) < states('input_number.zonwering_wind_threshold')|int(30)
+              states('sensor.weerstation_wind_gust')|float(0) < states('input_number.zonwering_wind_threshold')|int(30)
             }}

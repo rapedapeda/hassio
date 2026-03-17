@@ -22,7 +22,7 @@ klimaat_zonwering_woonkamer:
             {% set schermhoogte = 200 | float %} {# centimeters #}
             {% set max_schermlengte = 240 | float %} {# centimeters #}
             {% set schermorientatie = 123 * pi/180 | float %} {# orientatie van het zonnescherm in radialen #}
-            {% set wind = states('sensor.buienradar_wind_gust') | float(0) %}
+            {% set wind = states('sensor.weerstation_wind_gust') | float(0) %}
             {% set wind_upper = states('input_number.zonwering_wind_threshold') | int(30) %}
 
             {# Bereken de effectieve lengte van het scherm op basis van de horizontale positie van de zon #}
