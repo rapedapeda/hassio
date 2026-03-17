@@ -120,6 +120,9 @@ recorder:
       - sensor.ventilator_woonkamer_*
       - sensor.heatbooster*
       - sensor.weerstation*
+      # Package: Verwarming (voorverwarming + eco-mode sensoren)
+      - sensor.verwarming_*
+      - binary_sensor.verwarming_*
 ######################################################################
 
 #alert: !include_dir_merge_named alerts/
