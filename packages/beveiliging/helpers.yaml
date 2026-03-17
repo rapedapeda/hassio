@@ -31,6 +31,12 @@ beveiliging_helpers:
       name: "HomeKit tracker Flore"
       icon: mdi:face-woman
 
+  # Oppas modus - voorkomt armed_away bij afwezigheid gezin
+  # Bedienbaar via HomeKit als switch
+    oppas:
+      name: "Oppas"
+      icon: mdi:account-child
+
 # Aanwezigheid group - gebruikt voor presence detection
 # Gebruikt alleen input_booleans (persistent, geen unavailable states na reboot)
 # iOS Home automations op telefoons updaten deze booleans
@@ -40,6 +46,7 @@ beveiliging_helpers:
       entities:
         - input_boolean.tracker_homekit_ramon
         - input_boolean.tracker_homekit_flore
+        - input_boolean.oppas
 
 # Note: group.beveiliging_deuren_ramen wordt via GUI aangemaakt
 # Bevat alle deuren/ramen sensoren die gemonitord moeten worden tijdens armed_away
