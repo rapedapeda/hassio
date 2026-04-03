@@ -10,25 +10,34 @@ klimaat_ventilatie_away_modus:
       mode: restart
 
       trigger:
+        # Vertrek: ventilatie uit
         - platform: state
           entity_id: alarm_control_panel.huis
+          to: armed_away
+          id: vertrek
+
+        # Thuiskomst: ventilatie aan
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          from: armed_away
+          id: thuiskomst
 
       action:
         - choose:
-            # Niemand thuis: ventilatie uit
             - conditions:
-                - condition: state
-                  entity_id: alarm_control_panel.huis
-                  state: 'armed_away'
+                - condition: trigger
+                  id: vertrek
               sequence:
                 - service: fan.turn_off
                   target:
                     entity_id: fan.wtw
 
-          # Default: thuis, ventilatie aan (33%)
-          default:
-            - service: fan.set_percentage
-              target:
-                entity_id: fan.wtw
-              data:
-                percentage: 33
+            - conditions:
+                - condition: trigger
+                  id: thuiskomst
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 33
