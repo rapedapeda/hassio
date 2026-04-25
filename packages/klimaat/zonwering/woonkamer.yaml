@@ -111,7 +111,11 @@ klimaat_zonwering_woonkamer:
                           state: 'on'
                         - condition: template
                           value_template: >-
-                            {{ states('sensor.temperatuur_woonkamer')|float(0) >= states('input_number.zonwering_binnentemperatuur_threshold')|int(0) }}
+                            {{
+                              [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
+                              or
+                              states('sensor.temperatuur_woonkamer')|float(0) >= 21
+                            }}
                       sequence:
                         - service: cover.set_cover_position
                           target:

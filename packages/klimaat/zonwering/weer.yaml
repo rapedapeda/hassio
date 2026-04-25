@@ -17,8 +17,6 @@ klimaat_zonwering_weer:
             {{
               (3 < now().month < 10)
               and
-              states('sensor.knmi_max_temperature_today')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
-              and
               (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
             }}
 
