@@ -45,6 +45,21 @@ klimaat_zonwering_woonkamer:
               0
             {% endif %}
 
+    - binary_sensor:
+        # Is de temperatuur (buiten of binnen) hoog genoeg voor zonwering?
+        - name: "Zonwering woonkamer temperatuur"
+          unique_id: zonwering_woonkamer_temperatuur
+          state: >-
+            {{
+              [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
+              or
+              states('sensor.temperatuur_woonkamer')|float(0) >= 21
+            }}
+          delay_on:
+            minutes: 5
+          delay_off:
+            minutes: 30
+
   automation:
     - id: zonwering_woonkamer_positie
       alias: 'Zonwering woonkamer positie'
@@ -52,21 +67,17 @@ klimaat_zonwering_woonkamer:
       mode: restart
 
       trigger:
-        # Bij wijziging van de gewenste positie
         - platform: state
           entity_id: sensor.zonwering_woonkamer_positie
-
-        # Bij wijziging van zonwering nodig
         - platform: state
           entity_id: binary_sensor.zonwering_nodig
-
-        # Bij wijziging van zonwering veilig
         - platform: state
           entity_id: binary_sensor.zonwering_veilig
-
-        # Bij wijziging binnentemperatuur
         - platform: state
-          entity_id: sensor.temperatuur_woonkamer
+          entity_id: binary_sensor.zonwering_woonkamer_temperatuur
+        - platform: state
+          entity_id: input_boolean.zonwering_woonkamer_auto
+          to: 'on'
 
       action:
         - choose:
@@ -89,19 +100,7 @@ klimaat_zonwering_woonkamer:
                   state: 'on'
               sequence:
                 - choose:
-                    # Bij slecht weer: scherm in
-                    - conditions:
-                        - condition: state
-                          entity_id: binary_sensor.zonwering_nodig
-                          state: 'off'
-                      sequence:
-                        - service: cover.set_cover_position
-                          target:
-                            entity_id: cover.woonkamer
-                          data:
-                            position: 0
-
-                    # Bij goed weer en veilig: check temperatuur en volg positie
+                    # Alle condities OK: volg positie sensor
                     - conditions:
                         - condition: state
                           entity_id: binary_sensor.zonwering_nodig
@@ -109,16 +108,19 @@ klimaat_zonwering_woonkamer:
                         - condition: state
                           entity_id: binary_sensor.zonwering_veilig
                           state: 'on'
-                        - condition: template
-                          value_template: >-
-                            {{
-                              [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
-                              or
-                              states('sensor.temperatuur_woonkamer')|float(0) >= 21
-                            }}
+                        - condition: state
+                          entity_id: binary_sensor.zonwering_woonkamer_temperatuur
+                          state: 'on'
                       sequence:
                         - service: cover.set_cover_position
                           target:
                             entity_id: cover.woonkamer
                           data:
                             position: "{{ states('sensor.zonwering_woonkamer_positie') | int }}"
+                  # Niet alle condities: scherm in
+                  default:
+                    - service: cover.set_cover_position
+                      target:
+                        entity_id: cover.woonkamer
+                      data:
+                        position: 0

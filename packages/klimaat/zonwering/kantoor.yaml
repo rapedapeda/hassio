@@ -29,6 +29,21 @@ klimaat_zonwering_kantoor:
               100
             {% endif %}
 
+    - binary_sensor:
+        # Is de temperatuur (buiten of binnen) hoog genoeg voor zonwering?
+        - name: "Zonwering kantoor temperatuur"
+          unique_id: zonwering_kantoor_temperatuur
+          state: >-
+            {{
+              [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
+              or
+              states('sensor.temperatuur_kantoor')|float(0) >= 20
+            }}
+          delay_on:
+            minutes: 5
+          delay_off:
+            minutes: 30
+
   automation:
     - id: zonwering_kantoor_positie
       alias: 'Zonwering kantoor positie'
@@ -36,53 +51,43 @@ klimaat_zonwering_kantoor:
       mode: restart
 
       trigger:
-        # Bij wijziging van de gewenste positie
         - platform: state
           entity_id: sensor.zonwering_kantoor_positie
-
-        # Bij wijziging van zonwering nodig
         - platform: state
           entity_id: binary_sensor.zonwering_nodig
-
-        # Bij wijziging binnentemperatuur
         - platform: state
-          entity_id: sensor.temperatuur_kantoor
-
-      condition:
-        # Alleen als auto mode aan staat
-        - condition: state
+          entity_id: binary_sensor.zonwering_kantoor_temperatuur
+        - platform: state
           entity_id: input_boolean.zonwering_kantoor_auto
-          state: 'on'
+          to: 'on'
 
       action:
         - choose:
-            # Bij slecht weer: rolluik open
+            # AUTOMATISCH: Alleen als auto mode aan staat
             - conditions:
                 - condition: state
-                  entity_id: binary_sensor.zonwering_nodig
-                  state: 'off'
-              sequence:
-                - service: cover.set_cover_position
-                  target:
-                    entity_id: cover.kantoor
-                  data:
-                    position: 100
-
-            # Bij goed weer: check temperatuur en volg positie
-            - conditions:
-                - condition: state
-                  entity_id: binary_sensor.zonwering_nodig
+                  entity_id: input_boolean.zonwering_kantoor_auto
                   state: 'on'
-                - condition: template
-                  value_template: >-
-                    {{
-                      [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
-                      or
-                      states('sensor.temperatuur_kantoor')|float(0) >= 20
-                    }}
               sequence:
-                - service: cover.set_cover_position
-                  target:
-                    entity_id: cover.kantoor
-                  data:
-                    position: "{{ states('sensor.zonwering_kantoor_positie') | int }}"
+                - choose:
+                    # Alle condities OK: volg positie sensor
+                    - conditions:
+                        - condition: state
+                          entity_id: binary_sensor.zonwering_nodig
+                          state: 'on'
+                        - condition: state
+                          entity_id: binary_sensor.zonwering_kantoor_temperatuur
+                          state: 'on'
+                      sequence:
+                        - service: cover.set_cover_position
+                          target:
+                            entity_id: cover.kantoor
+                          data:
+                            position: "{{ states('sensor.zonwering_kantoor_positie') | int }}"
+                  # Niet alle condities: rolluik open
+                  default:
+                    - service: cover.set_cover_position
+                      target:
+                        entity_id: cover.kantoor
+                      data:
+                        position: 100
