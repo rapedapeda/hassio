@@ -18,13 +18,9 @@ klimaat_zonwering_kantoor:
             {% set zon_elevation = state_attr('sun.sun', 'elevation') | float(0) %}
             {% set zon_azimuth = state_attr('sun.sun', 'azimuth') | int(0) %}
 
-            {# Zon op voorkant: azimuth 227-293, elevation > 1 #}
-            {% if zon_elevation > 1 and 227 < zon_azimuth < 293 %}
-              {% if is_state('binary_sensor.zonwering_nodig', 'on') %}
-                30
-              {% else %}
-                100
-              {% endif %}
+            {# Zon op voorkant: azimuth 227-360, elevation > 1 #}
+            {% if zon_elevation > 1 and 227 < zon_azimuth < 360 and is_state('binary_sensor.zonwering_nodig', 'on') %}
+              30
             {% else %}
               100
             {% endif %}
