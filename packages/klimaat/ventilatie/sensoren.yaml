@@ -58,8 +58,8 @@ klimaat_ventilatie_sensoren:
             {% set buiten_temp = (states('sensor.weerstation_outdoor_temperature') if states('sensor.weerstation_outdoor_temperature') not in ['unknown','unavailable','none',''] else states('sensor.knmi_temperature')) | float(0) %}
             {{
               buiten_temp > 10
-							and
-							binnen_temp - buiten_temp > 2
+              and
+              binnen_temp - buiten_temp > 2
               and
               binnen_temp > states('input_number.ventilatie_cooling_threshold')|float(21)
             }}
