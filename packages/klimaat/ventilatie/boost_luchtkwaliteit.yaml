@@ -30,6 +30,11 @@ klimaat_ventilatie_boost_luchtkwaliteit:
           entity_id: fan.wtw
           state: 'on'
 
+        # Nachtkoeling moet niet actief zijn
+        - condition: state
+          entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+          state: 'off'
+
       action:
         - choose:
             - conditions:
@@ -40,7 +45,7 @@ klimaat_ventilatie_boost_luchtkwaliteit:
                   target:
                     entity_id: fan.wtw
                   data:
-                    percentage: "{{ [state_attr('fan.wtw', 'percentage') | int, 66] | max }}"
+                    percentage: 66
 
             - conditions:
                 - condition: trigger
