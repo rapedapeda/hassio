@@ -40,7 +40,7 @@ klimaat_ventilatie_boost_luchtkwaliteit:
                   target:
                     entity_id: fan.wtw
                   data:
-                    percentage: 66
+                    percentage: "{{ [state_attr('fan.wtw', 'percentage') | int, 66] | max }}"
 
             - conditions:
                 - condition: trigger
