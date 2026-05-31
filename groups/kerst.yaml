@@ -1,5 +1,0 @@
-kerst:
-  name: Kerst
-  entities:
-    - light.kerstster
-    - switch.kerstboom

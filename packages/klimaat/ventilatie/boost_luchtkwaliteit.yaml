@@ -9,19 +9,13 @@ klimaat_ventilatie_boost_luchtkwaliteit:
       mode: restart
 
       trigger:
-        # Luchtkwaliteit slecht
         - platform: state
-          entity_id:
-            - binary_sensor.ventilatie_co2
-            - binary_sensor.ventilatie_humidity
+          entity_id: binary_sensor.ventilatie_luchtkwaliteit_slecht
           to: 'on'
           id: boost_aan
 
-        # Luchtkwaliteit goed (beide off)
         - platform: state
-          entity_id:
-            - binary_sensor.ventilatie_co2
-            - binary_sensor.ventilatie_humidity
+          entity_id: binary_sensor.ventilatie_luchtkwaliteit_slecht
           to: 'off'
           id: boost_uit
 
@@ -36,9 +30,13 @@ klimaat_ventilatie_boost_luchtkwaliteit:
           entity_id: fan.wtw
           state: 'on'
 
+        # Nachtkoeling moet niet actief zijn
+        - condition: state
+          entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+          state: 'off'
+
       action:
         - choose:
-            # Boost aan: één van de sensors is on
             - conditions:
                 - condition: trigger
                   id: boost_aan
@@ -49,16 +47,9 @@ klimaat_ventilatie_boost_luchtkwaliteit:
                   data:
                     percentage: 66
 
-            # Boost uit: beide sensors moeten off zijn
             - conditions:
                 - condition: trigger
                   id: boost_uit
-                - condition: state
-                  entity_id: binary_sensor.ventilatie_co2
-                  state: 'off'
-                - condition: state
-                  entity_id: binary_sensor.ventilatie_humidity
-                  state: 'off'
               sequence:
                 - service: fan.set_percentage
                   target:

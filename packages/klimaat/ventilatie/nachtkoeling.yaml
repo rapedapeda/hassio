@@ -11,19 +11,20 @@ klimaat_ventilatie_nachtkoeling:
       trigger:
         - platform: state
           entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+          to:
+            - 'on'
+            - 'off'
 
         - platform: state
           entity_id: binary_sensor.ventilatie_bypass
+          to:
+            - 'on'
+            - 'off'
 
       condition:
         # Alleen als auto mode aan staat
         - condition: state
           entity_id: input_boolean.ventilatie_auto
-          state: 'on'
-
-        # Ventilatie moet aan staan
-        - condition: state
-          entity_id: fan.wtw
           state: 'on'
 
       action:
@@ -43,10 +44,23 @@ klimaat_ventilatie_nachtkoeling:
                   data:
                     percentage: 100
 
-          # Default: nachtkoeling uit
+          # Default: nachtkoeling uit, respecteer aanwezigheid en luchtkwaliteit
           default:
-            - service: fan.set_percentage
-              target:
-                entity_id: fan.wtw
-              data:
-                percentage: 33
+            - choose:
+                # Weg: fan helemaal uit
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.huis
+                      state: armed_away
+                  sequence:
+                    - service: fan.turn_off
+                      target:
+                        entity_id: fan.wtw
+              # Thuis: 33% of 66% als luchtkwaliteit slecht
+              default:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: >-
+                      {{ 66 if is_state('binary_sensor.ventilatie_luchtkwaliteit_slecht', 'on') else 33 }}

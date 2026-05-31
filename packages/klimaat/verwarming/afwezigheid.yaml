@@ -83,10 +83,25 @@ klimaat_verwarming_afwezigheid:
                 - condition: trigger
                   id: herstel
               sequence:
-                # Update alle schedules om schema.yaml automations te triggeren
+                # Herstel climate entities naar actieve schedule temperatuur
                 - repeat:
                     for_each: "{{ verwarming_schedules }}"
                     sequence:
-                      - service: schedule.reload
-                        target:
-                          entity_id: "{{ repeat.item }}"
+                      - if:
+                          - condition: template
+                            value_template: "{{ is_state(repeat.item, 'on') }}"
+                        then:
+                          - variables:
+                              kamer: "{{ repeat.item.split('.')[1].replace('verwarming_', '') }}"
+                              auto_boolean: "input_boolean.verwarming_{{ kamer }}_auto"
+
+                          - if:
+                              - condition: template
+                                value_template: "{{ is_state(auto_boolean, 'on') }}"
+                            then:
+                              - service: climate.set_temperature
+                                target:
+                                  entity_id: "climate.{{ kamer }}"
+                                data:
+                                  temperature: "{{ state_attr(repeat.item, 'temperature') }}"
+                                  hvac_mode: heat

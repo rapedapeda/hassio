@@ -3,8 +3,20 @@ klimaat_zonwering_weer:
 # Generieke weersensoren voor zonwering
 
   template:
+    - sensor:
+        # DNI-benadering: GHI gecorrigeerd voor zonhoogte
+        # Geeft betere indicatie van directe straling op verticale vlakken
+        - name: "Zonwering instraling"
+          unique_id: zonwering_instraling
+          unit_of_measurement: "W/m²"
+          state: >-
+            {% set ghi = (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | float(0) %}
+            {% set elevation_rad = state_attr('sun.sun', 'elevation') | float(0) * pi / 180 %}
+            {% set sin_el = [sin(elevation_rad), sin(10 * pi / 180)] | max %}
+            {{ (ghi / sin_el) | round(0) }}
+
     - binary_sensor:
-        # Is het qua weer/temperatuur nodig om zonwering in te schakelen?
+        # Is het qua straling en seizoen nodig om zonwering in te schakelen?
         - name: "Zonwering nodig"
           unique_id: zonwering_nodig
           default_entity_id: binary_sensor.zonwering_nodig
@@ -17,9 +29,7 @@ klimaat_zonwering_weer:
             {{
               (3 < now().month < 10)
               and
-              states('sensor.delft_today_max')|int(0) >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
-              and
-              (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | int(0) >= (states('input_number.zonwering_irradiance_threshold') | int(250))
+              states('sensor.zonwering_instraling') | int(0) >= states('input_number.zonwering_irradiance_threshold') | int(250)
             }}
 
         # Is het weer veilig voor zonwering? (geen wind/regen)
@@ -33,5 +43,5 @@ klimaat_zonwering_weer:
             {{
               states('sensor.weerstation_rain_rate')|float(0) == 0
               and
-              states('sensor.buienradar_wind_gust')|float(0) < states('input_number.zonwering_wind_threshold')|int(30)
+              states('sensor.weerstation_wind_gust')|float(0) < states('input_number.zonwering_wind_threshold')|int(30)
             }}

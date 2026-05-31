@@ -37,47 +37,6 @@ homeassistant:
   time_zone: Europe/Amsterdam
   country: NL
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: takkie
-  password: !secret influxdb
-  max_retries: 3
-  default_measurement: state
-  include:
-    domains:
-      - alarm_control_panel
-      - sun
-      - vacuum
-      - sensor.zonnepanelen_power
-      - sensor.zonnepanelen_energy
-      - sensor.zonnepanelen_radiation
-    entity_globs:
-      - binary_sensor.beweging_*
-      - binary_sensor.aanwezigheid_*
-      - binary_sensor.*_aanwezigheid_detectie
-      - binary_sensor.*_lichtstatus
-      - binary_sensor.slaapkamer_*
-      - binary_sensor.woonkamer_*
-      - binary_sensor.hal_*
-      - binary_sensor.buiten_*
-      - binary_sensor.lekkage_wasmachine
-      - sensor.beweging_*
-      - sensor.licht_*
-      - sensor.luchtdruk_*
-      - sensor.luchtvochtigheid_*
-      - sensor.temperatuur_*
-      - sensor.delft*
-      - sensor.knmi_thuis_*
-      - sensor.*batterij
-      - sensor.p1_*
-      - sensor.omvormer_*
-      - person.*
-      - sensor.ventilator_woonkamer_*
-      - sensor.heatbooster*
-      - sensor.weerstation*
-
 logger:
   default: info
   # logs:
@@ -87,38 +46,33 @@ logger:
     # homeassistant.components.shell_command: debug
 
 recorder:
-  purge_keep_days: 3650
+  purge_keep_days: 30
   include:
     domains:
-      - person
-      - vacuum
+      # Beveiliging
+      - alarm_control_panel
+      # Klimaat
+      - climate
     entities:
-      - sensor.cpu_temperatuur
-      - sensor.disk_use_percent
-      - sensor.memory_use_percent
+      # Energie
+      - sensor.irradiance
       - sensor.shellyplug_energy
       - sensor.shellyplug_power
-      - binary_sensor.drinkbak
-      - switch.drinkbak
-      - sensor.co2
-      - sensor.irradiance
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
       - sensor.zonnepanelen_radiation
-      - sensor.knmi_thuis_waarschuwing
-      - sensor.knmi_thuis_wind
-      - sensor.buienradar_precipitation
-      - sensor.buienradar_wind_force
-      - sensor.buienradar_wind_gust
+      # Weer (KNMI fallback voor buitentemperatuur)
+      - sensor.knmi_temperature
     entity_globs:
+      # Energie
       - sensor.p1_*
-      - sensor.omvormer_*
-      - sensor.luchtvochtigheid_*
+      # Klimaat
       - sensor.temperatuur_*
+      - sensor.luchtvochtigheid_*
       - sensor.luchtdruk_*
+      - sensor.luchtkwaliteit_*
       - sensor.licht_*
-      - sensor.ventilator_woonkamer_*
-      - sensor.heatbooster*
+      # Weer
       - sensor.weerstation*
 ######################################################################
 
