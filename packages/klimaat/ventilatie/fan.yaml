@@ -32,3 +32,20 @@ klimaat_ventilatie_fan:
               data:
                 percentage: "{{ percentage }}"
           speed_count: 3
+
+  script:
+    set_ventilatie_stand:
+      alias: Zet ventilatiestand
+      sequence:
+        - service: switch.turn_on
+          data:
+            entity_id: >
+              {% if percentage | int == 100 %}
+                switch.wtw_3
+              {% elif percentage | int == 66 %}
+                switch.wtw_2
+              {% elif percentage | int == 33 %}
+                switch.wtw_1
+              {% else %}
+                switch.wtw_0
+              {% endif %}

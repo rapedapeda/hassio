@@ -65,6 +65,7 @@ Automatische scene selectie op basis van schedule (tijd van dag).
 | Kantoor | ✓ | - | Timeout 10 min, threshold 35 lx |
 | Overloop Eerste | ✓ | - | Timeout 1 min, threshold 50 lx |
 | Slaapkamer | - | ✓ | Handmatig aan/uit, scenes 9-19u |
+| Kerst | - | - | Kerstverlichting aan/uit op basis van alarm modus |
 
 ---
 
@@ -75,6 +76,10 @@ Automatische scene selectie op basis van schedule (tijd van dag).
 2. Voeg triggers toe aan `aan_uit.yaml`
 3. Maak GUI groups (occupancy, illuminance)
 4. Zie kamer README voor details
+
+### Voor Kerstverlichting (`kerst.yaml`):
+1. Zet `input_boolean.kerst` aan via UI
+2. Verlichting volgt automatisch alarm modus (aan = thuis, uit = weg)
 
 ### Voor Functie 2 (scene selectie):
 1. Maak Zigbee2MQTT scenes

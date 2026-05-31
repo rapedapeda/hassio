@@ -1,8 +1,6 @@
 include:
   domains:
     - alarm_control_panel
-    - person
-    - vacuum
   entities:
     - input_boolean.vakantiemodus
     - switch.drinkbak

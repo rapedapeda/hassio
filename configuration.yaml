@@ -31,7 +31,6 @@ websocket_api:
 
 
 homeassistant:
-  customize: !include_dir_merge_named customize/
   packages: !include_dir_merge_named packages/
   unit_system: metric
   time_zone: Europe/Amsterdam
@@ -74,24 +73,8 @@ recorder:
       - sensor.licht_*
       # Weer
       - sensor.weerstation*
-######################################################################
-
-#alert: !include_dir_merge_named alerts/
 automation: !include_dir_merge_list automations/
-binary_sensor: !include_dir_merge_list binary_sensors/
-group: !include_dir_merge_named groups/
 input_boolean: !include_dir_merge_named input_boolean/
-input_number: !include_dir_merge_named input_number/
-input_select: !include_dir_merge_named input_select/
 logbook: !include logbook.yaml
-python_script:
-rest_command: !include rest_command.yaml
-scene: !include_dir_merge_list scenes/
-sensor: !include_dir_merge_list sensors/
-template: !include_dir_merge_list templates/
-script: !include_dir_merge_named scripts/
-timer: !include_dir_merge_named timers/
-utility_meter: !include_dir_merge_named utility_meter/
-zone: !include_dir_list zones/
 
 

@@ -112,4 +112,4 @@ Handmatige changes tijdens auto mode blijven actief tot volgende schedule change
 2. Label `climate.{kamer}` met "Verwarming"
 3. Zorg dat `binary_sensor.{kamer}_occupancy` bestaat
 4. Reload package
-5. Klaar! occupancy_based_heating.yaml pakt automatisch op
+5. Klaar! aanwezigheid_gestuurde_verwarming.yaml pakt automatisch op

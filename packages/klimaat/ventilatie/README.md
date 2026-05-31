@@ -13,7 +13,7 @@ Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid
 ### Functie 2: Boost luchtkwaliteit
 **Verhoogde ventilatie bij slechte luchtkwaliteit**
 - Actief als `ventilatie_auto` = on
-- CO2 > 1000 ppm OF humidity badkamer te hoog → 66%
+- `binary_sensor.ventilatie_luchtkwaliteit_slecht` = on → 66%
 - Anders → 33%
 
 ### Functie 3: Nachtkoeling
@@ -42,9 +42,13 @@ Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid
 4. **`binary_sensor.ventilatie_nachtkoeling_nodig`** (Threshold sensor)
    - entity_id voor de threshold: sensor.temperatuur_bovenverdieping
 
+5. **`binary_sensor.ventilatie_luchtkwaliteit_slecht`** (Binary sensor group, OR logica)
+   - `binary_sensor.ventilatie_co2` toevoegen
+   - `binary_sensor.ventilatie_humidity` toevoegen
+
 ## Bestanden
 
-**fan.yaml** - Template fan entity `fan.wtw`
+**fan.yaml** - Template fan entity `fan.wtw` + `script.set_ventilatie_stand`
 **helpers.yaml** - `input_boolean.ventilatie_auto` + cooling threshold
 **sensoren.yaml** - Binary sensors (CO2, humidity, bypass, nachtkoeling temp)
 **away_modus.yaml** - Functie 1
