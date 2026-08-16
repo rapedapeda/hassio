@@ -2,45 +2,35 @@
 
 Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid.
 
-## Functies
+## Werking
 
-### Functie 1: Away modus
-**Ventilatie uit als niemand thuis**
-- ALTIJD actief (ook zonder auto mode)
-- Bij `alarm_control_panel.huis` = armed_away → fan uit
-- Anders → fan aan (percentage bepaald door andere functies)
+Één centrale automation evalueert bij elke relevante state change de ventilatiestand op basis van prioriteit:
 
-### Functie 2: Boost luchtkwaliteit
-**Verhoogde ventilatie bij slechte luchtkwaliteit**
-- Actief als `ventilatie_auto` = on
-- `binary_sensor.ventilatie_luchtkwaliteit_slecht` = on → 66%
-- Anders → 33%
+| Prioriteit | Conditie | Stand | Auto vereist |
+|-----------|----------|-------|-------------|
+| 1 | Niemand thuis (`alarm = armed_away`) | Uit | Nee |
+| 2 | Nachtkoeling nodig + bypass open | 100% | Ja |
+| 3 | Luchtkwaliteit slecht (CO₂ of vochtigheid) | 66% | Ja |
+| 4 | Anders (basisstand, ook bij thuiskomst) | 33% | Nee |
 
-### Functie 3: Nachtkoeling
-**Extra ventilatie op warme zomernachten**
-- Actief als `ventilatie_auto` = on
-- Bovenverdieping > 21°C EN bypass aan (buiten kouder) → 100%
-- Anders → 33%
-
-### Functie 4: Auto reset
-**Dagelijkse reset van auto mode**
-- Elke ochtend om 6:00 → `ventilatie_auto` = on
+`ventilatie_auto = off` schakelt de automatische aanpassing uit (prioriteit 2 en 3 vallen weg), maar de basisstand van 33% blijft actief. Away modus blijft altijd actief.
 
 ## Sensor Groups (aanmaken via GUI)
 
 **Settings → Devices & Services → Helpers → Create Helper → Group (Sensor)**
 
 1. **`sensor.co2_sensoren`** (Aggregation: Max)
-   - Alle CO2 sensoren toevoegen
+   - Alle CO₂-sensoren toevoegen
 
 2. **`sensor.temperatuur_huis`** (Aggregation: Mean)
    - Alle temperatuursensoren toevoegen
 
 3. **`sensor.temperatuur_bovenverdieping`** (Aggregation: Max)
-   - Slaapkamer, kinderkamer, overloopeerste toevoegen
+   - Slaapkamer, kinderkamer, overloop toevoegen
 
 4. **`binary_sensor.ventilatie_nachtkoeling_nodig`** (Threshold sensor)
-   - entity_id voor de threshold: sensor.temperatuur_bovenverdieping
+   - Entity: `sensor.temperatuur_bovenverdieping`
+   - Drempel instellen via `input_number.ventilatie_cooling_threshold` (standaard 21°C)
 
 5. **`binary_sensor.ventilatie_luchtkwaliteit_slecht`** (Binary sensor group, OR logica)
    - `binary_sensor.ventilatie_co2` toevoegen
@@ -48,17 +38,17 @@ Automatische ventilatie op basis van luchtkwaliteit, temperatuur en aanwezigheid
 
 ## Bestanden
 
-**fan.yaml** - Template fan entity `fan.wtw` + `script.set_ventilatie_stand`
-**helpers.yaml** - `input_boolean.ventilatie_auto` + cooling threshold
-**sensoren.yaml** - Binary sensors (CO2, humidity, bypass, nachtkoeling temp)
-**away_modus.yaml** - Functie 1
-**boost_luchtkwaliteit.yaml** - Functie 2 (gecombineerd aan/uit)
-**nachtkoeling.yaml** - Functie 3
-**auto_reset.yaml** - Functie 4
+| Bestand | Inhoud |
+|---------|--------|
+| `fan.yaml` | Template fan `fan.wtw` + `script.set_ventilatie_stand` |
+| `helpers.yaml` | `input_boolean.ventilatie_auto` + cooling threshold |
+| `sensoren.yaml` | Binary sensors (CO₂, vochtigheid, bypass) |
+| `ventilatie.yaml` | Centrale automation (prioriteit 1–4) |
+| `auto_reset.yaml` | Dagelijkse reset van auto mode om 06:00 |
 
-## Handmatig Mode
+## Handmatige modus
 
-`ventilatie_auto` = off → Handmatige controle via:
+`ventilatie_auto = off` → prioriteit 2 en 3 zijn niet actief. De fan staat op 33% tenzij handmatig aangepast via:
 - `fan.wtw` entity percentage
-- Fysieke knoppen bij WTW zelf
+- Fysieke knoppen bij de WTW
 - Away modus blijft actief

@@ -1,0 +1,90 @@
+klimaat_ventilatie:
+# Klimaat Package - Ventilatie
+# Centrale ventilatiesturing op basis van aanwezigheid, luchtkwaliteit en nachtkoeling
+
+  automation:
+    - id: ventilatie
+      alias: 'Ventilatie'
+      description: 'Centrale sturing: uit bij afwezigheid, anders op basis van prioriteit'
+      mode: restart
+
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+
+        - platform: state
+          entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+          to:
+            - 'on'
+            - 'off'
+
+        - platform: state
+          entity_id: binary_sensor.ventilatie_bypass
+          to:
+            - 'on'
+            - 'off'
+
+        - platform: state
+          entity_id: binary_sensor.ventilatie_luchtkwaliteit_slecht
+          to:
+            - 'on'
+            - 'off'
+
+        - platform: state
+          entity_id: input_boolean.ventilatie_auto
+          to:
+            - 'on'
+            - 'off'
+
+      action:
+        - choose:
+            # Prioriteit 1: niemand thuis → uit (altijd, ongeacht auto mode)
+            - conditions:
+                - condition: state
+                  entity_id: alarm_control_panel.huis
+                  state: armed_away
+              sequence:
+                - service: fan.turn_off
+                  target:
+                    entity_id: fan.wtw
+
+            # Prioriteit 2: nachtkoeling (auto mode vereist)
+            - conditions:
+                - condition: state
+                  entity_id: input_boolean.ventilatie_auto
+                  state: 'on'
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_nachtkoeling_nodig
+                  state: 'on'
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_bypass
+                  state: 'on'
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 100
+
+            # Prioriteit 3: slechte luchtkwaliteit (auto mode vereist)
+            - conditions:
+                - condition: state
+                  entity_id: input_boolean.ventilatie_auto
+                  state: 'on'
+                - condition: state
+                  entity_id: binary_sensor.ventilatie_luchtkwaliteit_slecht
+                  state: 'on'
+              sequence:
+                - service: fan.set_percentage
+                  target:
+                    entity_id: fan.wtw
+                  data:
+                    percentage: 66
+
+          # Prioriteit 4: basisstand (altijd — ook bij thuiskomst met auto uit)
+          default:
+            - service: fan.set_percentage
+              target:
+                entity_id: fan.wtw
+              data:
+                percentage: 33
