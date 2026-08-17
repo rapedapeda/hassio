@@ -1,0 +1,23 @@
+media_away_modus:
+# Media Package - Away Modus
+# Alle media spelers uit als niemand thuis is
+
+  automation:
+    - id: media_away_modus
+      alias: 'Media away modus'
+      description: 'Alle media spelers uit bij vertrek'
+      mode: single
+
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.huis
+          to: armed_away
+
+      action:
+        - service: media_player.turn_off
+          target:
+            entity_id:
+              - media_player.achtertuin
+              - media_player.badkamer
+              - media_player.kantoor
+              - media_player.woonkamer
