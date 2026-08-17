@@ -12,7 +12,7 @@ klimaat_zonwering_weer:
           state: >-
             {% set ghi = (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | float(0) %}
             {% set elevation_rad = state_attr('sun.sun', 'elevation') | float(0) * pi / 180 %}
-            {% set sin_el = [sin(elevation_rad), sin(10 * pi / 180)] | max %}
+            {% set sin_el = [sin(elevation_rad), sin(5 * pi / 180)] | max %}
             {{ (ghi / sin_el) | round(0) }}
 
     - binary_sensor:
