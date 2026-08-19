@@ -1,0 +1,53 @@
+energie_sensoren:
+# Energie Package - Sensoren
+# Beslissingslogica op basis van stroomprijzen en batterijstatus
+#
+# EnergyZero:
+#   sensor.energyzero_today_energy_current_hour_price      huidige prijs (€/kWh incl. belasting)
+#   sensor.energyzero_today_energy_hours_priced_equal_or_lower  positie in de dagrangschikking
+#     → waarde 2 = één van de 2 goedkoopste uren; waarde 20 = één van de 4 duurste uren
+#
+# Marstek Venus E:
+#   sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge  SOC (%)
+#   number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc                        min SOC (%)
+#   number.marstek_venus_e_5_12kwh_3nd_gen_maximum_soc                        max SOC (%)
+
+  template:
+    - binary_sensor:
+        # Huidig uur behoort tot de goedkoopste X uren van vandaag
+        - name: "Energie prijs goedkoop"
+          unique_id: energie_prijs_goedkoop
+          icon: mdi:currency-eur-off
+          state: >-
+            {{ states('sensor.energyzero_today_energy_hours_priced_equal_or_lower') | int(24)
+               <= states('input_number.energie_laden_uren') | int(8) }}
+
+        # Huidig uur behoort tot de duurste X uren van vandaag
+        - name: "Energie prijs duur"
+          unique_id: energie_prijs_duur
+          icon: mdi:currency-eur
+          state: >-
+            {{ states('sensor.energyzero_today_energy_hours_priced_equal_or_lower') | int(0)
+               >= (24 - states('input_number.energie_ontladen_uren') | int(8)) }}
+
+        # Laden van net zinvol: prijs goedkoop + ruimte in batterij
+        # TODO: uitbreiden met Solcast — niet laden als zon verwacht de batterij vult
+        - name: "Energie laden zinvol"
+          unique_id: energie_laden_zinvol
+          icon: mdi:transmission-tower-import
+          state: >-
+            {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(100) %}
+            {% set max_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_maximum_soc') | float(90) %}
+            {{ is_state('binary_sensor.energie_prijs_goedkoop', 'on')
+               and soc < (max_soc - 5) }}
+
+        # Ontladen zinvol: prijs hoog + voldoende SOC
+        # TODO: uitbreiden met Solcast — bij verwachte zon volgende dag ruimer ontladen
+        - name: "Energie ontladen zinvol"
+          unique_id: energie_ontladen_zinvol
+          icon: mdi:transmission-tower-export
+          state: >-
+            {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(0) %}
+            {% set min_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc') | float(10) %}
+            {{ is_state('binary_sensor.energie_prijs_duur', 'on')
+               and soc > (min_soc + 5) }}

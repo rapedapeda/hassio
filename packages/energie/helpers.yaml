@@ -1,0 +1,27 @@
+energie_helpers:
+# Energie Package - Helpers
+# Drempelwaarden voor batterijoptimalisatie
+
+  input_boolean:
+    energie_auto:
+      name: Auto energiebeheer
+      icon: mdi:battery-charging-outline
+
+  input_number:
+    energie_laden_uren:
+      name: Energie laden - goedkoopste X uren
+      min: 1
+      max: 12
+      step: 1
+      initial: 8
+      icon: mdi:battery-arrow-up
+      mode: box
+
+    energie_ontladen_uren:
+      name: Energie ontladen - duurste X uren
+      min: 1
+      max: 12
+      step: 1
+      initial: 8
+      icon: mdi:battery-arrow-down
+      mode: box

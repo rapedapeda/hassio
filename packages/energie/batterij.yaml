@@ -1,0 +1,75 @@
+energie_batterij:
+# Energie Package - Batterij
+# Centrale sturing van de Marstek Venus E op basis van stroomprijzen
+#
+# Batterijmodus (select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode):
+#   Verifieer de exacte optienamen via Ontwikkeltools → Staten op jouw HA-instantie.
+#   Meest waarschijnlijke waarden:
+#     "Automatic"       → normaal gedrag (laden van zon, ontladen naar huis)
+#     "Force Charge"    → laden van net (bij goedkope stroom)
+#     "Force Discharge" → ontladen naar huis (bij dure stroom)
+
+  automation:
+    - id: energie_batterij_beslisser
+      alias: 'Energie batterij beslisser'
+      description: 'Stelt batterijmodus in op basis van stroomprijs en SOC'
+      mode: restart
+
+      trigger:
+        # Elk uur als de prijs wijzigt
+        - platform: state
+          entity_id: sensor.energyzero_today_energy_current_hour_price
+
+        # Direct bij in-/uitschakelen auto mode
+        - platform: state
+          entity_id: input_boolean.energie_auto
+
+        # Bij HA-herstart
+        - platform: homeassistant
+          event: start
+
+      action:
+        - choose:
+            # Auto uit → normale modus (niet ingrijpen)
+            - conditions:
+                - condition: state
+                  entity_id: input_boolean.energie_auto
+                  state: 'off'
+              sequence:
+                - service: select.select_option
+                  target:
+                    entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
+                  data:
+                    option: Automatic
+
+            # Ontladen: prijs is duur + voldoende SOC
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.energie_ontladen_zinvol
+                  state: 'on'
+              sequence:
+                - service: select.select_option
+                  target:
+                    entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
+                  data:
+                    option: Force Discharge
+
+            # Laden van net: prijs is goedkoop + ruimte in batterij
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.energie_laden_zinvol
+                  state: 'on'
+              sequence:
+                - service: select.select_option
+                  target:
+                    entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
+                  data:
+                    option: Force Charge
+
+          # Normaal: geen extreme prijs, batterij volgt zon en eigen verbruik
+          default:
+            - service: select.select_option
+              target:
+                entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
+              data:
+                option: Automatic
