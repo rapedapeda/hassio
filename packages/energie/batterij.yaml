@@ -1,19 +1,19 @@
 energie_batterij:
 # Energie Package - Batterij
-# Centrale sturing van de Marstek Venus E op basis van stroomprijzen
+# Centrale sturing van de Marstek Venus E op basis van stroomprijzen en zonne-forecast
 #
 # Batterijmodus (select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode):
 #   "Default mode"    → normaal gedrag (laden van zon, ontladen naar huis)
 #   "Force charge"    → laden van net (bij goedkope stroom)
 #   "Force discharge" → ontladen naar huis (bij dure stroom)
-#   "Charge only"     → alleen laden, niet ontladen (ruimte bewaren voor zon)
+#   "Charge only"     → alleen laden, niet ontladen (bewaar voor zon)
 #   "Discharge only"  → alleen ontladen, niet laden (leegtrekken vóór zonsopgang)
 #   "Pause battery"   → batterij volledig pauzeren
 
   automation:
     - id: energie_batterij_beslisser
       alias: 'Energie batterij beslisser'
-      description: 'Stelt batterijmodus in op basis van stroomprijs en SOC'
+      description: 'Stelt batterijmodus in op basis van stroomprijs, SOC en zonne-forecast'
       mode: restart
 
       trigger:
@@ -55,7 +55,19 @@ energie_batterij:
                   data:
                     option: Force discharge
 
-            # Laden van net: prijs is goedkoop + ruimte in batterij
+            # Pre-discharge: 's nachts ruimte maken voor verwachte zon morgen
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.energie_pre_discharge_zinvol
+                  state: 'on'
+              sequence:
+                - service: select.select_option
+                  target:
+                    entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
+                  data:
+                    option: Discharge only
+
+            # Laden van net: prijs goedkoop + ruimte + zon vult niet
             - conditions:
                 - condition: state
                   entity_id: binary_sensor.energie_laden_zinvol
@@ -67,7 +79,7 @@ energie_batterij:
                   data:
                     option: Force charge
 
-          # Normaal: geen extreme prijs, batterij volgt zon en eigen verbruik
+          # Normaal: geen actie vereist, batterij volgt zon en eigen verbruik
           default:
             - service: select.select_option
               target:

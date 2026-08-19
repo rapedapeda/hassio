@@ -1,16 +1,20 @@
 energie_sensoren:
 # Energie Package - Sensoren
-# Beslissingslogica op basis van stroomprijzen en batterijstatus
+# Beslissingslogica op basis van stroomprijzen, batterijstatus en zonne-forecast
 #
 # EnergyZero:
-#   sensor.energyzero_today_energy_current_hour_price      huidige prijs (€/kWh incl. belasting)
-#   sensor.energyzero_today_energy_hours_priced_equal_or_lower  positie in de dagrangschikking
+#   sensor.energyzero_today_energy_current_hour_price           huidige prijs (€/kWh incl. belasting)
+#   sensor.energyzero_today_energy_hours_priced_equal_or_lower  positie in dagrangschikking
 #     → waarde 2 = één van de 2 goedkoopste uren; waarde 20 = één van de 4 duurste uren
 #
 # Marstek Venus E:
 #   sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge  SOC (%)
 #   number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc                        min SOC (%)
 #   number.marstek_venus_e_5_12kwh_3nd_gen_maximum_soc                        max SOC (%)
+#
+# Forecast.Solar:
+#   sensor.energy_production_today_remaining  resterende opwek vandaag (kWh)
+#   sensor.energy_production_tomorrow         verwachte opwek morgen (kWh)
 
   template:
     - binary_sensor:
@@ -30,21 +34,21 @@ energie_sensoren:
             {{ states('sensor.energyzero_today_energy_hours_priced_equal_or_lower') | int(0)
                >= (24 - states('input_number.energie_ontladen_uren') | int(8)) }}
 
-        # Laden van net zinvol: prijs goedkoop + ruimte in batterij
-        # TODO: uitbreiden met Forecast.Solar — niet laden als zon verwacht de batterij vult
-        #   sensor.forecast_solar_estimated_energy_production_today (kWh)
+        # Laden van net zinvol:
+        #   prijs goedkoop + ruimte in batterij + zon vandaag vult niet wat er nog bij kan
         - name: "Energie laden zinvol"
           unique_id: energie_laden_zinvol
           icon: mdi:transmission-tower-import
           state: >-
             {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(100) %}
             {% set max_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_maximum_soc') | float(90) %}
+            {% set resterende_ruimte = (max_soc - soc) / 100 * 5.12 %}
+            {% set solar_vandaag = states('sensor.energy_production_today_remaining') | float(0) %}
             {{ is_state('binary_sensor.energie_prijs_goedkoop', 'on')
-               and soc < (max_soc - 5) }}
+               and soc < (max_soc - 5)
+               and solar_vandaag < resterende_ruimte }}
 
         # Ontladen zinvol: prijs hoog + voldoende SOC
-        # TODO: uitbreiden met Forecast.Solar — bij verwachte zon volgende dag ruimer ontladen
-        #   sensor.forecast_solar_estimated_energy_production_tomorrow (kWh)
         - name: "Energie ontladen zinvol"
           unique_id: energie_ontladen_zinvol
           icon: mdi:transmission-tower-export
@@ -52,4 +56,19 @@ energie_sensoren:
             {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(0) %}
             {% set min_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc') | float(10) %}
             {{ is_state('binary_sensor.energie_prijs_duur', 'on')
+               and soc > (min_soc + 5) }}
+
+        # Pre-discharge: 's nachts alvast ruimte maken als morgen genoeg zon verwacht
+        #   Actief tussen 20:00 en 07:00 als SOC > 60% en morgen >= 75% van batterijcapaciteit
+        - name: "Energie pre-discharge zinvol"
+          unique_id: energie_pre_discharge_zinvol
+          icon: mdi:weather-sunny-off
+          state: >-
+            {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(0) %}
+            {% set min_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc') | float(10) %}
+            {% set solar_morgen = states('sensor.energy_production_tomorrow') | float(0) %}
+            {% set uur = now().hour %}
+            {{ (uur >= 20 or uur < 7)
+               and soc > 60
+               and solar_morgen >= (5.12 * 0.75)
                and soc > (min_soc + 5) }}
