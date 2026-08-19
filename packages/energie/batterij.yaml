@@ -3,11 +3,12 @@ energie_batterij:
 # Centrale sturing van de Marstek Venus E op basis van stroomprijzen
 #
 # Batterijmodus (select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode):
-#   Verifieer de exacte optienamen via Ontwikkeltools → Staten op jouw HA-instantie.
-#   Meest waarschijnlijke waarden:
-#     "Automatic"       → normaal gedrag (laden van zon, ontladen naar huis)
-#     "Force Charge"    → laden van net (bij goedkope stroom)
-#     "Force Discharge" → ontladen naar huis (bij dure stroom)
+#   "Default mode"    → normaal gedrag (laden van zon, ontladen naar huis)
+#   "Force charge"    → laden van net (bij goedkope stroom)
+#   "Force discharge" → ontladen naar huis (bij dure stroom)
+#   "Charge only"     → alleen laden, niet ontladen (ruimte bewaren voor zon)
+#   "Discharge only"  → alleen ontladen, niet laden (leegtrekken vóór zonsopgang)
+#   "Pause battery"   → batterij volledig pauzeren
 
   automation:
     - id: energie_batterij_beslisser
@@ -40,7 +41,7 @@ energie_batterij:
                   target:
                     entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
                   data:
-                    option: Automatic
+                    option: Default mode
 
             # Ontladen: prijs is duur + voldoende SOC
             - conditions:
@@ -52,7 +53,7 @@ energie_batterij:
                   target:
                     entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
                   data:
-                    option: Force Discharge
+                    option: Force discharge
 
             # Laden van net: prijs is goedkoop + ruimte in batterij
             - conditions:
@@ -64,7 +65,7 @@ energie_batterij:
                   target:
                     entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
                   data:
-                    option: Force Charge
+                    option: Force charge
 
           # Normaal: geen extreme prijs, batterij volgt zon en eigen verbruik
           default:
@@ -72,4 +73,4 @@ energie_batterij:
               target:
                 entity_id: select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode
               data:
-                option: Automatic
+                option: Default mode

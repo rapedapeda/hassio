@@ -9,10 +9,10 @@ De batterijbeslisser draait elk uur (bij prijsupdate) en kiest een modus op basi
 
 | Prioriteit | Conditie | Batterijmodus |
 |-----------|----------|---------------|
-| 1 | `energie_auto = off` | Automatic (niet ingrijpen) |
-| 2 | Prijs duur + SOC > min + 5% | Force Discharge |
-| 3 | Prijs goedkoop + SOC < max - 5% | Force Charge |
-| Standaard | Geen extreme prijs | Automatic |
+| 1 | `energie_auto = off` | Default mode (niet ingrijpen) |
+| 2 | Prijs duur + SOC > min + 5% | Force discharge |
+| 3 | Prijs goedkoop + SOC < max - 5% | Force charge |
+| Standaard | Geen extreme prijs | Default mode |
 
 **Goedkoop/duur** is relatief: op basis van de positie in de dagrangschikking (EnergyZero
 `hours_priced_equal_or_lower`). Instelbaar via `energie_laden_uren` en `energie_ontladen_uren`.
@@ -23,25 +23,34 @@ De batterijbeslisser draait elk uur (bij prijsupdate) en kiest een modus op basi
 |-----------|------|--------|
 | [EnergyZero](https://github.com/bajansen/home-assistant-energyzero) | Dynamische stroomprijzen | ✓ Actief |
 | [Home Battery Simulation](https://github.com/selfhacked-nl/ha-home-battery-simulation) | Marstek Venus E simulatie | ✓ Actief |
-| Solcast | Zonne-energieforecast | TODO |
+| Forecast.Solar | Zonne-energieforecast | TODO |
 
-## TODO: Solcast
+## TODO: Forecast.Solar
 
-Na installatie van Solcast uitbreiden met:
+Ingebouwde HA-integratie, geen API key nodig. Instellen via **Instellingen → Integraties → Forecast.Solar**.
+Benodigde gegevens: azimuth (graden), hellingshoek, vermogen (kWp).
+
+Na installatie uitbreiden met:
 - `binary_sensor.energie_laden_zinvol`: niet laden van net als zon verwacht de batterij vult
 - `binary_sensor.energie_ontladen_zinvol`: ruimer ontladen als zon morgen de batterij aanvult
 - Nachtelijke pre-discharge: SOC verlagen vóór zonsopgang als solar forecast > batterijcapaciteit
 
-Solcast entiteiten (na installatie):
-- `sensor.solcast_pv_forecast_forecast_today` (kWh)
-- `sensor.solcast_pv_forecast_forecast_tomorrow` (kWh)
+Entiteiten (na installatie):
+- `sensor.forecast_solar_estimated_energy_production_today` (kWh)
+- `sensor.forecast_solar_estimated_energy_production_tomorrow` (kWh)
 
-## Marstek batterijmodus
+## Marstek batterijmodi
 
-Verifieer de exacte optienamen via **Ontwikkeltools → Staten**:
-`select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode`
+`select.marstek_venus_e_5_12kwh_3nd_gen_battery_mode` opties:
 
-Huidige aannames: `Automatic`, `Force Charge`, `Force Discharge`
+| Optie | Gebruik |
+|-------|---------|
+| `Default mode` | Normaal: laden van zon, ontladen naar huis |
+| `Force charge` | Laden van net (goedkope uren) |
+| `Force discharge` | Ontladen naar huis (dure uren) |
+| `Charge only` | Alleen laden, niet ontladen (bewaar voor zon) |
+| `Discharge only` | Alleen ontladen, niet laden (leegtrekken voor zon) |
+| `Pause battery` | Batterij volledig inactief |
 
 ## Bestanden
 

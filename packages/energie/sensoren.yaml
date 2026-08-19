@@ -31,7 +31,8 @@ energie_sensoren:
                >= (24 - states('input_number.energie_ontladen_uren') | int(8)) }}
 
         # Laden van net zinvol: prijs goedkoop + ruimte in batterij
-        # TODO: uitbreiden met Solcast — niet laden als zon verwacht de batterij vult
+        # TODO: uitbreiden met Forecast.Solar — niet laden als zon verwacht de batterij vult
+        #   sensor.forecast_solar_estimated_energy_production_today (kWh)
         - name: "Energie laden zinvol"
           unique_id: energie_laden_zinvol
           icon: mdi:transmission-tower-import
@@ -42,7 +43,8 @@ energie_sensoren:
                and soc < (max_soc - 5) }}
 
         # Ontladen zinvol: prijs hoog + voldoende SOC
-        # TODO: uitbreiden met Solcast — bij verwachte zon volgende dag ruimer ontladen
+        # TODO: uitbreiden met Forecast.Solar — bij verwachte zon volgende dag ruimer ontladen
+        #   sensor.forecast_solar_estimated_energy_production_tomorrow (kWh)
         - name: "Energie ontladen zinvol"
           unique_id: energie_ontladen_zinvol
           icon: mdi:transmission-tower-export
