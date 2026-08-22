@@ -17,7 +17,17 @@ energie_batterij:
       mode: restart
 
       trigger:
-        # Elk uur als de prijs wijzigt
+        # Direct als een beslissing wijzigt (ook als prijs mid-uur update)
+        - platform: state
+          entity_id:
+            - binary_sensor.energie_ontladen_zinvol
+            - binary_sensor.energie_laden_zinvol
+            - binary_sensor.energie_pre_discharge_zinvol
+          to:
+            - 'on'
+            - 'off'
+
+        # Als prijsdata binnenkomt maar binary sensors niet wijzigen (backup)
         - platform: state
           entity_id: sensor.energyzero_today_energy_current_hour_price
 
