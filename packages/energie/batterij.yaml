@@ -21,9 +21,12 @@ energie_batterij:
         - platform: state
           entity_id: sensor.energyzero_today_energy_current_hour_price
 
-        # Direct bij in-/uitschakelen auto mode
+        # Direct bij in-/uitschakelen auto mode of aanpassen drempelwaarden
         - platform: state
-          entity_id: input_boolean.energie_auto
+          entity_id:
+            - input_boolean.energie_auto
+            - input_number.energie_laden_uren
+            - input_number.energie_ontladen_uren
 
         # Bij HA-herstart
         - platform: homeassistant
