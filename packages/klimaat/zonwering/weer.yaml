@@ -4,8 +4,9 @@ klimaat_zonwering_weer:
 
   template:
     - sensor:
-        # DNI-benadering: GHI gecorrigeerd voor zonhoogte
-        # Geeft betere indicatie van directe straling op verticale vlakken
+        # Instraling op verticaal raam: GHI × cot(elevation)
+        # Correcte benadering voor verticale vlakken — DNI × cos(elevation) = GHI × cos/sin
+        # Floor op sin(5°) voorkomt extreme waarden bij zonsopgang/-ondergang
         - name: "Zonwering instraling"
           unique_id: zonwering_instraling
           unit_of_measurement: "W/m²"
@@ -13,7 +14,8 @@ klimaat_zonwering_weer:
             {% set ghi = (states('sensor.irradiance') if states('sensor.irradiance') not in ['unknown','unavailable','none',''] else states('sensor.zonnepanelen_radiation')) | float(0) %}
             {% set elevation_rad = state_attr('sun.sun', 'elevation') | float(0) * pi / 180 %}
             {% set sin_el = [sin(elevation_rad), sin(5 * pi / 180)] | max %}
-            {{ (ghi / sin_el) | round(0) }}
+            {% set cos_el = cos(elevation_rad) %}
+            {{ (ghi * cos_el / sin_el) | round(0) }}
 
     - binary_sensor:
         # Is het qua straling en seizoen nodig om zonwering in te schakelen?
