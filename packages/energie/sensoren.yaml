@@ -48,15 +48,25 @@ energie_sensoren:
                and soc < (max_soc - 5)
                and solar_vandaag < resterende_ruimte }}
 
-        # Ontladen zinvol: prijs hoog + voldoende SOC
+        # Ontladen zinvol: prijs hoog + voldoende SOC boven dynamische nachtreserve
+        # Reserve = resterende donkere uren × nachtverbruik_per_uur
+        # Overdag (zon boven horizon): geen reserve, vrij ontladen
         - name: "Energie ontladen zinvol"
           unique_id: energie_ontladen_zinvol
           icon: mdi:transmission-tower-export
           state: >-
             {% set soc = states('sensor.technische_ruimte_marstek_venus_e_5_12kwh_3nd_gen_state_of_charge') | float(0) %}
             {% set min_soc = states('number.marstek_venus_e_5_12kwh_3nd_gen_minimum_soc') | float(10) %}
+            {% set verbruik_per_uur = states('input_number.energie_nacht_verbruik_per_uur') | float(0.25) %}
+            {% if is_state('sun.sun', 'below_horizon') %}
+              {% set uren_tot_zon = ((as_datetime(state_attr('sun.sun', 'next_rising')) - now()).total_seconds() / 3600) | float(0) | round(2) %}
+              {% set reserve_soc = ((uren_tot_zon * verbruik_per_uur) / 5.12 * 100) | round(0) | int %}
+            {% else %}
+              {% set reserve_soc = 0 %}
+            {% endif %}
+            {% set effectief_min_soc = [min_soc, reserve_soc] | max %}
             {{ is_state('binary_sensor.energie_prijs_duur', 'on')
-               and soc > (min_soc + 5) }}
+               and soc > (effectief_min_soc + 5) }}
 
         # Pre-discharge: 's nachts alvast ruimte maken als morgen genoeg zon verwacht
         #   Actief tussen 20:00 en 07:00 als SOC > 60% en morgen >= 75% van batterijcapaciteit

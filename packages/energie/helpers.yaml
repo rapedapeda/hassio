@@ -25,3 +25,13 @@ energie_helpers:
       initial: 8
       icon: mdi:battery-arrow-down
       mode: box
+
+    energie_nacht_verbruik_per_uur:
+      name: Energie nachtverbruik per uur
+      min: 0.10
+      max: 0.50
+      step: 0.01
+      initial: 0.25
+      unit_of_measurement: "kWh/u"
+      icon: mdi:moon-waning-crescent
+      mode: box
