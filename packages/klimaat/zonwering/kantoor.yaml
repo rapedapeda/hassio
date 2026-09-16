@@ -33,7 +33,7 @@ klimaat_zonwering_kantoor:
             {{
               [states('sensor.knmi_max_temperature_today')|int(10), states('sensor.weerstation_outdoor_temperature')|int(10)] | max >= states('input_number.zonwering_buitentemperatuur_threshold')|int(0)
               or
-              states('sensor.temperatuur_kantoor')|float(0) >= 20
+              states('sensor.temperatuur_kantoor')|float(0) >= (states('sensor.zonwering_binnentemp_drempel')|float(21) - 1)
             }}
           delay_on:
             minutes: 5
