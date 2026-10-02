@@ -36,6 +36,8 @@ recorder:
       - sensor.irradiance
       - sensor.shellyplug_energy
       - sensor.shellyplug_power
+      - sensor.simrig_energy
+      - sensor.simrig_power
       - sensor.zonnepanelen_power
       - sensor.zonnepanelen_energy
       - sensor.zonnepanelen_radiation
